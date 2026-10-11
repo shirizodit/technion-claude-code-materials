@@ -28,17 +28,50 @@ a{color:inherit}
 code{font-family:var(--mono);font-size:.88em;background:var(--acc-soft);padding:1px 7px;border-radius:6px;direction:ltr;unicode-bidi:isolate}
 .wrap{max-width:900px;margin:0 auto;padding:0 20px}
 
-/* top nav */
-.top{position:sticky;top:0;z-index:20;background:rgba(248,249,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.top .wrap{display:flex;gap:8px;align-items:center;padding-top:12px;padding-bottom:12px;overflow-x:auto}
-.top a{flex:none;text-decoration:none;font-weight:600;font-size:16px;padding:7px 16px;border-radius:99px;background:var(--paper);border:1px solid var(--line)}
-.top a:hover{border-color:var(--ink)}
-.top a.m1{border-color:var(--orange);color:var(--orange)} .top a.m2{border-color:var(--blue);color:var(--blue)} .top a.m3{border-color:var(--green);color:var(--green)}
-.top a.m4{border-color:var(--purple);color:var(--purple)} .top a.m5{border-color:var(--red);color:var(--red)} .top a.m6{border-color:var(--teal);color:var(--teal)} .top a.m7{border-color:var(--blue);color:var(--blue)} .top a.m8{border-color:var(--orange);color:var(--orange)}
-.top .prog{margin-inline-start:auto;flex:none;font-size:15px;color:var(--muted);padding-inline-start:12px}
+/* top bar + side panel */
+.bar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:16px;min-height:56px;padding:0 20px;background:rgba(248,249,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar .menu{margin:9px 0;white-space:nowrap;font:600 16px var(--sans);color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:99px;padding:7px 18px;cursor:pointer}
+.bar .menu:hover{border-color:var(--ink)}
+.bar .prog{font-size:15px;color:var(--muted);white-space:nowrap}
+.lane{--w:46px;flex:1;min-width:0;align-self:stretch;position:relative;direction:ltr}
+.scrim{position:fixed;inset:0;z-index:30;background:rgba(12,27,58,.45)}
+#side{position:fixed;top:0;bottom:0;inset-inline-start:0;z-index:40;width:min(340px,86vw);background:var(--paper);box-shadow:0 0 40px rgba(12,27,58,.25);overflow-y:auto;padding:0 0 24px;outline:0;animation:side-in .2s ease-out}
+#side[hidden],.scrim[hidden]{display:none}
+@keyframes side-in{from{transform:translateX(100%)}to{transform:none}}
+@media (prefers-reduced-motion:reduce){#side{animation:none}}
+.side-head{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:var(--paper);border-bottom:1px solid var(--line);font-size:19px}
+.side-head .x{font:600 18px var(--sans);border:0;background:transparent;color:var(--muted);cursor:pointer;padding:4px 8px}
+#side h5{margin:18px 20px 6px;font-size:14px;letter-spacing:.04em;color:var(--muted)}
+#side nav a{display:flex;align-items:center;gap:10px;margin:2px 10px;padding:9px 12px;border-radius:10px;border-inline-start:5px solid transparent;text-decoration:none;font-weight:500;font-size:17px;line-height:1.35}
+#side nav a:hover{background:var(--bg)}
+#side nav a i{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:700 14px var(--sans);font-style:normal;color:#fff;background:var(--c)}
+#side nav a.s0{font-weight:600}
+#side nav a.on{background:var(--bg);font-weight:700;border-inline-start-color:var(--c,var(--ink))}
+#side .m1{--c:var(--orange)} #side .m2{--c:var(--blue)} #side .m3{--c:var(--green)} #side .m4{--c:var(--purple)}
+#side .m5{--c:var(--red)} #side .m6{--c:var(--teal)} #side .m7{--c:var(--blue)} #side .m8{--c:var(--orange)}
 
 /* hero */
 .hero{padding:48px 0 12px}
+.lecturer{margin:6px 0 14px;font-size:20px;color:var(--muted)} .lecturer b{color:var(--ink)}
+.hero-logos{display:flex;align-items:center;gap:22px;margin:0 0 26px}
+.hero-logos img{display:block;height:50px;width:auto}
+.hero-logos img.aid{height:76px}
+.hero-logos .sep{width:2px;height:54px;background:var(--ink);opacity:.2;border-radius:2px}
+.walker{position:absolute;bottom:0;left:0;width:var(--w);animation:walk-x 18s linear infinite}
+.walker .flip{animation:walk-flip 18s steps(1) infinite}
+.walker svg{display:block;width:100%;height:auto;overflow:visible}
+.walker .body{fill:#D7876A} .walker .eye{fill:#14213F;transform-box:fill-box;transform-origin:center;animation:walk-blink 5s infinite}
+.walker .all{transform-box:fill-box;transform-origin:50% 100%;animation:walk-bob .7s ease-in-out infinite}
+.walker .leg{fill:#D7876A;transform-box:fill-box;transform-origin:50% 0}
+.walker .leg.a{animation:walk-step .7s ease-in-out infinite} .walker .leg.b{animation:walk-step .7s ease-in-out infinite .35s}
+@keyframes walk-x{0%{left:0}48%{left:calc(100% - var(--w))}50%{left:calc(100% - var(--w))}98%{left:0}100%{left:0}}
+@keyframes walk-flip{0%{transform:scaleX(1)}50%{transform:scaleX(-1)}100%{transform:scaleX(1)}}
+@keyframes walk-step{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.7)}}
+@keyframes walk-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes walk-blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.08)}}
+@media (prefers-reduced-motion:reduce){.walker,.walker *{animation:none!important}.walker{left:calc(50% - 23px)}}
+@media (max-width:600px){.hero-logos img{height:38px}.hero-logos img.aid{height:58px}.hero-logos .sep{height:40px}}
+
 .eyebrow{font-weight:700;font-size:15px;letter-spacing:.06em;color:var(--orange)}
 h1{font-size:clamp(32px,6vw,52px);line-height:1.15;margin:8px 0 14px;font-weight:800}
 .lead{font-size:21px;color:var(--muted);max-width:720px}
@@ -60,6 +93,10 @@ h1{font-size:clamp(32px,6vw,52px);line-height:1.15;margin:8px 0 14px;font-weight
 .mhead .num{font-size:15px;font-weight:700;color:var(--acc);letter-spacing:.05em}
 .mhead h2{font-size:clamp(26px,4.5vw,38px);margin:4px 0 8px;line-height:1.2}
 .mhead p{margin:0;color:var(--muted)}
+.mhead .sl{display:inline-block;margin:10px 0 0 10px;font-weight:600;font-size:16px;color:var(--acc);text-decoration:none;border:1.5px solid var(--acc);border-radius:99px;padding:5px 16px}
+.mhead .sl:hover{background:var(--acc-soft)}
+.slbtn{display:inline-block;text-decoration:none;background:var(--ink);color:#fff;border-radius:12px;padding:12px 26px;font-size:18px}
+.slbtn:hover{background:#1c2f5c}
 .mhead .out{display:inline-block;margin-top:12px;background:var(--acc-soft);color:var(--ink);padding:5px 14px;border-radius:99px;font-weight:600;font-size:15.5px}
 .toc{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;padding:0;list-style:none}
 .toc a{font-size:15px;text-decoration:none;padding:5px 12px;border-radius:99px;background:var(--acc-soft)}
@@ -110,41 +147,74 @@ th{background:var(--acc-soft)}
 .cmd .row{display:grid;grid-template-columns:7.5em 1fr;gap:2px 14px;font-size:16.5px;margin:2px 0}
 .cmd .row b{color:var(--muted);font-weight:600}
 @media (max-width:600px){.cmd .row{grid-template-columns:1fr}}
+ul.links{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:10px}
+ul.links a{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;text-decoration:none;background:var(--paper);border:1px solid var(--line);border-inline-start:6px solid var(--acc);border-radius:12px;padding:12px 18px}
+ul.links a:hover{border-color:var(--acc)}
+ul.links span{font-family:var(--mono);font-size:15px;color:var(--muted);unicode-bidi:isolate}
 dl.gl{margin:10px 0 0;display:grid;grid-template-columns:max-content 1fr;gap:8px 18px;font-size:16.5px}
 dl.gl dt{font-weight:700} dl.gl dd{margin:0}
 @media (max-width:600px){dl.gl{grid-template-columns:1fr}dl.gl dd{margin-bottom:6px}}
 footer{margin:70px 0 50px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:15.5px}
 .reset{background:none;border:1px solid var(--line);border-radius:8px;padding:4px 12px;font:inherit;font-size:14px;color:var(--muted);cursor:pointer}
 @media (max-width:600px){body{font-size:17px}.sec{padding:18px}.mhead{padding:20px}table{display:block;overflow-x:auto}.prompt{font-size:16px;padding-top:44px}.copy{top:8px}.prompt .tag{padding-left:0}}
-@media print{.top,.copy{display:none}.sec{break-inside:avoid}}
+@media print{.bar,#side,.scrim,.copy{display:none}.sec{break-inside:avoid}}
 </style>
 </head>
 <body>
 
-<nav class="top"><div class="wrap">
-  <a href="#start">להתחלה</a>
-  <a class="m1" href="#m1">מודול 1</a>
-  <a class="m2" href="#m2">מודול 2</a>
-  <a class="m3" href="#m3">מודול 3</a>
-  <a class="m4" href="#m4">מודול 4</a>
-  <a class="m5" href="#m5">מודול 5</a>
-  <a class="m6" href="#m6">מודול 6</a>
-  <a class="m7" href="#m7">מודול 7</a>
-  <a class="m8" href="#m8">מודול 8</a>
-  <a href="#cmds">פקודות</a>
+<header class="bar">
+  <button class="menu" id="menuBtn" aria-expanded="false" aria-controls="side"><span class="ic" aria-hidden="true">☰</span> תוכן עניינים</button>
+    <div class="lane" aria-hidden="true"><div class="walker"><div class="flip"><svg viewBox="0 0 160 140"><g class="all">
+    <rect class="leg a" x="34" y="96" width="11" height="30"/><rect class="leg b" x="58" y="96" width="11" height="30"/>
+    <rect class="leg b" x="91" y="96" width="11" height="30"/><rect class="leg a" x="115" y="96" width="11" height="30"/>
+    <rect class="body" x="4" y="58" width="22" height="26"/><rect class="body" x="134" y="58" width="22" height="26"/>
+    <rect class="body" x="22" y="12" width="116" height="86"/>
+    <rect class="eye" x="45" y="38" width="10" height="24"/><rect class="eye" x="105" y="38" width="10" height="24"/>
+  </g></svg></div></div></div>
   <span class="prog" id="prog"></span>
-</div></nav>
+</header>
+<div class="scrim" id="scrim" hidden></div>
+<aside id="side" aria-label="תוכן עניינים" tabindex="-1" hidden>
+  <div class="side-head"><b>תוכן עניינים</b><button class="x" id="sideClose" aria-label="סגירה">✕</button></div>
+  <nav>
+    <a class="s0" href="#start">להתחלה</a>
+    <a class="s0" href="#slides">🎞 מצגת הקורס</a>
+    <h5>יום א׳</h5>
+    <a class="m1" href="#m1"><i>1</i>מצ׳אט לסוכן</a>
+    <a class="m2" href="#m2"><i>2</i>Context Engineering</a>
+    <a class="m3" href="#m3"><i>3</i>CLAUDE.md והרשאות</a>
+    <a class="m4" href="#m4"><i>4</i>Skills</a>
+    <h5>יום ב׳</h5>
+    <a class="m5" href="#m5"><i>5</i>צנרת עם שער אנושי</a>
+    <a class="m6" href="#m6"><i>6</i>MCP ו-Connectors</a>
+    <a class="m7" href="#m7"><i>7</i>סוכני-משנה</a>
+    <a class="m8" href="#m8"><i>8</i>התהליך האישי ושיתוף</a>
+    <h5>עזר</h5>
+    <a class="s0" href="#cmds">פקודות שכדאי להכיר</a>
+    <a class="s0" href="#cmd-links">קישורים חשובים</a>
+  </nav>
+</aside>
 
 <main class="wrap">
 
 <header class="hero" id="start">
+  <div class="hero-logos"><img src="assets/technion-logo.png" alt="הטכניון, מכון טכנולוגי לישראל"><span class="sep"></span><img class="aid" src="assets/ai-days-logo.png" alt="ימי AI בטכניון"></div>
   <div class="eyebrow">TECHNION AI DAYS · 2026 · יום א׳</div>
-  <h1>Claude Code for Everyone<br>חומרי הקורס</h1>
+  <h1>Claude Code for Everyone</h1>
+  <p class="lecturer">מרצה: <b>שירי זוהר</b></p>
   <p class="lead">כל מה שצריך כדי לתרגל לבד: הוראות צעד אחרי צעד, ובקשות מוכנות להעתקה. אפשר לעבוד איתו בזמן השיעור, ולחזור אליו אחר כך.</p>
   <div class="how">
     <div><b>1 · עוברים על הצעדים</b>מסמנים וי בכל צעד שסיימתם. ההתקדמות נשמרת בדפדפן שלכם.</div>
     <div><b>2 · מעתיקים את הבקשה</b>לוחצים "העתק" ומדביקים בחלון של Claude Code. מה שבצהוב — מחליפים בשלכם.</div>
     <div><b>3 · בודקים "סיימתם כש"</b>בכל תרגיל יש בדיקה פשוטה שאומרת אם הצלחתם.</div>
+  </div>
+
+  <div class="sec" id="slides" style="--acc:var(--purple);--acc-soft:var(--purple-soft)">
+    <span class="badge idea">מצגת הקורס</span>
+    <h3>השקפים של שני הימים</h3>
+    <p>אותה מצגת שרואים בכיתה, כדי לחזור אליה בקצב שלכם. פותחים מודול ועוברים בין השקפים עם החצים במקלדת (← →) או בכפתורים בפינה.</p>
+    <p><a class="slbtn" href="slides/index.html" target="_blank" rel="noopener"><b>🎞 פתחו את מצגת הקורס</b></a></p>
+    <p class="hint">בכל מודול בדף הזה יש גם קישור ישיר לשקפים שלו.</p>
   </div>
 
   <div class="sec" style="--acc:var(--orange);--acc-soft:var(--orange-soft)">
@@ -220,6 +290,7 @@ footer{margin:70px 0 50px;padding-top:24px;border-top:1px solid var(--line);colo
     <h2>מצ׳אט לסוכן, והאפליקציה הראשונה שלכם</h2>
     <p>Claude Code הוא סוכן שעובד על הקבצים שלכם: הוא קורא, כותב ובודק. לא רק עונה בצ׳אט.</p>
     <span class="out">תוצר: תיקיית עבודה, תוכנית לימוד, וכלי לימוד שעובד בדפדפן</span>
+    <a class="sl" href="slides/module1.html" target="_blank" rel="noopener">🎞 פתחו את שקפי המודול</a>
     <ul class="toc">
       <li><a href="#m1-ideas">רעיונות מרכזיים</a></li>
       <li><a href="#m1-lab1">Lab 1.1 · לוח Claude Code</a></li>
@@ -371,8 +442,10 @@ HTML, CSS ו-JavaScript בלבד בקובץ אחד, בלי תלויות חיצו
     <h2>Context Engineering: מה Claude רואה</h2>
     <p>Claude לא "שוכח". הוא רואה רק את מה שנמצא על השולחן שלו עכשיו. התפקיד שלכם: לסדר את השולחן.</p>
     <span class="out">תוצר: תוכנית לימוד משודרגת + קובץ me.md</span>
+    <a class="sl" href="slides/module2.html" target="_blank" rel="noopener">🎞 פתחו את שקפי המודול</a>
     <ul class="toc">
       <li><a href="#m2-levers">שלושה מנופים</a></li>
+      <li><a href="#m2-statusline">נסו עכשיו · שורת סטטוס</a></li>
       <li><a href="#m2-demo">דמו · שלושה מאמרים</a></li>
       <li><a href="#m2-ws">Workshop 2 · משדרגים את התוכנית</a></li>
     </ul>
@@ -396,6 +469,21 @@ HTML, CSS ו-JavaScript בלבד בקובץ אחד, בלי תלויות חיצו
       <li><label><input type="checkbox"><span>הקלידו <code>/context</code> בשיחה: תראו כמה מקום תפוס על השולחן ובמה</span></label></li>
       <li><label><input type="checkbox"><span>התקרבתם לקצה? הקלידו <code>/clear</code> כדי להתחיל שיחה נקייה. מה ששמרתם בקבצים נשאר</span></label></li>
     </ol>
+  </div>
+
+  <div class="sec" id="m2-statusline">
+    <span class="badge lab">נסו עכשיו · 2 דקות</span>
+    <h3>שורת סטטוס: רואים כמה מהשולחן תפוס</h3>
+    <p class="goal">המטרה: פס קטן בתחתית Claude Code שמראה באיזו תיקייה אתם, באיזה מודל, וכמה מהשולחן כבר תפוס. כך רואים מתי הגיע הזמן ל-<code>/clear</code>, בלי להקליד <code>/context</code>.</p>
+    <p>זה נראה ככה: <code dir="ltr">35-test | Sonnet 5.5 | [██░░░░░░░░] 8%</code></p>
+    <ol class="steps" data-key="2.statusline">
+      <li><label><input type="checkbox"><span>פתחו שיחה ב-Claude Code בתיקייה <code>technion-ai</code></span></label></li>
+      <li><label><input type="checkbox"><span>הקלידו <code>/statusline</code> ואחריו את הבקשה שלמטה (הדביקו הכול בשורה אחת)</span></label></li>
+      <li><label><input type="checkbox"><span>אשרו אם Claude מבקש רשות לעדכן את ההגדרות. השורה תופיע בתחתית החלון</span></label></li>
+    </ol>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">COMMAND · /statusline</span>/statusline הצג שורת סטטוס בפורמט הזה: שם התיקייה הנוכחית | שם המודל | [פס התקדמות של 10 תווים בצורת ██████░░░░] אחוז הקשר שתפוס. לדוגמה: technion-ai | Sonnet 5.5 | [██░░░░░░░░] 8%</div>
+    <p class="hint">הפס הוא <b>אחוז השולחן שתפוס</b>, כמו ב-<code>/context</code>. כשהוא מתקרב לקצה, שמרו מה שחשוב בקובץ והקלידו <code>/clear</code>. אם משהו לא נראה כמו בדוגמה, בקשו מ-Claude: "תתקן את שורת הסטטוס".</p>
+    <div class="done">✅ <b>סיימתם כש:</b> בתחתית החלון מופיעה שורה עם שם התיקייה, המודל ואחוז.</div>
   </div>
 
   <div class="sec" id="m2-demo">
@@ -448,6 +536,7 @@ HTML, CSS ו-JavaScript בלבד בקובץ אחד, בלי תלויות חיצו
     <h2>CLAUDE.md ומצבי הרשאה</h2>
     <p>כותבים פעם אחת מי אתם ואיך לדבר איתכם, וכל שיחה מתחילה כש-Claude כבר מכיר אתכם. ומחליטים מה מותר לו לעשות לבד.</p>
     <span class="out">תוצר: CLAUDE.md אישי + הרגל "קודם תוכנית, אחר כך אישור"</span>
+    <a class="sl" href="slides/module3.html" target="_blank" rel="noopener">🎞 פתחו את שקפי המודול</a>
     <ul class="toc">
       <li><a href="#m3-ideas">מה זה CLAUDE.md</a></li>
       <li><a href="#m3-ws">Workshop 3 · הקובץ שלכם</a></li>
@@ -568,6 +657,7 @@ HTML, CSS ו-JavaScript בלבד בקובץ אחד, בלי תלויות חיצו
     <h2>Skills: לארוז, להתקין, להשתמש שוב</h2>
     <p>כותבים בקשה טובה פעם אחת, ומפעילים אותה אחר כך במילה אחת. ואפשר גם לקחת Skills מוכנים מאחרים.</p>
     <span class="out">תוצר: Skill ראשון משלכם שרץ על קובץ אמיתי, וקובץ Word או מצגת שנוצרו על ידי Skill מותקן</span>
+    <a class="sl" href="slides/module4.html" target="_blank" rel="noopener">🎞 פתחו את שקפי המודול</a>
     <ul class="toc">
       <li><a href="#m4-ideas">מה זה Skill</a></li>
       <li><a href="#m4-demo">דמו · בונים Skill בידיים</a></li>
@@ -785,6 +875,7 @@ Read the plot, then write three sentences.</div>
     <h2>צנרת של Skills עם שער אנושי</h2>
     <p>שרשרת של שלבים, וביניהם עצירה אחת שבה אתם מחליטים. בסוף המודול יש לכם שרשרת שעובדת מקצה לקצה על חומר אמיתי שלכם.</p>
     <span class="out">תוצר: CLAUDE.md + Skills לכל שלב + מתזמר שעוצר בשער ומחכה לכם</span>
+    <a class="sl" href="slides/module5.html" target="_blank" rel="noopener">🎞 פתחו את שקפי המודול</a>
     <ul class="toc">
       <li><a href="#m5-ideas">רעיונות מרכזיים</a></li>
       <li><a href="#m5-ws">Workshop 5 · התחלה ו-CLAUDE.md</a></li>
@@ -995,6 +1086,7 @@ the previous output.
     <h2>מחברים את Claude לעולם: MCP ו-Connectors</h2>
     <p>עד עכשיו Claude ראה רק את התיקייה שפתחתם. עכשיו נותנים לו גישה ליומן, לקבצים ולרשת, והוא מביא משם מידע בעצמו, בלי שתעתיקו ותדביקו.</p>
     <span class="out">תוצר: חיבור למקור אחד, ודף summary.html שנבנה ממידע שהוא הביא</span>
+    <a class="sl" href="slides/module6.html" target="_blank" rel="noopener">🎞 פתחו את שקפי המודול</a>
     <ul class="toc">
       <li><a href="#m6-ideas">רעיונות מרכזיים</a></li>
       <li><a href="#m6-docs">דמו · מוסיפים שרת</a></li>
@@ -1192,6 +1284,7 @@ the previous output.
     <h2>סוכני-משנה: צוות של מומחים</h2>
     <p>במקום סוכן אחד שעושה הכול, בונים צוות קטן: חוקר שרק קורא, ובונה שרק כותב. הרעש נשאר אצל המומחה, ואליכם חוזר רק הסיכום.</p>
     <span class="out">תוצר: שני סוכני-משנה (חוקר ובונה) שרצים בזה אחר זה על חומר שלכם</span>
+    <a class="sl" href="slides/module7.html" target="_blank" rel="noopener">🎞 פתחו את שקפי המודול</a>
     <ul class="toc">
       <li><a href="#m7-ideas">רעיונות מרכזיים</a></li>
       <li><a href="#m7-setup">שלב 0 · מכינים תיקייה</a></li>
@@ -1468,6 +1561,7 @@ Answer in Hebrew.</div>
     <h2>התהליך האישי שלכם, שיתוף והצעדים הבאים</h2>
     <p>מחברים את כל מה שבניתם (תיקייה, CLAUDE.md, Skill, צינור, חיבור, סוכנים) לתהליך אחד שעובד על משימה אמיתית שלכם, כותבים לו README, ומפרסמים אותו ב-GitHub.</p>
     <span class="out">תוצר: תהליך אישי שעובד, README ברור, וכתובת אחת שאפשר לשלוח לחבר</span>
+    <a class="sl" href="slides/module9.html" target="_blank" rel="noopener">🎞 פתחו את שקפי המודול</a>
     <ul class="toc">
       <li><a href="#m8-ideas">המכונה ובחירת משימה</a></li>
       <li><a href="#m8-ws">Workshop 8 · מרכיבים את התהליך</a></li>
@@ -1659,6 +1753,7 @@ Questions need your review before use.</div>
     <span class="out">הקלידו / בתיבת השיחה כדי לראות את הרשימה המלאה</span>
     <ul class="toc">
       <li><a href="#cmd-context" dir="ltr">/context</a></li><li><a href="#cmd-compact" dir="ltr">/compact</a></li><li><a href="#cmd-clear" dir="ltr">/clear</a></li><li><a href="#cmd-rewind" dir="ltr">/rewind</a></li><li><a href="#cmd-init" dir="ltr">/init</a></li><li><a href="#cmd-more">עוד פקודות</a></li>
+    <li><a href="#cmd-links">קישורים חשובים</a></li>
     </ul>
   </div>
 
@@ -1729,6 +1824,16 @@ Questions need your review before use.</div>
     <div class="help"><b>חשוב:</b> הרשימה, הניסוח והמסכים משתנים בין גרסאות. אם פקודה לא מגיבה כמו שכתוב כאן, הקלידו <code>/help</code> ובדקו מה זמין אצלכם.</div>
     <p class="hint">פקודות של Skills, חיבורים וסוכני-משנה (<code>/plugin</code>, <code>/mcp</code>, <code>/agents</code>) מופיעות בטבלה כאן למעלה ובמודולים 4, 6 ו-7.</p>
   </div>
+  <div class="sec" id="cmd-links" style="--acc:var(--teal);--acc-soft:var(--teal-soft)">
+    <span class="badge idea">קישורים חשובים</span>
+    <h3>התיעוד הרשמי של Claude</h3>
+    <p>כשצריך להעמיק או לבדוק פקודה, זה המקום. התיעוד באנגלית ומתעדכן כל הזמן.</p>
+    <ul class="links">
+      <li><a href="https://code.claude.com/docs/en/skills" target="_blank" rel="noopener"><b>Skills</b><span dir="ltr">code.claude.com/docs/en/skills</span></a></li>
+      <li><a href="https://code.claude.com/docs/en/mcp" target="_blank" rel="noopener"><b>MCP</b><span dir="ltr">code.claude.com/docs/en/mcp</span></a></li>
+      <li><a href="https://code.claude.com/docs/en/mcp-quickstart" target="_blank" rel="noopener"><b>MCP Quick start</b><span dir="ltr">code.claude.com/docs/en/mcp-quickstart</span></a></li>
+    </ul>
+  </div>
 </section>
 
 <footer>
@@ -1769,6 +1874,23 @@ Questions need your review before use.</div>
   });
   function count(){var d=boxes.filter(function(b){return b.checked}).length;
     document.getElementById('prog').textContent=d+' / '+boxes.length+' צעדים'}
+
+  // side panel
+  var side=document.getElementById('side'),scrim=document.getElementById('scrim'),mbtn=document.getElementById('menuBtn');
+  function setPanel(open){side.hidden=!open;scrim.hidden=!open;mbtn.setAttribute('aria-expanded',open);
+    if(open)side.focus();else mbtn.focus()}
+  mbtn.onclick=function(){setPanel(side.hidden)};
+  scrim.onclick=document.getElementById('sideClose').onclick=function(){setPanel(false)};
+  addEventListener('keydown',function(e){if(e.key==='Escape'&&!side.hidden)setPanel(false)});
+  side.querySelectorAll('nav a').forEach(function(a){a.addEventListener('click',function(){setPanel(false)})});
+  // highlight the module being read
+  var links={};side.querySelectorAll('nav a').forEach(function(a){links[a.getAttribute('href').slice(1)]=a});
+  var secs=document.querySelectorAll('.hero,.mod'),cur=null;
+  function mark(){var y=innerHeight*0.3,id='start';
+    secs.forEach(function(el){if(el.getBoundingClientRect().top<=y)id=el.id||'start'});
+    if(id===cur)return;cur=id;
+    Object.keys(links).forEach(function(k){links[k].classList.toggle('on',k===id)})}
+  addEventListener('scroll',mark,{passive:true});mark();
   count();
   document.getElementById('reset').onclick=function(){
     if(!confirm('לאפס את כל הסימונים?'))return;

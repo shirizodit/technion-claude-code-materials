@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>יום א׳ · מודול 1 — מצ׳אט לסוכן</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="day1.css">
+</head>
+<body data-start="1" data-total="126" data-prev="index.html" data-next="module2.html">
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="spark" viewBox="0 0 100 100"><g fill="currentColor">
+    <rect x="46" y="4" width="8" height="40" rx="4"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(30 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(60 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(90 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(120 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(150 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(180 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(210 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(240 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(270 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(300 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(330 50 50)"/>
+  </g></symbol>
+</svg>
+
+<div id="stage">
+
+<!-- ================= OPENING ================= -->
+
+<!-- 1 -->
+<section class="slide cover-bg" data-mod="1">
+  <div class="cover-art" data-flip="0"></div>
+  <div class="cover-logos"><img src="../assets/technion-logo.png" alt="הטכניון, מכון טכנולוגי לישראל"><span class="sep"></span><img class="aid" src="../assets/ai-days-logo.png" alt="ימי AI בטכניון"></div>
+  <div class="body cover">
+    <div class="cover-text">
+              <div class="cover-day">יום א׳ - הבסיס</div>
+      <h1>Claude Code for Everyone</h1>
+      <p class="mt cover-author" style="font-size:30px"><strong>שירי זוהר</strong> <span class="muted">· AI Corporate Apps Lead, monday.com</span></p>
+    </div>
+    <div class="cc-mascot" data-say="שלום! אני Claude Code|היום נבנה ביחד משהו אמיתי|אני קורא קבצים, כותב ובודק|מוכנים להתחיל?"></div>
+  </div>
+  </section>
+
+<!-- 2 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="mod">פתיחה</span></div>
+  <h2>נעים להכיר שירי זוהר</h2>
+  <div class="body">
+    <div class="grid g3">
+      <div class="card"><div class="icon">01</div><h3>לא מתכנתת, אבל מייצרת כלים פרקטיים  </h3><p>מובילה את תחום אפליקציות ה-AI הארגוניות ב-monday.com. משתמשת ב-Claude Code כל יום — לא רק לקוד.</p></div>
+      <div class="card"><div class="icon">02</div><h3>מה אני עושה איתו</h3><p>מחקר, ניתוח נתונים, מצגות, אוטומציות של משימות חוזרות.</p></div>
+      <div class="card acc"><div class="icon">03</div><h3>המטרה שלי</h3><p>שתצאו מפה עם ידע, כלים ובסיס טוב ופרקטי שתוכלו להמשיך ולבנות איתו כל מה שתרצו.</p></div>
+    </div>
+  </div>
+  </section>
+
+<!-- 3 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="mod">פתיחה</span></div>
+  <h2>מה יוצאים איתו בסוף היום</h2>
+  <div class="body">
+    <p class="lead">לא "ידע על AI" — <strong style="color:var(--ink)">מכונה שעובדת בשבילכם</strong>, שבנויה מחלקים שנוסיף לאורך היום:</p>
+    <div class="machine mt">
+      <span class="part">📁 תיקיית עבודה</span><span class="part">📄 תוכנית לימוד</span><span class="part">🧭 הקשר נכון</span>
+      <span class="part">🧠 CLAUDE.md אישי</span><span class="part">🔐 הרשאות בטוחות</span>
+    </div>
+    <div class="example mt">
+      <div class="who">הדוגמה שתלווה אותנו · נועה, הנדסת חשמל, שנה ג׳</div>
+      <p>חמישה קורסים, מעבדה שבועית, מבחנים שמתנגשים. בסוף היום ל-Claude של נועה יש סילבוסים, תוכנית למידה והוראות קבועות — והוא כבר לא צריך שיסבירו לו מחדש.</p>
+    </div>
+  </div>
+  </section>
+
+<!-- 4 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="mod">פתיחה</span> · לו״ז</div>
+  <h2>היום: 4 מודולים, כל אחד נגמר בתוצר</h2>
+  <div class="body">
+    <div class="tl">
+      <div class="it m1"><span class="t">10:00–11:15</span><span class="n">1 · מה זה Claude Code — מצ׳אט לסוכן</span><span class="badge work">תיקיית עבודה</span></div>
+      <div class="it br"><span class="t">11:15–11:30</span><span class="n muted">הפסקה</span><span></span></div>
+      <div class="it m2"><span class="t">11:30–12:45</span><span class="n">2 · Context Engineering — מה Claude רואה</span><span class="badge work">תוכנית לימוד</span></div>
+      <div class="it br"><span class="t">12:45–13:30</span><span class="n muted">צהריים</span><span></span></div>
+      <div class="it m3"><span class="t">13:30–14:45</span><span class="n">3 · CLAUDE.md ומצבי הרשאה</span><span class="badge work">CLAUDE.md + הרשאות</span></div>
+      <div class="it m4"><span class="t">15:00–16:00</span><span class="n">4 · Skills — לארוז ולהשתמש שוב</span><span class="badge work">Skill ראשון</span></div>
+    </div>
+  </div>
+  </section>
+
+<!-- 4b -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="mod">פתיחה</span> · חומרי הקורס</div>
+  <h2>כל החומרים במקום אחד</h2>
+  <div class="body cover">
+    <div class="cover-text">
+      <p class="lead">סרקו עכשיו ושמרו: <strong style="color:var(--ink)">העמוד של הקורס</strong> עם הקישורים, ההכנות והחומרים ליום הזה ולמחר.</p>
+      <p class="muted mt" style="font-size:28px">כדאי לפתוח אותו בטלפון ולהשאיר פתוח לאורך היום.</p>
+    </div>
+    <div class="qr-card">
+      <img src="../assets/student-materials-qr.png" alt="QR code: עמוד חומרי הקורס" style="width:100%;height:auto;display:block">
+      <div class="qr-cap"><b>חומרי הקורס</b><span class="en" dir="ltr">shirizodit.github.io/technion-claude-code-materials</span></div>
+    </div>
+  </div>
+  </section>
+
+<!-- 5 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="mod">פתיחה</span> · תוכנית הקורס</div>
+  <h2>תוכנית הקורס</h2>
+  <div class="body">
+    <div class="plan">
+      <div class="pcol now">
+        <div class="pnum">01</div><span class="ptag">היום</span><h3>יסודות</h3>
+        <ul><li>מה זה סוכן</li><li>כלים, זיכרון, משימות</li><li>התקנה והפעלה</li></ul>
+        <p class="pdesc">מה זה סוכן, ו-Claude Code שרץ על המחשב שלכם.</p>
+      </div>
+      <div class="pcol now">
+        <div class="pnum">02</div><span class="ptag">היום</span><h3>הנדסת הקשר</h3>
+        <ul><li>פרומפטים</li><li>מצבי הרשאה</li><li><span class="en">CLAUDE.md</span></li><li>תיקיית <span class="en">.claude/</span></li></ul>
+        <p class="pdesc">לעצב איך Claude מתנהג בין שיחות.</p>
+      </div>
+      <div class="pcol day2">
+        <div class="pnum">03</div><span class="ptag later">יום ב׳</span><h3>יכולות</h3>
+        <ul><li><span class="en">Skills</span></li><li>חיבורי <span class="en">MCP</span></li><li>חיפוש וקריאה ברשת</li></ul>
+        <p class="pdesc">לחבר את Claude לכלים שלכם ולרשת.</p>
+      </div>
+      <div class="pcol day2">
+        <div class="pnum">04</div><span class="ptag later">יום ב׳</span><h3>בנייה</h3>
+        <ul><li>סוכני-משנה</li><li>אוטומציה</li><li>משימות מתוזמנות</li><li>אפליקציות אמיתיות</li></ul>
+        <p class="pdesc">לכוון את הסוכן שיבנה דברים שעובדים.</p>
+      </div>
+      <div class="pcol day2">
+        <div class="pnum">05</div><span class="ptag later">יום ב׳</span><h3>הפצה</h3>
+        <ul><li>דיבוג</li><li>שיתוף</li><li>האקוסיסטם</li></ul>
+        <p class="pdesc">להפוך את העבודה לניידת ולדעת מה הלאה.</p>
+      </div>
+    </div>
+    <div class="usecases">
+      <span class="uc-label">תחומי שימוש</span>
+      <span class="uc"><i></i>למידה ומבחנים</span>
+      <span class="uc"><i></i>מחקר ותזה</span>
+      <span class="uc"><i></i>אוטומציה אישית</span>
+    </div>
+  </div>
+  </section>
+
+<!-- 6 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="mod">פתיחה</span> · לפני שמתחילים</div>
+  <h2>בדיקת מערכת: 3 דקות</h2>
+  <div class="body">
+    <ol class="steps">
+      <li>פתחו את Claude Code Desktop — השם שלכם מופיע? אתם מחוברים.</li>
+      <li>פתחו את VS Code ← לוח Claude Code בצד ← שלחו "שלום".</li>
+      <li>קיבלתם תשובה בשניהם? ✅ מוכנים.</li>
+    </ol>
+    <p class="mt muted">נדרש מנוי Claude Pro ומעלה — Claude Code לא זמין בחשבון החינמי.</p>
+  </div>
+  </section>
+
+<!-- 7 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="badge quiz">חימום</span></div>
+  <div class="body">
+    <div class="q">השבוע — כמה פעמים העתקתם תשובה מצ׳אט AI והדבקתם אותה לקובץ, למייל או למסמך?</div>
+    <div class="opts" data-poll>
+      <button class="opt"><span class="l">א</span>אף פעם</button>
+      <button class="opt"><span class="l">ב</span>1–5 פעמים</button>
+      <button class="opt"><span class="l">ג</span>6–20 פעמים</button>
+      <button class="opt"><span class="l">ד</span>הפסקתי לספור</button>
+    </div>
+    <div class="explain">כל העתק-הדבק כזה הוא מקום שבו <strong>אתם</strong> עושים את העבודה של הסוכן. היום נעביר אותה אליו.</div>
+  </div>
+  </section>
+
+<!-- ================= MODULE 1 ================= -->
+
+<!-- 8 -->
+<section class="slide divider" data-mod="1">
+  <div class="num">1</div>
+  <h1>מצ׳אט לסוכן</h1>
+  <p class="lead">מה זה Claude Code, במה הוא שונה מ-ChatGPT בדפדפן, ולמה זה משנה לכם.</p>
+  </section>
+
+<!-- 9 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="mod">מודול 1</span> · מצ׳אט לסוכן</div>
+  <h2>מודל שפה (LLM): במה הוא חזק ואיפה הוא מפספס</h2>
+  <div class="body">
+    <div class="grid g3">
+      <div class="card acc"><h3>חזק ב…</h3><p>לכתוב, לסכם, להסביר, לתרגם ולארגן — הרבה טקסט, מהר.</p></div>
+      <div class="card"><h3>מפספס ב…</h3>
+        <p>אין לו זיכרון או ידע בין השיחות שאתם מנהלים איתו.</p>
+        <p class="mt2">הוא לא דאטהבייס ולא מחפש דברים — הוא מודל סטטיסטי לחיזוי וניבוי הקשרים.</p>
+        <p class="mt2">הוא לא מחשב אלא חוזה, ולכן לא תמיד יגיע לחישובים נכונים.</p></div>
+      <div class="card"><h3>לבד הוא לא יכול…</h3><p>לפתוח קובץ, לשמור, או להריץ משהו. הוא רק מחזיר טקסט.</p>
+        <p class="mt2">אין לו חיבור לקבצים, למייל ולאינטרנט עדכני מהרגע.</p></div>
+    </div>
+    <p class="mt lead">כמו סטודנט מבריק במבחן בלי מחברת: מדבר יפה, אבל אפשר לסמוך עליו רק כשנותנים לו חומר ובודקים אותו.</p>
+  </div>
+  </section>
+
+<!-- 10 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="mod">מודול 1</span> · מצ׳אט לסוכן</div>
+  <h2>מה מודלים מפספסים, ולמה</h2>
+  <p class="sub">שני מצבי כשל ששווה להכיר בשמם — שניהם יחזרו בהמשך הקורס.</p>
+  <div class="body">
+    <div class="vgrid">
+      <div class="vcard"><h3>הזיות <span class="en">(Hallucinations)</span></h3>
+        <div class="vpic"><svg viewBox="0 0 520 240" role="img" aria-hidden="true">
+  <rect x="352" y="40" width="150" height="110" rx="22" fill="#E8F0FE" stroke="#2F6FEB" stroke-width="3"/>
+  <path d="M470 150 l14 26 l-34 -26z" fill="#E8F0FE" stroke="#2F6FEB" stroke-width="3" stroke-linejoin="round"/>
+  <rect x="468" y="146" width="20" height="8" fill="#E8F0FE"/>
+  <text x="427" y="118" text-anchor="middle" font-family="Rubik,Arial,sans-serif" font-size="78" font-weight="800" fill="#2F6FEB">?</text>
+  <path d="M338 95 H282" stroke="#D97757" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <path d="M296 78 L276 95 L296 112" stroke="#D97757" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <rect x="14" y="20" width="250" height="168" rx="22" fill="#FBEDE7" stroke="#D97757" stroke-width="3"/>
+  <path d="M54 188 l-14 28 l36 -28z" fill="#FBEDE7" stroke="#D97757" stroke-width="3" stroke-linejoin="round"/>
+  <rect x="50" y="184" width="22" height="8" fill="#FBEDE7"/>
+  <rect x="36" y="46" width="190" height="12" rx="4" fill="#C5CDE0" opacity="1"/>
+  <rect x="36" y="76" width="206" height="12" rx="4" fill="#C5CDE0" opacity="1"/>
+  <rect x="30" y="102" width="222" height="30" rx="8" fill="#D64545" opacity=".16"/>
+  <rect x="36" y="111" width="150" height="12" rx="4" fill="#D64545" opacity="1"/>
+  <circle cx="226" cy="117" r="13" fill="#D64545"/>
+  <path d="M220 111 l12 12 M232 111 l-12 12" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/>
+  <rect x="36" y="146" width="170" height="12" rx="4" fill="#C5CDE0" opacity="1"/>
+</svg></div>
+        <p class="vcap">כשהוא לא יודע, הוא לא עוצר: הוא ממציא תשובה שנשמעת נכון.</p>
+        <span class="vfix">הפתרון: הקשר נכון + כלים שבודקים</span></div>
+      <div class="vcard"><h3>חלון ההקשר <span class="en">(Context window)</span></h3>
+        <div class="vpic"><svg viewBox="0 0 520 240" role="img" aria-hidden="true">
+  <rect x="456" y="70" width="46" height="66" rx="8" fill="#F3F5FB" stroke="#8C97B8" stroke-width="2" stroke-dasharray="6 5" opacity=".7"/><rect x="465" y="84" width="28" height="6" rx="4" fill="#DDE3F0" opacity="1"/><rect x="465" y="98" width="28" height="6" rx="4" fill="#DDE3F0" opacity="1"/><rect x="465" y="112" width="18" height="6" rx="4" fill="#DDE3F0" opacity="1"/><rect x="398" y="70" width="46" height="66" rx="8" fill="#F3F5FB" stroke="#8C97B8" stroke-width="2" stroke-dasharray="6 5" opacity=".7"/><rect x="407" y="84" width="28" height="6" rx="4" fill="#DDE3F0" opacity="1"/><rect x="407" y="98" width="28" height="6" rx="4" fill="#DDE3F0" opacity="1"/><rect x="407" y="112" width="18" height="6" rx="4" fill="#DDE3F0" opacity="1"/><rect x="340" y="70" width="46" height="66" rx="8" fill="#F3F5FB" stroke="#8C97B8" stroke-width="2" stroke-dasharray="6 5" opacity=".7"/><rect x="349" y="84" width="28" height="6" rx="4" fill="#DDE3F0" opacity="1"/><rect x="349" y="98" width="28" height="6" rx="4" fill="#DDE3F0" opacity="1"/><rect x="349" y="112" width="18" height="6" rx="4" fill="#DDE3F0" opacity="1"/><rect x="282" y="70" width="46" height="66" rx="8" fill="#F3F5FB" stroke="#8C97B8" stroke-width="2" stroke-dasharray="6 5" opacity=".7"/><rect x="291" y="84" width="28" height="6" rx="4" fill="#DDE3F0" opacity="1"/><rect x="291" y="98" width="28" height="6" rx="4" fill="#DDE3F0" opacity="1"/><rect x="291" y="112" width="18" height="6" rx="4" fill="#DDE3F0" opacity="1"/><rect x="224" y="70" width="46" height="66" rx="8" fill="#fff" stroke="#2F6FEB" stroke-width="2.5"/><rect x="233" y="84" width="28" height="6" rx="4" fill="#C5CDE0" opacity="1"/><rect x="233" y="98" width="28" height="6" rx="4" fill="#C5CDE0" opacity="1"/><rect x="233" y="112" width="18" height="6" rx="4" fill="#C5CDE0" opacity="1"/><rect x="166" y="70" width="46" height="66" rx="8" fill="#fff" stroke="#2F6FEB" stroke-width="2.5"/><rect x="175" y="84" width="28" height="6" rx="4" fill="#C5CDE0" opacity="1"/><rect x="175" y="98" width="28" height="6" rx="4" fill="#C5CDE0" opacity="1"/><rect x="175" y="112" width="18" height="6" rx="4" fill="#C5CDE0" opacity="1"/><rect x="108" y="70" width="46" height="66" rx="8" fill="#fff" stroke="#2F6FEB" stroke-width="2.5"/><rect x="117" y="84" width="28" height="6" rx="4" fill="#C5CDE0" opacity="1"/><rect x="117" y="98" width="28" height="6" rx="4" fill="#C5CDE0" opacity="1"/><rect x="117" y="112" width="18" height="6" rx="4" fill="#C5CDE0" opacity="1"/><rect x="50" y="70" width="46" height="66" rx="8" fill="#fff" stroke="#2F6FEB" stroke-width="2.5"/><rect x="59" y="84" width="28" height="6" rx="4" fill="#C5CDE0" opacity="1"/><rect x="59" y="98" width="28" height="6" rx="4" fill="#C5CDE0" opacity="1"/><rect x="59" y="112" width="18" height="6" rx="4" fill="#C5CDE0" opacity="1"/>
+  <rect x="40" y="52" width="238" height="102" rx="16" fill="#2F6FEB" opacity=".08"/>
+  <rect x="40" y="52" width="238" height="102" rx="16" fill="none" stroke="#2F6FEB" stroke-width="5"/>
+  <text x="159" y="190" text-anchor="middle" font-family="Rubik,Arial,sans-serif" font-size="26" font-weight="700" fill="#2F6FEB">בתוך החלון</text>
+  <text x="392" y="190" text-anchor="middle" font-family="Rubik,Arial,sans-serif" font-size="26" font-weight="700" fill="#8C97B8">נשכח</text>
+  <path d="M470 38 H510" stroke="#8C97B8" stroke-width="5" stroke-linecap="round" fill="none"/>
+  <path d="M498 26 L512 38 L498 50" stroke="#8C97B8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg></div>
+        <p class="vcap">הוא רואה רק כמות מוגבלת של טקסט. מה שמחוץ לחלון לא קיים בשבילו.</p>
+        <span class="vfix">הפתרון: מביאים לו רק את מה שחשוב</span></div>
+    </div>
+    <div class="implication mt"><strong>המשמעות.</strong> מודל לבדו יכול לענות, אבל לא לפעול. כדי לפעול בעולם הוא צריך מעטפת: סוכן.</div>
+    <p class="hint">⚡ נסו עכשיו: בקשו מצ׳אט לסכם מאמר שהוא כנראה לא מכיר, ובדקו אם הוא מודה שהוא לא יודע.</p>
+  </div>
+  </section>
+
+<!-- 11 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="mod">מודול 1</span> · מצ׳אט לסוכן</div>
+  <h2>אז מה ההבדל בין Agent למודל שפה?</h2>
+  <p class="sub">מודל לא יכול לפעול, בעוד שאייג׳נט כן.</p>
+  <div class="body">
+    <div class="vs">
+      <div class="vs-card"><div class="vs-label">מה זה מודל שפה (LLM)</div><h3>טקסט נכנס, טקסט יוצא.</h3>
+        <p>הוא מייצר שפה. לבדו הוא לא קורא את הקבצים שלכם, לא פותח תיקיות, לא מריץ פקודות ולא זוכר את השיחה של אתמול.</p></div>
+      <div class="vs-card dark agent"><div class="vs-label">מה זה סוכן (Agent)</div><h3>עוטף את המודל כדי שיוכל לפעול.</h3>
+        <p class="agdef">חושב ופועל (<span class="en">Reasoning &amp; Acting</span>), עם או בלי התערבות אדם.</p>
+        <div class="agdiag">
+          <div class="ag-box io">קלט</div>
+          <div class="ag-arrow">←</div>
+          <div class="ag-core">
+            <div class="ag-box agent">סוכן AI</div>
+            <div class="ag-chips"><span>הוראות</span><span>כלים</span><span>מגבלות</span></div>
+          </div>
+          <div class="ag-arrow">←</div>
+          <div class="ag-box io">פלט</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+<!-- 12 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="mod">מודול 1</span> · מצ׳אט לסוכן</div>
+  <h2>הכירו את קלוד (Claude)</h2>
+  <div class="body">
+    <div class="prods">
+      <div class="prod reveal"><div class="shot"><svg viewBox="0 0 230 150" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><defs><clipPath id="cp1"><rect x="6" y="8" width="218" height="134" rx="10"/></clipPath></defs><rect x="0" y="0" width="230" height="150" fill="#F3F5FB"/><g clip-path="url(#cp1)"><rect x="6" y="8" width="218" height="134" fill="#FFFFFF"/><rect x="6" y="8" width="218" height="20" fill="#F3F5FB"/><circle cx="18" cy="18" r="3" fill="#E1E6F2"/><circle cx="28" cy="18" r="3" fill="#E1E6F2"/><circle cx="38" cy="18" r="3" fill="#E1E6F2"/><rect x="108" y="36" width="106" height="24" rx="8" fill="#FBEDE7"/><rect x="116" y="43" width="72" height="4" rx="2" fill="#D97757" opacity="0.7"/><rect x="116" y="51" width="44" height="4" rx="2" fill="#D97757" opacity="0.7"/><rect x="16" y="66" width="146" height="38" rx="8" fill="#EEF1F8"/><rect x="24" y="73" width="112" height="4" rx="2" fill="#C5CDE0" opacity="1"/><rect x="24" y="82" width="124" height="4" rx="2" fill="#C5CDE0" opacity="1"/><rect x="24" y="91" width="78" height="4" rx="2" fill="#C5CDE0" opacity="1"/><rect x="16" y="114" width="198" height="20" rx="10" fill="#fff" stroke="#E1E6F2" stroke-width="1.5"/><rect x="26" y="122" width="64" height="4" rx="2" fill="#E1E6F2" opacity="1"/><circle cx="203" cy="124" r="6" fill="#D97757"/></g><rect x="6" y="8" width="218" height="134" rx="10" fill="none" stroke="#E1E6F2" stroke-width="1.5"/></svg><img src="../assets/claude-chat.png" alt="" onerror="this.style.display='none'"></div><h3>Claude Chat</h3><p>צ׳אט בדפדפן, באפליקציה ובטלפון. שאלות, כתיבה וניתוח — העבודה נשארת בחלון השיחה.</p></div>
+      <div class="prod reveal"><div class="shot"><svg viewBox="0 0 230 150" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><defs><clipPath id="cp2"><rect x="6" y="8" width="218" height="134" rx="10"/></clipPath></defs><rect x="0" y="0" width="230" height="150" fill="#F3F5FB"/><g clip-path="url(#cp2)"><rect x="6" y="8" width="218" height="134" fill="#FFFFFF"/><rect x="6" y="8" width="218" height="20" fill="#F3F5FB"/><circle cx="18" cy="18" r="3" fill="#E1E6F2"/><circle cx="28" cy="18" r="3" fill="#E1E6F2"/><circle cx="38" cy="18" r="3" fill="#E1E6F2"/><rect x="6" y="28" width="56" height="114" fill="#F3F5FB"/><rect x="14" y="38" width="14" height="10" rx="2" fill="#C9A84C"/><rect x="32" y="41" width="22" height="4" rx="2" fill="#C5CDE0" opacity="1"/><rect x="14" y="56" width="14" height="10" rx="2" fill="#C9A84C" opacity=".6"/><rect x="32" y="59" width="18" height="4" rx="2" fill="#C5CDE0" opacity="1"/><rect x="14" y="74" width="14" height="10" rx="2" fill="#C9A84C" opacity=".6"/><rect x="32" y="77" width="24" height="4" rx="2" fill="#C5CDE0" opacity="1"/><rect x="72" y="38" width="86" height="6" rx="2" fill="#0C1B3A" opacity="1"/><circle cx="80" cy="62" r="6" fill="#1F9D6B"/><path d="M77 62 l2.2 2.4 l4.2 -4.6" stroke="#fff" stroke-width="1.8" fill="none"/><rect x="92" y="60" width="92" height="4" rx="2" fill="#C5CDE0" opacity="1"/><circle cx="80" cy="82" r="6" fill="#1F9D6B"/><path d="M77 82 l2.2 2.4 l4.2 -4.6" stroke="#fff" stroke-width="1.8" fill="none"/><rect x="92" y="80" width="78" height="4" rx="2" fill="#C5CDE0" opacity="1"/><circle cx="80" cy="102" r="6" fill="none" stroke="#D97757" stroke-width="2" stroke-dasharray="14 6"/><rect x="92" y="100" width="100" height="4" rx="2" fill="#C5CDE0" opacity="1"/><rect x="72" y="122" width="142" height="8" rx="4" fill="#EEF1F8"/><rect x="72" y="122" width="92" height="8" rx="4" fill="#D97757"/></g><rect x="6" y="8" width="218" height="134" rx="10" fill="none" stroke="#E1E6F2" stroke-width="1.5"/></svg><img src="../assets/claude-cowork.png" alt="" onerror="this.style.display='none'"></div><h3>Cowork</h3><p>סוכן באפליקציית Desktop שעובד על תיקייה במחשב שלכם — עבודת ידע בלי קוד.</p></div>
+      <div class="prod reveal"><div class="shot"><svg viewBox="0 0 230 150" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><defs><clipPath id="cp3"><rect x="6" y="8" width="218" height="134" rx="10"/></clipPath></defs><rect x="0" y="0" width="230" height="150" fill="#F3F5FB"/><g clip-path="url(#cp3)"><rect x="6" y="8" width="218" height="134" fill="#FFFFFF"/><rect x="6" y="8" width="218" height="20" fill="#F3F5FB"/><circle cx="18" cy="18" r="3" fill="#E1E6F2"/><circle cx="28" cy="18" r="3" fill="#E1E6F2"/><circle cx="38" cy="18" r="3" fill="#E1E6F2"/><rect x="44" y="14" width="150" height="8" rx="4" fill="#fff" opacity=".9"/><rect x="14" y="36" width="34" height="19" fill="#F3F5FB" stroke="#E1E6F2" stroke-width="1"/><rect x="48" y="36" width="34" height="19" fill="#F3F5FB" stroke="#E1E6F2" stroke-width="1"/><rect x="82" y="36" width="34" height="19" fill="#F3F5FB" stroke="#E1E6F2" stroke-width="1"/><rect x="116" y="36" width="34" height="19" fill="#F3F5FB" stroke="#E1E6F2" stroke-width="1"/><rect x="14" y="55" width="34" height="19" fill="#fff" stroke="#E1E6F2" stroke-width="1"/><rect x="48" y="55" width="34" height="19" fill="#fff" stroke="#E1E6F2" stroke-width="1"/><rect x="82" y="55" width="34" height="19" fill="#fff" stroke="#E1E6F2" stroke-width="1"/><rect x="116" y="55" width="34" height="19" fill="#fff" stroke="#E1E6F2" stroke-width="1"/><rect x="14" y="74" width="34" height="19" fill="#fff" stroke="#E1E6F2" stroke-width="1"/><rect x="48" y="74" width="34" height="19" fill="#fff" stroke="#E1E6F2" stroke-width="1"/><rect x="82" y="74" width="34" height="19" fill="#FBEDE7" stroke="#E1E6F2" stroke-width="1"/><rect x="116" y="74" width="34" height="19" fill="#fff" stroke="#E1E6F2" stroke-width="1"/><rect x="14" y="93" width="34" height="19" fill="#fff" stroke="#E1E6F2" stroke-width="1"/><rect x="48" y="93" width="34" height="19" fill="#fff" stroke="#E1E6F2" stroke-width="1"/><rect x="82" y="93" width="34" height="19" fill="#fff" stroke="#E1E6F2" stroke-width="1"/><rect x="116" y="93" width="34" height="19" fill="#fff" stroke="#E1E6F2" stroke-width="1"/><rect x="14" y="112" width="34" height="19" fill="#fff" stroke="#E1E6F2" stroke-width="1"/><rect x="48" y="112" width="34" height="19" fill="#fff" stroke="#E1E6F2" stroke-width="1"/><rect x="82" y="112" width="34" height="19" fill="#fff" stroke="#E1E6F2" stroke-width="1"/><rect x="116" y="112" width="34" height="19" fill="#fff" stroke="#E1E6F2" stroke-width="1"/><rect x="156" y="36" width="60" height="98" rx="8" fill="#FBEDE7" stroke="#D97757" stroke-width="1.5"/><circle cx="168" cy="48" r="5" fill="#D97757"/><rect x="178" y="46" width="30" height="4" rx="2" fill="#D97757" opacity="0.6"/><rect x="162" y="60" width="48" height="20" rx="6" fill="#fff"/><rect x="167" y="66" width="36" height="4" rx="2" fill="#C5CDE0" opacity="1"/><rect x="167" y="73" width="24" height="4" rx="2" fill="#C5CDE0" opacity="1"/><rect x="162" y="86" width="48" height="26" rx="6" fill="#D97757" opacity=".85"/><rect x="167" y="93" width="36" height="4" rx="2" fill="#fff" opacity="0.9"/><rect x="167" y="101" width="26" height="4" rx="2" fill="#fff" opacity="0.9"/><rect x="162" y="122" width="48" height="8" rx="2" fill="#fff" opacity="0.9"/></g><rect x="6" y="8" width="218" height="134" rx="10" fill="none" stroke="#E1E6F2" stroke-width="1.5"/></svg><img src="../assets/claude-extensions.png" alt="" onerror="this.style.display='none'"></div><h3>Extensions</h3><p>Claude בתוך Chrome ו-Excel — עוזר בכלים שאתם כבר עובדים בהם.</p></div>
+      <div class="prod reveal"><div class="shot"><svg viewBox="0 0 230 150" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><defs><clipPath id="cp4"><rect x="6" y="8" width="218" height="134" rx="10"/></clipPath></defs><rect x="0" y="0" width="230" height="150" fill="#F3F5FB"/><g clip-path="url(#cp4)"><rect x="6" y="8" width="218" height="134" fill="#0C1B3A"/><rect x="6" y="8" width="218" height="20" fill="#16264d"/><circle cx="18" cy="18" r="3" fill="#3A4670"/><circle cx="28" cy="18" r="3" fill="#3A4670"/><circle cx="38" cy="18" r="3" fill="#3A4670"/><text x="196" y="46" font-family="Menlo,monospace" font-size="16" font-weight="700" fill="#D97757">{ }</text><rect x="18" y="38" width="34" height="5" rx="2" fill="#D97757" opacity="1"/><rect x="58" y="38" width="66" height="5" rx="2" fill="#8C97B8" opacity="1"/><rect x="30" y="52" width="44" height="5" rx="2" fill="#1F9D6B" opacity="1"/><rect x="80" y="52" width="74" height="5" rx="2" fill="#B9C3E0" opacity="1"/><rect x="30" y="66" width="30" height="5" rx="2" fill="#2F6FEB" opacity="1"/><rect x="66" y="66" width="92" height="5" rx="2" fill="#B9C3E0" opacity="1"/><rect x="30" y="80" width="56" height="5" rx="2" fill="#1F9D6B" opacity="1"/><rect x="92" y="80" width="40" height="5" rx="2" fill="#B9C3E0" opacity="1"/><rect x="18" y="94" width="12" height="5" rx="2" fill="#D97757" opacity="1"/><rect x="18" y="108" width="62" height="18" rx="9" fill="#1F9D6B" opacity=".9"/><text x="49" y="120.5" text-anchor="middle" font-family="Menlo,monospace" font-size="9" font-weight="700" fill="#fff">200 OK</text></g><rect x="6" y="8" width="218" height="134" rx="10" fill="none" stroke="#E1E6F2" stroke-width="1.5"/></svg><img src="../assets/claude-api.png" alt="" onerror="this.style.display='none'"></div><h3>Claude API</h3><p>למפתחים: מחברים את Claude לקוד, למוצרים ולאוטומציות. לא נעסוק בו.</p></div>
+      <div class="prod acc reveal"><svg class="prod-arrow" viewBox="0 0 60 70" aria-hidden="true"><path d="M30 6 V50 M10 32 L30 56 L50 32" fill="none" stroke="#D97757" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="shot"><svg viewBox="0 0 230 150" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><defs><clipPath id="cp5"><rect x="6" y="8" width="218" height="134" rx="10"/></clipPath></defs><rect x="0" y="0" width="230" height="150" fill="#F3F5FB"/><g clip-path="url(#cp5)"><rect x="6" y="8" width="218" height="134" fill="#FFFFFF"/><rect x="6" y="8" width="218" height="20" fill="#F3F5FB"/><circle cx="18" cy="18" r="3" fill="#E1E6F2"/><circle cx="28" cy="18" r="3" fill="#E1E6F2"/><circle cx="38" cy="18" r="3" fill="#E1E6F2"/><rect x="6" y="28" width="68" height="114" fill="#F3F5FB"/><rect x="14" y="36" width="12" height="9" rx="2" fill="#C9A84C"/><rect x="30" y="38" width="34" height="4" rx="2" fill="#C5CDE0" opacity="1"/><rect x="34" y="52" width="28" height="4" rx="2" fill="#C5CDE0" opacity="1"/><rect x="34" y="64" width="34" height="4" rx="2" fill="#C5CDE0" opacity="1"/><rect x="14" y="76" width="12" height="9" rx="2" fill="#C9A84C"/><rect x="30" y="78" width="30" height="4" rx="2" fill="#C5CDE0" opacity="1"/><rect x="34" y="92" width="26" height="4" rx="2" fill="#D97757" opacity="0.8"/><rect x="34" y="104" width="32" height="4" rx="2" fill="#C5CDE0" opacity="1"/><rect x="74" y="28" width="150" height="114" fill="#0C1B3A"/><text x="84" y="46" font-family="Menlo,monospace" font-size="12" font-weight="700" fill="#D97757">&gt;</text><rect x="98" y="41" width="84" height="5" rx="2" fill="#fff" opacity="0.9"/><text x="84" y="68" font-family="Menlo,monospace" font-size="10" font-weight="700" fill="#1F9D6B">+</text><rect x="98" y="63" width="96" height="5" rx="2" fill="#1F9D6B" opacity="0.8"/><text x="84" y="82" font-family="Menlo,monospace" font-size="10" font-weight="700" fill="#1F9D6B">+</text><rect x="98" y="77" width="70" height="5" rx="2" fill="#1F9D6B" opacity="0.8"/><text x="84" y="96" font-family="Menlo,monospace" font-size="10" font-weight="700" fill="#D64545">-</text><rect x="98" y="91" width="58" height="5" rx="2" fill="#D64545" opacity="0.8"/><circle cx="88" cy="118" r="6" fill="#1F9D6B"/><path d="M85 118 l2 2.2 l4 -4.4" stroke="#fff" stroke-width="1.6" fill="none"/><rect x="100" y="116" width="72" height="5" rx="2" fill="#8C97B8" opacity="1"/></g><rect x="6" y="8" width="218" height="134" rx="10" fill="none" stroke="#E1E6F2" stroke-width="1.5"/></svg><img src="../assets/claude-code.png" alt="" onerror="this.style.display='none'"></div><h3>Claude Code</h3><p>סוכן שעובד על הקבצים שלכם — ב-Desktop, ב-VS Code או בטרמינל. כאן נבלה את הקורס.</p></div>
+    </div>
+    <p class="mt lead">ההבדל המרכזי: איפה Claude עובד, ומה הוא יכול לגעת בו.</p>
+  </div>
+  </section>
+
+<!-- 13 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="mod">מודול 1</span> · מצ׳אט לסוכן</div>
+  <h2>צ׳אט עונה. סוכן עושה.</h2>
+  <div class="body">
+    <table class="cmp">
+      <tr><th></th><th>צ׳אט בדפדפן</th><th>Claude Code (סוכן)</th></tr>
+      <tr><td>מה הוא רואה</td><td>רק מה שהדבקתם</td><td>את כל התיקייה שפתחתם</td></tr>
+      <tr><td>מה הוא מחזיר</td><td>טקסט, תמונות, אודיו ווידאו שאתם מעתיקים</td><td>קבצים שהוא יוצר ועורך בעצמו</td></tr>
+      <tr><td>משימה ארוכה</td><td>אתם מפרקים לשלבים</td><td>הוא מתכנן ומבצע שלב אחרי שלב</td></tr>
+      <tr><td>זיכרון</td><td>נגמר עם השיחה</td><td>קובץ הוראות שנקרא בכל פעם</td></tr>
+    </table>
+    <p class="mt hint">⚡ נסו עכשיו: פתחו claude.ai ושאלו "מה יש בתיקיית ההורדות שלי?" — שימו לב שהוא לא יכול לדעת.</p>
+  </div>
+  </section>
+
+<!-- 14 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="mod">מודול 1</span> · מצ׳אט לסוכן</div>
+  <h2>אותה בקשה, שתי ארכיטקטורות</h2>
+  <p class="sub">דמיינו את הבקשה: ״סכם את קובצי ה-PDF בתיקיית ההורדות שלי״.</p>
+  <div class="body">
+    <div class="vs">
+      <div class="vs-card"><div class="vs-label">צ׳אט · Claude.ai או ChatGPT</div><h3>אין גישה לקובץ.</h3>
+        <p>הוא יבקש מכם להדביק את התוכן בצ׳אט. המודל חי מאחורי דף אינטרנט; הוא רואה רק מה שהעתקתם אליו.</p></div>
+      <div class="vs-arrow">←</div>
+      <div class="vs-card dark"><div class="vs-label">סוכן · Claude Code</div><h3>פותח את התיקייה ישירות.</h3>
+        <p>קורא כל PDF, כותב את הסיכום, ושומר אותו בחזרה בדיסק אם ביקשתם. בלי הדבקות ובלי צילומי מסך — לסוכן יש גישה לקבצים במחשב שלכם.</p></div>
+    </div>
+  </div>
+  </section>
+
+<!-- 15 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="mod">מודול 1</span> · מצ׳אט לסוכן</div>
+  <h2>סוכן = מוח + 3 רגליים</h2>
+  <div class="body">
+    <div class="grid g3">
+      <div class="card"><div class="icon">🛠</div><h3>כלים</h3><p>הידיים — קריאת קבצים, כתיבה, חיפוש, הרצת פקודות.</p></div>
+      <div class="card"><div class="icon">📌</div><h3>זיכרון</h3><p>מה שנשאר בין שיחות — CLAUDE.md (מודול 3).</p>
+        <p class="mt2">בתוך תור אחד, לאורך שיחה, ובין פרויקטים. שלוש שכבות: היסטוריית השיחה, זיכרון ארוך טווח, וזיכרון פרויקט שחי יחד עם התיקייה.</p></div>
+      <div class="card"><div class="icon">🎯</div><h3>משימות</h3><p>סוכן טוב מפרק מטרה לצעדים ועובד עליהם אחד אחרי השני, במקום לבצע רק את ההוראה הראשונה שקיבל.</p></div>
+    </div>
+    <p class="mt lead">כולם נשענים על <strong style="color:var(--ink)">המוח — המודל (Claude)</strong>. צ׳אט רגיל = מוח בלי ידיים ובלי זיכרון.</p>
+  </div>
+  </section>
+
+<!-- 16 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="mod">מודול 1</span> · מצ׳אט לסוכן</div>
+  <h2><span class="en">Why Claude Code?</span></h2>
+  <p class="sub">גם לאחרים יש סוכן שעובד על הקבצים שלכם. אותו רעיון, כלים שונים.</p>
+  <div class="body">
+    <div class="rivals">
+      <div class="rival"><div class="pic contain"><img src="../assets/openai-codex.png" alt="OpenAI Codex"></div><h3>OpenAI Codex</h3><p>הסוכן של OpenAI.</p></div>
+      <div class="rival"><div class="pic"><img src="../assets/gemini-cli.png" alt="Gemini CLI"></div><h3>Gemini CLI</h3><p>הסוכן של Google, בשורת הפקודה.</p></div>
+      <div class="rival"><div class="pic"><img src="../assets/cursor-cli.png" alt="Cursor CLI"></div><h3>Cursor CLI</h3><p>הסוכן של Cursor, בשורת הפקודה.</p></div>
+    </div>
+    <div class="implication mt">
+      <strong>למה Claude Code בקורס הזה.</strong>
+      <ol class="why">
+        <li>מתאים גם למי שלא כותב קוד: אפליקציית Desktop ולוח ב-VS Code.</li>
+        <li>הרעיון זהה בכל הכלים, אז מה שלומדים כאן עובר הלאה.</li>
+        <li>כל מה שבסילבוס נלמד על כלי אחד: CLAUDE.md, הרשאות, Skills, MCP וסוכני-משנה.</li>
+      </ol>
+    </div>
+  </div>
+  </section>
+
+<!-- 17 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="mod">מודול 1</span> · מצ׳אט לסוכן</div>
+  <h2>Claude Code</h2>
+  <p class="sub">שלושת המודלים המובילים כרגע, ומתי להשתמש בכל אחד. ככל שהמספר גבוה יותר, המודל מתקדם יותר.</p>
+  <div class="body">
+    <div class="models">
+      <div class="model cc"><div class="shot"><svg viewBox="0 0 230 150" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><defs><clipPath id="cp6"><rect x="6" y="8" width="218" height="134" rx="10"/></clipPath></defs><rect x="0" y="0" width="230" height="150" fill="#F3F5FB"/><g clip-path="url(#cp6)"><rect x="6" y="8" width="218" height="134" fill="#FFFFFF"/><rect x="6" y="8" width="218" height="20" fill="#F3F5FB"/><circle cx="18" cy="18" r="3" fill="#E1E6F2"/><circle cx="28" cy="18" r="3" fill="#E1E6F2"/><circle cx="38" cy="18" r="3" fill="#E1E6F2"/><rect x="6" y="28" width="68" height="114" fill="#F3F5FB"/><rect x="14" y="36" width="12" height="9" rx="2" fill="#C9A84C"/><rect x="30" y="38" width="34" height="4" rx="2" fill="#C5CDE0" opacity="1"/><rect x="34" y="52" width="28" height="4" rx="2" fill="#C5CDE0" opacity="1"/><rect x="34" y="64" width="34" height="4" rx="2" fill="#C5CDE0" opacity="1"/><rect x="14" y="76" width="12" height="9" rx="2" fill="#C9A84C"/><rect x="30" y="78" width="30" height="4" rx="2" fill="#C5CDE0" opacity="1"/><rect x="34" y="92" width="26" height="4" rx="2" fill="#D97757" opacity="0.8"/><rect x="34" y="104" width="32" height="4" rx="2" fill="#C5CDE0" opacity="1"/><rect x="74" y="28" width="150" height="114" fill="#0C1B3A"/><text x="84" y="46" font-family="Menlo,monospace" font-size="12" font-weight="700" fill="#D97757">&gt;</text><rect x="98" y="41" width="84" height="5" rx="2" fill="#fff" opacity="0.9"/><text x="84" y="68" font-family="Menlo,monospace" font-size="10" font-weight="700" fill="#1F9D6B">+</text><rect x="98" y="63" width="96" height="5" rx="2" fill="#1F9D6B" opacity="0.8"/><text x="84" y="82" font-family="Menlo,monospace" font-size="10" font-weight="700" fill="#1F9D6B">+</text><rect x="98" y="77" width="70" height="5" rx="2" fill="#1F9D6B" opacity="0.8"/><text x="84" y="96" font-family="Menlo,monospace" font-size="10" font-weight="700" fill="#D64545">-</text><rect x="98" y="91" width="58" height="5" rx="2" fill="#D64545" opacity="0.8"/><circle cx="88" cy="118" r="6" fill="#1F9D6B"/><path d="M85 118 l2 2.2 l4 -4.4" stroke="#fff" stroke-width="1.6" fill="none"/><rect x="100" y="116" width="72" height="5" rx="2" fill="#8C97B8" opacity="1"/></g><rect x="6" y="8" width="218" height="134" rx="10" fill="none" stroke="#E1E6F2" stroke-width="1.5"/></svg><img src="../assets/claude-code.png" alt="" onerror="this.style.display='none'"></div>
+        <h3>Claude Code</h3><p>סוכן שעובד על הקבצים שלכם — ב-Desktop, ב-VS Code או בטרמינל.</p></div>
+      <div class="model"><span class="mrank" title="רמת התקדמות">1</span><span class="mtag">היומיומי</span><h3>Sonnet 5.5</h3>
+        <p class="mwhen">מתי: רוב העבודה — סיכומים, ארגון קבצים, עריכה ומשימות חוזרות.</p>
+        <p class="mnote">מהיר וזול יותר.</p></div>
+      <div class="model"><span class="mrank" title="רמת התקדמות">2</span><span class="mtag">החזק לעומק</span><h3>Opus 5.5</h3>
+        <p class="mwhen">מתי: ניתוח מורכב, מסמכים ארוכים, כתיבה מדויקת ותכנון בכמה שלבים.</p>
+        <p class="mnote">חזק ויציב לעבודה רצינית.</p></div>
+      <div class="model"><span class="mrank" title="רמת התקדמות">3</span><span class="mtag">הכי מתקדם</span><h3>Fable 5.1</h3>
+        <p class="mwhen">מתי: המשימות הקשות באמת — מחקר עמוק ועבודה ארוכה ועצמאית.</p>
+        <p class="mnote">הכי חזק, אבל איטי ויקר יותר.</p></div>
+    </div>
+    <p class="mt lead">כלל אצבע: מתחילים בקטן ועולים רק כשצריך. מחליפים מודל באמצע שיחה עם <code>/model</code>.</p>
+  </div>
+  </section>
+
+<!-- 18 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="mod">מודול 1</span> · מצ׳אט לסוכן</div>
+  <h2>המודל הוא המנוע. Claude Code הוא הרכב.</h2>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card"><h3>המודל <span class="muted en">(Claude)</span></h3><p>אותו מנוע שאתם מכירים מ-claude.ai. לבד — הוא יכול רק לדבר.</p></div>
+      <div class="card acc"><h3>ה-Harness <span class="muted en">(Claude Code)</span></h3><p>המעטפת שנותנת למנוע הגה, גלגלים ובלמים: גישה לקבצים, כלים, הרשאות וזיכרון.</p></div>
+    </div>
+    <p class="mt lead">לכן היום לא נלמד "לדבר יפה עם AI" — נלמד <strong style="color:var(--ink)">לנהוג ברכב</strong>.</p>
+  </div>
+  </section>
+
+<!-- 19 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="mod">מודול 1</span> · מצ׳אט לסוכן</div>
+  <h2>הלולאה: ככה סוכן עובד</h2>
+  <div class="body">
+    <div class="flow">
+      <div class="step"><b>חושב</b><span>מה צריך לעשות עכשיו?</span></div><div class="arrow">←</div>
+      <div class="step"><b>פועל</b><span>קורא קובץ, מחפש, כותב</span></div><div class="arrow">←</div>
+      <div class="step"><b>בודק</b><span>מה יצא? זה עבד?</span></div><div class="arrow">←</div>
+      <div class="step"><b>חוזר</b><span>עד שהמשימה גמורה</span></div>
+    </div>
+    <p class="mt lead">עכשיו נראה את הלולאה הזאת על תיקייה אמיתית.</p>
+  </div>
+  </section>
+
+<!-- 20 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="mod">מודול 1</span> · הלולאה בפעולה</div>
+  <h2>לפני: כל הסיכומים של נועה בתיקייה אחת</h2>
+  <div class="body">
+    <div class="nsplit">
+      <div class="ask">
+        <div class="bubble"><div class="av">נ</div><p>תסדר לי את הסיכומים לפי קורס.</p></div>
+        <p class="mt muted">הכול ביחד, בלי סדר. חלק מהשמות לא מסגירים לאיזה קורס הקובץ שייך.</p>
+      </div>
+      <div class="folder">
+        <div class="fhead"><span class="ficon">📁</span><span class="fpath en">technion-ai/summaries/</span><span class="fcount">9 קבצים</span></div>
+        <div class="files"><div class="file "><span class="fext pdf">pdf</span><span class="fname">lec5_notes</span></div><div class="file "><span class="fext docx">docx</span><span class="fname">סיכום_שבוע_3</span></div><div class="file "><span class="fext pdf">pdf</span><span class="fname">transistor_final</span></div><div class="file "><span class="fext jpg">jpg</span><span class="fname">IMG_2041</span></div><div class="file "><span class="fext pdf">pdf</span><span class="fname">modulation_notes</span></div><div class="file "><span class="fext docx">docx</span><span class="fname">opamp_hw4</span></div><div class="file "><span class="fext pdf">pdf</span><span class="fname">אנלוגי_סיכום</span></div><div class="file "><span class="fext pdf">pdf</span><span class="fname">midterm_prep</span></div><div class="file "><span class="fext pdf">pdf</span><span class="fname">fourier_summary</span></div></div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+<!-- 21 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="mod">מודול 1</span> · הלולאה בפעולה</div>
+  <h2>מה Claude עושה: חושב, פועל, בודק</h2>
+  <div class="body">
+    <div class="lsteps"><div class="lstep reveal think"><div class="lnum">1</div><span class="ltag">חושב</span><h3>מתכנן</h3><p>צריך להבין לאיזה קורס כל קובץ שייך.</p></div><div class="lstep reveal tool"><div class="lnum">2</div><span class="ltag">Search</span><h3>מחפש</h3><p>מוצא את 9 הקבצים בתיקייה.</p></div><div class="lstep reveal tool"><div class="lnum">3</div><span class="ltag">Read</span><h3>קורא</h3><p>פותח את הקבצים ששמם לא ברור (lec5_notes, IMG_2041) ומזהה קורס לפי התוכן.</p></div><div class="lstep reveal tool"><div class="lnum">4</div><span class="ltag">Write</span><h3>יוצר תיקיות</h3><p>עיבוד אותות דיגיטלי, מעגלים אנלוגיים 3, תקשורת דיגיטלית.</p></div><div class="lstep reveal tool"><div class="lnum">5</div><span class="ltag">Bash</span><h3>מעביר</h3><p>מעביר כל קובץ לתיקייה של הקורס שלו.</p></div><div class="lstep reveal check"><div class="lnum">6</div><span class="ltag">בודק</span><h3>בודק</h3><p>בודק שלא נשאר אף קובץ בחוץ.</p></div></div>
+  </div>
+  </section>
+
+<!-- 22 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="mod">מודול 1</span> · הלולאה בפעולה</div>
+  <h2>אחרי: כל סיכום בתיקייה של הקורס שלו</h2>
+  <div class="body">
+    <div class="after-path"><span class="ficon">📁</span><span class="en">technion-ai/summaries/</span></div>
+    <div class="courses"><div class="course c1"><div class="chead"><span class="ficon">📁</span><h3>עיבוד אותות דיגיטלי</h3></div><div class="file "><span class="fext pdf">pdf</span><span class="fname">lec5_notes</span></div><div class="file "><span class="fext docx">docx</span><span class="fname">סיכום_שבוע_3</span></div><div class="file "><span class="fext pdf">pdf</span><span class="fname">fourier_summary</span></div></div><div class="course c2"><div class="chead"><span class="ficon">📁</span><h3>מעגלים אנלוגיים 3</h3></div><div class="file "><span class="fext pdf">pdf</span><span class="fname">transistor_final</span></div><div class="file "><span class="fext docx">docx</span><span class="fname">opamp_hw4</span></div><div class="file "><span class="fext pdf">pdf</span><span class="fname">אנלוגי_סיכום</span></div></div><div class="course c3"><div class="chead"><span class="ficon">📁</span><h3>תקשורת דיגיטלית</h3></div><div class="file "><span class="fext pdf">pdf</span><span class="fname">modulation_notes</span></div><div class="file "><span class="fext pdf">pdf</span><span class="fname">midterm_prep</span></div><div class="file "><span class="fext jpg">jpg</span><span class="fname">IMG_2041</span></div></div></div>
+    <div class="implication mt"><strong>✔ בדק.</strong> לא נשאר אף קובץ בחוץ. ואפשר להמשיך: ״תוסיף לכל קורס קובץ סיכום ראשי״.</div>
+  </div>
+  </section>
+
+<!-- 23 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="mod">מודול 1</span> · מצ׳אט לסוכן</div>
+  <h2>הכלים שיש ל-Claude בידיים</h2>
+  <div class="body">
+    <div class="grid g3">
+      <div class="card"><h3>Read</h3><p>קורא קבצים: PDF, Word, טבלאות, תמונות, קוד.</p></div>
+      <div class="card"><h3>Write / Edit</h3><p>יוצר קבצים חדשים ועורך קיימים — במקום שתעתיקו.</p></div>
+      <div class="card"><h3>Search</h3><p>מוצא קבצים ומילים בתוך התיקייה, גם כשיש מאות.</p></div>
+      <div class="card"><h3>Bash</h3><p>מריץ פקודות במחשב — המרות, חישובים, סקריפטים.</p></div>
+      <div class="card"><h3>Web</h3><p>מחפש ברשת וקורא דפים — למשל, מאמר חדש.</p></div>
+      <div class="card acc"><h3>ואתם מאשרים</h3><p>כל פעולה רגישה מחכה לאישור שלכם (מודול 3).</p></div>
+    </div>
+  </div>
+  </section>
+
+<!-- 24 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="mod">מודול 1</span> · מצ׳אט לסוכן</div>
+  <h2>איפה זה רץ? אותו סוכן, שלוש דלתות</h2>
+  <div class="body">
+    <div class="grid g3">
+      <div class="card acc"><div class="icon">🖥</div><h3>Desktop App</h3><p>הכי פשוט להתחיל. בזה נעבוד היום.</p></div>
+      <div class="card"><div class="icon">{ }</div><h3>VS Code</h3><p>Panel בתוך העורך — רואים עץ קבצים ושינויים מסומנים.</p></div>
+      <div class="card"><div class="icon">&gt;_</div><h3>Terminal</h3><p>למי שכבר מרגיש בבית בשורת פקודה.</p></div>
+    </div>
+    <p class="mt lead">CLAUDE.md, הרשאות, Skills וסוכנים עובדים <strong style="color:var(--ink)">בכל השלוש</strong>. משנה רק הממשק.</p>
+  </div>
+  </section>
+
+<!-- 25 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="mod">מודול 1</span> · מצ׳אט לסוכן</div>
+  <h2>התיקייה היא העולם של Claude</h2>
+  <div class="body">
+    <div class="grid g2" style="align-items:center">
+      <div class="code" style="font-size:28px">technion-ai/
+├── courses/
+│   ├── dsp/
+│   │   └── syllabus.pdf
+│   └── analog-circuits-3/
+├── lab-notes/
+└── study-plan.md</div>
+      <ul class="clean">
+        <li>פותחים תיקייה ← Claude עובד <strong>בתוכה</strong></li>
+        <li>מה שלא בתיקייה — הוא לא ימצא לבד</li>
+        <li>תיקייה מסודרת = תשובות טובות יותר</li>
+        <li>אחת לכל "עולם": לימודים, תזה, מעבדה</li>
+      </ul>
+    </div>
+    <p class="mt hint">⚡ נסו עכשיו: צרו על שולחן העבודה תיקייה בשם <code>technion-ai</code> — בה נעבוד היום.</p>
+  </div>
+  </section>
+
+<!-- 26 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="mod">מודול 1</span> · מצ׳אט לסוכן</div>
+  <h2>אותה בקשה, בצ׳אט</h2>
+  <div class="body">
+    <div class="card wide"><span class="badge demo">צ׳אט</span>
+        <p class="mt">נועה מדביקה את הסילבוס של "עיבוד אותות דיגיטלי" ומבקשת תוכנית לימוד.</p>
+        <div class="tiles"><div class="tile"><svg viewBox="0 0 160 110" role="img" aria-hidden="true"><rect x="52" y="8" width="56" height="52" rx="6" fill="#E8F0FE" stroke="#2F6FEB" stroke-width="2"/><rect x="60" y="18" width="40" height="5" rx="3" fill="#2F6FEB" opacity="0.5"/><rect x="60" y="27" width="40" height="5" rx="3" fill="#2F6FEB" opacity="0.5"/><rect x="60" y="36" width="28" height="5" rx="3" fill="#2F6FEB" opacity="0.5"/><rect x="60" y="45" width="36" height="5" rx="3" fill="#2F6FEB" opacity="0.5"/><path d="M80 64 v12 M74 71 l6 7 l6 -7" stroke="#D97757" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="16" y="84" width="128" height="18" rx="9" fill="#fff" stroke="#E1E6F2" stroke-width="2"/><rect x="28" y="91" width="52" height="4" rx="3" fill="#E1E6F2" opacity="1"/></svg><span>מדביקה סילבוס אחד</span></div><div class="tarrow">←</div><div class="tile"><svg viewBox="0 0 160 110" role="img" aria-hidden="true"><rect x="18" y="12" width="124" height="72" rx="14" fill="#EEF1F8"/><path d="M36 84 l-8 16 l22 -16z" fill="#EEF1F8"/><rect x="30" y="26" width="100" height="7" rx="3" fill="#C5CDE0" opacity="1"/><rect x="30" y="38" width="92" height="7" rx="3" fill="#C5CDE0" opacity="1"/><rect x="30" y="50" width="104" height="7" rx="3" fill="#C5CDE0" opacity="1"/><rect x="30" y="62" width="60" height="7" rx="3" fill="#C5CDE0" opacity="1"/></svg><span>מקבלת טקסט כללי</span></div><div class="tarrow">←</div><div class="tile"><svg viewBox="0 0 160 110" role="img" aria-hidden="true"><rect x="12" y="10" width="136" height="92" rx="10" fill="#fff" stroke="#E1E6F2" stroke-width="2"/><path d="M12 30 v-10 a10 10 0 0 1 10 -10 h116 a10 10 0 0 1 10 10 v10z" fill="#FBEDE7"/><rect x="22" y="38" width="22" height="17" rx="4" fill="#F3F5FB"/><rect x="46" y="38" width="22" height="17" rx="4" fill="#F3F5FB"/><rect x="70" y="38" width="22" height="17" rx="4" fill="#F3F5FB"/><rect x="94" y="38" width="22" height="17" rx="4" fill="#F3F5FB"/><rect x="118" y="38" width="22" height="17" rx="4" fill="#F3F5FB"/><rect x="22" y="58" width="22" height="17" rx="4" fill="#F3F5FB"/><rect x="46" y="58" width="22" height="17" rx="4" fill="#F3F5FB"/><rect x="70" y="58" width="22" height="17" rx="4" fill="#F3F5FB"/><rect x="94" y="58" width="22" height="17" rx="4" fill="#F3F5FB"/><rect x="118" y="58" width="22" height="17" rx="4" fill="#F3F5FB"/><rect x="22" y="78" width="22" height="17" rx="4" fill="#F3F5FB"/><rect x="46" y="78" width="22" height="17" rx="4" fill="#F3F5FB"/><rect x="70" y="78" width="22" height="17" rx="4" fill="#F3F5FB"/><rect x="94" y="78" width="22" height="17" rx="4" fill="#F3F5FB"/><rect x="118" y="78" width="22" height="17" rx="4" fill="#F3F5FB"/><rect x="46" y="38" width="22" height="17" rx="4" fill="#2F6FEB"/><text x="33" y="51" text-anchor="middle" font-family="Rubik,Arial,sans-serif" font-size="13" font-weight="800" fill="#8C97B8">?</text><text x="105" y="51" text-anchor="middle" font-family="Rubik,Arial,sans-serif" font-size="13" font-weight="800" fill="#8C97B8">?</text><text x="129" y="51" text-anchor="middle" font-family="Rubik,Arial,sans-serif" font-size="13" font-weight="800" fill="#8C97B8">?</text><text x="57" y="71" text-anchor="middle" font-family="Rubik,Arial,sans-serif" font-size="13" font-weight="800" fill="#8C97B8">?</text><text x="81" y="71" text-anchor="middle" font-family="Rubik,Arial,sans-serif" font-size="13" font-weight="800" fill="#8C97B8">?</text><text x="33" y="91" text-anchor="middle" font-family="Rubik,Arial,sans-serif" font-size="13" font-weight="800" fill="#8C97B8">?</text><text x="105" y="91" text-anchor="middle" font-family="Rubik,Arial,sans-serif" font-size="13" font-weight="800" fill="#8C97B8">?</text><text x="129" y="91" text-anchor="middle" font-family="Rubik,Arial,sans-serif" font-size="13" font-weight="800" fill="#8C97B8">?</text></svg><span>חסרים לו שאר המבחנים</span></div></div>
+        <p class="mt muted">מקבלת טקסט כללי. מעתיקה לקובץ. מגלה שהוא לא יודע מתי המבחנים שלה בשאר הקורסים.</p></div>
+  </div>
+  </section>
+
+<!-- 27 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="mod">מודול 1</span> · מצ׳אט לסוכן</div>
+  <h2>אותה בקשה, ב-Claude Code</h2>
+  <div class="body">
+    <div class="card acc wide"><span class="badge">Claude Code</span>
+        <p class="mt">נועה פותחת את <code>technion-ai/</code> ומבקשת אותו דבר.</p>
+        <div class="tiles"><div class="tile"><svg viewBox="0 0 160 110" role="img" aria-hidden="true"><g transform="rotate(-14 80 60)"><rect x="40" y="16" width="52" height="66" rx="6" fill="#E3F5EC" stroke="#1F9D6B" stroke-width="2"/></g><g transform="rotate(14 80 60)"><rect x="68" y="16" width="52" height="66" rx="6" fill="#E8F0FE" stroke="#2F6FEB" stroke-width="2"/></g><rect x="54" y="14" width="52" height="70" rx="6" fill="#F0EBFC" stroke="#7B5CD6" stroke-width="2"/><rect x="62" y="26" width="36" height="5" rx="3" fill="#7B5CD6" opacity="0.55"/><rect x="62" y="36" width="36" height="5" rx="3" fill="#7B5CD6" opacity="0.55"/><rect x="62" y="46" width="24" height="5" rx="3" fill="#7B5CD6" opacity="0.55"/><rect x="62" y="56" width="32" height="5" rx="3" fill="#7B5CD6" opacity="0.55"/><text x="80" y="102" text-anchor="middle" font-family="Menlo,monospace" font-size="11" font-weight="700" fill="#8C97B8">PDF x3</text></svg><span>קורא את כל הסילבוסים</span></div><div class="tarrow">←</div><div class="tile"><svg viewBox="0 0 160 110" role="img" aria-hidden="true"><rect x="12" y="10" width="136" height="92" rx="10" fill="#fff" stroke="#E1E6F2" stroke-width="2"/><path d="M12 30 v-10 a10 10 0 0 1 10 -10 h116 a10 10 0 0 1 10 10 v10z" fill="#FBEDE7"/><rect x="22" y="38" width="22" height="17" rx="4" fill="#F3F5FB"/><rect x="46" y="38" width="22" height="17" rx="4" fill="#F3F5FB"/><rect x="70" y="38" width="22" height="17" rx="4" fill="#F3F5FB"/><rect x="94" y="38" width="22" height="17" rx="4" fill="#F3F5FB"/><rect x="118" y="38" width="22" height="17" rx="4" fill="#F3F5FB"/><rect x="22" y="58" width="22" height="17" rx="4" fill="#F3F5FB"/><rect x="46" y="58" width="22" height="17" rx="4" fill="#F3F5FB"/><rect x="70" y="58" width="22" height="17" rx="4" fill="#F3F5FB"/><rect x="94" y="58" width="22" height="17" rx="4" fill="#F3F5FB"/><rect x="118" y="58" width="22" height="17" rx="4" fill="#F3F5FB"/><rect x="22" y="78" width="22" height="17" rx="4" fill="#F3F5FB"/><rect x="46" y="78" width="22" height="17" rx="4" fill="#F3F5FB"/><rect x="70" y="78" width="22" height="17" rx="4" fill="#F3F5FB"/><rect x="94" y="78" width="22" height="17" rx="4" fill="#F3F5FB"/><rect x="118" y="78" width="22" height="17" rx="4" fill="#F3F5FB"/><rect x="22" y="38" width="22" height="17" rx="4" fill="#E3F5EC"/><rect x="118" y="78" width="22" height="17" rx="4" fill="#E8F0FE"/><rect x="70" y="56" width="26" height="21" rx="4" fill="#FCEAEA" stroke="#D64545" stroke-width="2"/><rect x="74" y="60" width="18" height="5" rx="3" fill="#2F6FEB" opacity="1"/><rect x="74" y="68" width="18" height="5" rx="3" fill="#7B5CD6" opacity="1"/><circle cx="96" cy="56" r="9" fill="#D64545"/><text x="96" y="60.5" text-anchor="middle" font-family="Rubik,Arial,sans-serif" font-size="13" font-weight="800" fill="#fff">!</text></svg><span>מזהה התנגשות במבחנים</span></div><div class="tarrow">←</div><div class="tile"><svg viewBox="0 0 160 110" role="img" aria-hidden="true"><rect x="38" y="6" width="84" height="98" rx="8" fill="#fff" stroke="#E1E6F2" stroke-width="2"/><rect x="48" y="16" width="44" height="6" rx="3" fill="#0C1B3A" opacity="1"/><rect x="48" y="30" width="22" height="6" rx="3" fill="#2F6FEB" opacity="1"/><rect x="76" y="30" width="36" height="6" rx="3" fill="#C5CDE0" opacity="1"/><rect x="48" y="42" width="22" height="6" rx="3" fill="#7B5CD6" opacity="1"/><rect x="76" y="42" width="36" height="6" rx="3" fill="#C5CDE0" opacity="1"/><rect x="48" y="54" width="22" height="6" rx="3" fill="#D64545" opacity="1"/><rect x="76" y="54" width="36" height="6" rx="3" fill="#D64545" opacity="0.35"/><rect x="48" y="66" width="22" height="6" rx="3" fill="#1F9D6B" opacity="1"/><rect x="76" y="66" width="36" height="6" rx="3" fill="#C5CDE0" opacity="1"/><circle cx="112" cy="94" r="13" fill="#1F9D6B"/><path d="M105 94 l5 5 l9 -10" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>שומר <span class="en">study-plan.md</span></span></div></div>
+        <p class="mt muted">Claude קורא את <strong>כל</strong> הסילבוסים, מזהה התנגשויות במבחנים ושומר <code>study-plan.md</code> בתיקייה.</p></div>
+  </div>
+  </section>
+
+<!-- 28 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="mod">מודול 1</span> · מצ׳אט לסוכן</div>
+  <h2>בקשה טובה לסוכן: 4 רכיבים</h2>
+  <div class="body">
+    <div class="grid g4">
+      <div class="card"><h3 class="acc">מטרה</h3><p>מה אני רוצה שיקרה בסוף?</p></div>
+      <div class="card"><h3 class="acc">הקשר</h3><p>איזה קבצים רלוונטיים? מה הוא צריך לדעת?</p></div>
+      <div class="card"><h3 class="acc">גבולות</h3><p>מה לא לגעת בו? כמה זמן ביום?</p></div>
+      <div class="card"><h3 class="acc">פורמט</h3><p>איזה קובץ, באיזה מבנה, איפה לשמור?</p></div>
+    </div>
+    <div class="code he mt"><button class="copy">העתק</button>בנה לי תוכנית לימוד ל-6 השבועות עד המבחנים (מטרה).
+השתמש בסילבוסים בתיקיית <span class="en">courses/</span> (הקשר).
+יש לי 3 שעות ביום, בלי שישי (גבולות).
+שמור טבלה שבועית בקובץ study-plan.md (פורמט).</div>
+  </div>
+  </section>
+
+<!-- 29 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="badge demo">Live Demo</span></div>
+  <h2>Study Plan Generator — בזמן אמת</h2>
+  <div class="body">
+    <ul class="steps">
+      <li>פותחת את <code>technion-ai/</code> ב-Claude Code Desktop</li>
+      <li>גוררת 3 סילבוסים (PDF) לתיקיית <code>courses/</code></li>
+      <li>מדביקה את הבקשה מהשקף הקודם</li>
+      <li>צופים יחד: מה הוא קורא, מה הוא מחליט, מה הוא כותב</li>
+    </ul>
+    <p class="mt muted">שימו לב לרגעים שבהם הוא <strong>עוצר ושואל</strong> — נחזור לזה במודול 3.</p>
+  </div>
+  </section>
+
+<!-- 30 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="mod">מודול 1</span> · מה ראינו</div>
+  <h2>מה בעצם קרה בדמו?</h2>
+  <div class="body">
+    <div class="flow">
+      <div class="step"><b>Search</b><span>מצא 3 קבצי PDF</span></div><div class="arrow">←</div>
+      <div class="step"><b>Read</b><span>חילץ תאריכים, נושאים, משקלים</span></div><div class="arrow">←</div>
+      <div class="step"><b>חשב</b><span>חילק שעות לפי עומס ומשקל</span></div><div class="arrow">←</div>
+      <div class="step"><b>Write</b><span>שמר study-plan.md</span></div>
+    </div>
+    <p class="mt lead">לא כתבנו אף שורת קוד. לא העתקנו כלום. <strong style="color:var(--ink)">התוצר נמצא בתיקייה</strong> — ואפשר לבקש לעדכן אותו מחר.</p>
+  </div>
+  </section>
+
+<!-- 31 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="badge flash">Flashcards</span> · לחצו על כרטיס כדי להפוך</div>
+  <h2>בודקים שזה נקלט</h2>
+  <div class="flash-grid">
+    <div class="fc"><div class="in"><div class="f">סוכן<small>Agent</small></div><div class="b">מוח (המודל) + 3 רגליים: כלים, זיכרון, משימות. לא רק עונה — פועל.</div></div></div>
+    <div class="fc"><div class="in"><div class="f">Harness</div><div class="b">המעטפת סביב המודל — Claude Code. נותנת לו כלים, הרשאות וזיכרון.</div></div></div>
+    <div class="fc"><div class="in"><div class="f">הלולאה</div><div class="b">חושב ← פועל ← בודק ← חוזר, עד שהמשימה גמורה.</div></div></div>
+    <div class="fc"><div class="in"><div class="f">תיקיית עבודה</div><div class="b">העולם של Claude. מה שלא בה — הוא לא ימצא לבד.</div></div></div>
+    <div class="fc"><div class="in"><div class="f">Read / Write</div><div class="b">הכלים שמאפשרים לו לקרוא קבצים וליצור קבצים — בלי העתק-הדבק.</div></div></div>
+    <div class="fc"><div class="in"><div class="f">4 רכיבי בקשה</div><div class="b">מטרה · הקשר · גבולות · פורמט.</div></div></div>
+  </div>
+  </section>
+
+<!-- 32 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="badge quiz">Quiz 1/2</span></div>
+  <div class="body">
+    <div class="q">נועה פתחה ב-Claude Code את התיקייה <code>technion-ai/</code>. הסיכום של "תקשורת דיגיטלית" שמור אצלה ב-Downloads. מה יקרה כשהיא תבקש לסכם אותו?</div>
+    <div class="opts" data-quiz>
+      <button class="opt"><span class="l">א</span>Claude ימצא אותו אוטומטית בכל המחשב</button>
+      <button class="opt" data-correct><span class="l">ב</span>Claude לא ימצא אותו לבד — הוא מחוץ לתיקייה</button>
+      <button class="opt"><span class="l">ג</span>Claude יחפש ברשת סיכום דומה</button>
+      <button class="opt"><span class="l">ד</span>הקובץ יועתק לתיקייה מעצמו</button>
+    </div>
+    <div class="explain">התיקייה שפתחתם היא העולם של Claude. הפתרון: להעביר את הקובץ פנימה, לגרור אותו לשיחה, או לתת ל-Claude את הנתיב המדויק ולאשר.</div>
+  </div>
+  </section>
+
+<!-- 33 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="badge quiz">Quiz 2/2</span></div>
+  <div class="body">
+    <div class="q">מה הדבר שהכי מבדיל את Claude Code מצ׳אט בדפדפן?</div>
+    <div class="opts" data-quiz>
+      <button class="opt"><span class="l">א</span>הוא משתמש במודל חכם יותר</button>
+      <button class="opt"><span class="l">ב</span>הוא עונה מהר יותר</button>
+      <button class="opt" data-correct><span class="l">ג</span>יש לו כלים לפעול על הקבצים שלכם</button>
+      <button class="opt"><span class="l">ד</span>הוא עובד רק בשביל מתכנתים</button>
+    </div>
+    <div class="explain">אותו מנוע, רכב אחר. ההבדל הוא ה-Harness: כלים, קבצים, הרשאות וזיכרון.</div>
+  </div>
+  </section>
+
+<!-- new 1 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="badge demo">Live Demo</span></div>
+  <h2>בונים אפליקציית טריוויה</h2>
+  <div class="body">
+    <p class="lead">בקשה אחת בלוח Claude Code. כ-30 שניות לקובץ HTML עובד בתיקייה.</p>
+    <div class="code he mt"><button class="copy">העתק</button>צור קובץ HTML אחד בשם trivia.html בתיקייה הזאת.
+זה צריך להיות חידון טריוויה בידע כללי עם 10 שאלות,
+שחושף את התשובה בלחיצה. עיצוב נקי ומודרני, אנימציות חלקות.
+HTML, CSS ו-JavaScript בלבד בקובץ אחד, בלי תלויות חיצוניות.</div>
+    <p class="mt muted">שימו לב: Claude קורא קודם את התיקייה (כלים), מציע תוכנית (משימות), ואז כותב את הקובץ (עוד כלים).</p>
+  </div>
+  </section>
+
+<!-- new 2 -->
+<section class="slide workshop" data-mod="1">
+  <div class="kicker"><span class="badge work">Lab 1.1</span> · תרגול</div>
+  <h2>פותחים את לוח Claude Code</h2>
+  <div class="body">
+    <ol class="steps">
+      <li>פתחו את VS Code ← File ← Open Folder ← בחרו את <code>claude-course</code></li>
+      <li>לחצו על סמל Claude Code בסרגל הצד השמאלי (אם מבקשים, היכנסו עם חשבון Anthropic)</li>
+      <li>בתיבת הצ׳אט בתחתית הלוח הקלידו: <em>שלום Claude. באיזו תיקייה אתה נמצא?</em></li>
+      <li>לחצו Enter וחכו לתשובה</li>
+    </ol>
+    <div class="done-when">✅ <strong>סיימתם כש:</strong> Claude עונה עם השם או הנתיב של התיקייה <code>claude-course</code>.</div>
+  </div>
+  </section>
+
+<!-- new 3 -->
+<section class="slide workshop" data-mod="1">
+  <div class="kicker"><span class="badge work">Lab 1.2</span> · תרגול</div>
+  <h2>משתמשים ב-Claude מהטרמינל</h2>
+  <div class="body">
+    <ol class="steps">
+      <li>פתחו טרמינל משולב (View ← Terminal) והקלידו <code>claude --version</code></li>
+      <li>הקלידו <code>claude</code>: הפרומפט של Claude נפתח בתוך הטרמינל</li>
+      <li>הקלידו <em>סכם לי אילו קבצים יש בתיקייה הזאת</em> ולחצו Enter</li>
+      <li>ליציאה: הקלידו <code>/exit</code></li>
+    </ol>
+    <div class="done-when">✅ <strong>סיימתם כש:</strong> קיבלתם מספר גרסה, ואז רשימת קבצים. אותה תשובה כמו בלוח, רק טקסט. אותו Claude, דלת אחרת.</div>
+  </div>
+  </section>
+
+<!-- new 4 -->
+<section class="slide workshop" data-mod="1">
+  <div class="kicker"><span class="badge work">Lab 1.3</span> · להכין קבצים</div>
+  <h2>מעלים קבצים ונותנים ל-Claude להכיר אתכם</h2>
+  <div class="body">
+    <p class="lead">המטרה: לראות את Claude קורא כמה קבצים בבת אחת. כלים, זיכרון ומשימות בפעולה.</p>
+    <div class="grid g2">
+      <div class="card acc"><h3>בחרו 3–5 קבצי טקסט קטנים</h3><p>סיכום הרצאה או דף לימוד (<code>.md</code>, <code>.txt</code>, <code>.pdf</code>) · מאמר קצר ששמרתם · מתכון, רשימת קריאה או רשימת משימות · קובץ CSV מקורס או פרויקט</p></div>
+      <div class="card"><h3>לא עכשיו</h3><p>חומר רגיש (כספי, רפואי, סודי), קבצים מעל 5MB, תמונות או וידאו. נשארים עם טקסט ש-Claude יכול לקרוא.</p></div>
+    </div>
+  </div>
+  </section>
+
+<!-- new 5 -->
+<section class="slide workshop" data-mod="1">
+  <div class="kicker"><span class="badge work">Lab 1.3</span> · להעתקה</div>
+  <h2>הבקשה: שיכיר אתכם</h2>
+  <div class="body">
+    <div class="code he"><button class="copy">העתק</button>תסתכל על הקבצים בתיקייה הזאת. הצג את עצמך לפי מה שאתה רואה,
+ותגיד לי איזה סוג של אדם אתה חושב שאני לפי מה שיש כאן.</div>
+    <div class="done-when">✅ <strong>סיימתם כש:</strong> Claude מנה את הקבצים, סיכם מה בהם, וניחש בצורה סבירה מי אתם.</div>
+    <p class="hint">⚡ בונוס: סגרו את הלוח ונסו את אותה בקשה בטרמינל. השוו.</p>
+  </div>
+  </section>
+
+<!-- new 6 -->
+<section class="slide workshop" data-mod="1">
+  <div class="kicker"><span class="badge work">Lab 1.4</span> · תרגול</div>
+  <h2>בונים כלי לימוד לאחד הקורסים שלכם</h2>
+  <div class="body">
+    <ol class="steps">
+      <li>בחרו נושא מקורס שלכם (למשל קבוצות פונקציונליות בכימיה אורגנית, או יחסים בחשבונאות)</li>
+      <li>בחרו פורמט: כרטיסיות, טיימר פומודורו, תרגול אוצר מילים או חידון אמריקאי</li>
+      <li>פתחו את לוח Claude Code ב-VS Code והדביקו את הבקשה מהשקף הבא, עם הנושא והפורמט שלכם</li>
+      <li>אשרו הרשאות כתיבת קובץ, ואז: <code>study-tool.html</code> ← קליק ימני ← Reveal in Finder / Show in Explorer ← לחיצה כפולה</li>
+    </ol>
+  </div>
+  </section>
+
+<!-- new 7 -->
+<section class="slide workshop" data-mod="1">
+  <div class="kicker"><span class="badge work">Lab 1.4</span> · להעתקה</div>
+  <h2>הבקשה: כלי לימוד</h2>
+  <div class="body">
+    <div class="code he"><button class="copy">העתק</button>צור קובץ HTML אחד בשם study-tool.html בתיקייה הזאת.
+זה צריך להיות [FORMAT] בנושא [TOPIC].
+עיצוב נקי ומודרני, קל לשימוש במחשב.
+HTML, CSS ו-JavaScript בלבד בקובץ אחד, בלי תלויות חיצוניות.</div>
+    <div class="done-when">✅ <strong>סיימתם כש:</strong> הקובץ נפתח בדפדפן וכלי הלימוד עובד.</div>
+    <p class="hint">⚡ החליפו את [FORMAT] ו-[TOPIC] לפני ששולחים</p>
+  </div>
+  </section>
+
+<!-- new 8 -->
+<section class="slide workshop" data-mod="1">
+  <div class="kicker"><span class="badge work">Lab 1.5</span> · תרגול</div>
+  <h2>משפרים את כלי הלימוד</h2>
+  <div class="body">
+    <ol class="steps">
+      <li>חזרו ללוח Claude Code (השיחה עדיין שם)</li>
+      <li>בחרו תוספת קטנה אחת, והקלידו: <em>שנה את study-tool.html כך ש-[התוספת שלכם]</em></li>
+      <li>לחצו Enter ואשרו הרשאות, ואז רעננו את הלשונית בדפדפן</li>
+    </ol>
+    <div class="done-when">✅ <strong>סיימתם כש:</strong> הקובץ השתנה במקום, ורענון הדפדפן מראה את ההתנהגות החדשה.</div>
+    <p class="hint">⚡ רעיונות: מצב כהה · מונה ניקוד · כפתור איפוס / ערבוב · צליל בהיפוך כרטיס · גופן גדול יותר בנייד</p>
+  </div>
+  </section>
+
+<!-- 34 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="mod">מודול 1</span> · לפני ה-Workshop</div>
+  <h2>ביטוח ראשון: Plan Mode</h2>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card acc"><h3>מה זה</h3><p>Claude חוקר, קורא וכותב <strong>תוכנית</strong> — ולא משנה שום דבר עד שתאשרו. כמו אדריכל שמראה שרטוט לפני שמתחילים לבנות.</p></div>
+      <div class="card"><h3>איך נכנסים</h3><p>בוחרים Plan Mode בתיבת ההקלדה, או לוחצים <code>Shift+Tab</code> לדפדוף בין המצבים.</p></div>
+    </div>
+    <p class="mt lead">בכל workshop היום: <strong style="color:var(--ink)">קודם תוכנית, אחר כך אישור.</strong> את כל מצבי ההרשאה נעבור במודול 3.</p>
+  </div>
+  </section>
+
+<!-- 35 -->
+<section class="slide workshop" data-mod="1">
+  <div class="kicker"><span class="badge work">Workshop 1</span> <span class="timer">25:00</span></div>
+  <h2>בונים את הבסיס: תיקיית העבודה שלכם</h2>
+  <div class="body">
+    <div class="machine">
+      <span class="part on">📁 תיקיית עבודה</span><span class="part">📄 תוכנית לימוד</span><span class="part">🧭 הקשר נכון</span>
+      <span class="part">🧠 CLAUDE.md אישי</span><span class="part">🔐 הרשאות בטוחות</span>
+    </div>
+    <p class="lead mt">המטרה: תיקייה אחת שמחזיקה את הסמסטר שלכם — ו-Claude שכבר עבד בה פעם ראשונה.</p>
+    <p class="mt muted">אין לכם סילבוסים בהישג יד? יש תיקיית דוגמה עם 3 סילבוסים של נועה — הקישור באתר הקורס.</p>
+  </div>
+  </section>
+
+<!-- 36 -->
+<section class="slide workshop" data-mod="1">
+  <div class="kicker"><span class="badge work">Workshop 1</span> · שלבים</div>
+  <h2>חמישה צעדים</h2>
+  <div class="body">
+    <ol class="steps">
+      <li>צרו תיקייה בשם <code>technion-ai</code> ובתוכה <code>courses</code></li>
+      <li>הורידו את הסילבוסים של הסמסטר הנוכחי ושמרו בתוך <code>courses/</code></li>
+      <li>פתחו את <code>technion-ai</code> ב-Claude Code Desktop (Open Folder) — או בלוח Claude Code ב-VS Code</li>
+      <li>בקשה ראשונה: "מה יש בתיקייה הזו? תני לי טבלה של הקורסים, המרצים ומועדי המבחנים"</li>
+      <li>עברו ל-Plan Mode, הדביקו את בקשת ה-4 רכיבים מהשקף הבא, קראו את התוכנית — ורק אז אשרו</li>
+    </ol>
+  </div>
+  </section>
+
+<!-- 37 -->
+<section class="slide workshop" data-mod="1">
+  <div class="kicker"><span class="badge work">Workshop 1</span> · להעתקה</div>
+  <h2>הבקשה — תתאימו לעצמכם</h2>
+  <div class="body">
+    <div class="code he"><button class="copy">העתק</button>בנה לי תוכנית לימוד עד סוף הסמסטר.
+השתמש בכל הסילבוסים בתיקיית <span class="en">courses/</span>.
+יש לי [__] שעות לימוד ביום, ואני לא לומד/ת ב-[__].
+תן משקל גבוה יותר לקורסים עם מבחן מוקדם יותר.
+שמור טבלה שבועית בקובץ study-plan.md בתיקייה הראשית.</div>
+    <div class="done-when">✅ <strong>סיימתם כש:</strong> הקובץ <code>study-plan.md</code> קיים בתיקייה ואתם מזהים בו את המבחנים שלכם.</div>
+    <p class="hint">⚡ בונוס: "תוסיף עמודה של נושא לחזרה בכל שבוע, לפי הסילבוס"</p>
+  </div>
+  </section>
+
+<!-- 38 -->
+<section class="slide" data-mod="1">
+  <div class="kicker"><span class="mod">מודול 1</span> · סיכום</div>
+  <h2>מה עכשיו יש לכם</h2>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card acc"><h3>✔ למדנו</h3><p>סוכן = מוח (מודל) + כלים + זיכרון + משימות. התיקייה היא העולם שלו. בקשה טובה = מטרה, הקשר, גבולות, פורמט.</p></div>
+      <div class="card"><h3>✔ בנינו</h3><p>תיקיית <code>technion-ai/</code> עם סילבוסים ותוכנית לימוד ראשונה.</p></div>
+    </div>
+    <div class="example mt">
+      <div class="who">אבל…</div>
+      <p>פתחו שיחה חדשה ובקשו "תעדכן את התוכנית". Claude לא זוכר מה סיכמתם, כמה שעות יש לכם או מה חשוב לכם. <strong>זה בדיוק מודול 2.</strong></p>
+    </div>
+  </div>
+  </section>
+
+<!-- end of module 1 -->
+
+<div id="progress"></div>
+</div><!-- /stage -->
+
+<div id="nav"><button id="prev">→ הקודם</button><button id="fs">⛶</button><button id="next">הבא ←</button></div>
+<script src="day1.js"></script>
+</body>
+</html>

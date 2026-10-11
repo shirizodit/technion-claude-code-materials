@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>יום ב׳ · מודול 7 — סוכני-משנה</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="day1.css">
+<style>
+.code.sm{font-size:23px;padding:20px 26px}
+.code .stg{display:block;font-family:var(--mono);direction:ltr;text-align:left;color:#8C97B8;font-size:22px;margin-bottom:4px}
+.code.he.sm{font-size:25px;padding:22px 30px}
+.flow.g .step{padding:22px 14px}.flow.g .step b{font-size:26px}.flow.g .step span{font-size:23px}
+.flow .step.ro{background:#EAF4FF;border-color:#5B8DEF}.flow .step.ro b{color:#2F5FBF}
+.stop{background:#FFF6DC;border:2px solid var(--gold);border-radius:16px;padding:14px 24px;font-size:26px;margin-top:16px}
+</style>
+</head>
+<body data-start="61" data-total="147" data-day="ב׳" data-prev="module6.html" data-next="module8.html">
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="spark" viewBox="0 0 100 100"><g fill="currentColor">
+    <rect x="46" y="4" width="8" height="40" rx="4"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(30 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(60 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(90 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(120 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(150 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(180 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(210 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(240 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(270 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(300 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(330 50 50)"/>
+  </g></symbol>
+</svg>
+
+<div id="stage">
+
+<!-- 1 -->
+<section class="slide divider" data-mod="7">
+  <div class="num">7</div>
+  <h1>סוכני-משנה: צוות של מומחים</h1>
+  <p class="lead">במקום סוכן אחד שעושה הכול, צוות קטן: חוקר שרק קורא, ובונה שרק כותב. בסוף השעה יש לכם צוות של שניים שעובד על חומר אמיתי שלכם.</p>
+  </section>
+
+<!-- 2 -->
+<section class="slide" data-mod="7">
+  <div class="kicker"><span class="mod">מודול 7</span> · חוזרים רגע</div>
+  <h2>מה בנינו עד עכשיו</h2>
+  <div class="body">
+    <div class="grid g3">
+      <div class="card"><div class="icon">M4</div><h3>Skills</h3><p>בקשה שחוזרת, בפקודה אחת.</p></div>
+      <div class="card"><div class="icon">M5</div><h3>שרשרת עם שער</h3><p>שלבים שמדברים דרך קבצים, ועצירה שבה אתם מחליטים.</p></div>
+      <div class="card"><div class="icon">M6</div><h3>MCP</h3><p>Claude מגיע ליומן, לקבצים ולרשת.</p></div>
+    </div>
+    <p class="mt lead">שימו לב: בכל אלה יש <strong>סוכן אחד</strong> ושיחה אחת. הכול נערם באותו שולחן עבודה. היום הוא מקבל עוזרים.</p>
+  </div>
+  </section>
+
+<!-- 3 -->
+<section class="slide" data-mod="7">
+  <div class="kicker"><span class="mod">מודול 7</span> · מה זה סוכן</div>
+  <h2>צ׳אט, סוכן, סוכני-משנה</h2>
+  <div class="body">
+    <div class="grid g3">
+      <div class="card"><span class="badge">צ׳אט</span><p class="mt">עונה במילים. לא פותח קבצים ולא מריץ כלום.</p></div>
+      <div class="card"><span class="badge demo">סוכן</span><p class="mt">יש לו כלים וזיכרון, והוא עובד בלולאה: קורא, פועל, בודק. <span class="en">Claude Code</span> הוא סוכן.</p></div>
+      <div class="card acc"><span class="badge">סוכני-משנה</span><p class="mt">כמה סוכנים, כל אחד בחלון שיחה משלו. הסוכן הראשי מעביר להם משימות קטנות.</p></div>
+    </div>
+    <div class="flow mt">
+      <div class="step"><b>סוכן ראשי</b><span>אתם מדברים איתו</span></div><div class="arrow">←</div>
+      <div class="step"><b>חוקר</b><span>חלון משלו</span></div><div class="arrow">←</div>
+      <div class="step"><b>בונה</b><span>חלון משלו</span></div>
+    </div>
+  </div>
+  </section>
+
+<!-- 4 -->
+<section class="slide" data-mod="7">
+  <div class="kicker"><span class="mod">מודול 7</span> · דימוי</div>
+  <h2>צוות של מומחים</h2>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card"><div class="icon">👥</div><h3>צוות מומחים</h3><p>במעבדה אף אחד לא עושה הכול. יש מי שמכין דגימות, מי שמודד, ומי שכותב את הדוח. כל אחד מכיר רק את החלק שלו.</p></div>
+      <div class="card acc"><div class="icon">📚</div><h3>עוזר מחקר</h3><p>אתם ממשיכים לכתוב. העוזר הולך לספרייה, קורא עשרה מאמרים וחוזר עם עמוד אחד. את הספרייה עצמה אתם לא רואים.</p></div>
+    </div>
+    <div class="example mt"><div class="who">למה זה חשוב לכם</div><p>בתזה או בפרויקט גמר יש הרבה חומר לקרוא. אם כל מה שנקרא נערם בשיחה אחת, היא מתנפחת. עוזר שקורא בשבילכם משאיר לכם שולחן נקי.</p></div>
+  </div>
+  </section>
+
+<!-- 5 -->
+<section class="slide" data-mod="7">
+  <div class="kicker"><span class="mod">מודול 7</span> · הבעיה</div>
+  <h2>שולחן עבודה שמתמלא</h2>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card"><span class="badge demo">סוכן אחד, שיחה אחת</span>
+        <p class="mt">קורא 20 מאמרים. כל הטקסט נכנס לשיחה. אחרי זה קשה לו לשים לב לפרטים, והתשובות מתחילות להיות כלליות.</p></div>
+      <div class="card acc"><span class="badge">עם סוכן-משנה</span>
+        <p class="mt">החוקר קורא את 20 המאמרים בחלון משלו וחוזר עם סיכום קצר. בשיחה שלכם נכנס רק הסיכום.</p></div>
+    </div>
+    <div class="example mt"><div class="who">הדימוי</div><p>שולחן עבודה. כל הספרים פתוחים עליו, ואין מקום לכתוב. עוזר שקורא בחדר אחר, ומביא פתק.</p></div>
+  </div>
+  </section>
+
+<!-- 6 -->
+<section class="slide" data-mod="7">
+  <div class="kicker"><span class="mod">מודול 7</span> · למה זה עוזר</div>
+  <h2>ארבעה יתרונות</h2>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card acc"><div class="icon">01</div><h3>חלון נפרד</h3><p>העבודה הרועשת קורית שם, ואליכם חוזר סיכום קצר.</p></div>
+      <div class="card"><div class="icon">02</div><h3>כלים מוגבלים</h3><p>נותנים לו רק מה שצריך. חוקר שרק קורא לא יכול למחוק לכם קובץ.</p></div>
+      <div class="card"><div class="icon">03</div><h3>שימוש חוזר</h3><p>קובץ קטן שכותבים פעם אחת, ואפשר להשתמש בו בכל פרויקט.</p></div>
+      <div class="card"><div class="icon">04</div><h3>מודל זול יותר</h3><p>לעבודה פשוטה אפשר לבחור מודל מהיר וזול, כמו <span class="en">Haiku</span>.</p></div>
+    </div>
+  </div>
+  </section>
+
+<!-- 7 -->
+<section class="slide" data-mod="7">
+  <div class="kicker"><span class="mod">מודול 7</span> · כבר השתמשתם</div>
+  <h2>סוכני-משנה מובנים</h2>
+  <div class="body">
+    <div class="grid g3">
+      <div class="card"><div class="icon">🔎</div><h3><span class="en">Explore</span></h3><p>מחפש וקורא מהר. לקריאה בלבד: אין לו כלי כתיבה.</p></div>
+      <div class="card"><div class="icon">🧭</div><h3><span class="en">Plan</span></h3><p>אוסף מידע לפני שמציגים לכם תוכנית. גם הוא לקריאה בלבד.</p></div>
+      <div class="card"><div class="icon">🧰</div><h3><span class="en">general-purpose</span></h3><p>למשימות של כמה שלבים. יש לו את כל הכלים, אז הוא גם קורא וגם משנה.</p></div>
+    </div>
+    <p class="mt lead">כשביקשתם מ-Claude להסתכל בתיקייה לפני שהתחיל לעבוד, סביר שהוא שלח את <span class="en">Explore</span>. נסו לקרוא לו בשם:</p>
+    <div class="code"><button class="copy">העתק</button>Use the Explore subagent to find which files in this folder mention an exam date, and only tell me the file names.</div>
+  </div>
+  </section>
+
+<!-- 8 -->
+<section class="slide" data-mod="7">
+  <div class="kicker"><span class="mod">מודול 7</span> · לא מבלבלים</div>
+  <h2>צ׳אט, Skill, סוכן-משנה</h2>
+  <div class="body">
+    <div class="grid g3">
+      <div class="card"><span class="badge">צ׳אט</span><h3>שיחה עם הסוכן הראשי</h3><p>הכול קורה בחלון אחד.</p></div>
+      <div class="card"><span class="badge demo">Skill</span><h3>מתכון שהסוכן הראשי עוקב אחריו</h3><p>רץ באותו חלון, ומוסיף לו.</p></div>
+      <div class="card acc"><span class="badge">סוכן-משנה</span><h3>עובד אחר בחלון משלו</h3><p>מקבל משימה, עובד לבד, ומחזיר תשובה.</p></div>
+    </div>
+    <div class="example mt"><div class="who">כלל אצבע</div><p><strong>Skill</strong> כשאתם רוצים לחזור על אותה עבודה. <strong>סוכן-משנה</strong> כשהעבודה רועשת, או כשצריך להגביל כלים.</p></div>
+  </div>
+  </section>
+
+<!-- 9a -->
+<section class="slide" data-mod="7">
+  <div class="kicker"><span class="mod">מודול 7</span> · בונים ביחד · שלב 0</div>
+  <h2>מכינים שולחן עבודה</h2>
+  <div class="body">
+    <div class="grid g2" style="align-items:center">
+      <ol class="steps">
+        <li>ב-<span class="en">VS Code</span>: <strong>File → Open Folder</strong> ובוחרים את <code>agents-lab/</code></li>
+        <li>פותחים את חלונית <span class="en">Claude Code</span></li>
+        <li>שואלים: ״אילו קבצים יש בתיקייה notes/?״</li>
+      </ol>
+      <div class="code sm"><span class="stg">agents-lab/</span>agents-lab/
+  notes/
+    lecture-notes-dsp.md
+    syllabus-dsp.md
+    project-eeg.md</div>
+    </div>
+    <div class="done-when">✅ <strong>מוכנים כש:</strong> Claude מונה את שלושת הקבצים. זה החומר האמיתי שעליו נעבוד בשעה הקרובה: סיכומי הרצאות של נועה בעיבוד אותות.</div>
+    <p class="hint">⚡ יש חומר משלכם? שימו אותו ב-<code>notes/</code> במקום שלושת הקבצים.</p>
+  </div>
+  </section>
+
+<!-- 9 -->
+<section class="slide" data-mod="7">
+  <div class="kicker"><span class="mod">מודול 7</span> · בונים ביחד · שלב 1</div>
+  <h2>יוצרים את הסוכן הראשון</h2>
+  <div class="body">
+    <ol class="steps">
+      <li>מדביקים בחלונית של <span class="en">Claude Code</span> את הבקשה למטה</li>
+      <li><span class="en">Claude</span> כותב קובץ ועוצר. <strong>קוראים אותו</strong> לפני שממשיכים</li>
+      <li>מקלידים <code>/agents</code>. הסוכן <span class="en">reviewer</span> מופיע ברשימה</li>
+    </ol>
+    <div class="code he sm mt"><button class="copy">העתק</button>צור סוכן-משנה בשם reviewer בתיקייה .claude/agents/. הוא קורא קובץ אחד בלבד ומחזיר שלושה דברים: חוזקות, חולשות והמלצה אחת. כלים: Read, Glob, Grep בלבד. כתוב לו תיאור שמסביר מתי להשתמש בו, ועצור כדי שאראה את הקובץ.</div>
+    <p class="hint">⚡ מעדיפים תפריט? מקלידים <code>/agents</code>, בוחרים <strong>Create new agent</strong> ואז <strong>Project</strong>, ומתארים במשפט מה הסוכן עושה.</p>
+  </div>
+  </section>
+
+<!-- 10 -->
+<section class="slide" data-mod="7">
+  <div class="kicker"><span class="mod">מודול 7</span> · הדגמה חיה</div>
+  <h2>מה /agents כתב: קובץ אחד</h2>
+  <div class="body">
+    <div class="code sm"><span class="stg">.claude/agents/reviewer.md</span>---
+name: reviewer
+description: Independent reviewer. Use to check one
+  document in a fresh context, blind to other notes.
+tools: Read, Glob, Grep
+---
+You are an exacting reviewer. Read only the document you
+are given. Report strengths, weaknesses, and a clear
+recommendation - nothing else.</div>
+    <p class="mt lead">זה הכול. סוכן הוא <strong>קובץ טקסט</strong>: כותרת קצרה, ואחריה ההוראות שלו.</p>
+  </div>
+  </section>
+
+<!-- 10a -->
+<section class="slide" data-mod="7">
+  <div class="kicker"><span class="mod">מודול 7</span> · בונים ביחד · שלב 2</div>
+  <h2>מריצים ורואים אותו עובד</h2>
+  <div class="body">
+    <div class="code he sm"><button class="copy">העתק</button>השתמש בסוכן reviewer כדי לבדוק את הקובץ notes/lecture-notes-dsp.md</div>
+    <div class="callouts mt">
+      <div class="callout"><strong>לפי שם</strong><span>כמו בבקשה למעלה. Claude מזהה את השם ושולח</span></div>
+      <div class="callout"><strong>עם <span class="en">@</span></strong><span>מקלידים <span class="en">@agent-reviewer</span> או בוחרים מהרשימה. זה מכריח את Claude להשתמש בו</span></div>
+      <div class="callout"><strong>לפי תיאור</strong><span>מבקשים ביקורת בלי להזכיר שם. עובד רק אם התיאור חד</span></div>
+    </div>
+    <div class="done-when">✅ <strong>סיימתם כש:</strong> ראיתם הודעה ש-Claude מריץ סוכן-משנה, וקיבלתם חוזקות, חולשות והמלצה אחת.</div>
+  </div>
+  </section>
+
+<!-- 10b -->
+<section class="slide" data-mod="7">
+  <div class="kicker"><span class="mod">מודול 7</span> · בונים ביחד · תקלות</div>
+  <h2>לא עבד? בדיקה של 30 שניות</h2>
+  <div class="body">
+    <table class="cmp">
+      <tr><th>מה רואים</th><th>למה זה קורה</th><th>מה עושים</th></tr>
+      <tr><td>הסוכן לא ברשימה של <span class="en">/agents</span></td><td>התיקייה <span class="en">.claude/agents/</span> לא הייתה קיימת כשפתחתם את <span class="en">Claude</span></td><td>סוגרים ופותחים מחדש, פעם אחת</td></tr>
+      <tr><td><span class="en">Claude</span> עושה הכול בעצמו</td><td>התיאור עמום</td><td>מחדדים את התיאור, או משתמשים ב-<span class="en">@</span></td></tr>
+      <tr><td>מבקשים ממכם אישור</td><td>הסוכן רוצה לכתוב או להריץ משהו</td><td>זה תקין. קוראים ומאשרים</td></tr>
+      <tr><td>התשובה ארוכה מדי</td><td>ההוראות לא אומרות מה להחזיר</td><td>מוסיפים: ״החזר עד 10 שורות״</td></tr>
+    </table>
+    <p class="mt hint">⚡ אפשר לשאול את Claude: ״למה לא שלחת את זה לסוכן reviewer, ומה לשנות בתיאור שלו?״</p>
+  </div>
+  </section>
+
+<!-- 11 -->
+<section class="slide" data-mod="7">
+  <div class="kicker"><span class="mod">מודול 7</span> · מבנה הקובץ</div>
+  <h2>ארבעה חלקים וכתובת אחת</h2>
+  <div class="body">
+    <div class="grid g2" style="align-items:center">
+      <div class="callouts">
+        <div class="callout"><strong><span class="en">name</span></strong><span>השם שאיתו קוראים לסוכן</span></div>
+        <div class="callout"><strong><span class="en">description</span></strong><span>מתי להשתמש בו (החלק הכי חשוב)</span></div>
+        <div class="callout"><strong><span class="en">tools</span></strong><span>רק מה שצריך לעבודה</span></div>
+        <div class="callout"><strong>ההוראות</strong><span>מי הוא ומה בדיוק הוא מחזיר</span></div>
+      </div>
+      <div class="layers">
+        <div class="layer l1"><div class="lic">📁</div><div><h3>פרויקט</h3><p><code>.claude/agents/</code>. נשאר בתיקייה, וניתן לשיתוף.</p></div></div>
+        <div class="layer l2"><div class="lic">👤</div><div><h3>אישי</h3><p><code>~/.claude/agents/</code>. בכל הפרויקטים שלכם.</p></div></div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+<!-- 11a -->
+<section class="slide" data-mod="7">
+  <div class="kicker"><span class="mod">מודול 7</span> · מבנה הקובץ · שורות נוספות</div>
+  <h2>שלוש שורות שאפשר להוסיף</h2>
+  <div class="body">
+    <div class="grid g2" style="align-items:center">
+      <div class="code sm"><span class="stg">.claude/agents/reviewer.md</span>---
+name: reviewer
+description: Independent reviewer. Use to check
+  one document in a fresh context.
+tools: Read, Glob, Grep
+model: haiku
+maxTurns: 10
+permissionMode: plan
+---
+...</div>
+      <div class="callouts">
+        <div class="callout"><strong><span class="en">model</span></strong><span><span class="en">haiku</span> מהיר וזול, <span class="en">sonnet</span> ו-<span class="en">opus</span> חזקים יותר</span></div>
+        <div class="callout"><strong><span class="en">maxTurns</span></strong><span>כמה צעדים מותר לו לעשות לפני שהוא עוצר</span></div>
+        <div class="callout"><strong><span class="en">permissionMode</span></strong><span><span class="en">plan</span>: רק מתכנן וקורא, לא משנה כלום</span></div>
+      </div>
+    </div>
+    <p class="mt hint">⚡ אין חובה. מתחילים עם <span class="en">name</span>, <span class="en">description</span> ו-<span class="en">tools</span>, ומוסיפים רק כשצריך.</p>
+  </div>
+  </section>
+
+<!-- 12 -->
+<section class="slide" data-mod="7">
+  <div class="kicker"><span class="mod">מודול 7</span> · נסו עכשיו</div>
+  <h2>סוכן ראשון משלכם</h2>
+  <div class="body">
+    <ol class="steps">
+      <li>מקלידים <code>/agents</code> ובוחרים <strong>Create new agent</strong> ואז <strong>Project</strong></li>
+      <li>מתארים מסכם: ״מסכם קובץ אחד לחמש נקודות, ואומר מתי להשתמש בו״</li>
+      <li>שומרים, ומוודאים שקובץ חדש הופיע ב-<code>.claude/agents/</code></li>
+    </ol>
+    <div class="code he mt"><button class="copy">העתק</button>השתמש בסוכן-המשנה שיצרתי כדי לסכם את הקובץ notes/syllabus-dsp.md בחמש נקודות.</div>
+    <div class="done-when">✅ <strong>סיימתם כש:</strong> יש קובץ חדש ב-<code>.claude/agents/</code>, ו-Claude שלח אליו את העבודה בהרצה אחת.</div>
+  </div>
+  </section>
+
+<!-- 13 -->
+<section class="slide" data-mod="7">
+  <div class="kicker"><span class="mod">מודול 7</span> · האצלה</div>
+  <h2>התיאור הוא ההגה</h2>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card"><span class="badge demo">תיאור עמום</span><p class="mt">״עוזר עם מאמרים״</p><p class="muted">הסוכן הראשי לא יודע מתי להשתמש בו, ופשוט עושה לבד.</p></div>
+      <div class="card acc"><span class="badge">תיאור חד</span><p class="mt">״קורא מאמר אחד ומחזיר שאלה, שיטה ותוצאה. להשתמש כשמבקשים ממני לסכם מאמר.״</p><p class="muted">הסוכן הראשי מזהה את המצב, ושולח.</p></div>
+    </div>
+    <div class="example mt"><div class="who">הדימוי</div><p>מודעת דרושים. ״מישהו שעוזר״ לא מביא אף אחד. ״חוקר שמסכם מאמר בעמוד אחד״ מביא בדיוק את מי שצריך.</p></div>
+  </div>
+  </section>
+
+<!-- 14 -->
+<section class="slide" data-mod="7">
+  <div class="kicker"><span class="mod">מודול 7</span> · הדגמה</div>
+  <h2>עמום מול חד, ושלוש דרכים לקרוא לסוכן</h2>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card"><span class="badge demo">הדגמה</span>
+        <ol class="steps" style="font-size:25px">
+          <li>סוכן <span class="en">paper-critic</span> עם תיאור עמום</li>
+          <li>מבקשים ביקורת: הסוכן הראשי עושה לבד</li>
+          <li>מחדדים את התיאור, ושוב: עכשיו הוא מאציל</li>
+        </ol></div>
+      <div class="card acc"><span class="badge">איך קוראים לסוכן</span>
+        <ul class="clean mt">
+          <li><strong>לפי תיאור</strong>: Claude מחליט לבד</li>
+          <li><strong>לפי שם</strong>: ״השתמש בסוכן <span class="en">paper-critic</span>״</li>
+          <li><strong>בהגדרה מפורשת</strong>: <span class="en">@</span> ובוחרים את הסוכן מהרשימה</li>
+        </ul></div>
+    </div>
+    <p class="mt hint">⚡ אם Claude לא מאציל: אל תתקנו אותו, תחדדו את התיאור.</p>
+  </div>
+  </section>
+
+<!-- 15 -->
+<section class="slide" data-mod="7">
+  <div class="kicker"><span class="mod">מודול 7</span> · צוות של שניים</div>
+  <h2>חוקר ובונה</h2>
+  <div class="body">
+    <div class="flow g">
+      <div class="step ro"><b>חוקר</b><span>קורא ומחפש. לא כותב</span></div><div class="arrow">←</div>
+      <div class="step"><b>סיכום קצר</b><span>מה שעובר ביניהם</span></div><div class="arrow">←</div>
+      <div class="step"><b>בונה</b><span>מקבל את הסיכום ויוצר את הפלט</span></div>
+    </div>
+    <ul class="clean mt">
+      <li>הסוכן הראשי מריץ את שניהם בזה אחר זה, בבקשה אחת</li>
+      <li>כל אחד עובד בחלון נקי. <strong>רק הסיכומים עוברים</strong></li>
+      <li>הקריאה הרועשת נשארת אצל החוקר</li>
+    </ul>
+  </div>
+  </section>
+
+<!-- 16 -->
+<section class="slide" data-mod="7">
+  <div class="kicker"><span class="mod">מודול 7</span> · מתכננים קודם</div>
+  <h2>החוזה בין שניהם, וכלים מינימליים</h2>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card"><span class="badge">החוזה במשפט אחד</span>
+        <p class="mt">החוקר קורא את <strong>X</strong> ומחזיר <strong>Y</strong>. הבונה קורא את Y ויוצר את <strong>Z</strong>.</p></div>
+      <div class="card acc"><span class="badge">הכלים לכל אחד</span>
+        <ul class="clean mt">
+          <li><strong>חוקר</strong>: <code>Read, Glob, Grep</code></li>
+          <li><strong>בונה</strong>: <code>Read, Write</code></li>
+          <li>רק אם מריץ סקריפט: <code>Bash</code></li>
+        </ul></div>
+    </div>
+    <div class="example mt"><div class="who">נועה</div><p>החוקר קורא את סיכומי ההרצאות של קורס עיבוד אותות ומחזיר רשימה של עשרת הנושאים החשובים. הבונה מקבל את הרשימה ויוצר דף סיכום למבחן.</p></div>
+  </div>
+  </section>
+
+<!-- 17 -->
+<section class="slide" data-mod="7">
+  <div class="kicker"><span class="mod">מודול 7</span> · איך זה נראה</div>
+  <h2>שני קבצים, שני תפקידים</h2>
+  <div class="body">
+    <div class="grid g2">
+      <div class="code sm"><span class="stg">.claude/agents/researcher.md</span>---
+name: researcher
+description: Reads my course notes or papers
+  and returns the key points. Use first,
+  before any writing.
+tools: Read, Glob, Grep
+---
+Read only. Return a short list of
+key topics, each with the source file.
+Never invent. Never edit.</div>
+      <div class="code sm"><span class="stg">.claude/agents/builder.md</span>---
+name: builder
+description: Builds summary.html from the
+  researcher's key points. Use after the
+  researcher is done.
+tools: Read, Write
+---
+Create one self-contained summary.html
+from the points you are given.
+Answer in Hebrew.</div>
+    </div>
+    <p class="mt hint">⚡ שימו לב: לחוקר אין <span class="en">Write</span>. זה מה שהופך אותו לבטוח.</p>
+  </div>
+  </section>
+
+<!-- 18 -->
+<section class="slide" data-mod="7">
+  <div class="kicker"><span class="mod">מודול 7</span> · בקשה אחת</div>
+  <h2>מפעילים את שניהם</h2>
+  <div class="body">
+    <div class="code he"><button class="copy">העתק</button>הפעל שני סוכני-משנה לפי הסדר:
+1. השתמש בסוכן researcher כדי לקרוא את כל הקבצים בתיקייה notes/ ולמצוא את הנושאים החשובים לקראת המבחן.
+2. אחר כך השתמש בסוכן builder כדי להפוך את הרשימה לדף summary.html אחד.
+בין השניים, הראה לי את הרשימה של ה-researcher.</div>
+    <div class="grid g3 mt">
+      <div class="callout"><strong>שלב 1</strong><span>החוקר קורא ומסכם</span></div>
+      <div class="callout"><strong>עצירה</strong><span>אתם רואים את הרשימה</span></div>
+      <div class="callout"><strong>שלב 2</strong><span>הבונה יוצר את הדף</span></div>
+    </div>
+  </div>
+  </section>
+
+<!-- 19 -->
+<section class="slide workshop" data-mod="7">
+  <div class="kicker"><span class="badge work">Workshop 7</span> <span class="timer">35:00</span></div>
+  <h2>בונים צוות של שני סוכנים</h2>
+  <div class="body">
+    <div class="machine">
+      <span class="part on">📁 חומר משלכם</span><span class="part">🔎 חוקר (קורא בלבד)</span><span class="part">🛠 בונה</span>
+      <span class="part">🎼 בקשה אחת</span><span class="part">📄 קובץ פלט</span>
+    </div>
+    <p class="lead mt">המטרה: שני סוכנים שרצים בזה אחר זה על משימה אחת, על חומר אמיתי שלכם.</p>
+    <p class="mt muted">בחרו חומר: סיכומי הרצאות לדף למבחן, מאמרים לסקירה קצרה, או טיוטה לביקורת. הקלט כבר בתיקייה <code>agents-lab/</code>.</p>
+  </div>
+  </section>
+
+<!-- 20 -->
+<section class="slide workshop" data-mod="7">
+  <div class="kicker"><span class="badge work">Workshop 7</span> · שלבים</div>
+  <h2>חמישה צעדים</h2>
+  <div class="body">
+    <ol class="steps">
+      <li>פותחים את <code>agents-lab/</code>. החומר ב-<code>notes/</code>, או שמחליפים בחומר משלכם</li>
+      <li>בונים את <strong>החוקר</strong>: כלים <code>Read, Glob, Grep</code> בלבד. בדיוק כמו ה-<span class="en">reviewer</span> מקודם</li>
+      <li>בונים את <strong>הבונה</strong>: כלים <code>Read, Write</code>. הוא יוצר את <code>summary.html</code></li>
+      <li>קוראים את שני הקבצים, ומחדדים לכל אחד תיאור: מתי להשתמש בו</li>
+      <li>מריצים בבקשה אחת (השקף ״מפעילים את שניהם״), ובודקים פריט אחד מהפלט מול המקור</li>
+    </ol>
+  </div>
+  </section>
+
+<!-- 21 -->
+<section class="slide workshop" data-mod="7">
+  <div class="kicker"><span class="badge work">Workshop 7</span> · בקשה</div>
+  <h2>לבנות את שני הסוכנים במכה אחת</h2>
+  <div class="body">
+    <div class="code he sm"><button class="copy">העתק</button>צור שני סוכני-משנה בתיקייה .claude/agents/:
+1. researcher: קורא את הקבצים בתיקייה notes/ ומחזיר רשימה קצרה של הנושאים החשובים, ליד כל אחד שם הקובץ. כלים: Read, Glob, Grep בלבד. לא ממציא ולא עורך.
+2. builder: מקבל את הרשימה ויוצר קובץ summary.html אחד, עצמאי. כלים: Read, Write. עונה בעברית.
+כתוב לכל אחד תיאור חד שמסביר מתי להשתמש בו, ועצור כדי שאראה את שני הקבצים.</div>
+    <p class="mt muted">חומר אחר? מחליפים את <code>notes/</code> ואת שמות הסוכנים (למשל <code>papers/</code>, ו-<code>paper-scout</code> ו-<code>slide-writer</code>).</p>
+  </div>
+  </section>
+
+<!-- 22 -->
+<section class="slide workshop" data-mod="7">
+  <div class="kicker"><span class="badge work">Workshop 7</span> · בדיקות</div>
+  <h2>איך יודעים שזה עובד</h2>
+  <div class="body">
+    <div class="callouts">
+      <div class="callout"><strong>החוקר לא כותב</strong><span>בקובץ שלו אין <span class="en">Write</span>, והוא רק מחזיר רשימה</span></div>
+      <div class="callout"><strong>הסוכן הראשי מאציל</strong><span>רואים בהרצה ששני הסוכנים נקראו</span></div>
+      <div class="callout"><strong>אין המצאות</strong><span>בוחרים פריט אחד בפלט ובודקים מול הקובץ המקורי</span></div>
+    </div>
+    <div class="done-when">✅ <strong>סיימתם כש:</strong> יש שני קבצים ב-<code>.claude/agents/</code>, בקשה אחת הריצה את החוקר ואחריו את הבונה, ופתחתם את <code>summary.html</code> בדפדפן.</div>
+    <p class="hint">⚡ נתקעתם? שאלו את Claude: ״למה הסוכן הראשי לא שלח את העבודה לסוכן-המשנה, ומה לשנות בתיאור?״</p>
+  </div>
+  </section>
+
+<!-- 23 -->
+<section class="slide" data-mod="7">
+  <div class="kicker"><span class="mod">מודול 7</span> · סיכום קצר</div>
+  <h2>טעויות נפוצות</h2>
+  <div class="body">
+    <div class="grid g2">
+      <ul class="clean">
+        <li><strong>תיאור עמום.</strong> כותבים כמו מודעת דרושים</li>
+        <li><strong>חוקר עם כלי כתיבה.</strong> מומחים לקריאה נשארים לקריאה</li>
+        <li><strong>תיקייה חדשה.</strong> בפעם הראשונה פותחים את Claude מחדש</li>
+      </ul>
+      <ul class="clean">
+        <li><strong>סוכן-משנה במקום Skill.</strong> Skill נשאר בחלון שלכם</li>
+        <li><strong>החזרות ארוכות.</strong> הן ממלאות שוב את השולחן</li>
+        <li><strong>משימה קטנה מדי.</strong> לפעמים בקשה אחת פשוטה מספיקה</li>
+      </ul>
+    </div>
+  </div>
+  </section>
+
+<!-- 24 -->
+<section class="slide" data-mod="7">
+  <div class="kicker"><span class="badge flash">Flashcards</span> · לחצו על כרטיס כדי להפוך</div>
+  <h2>בודקים שזה נקלט</h2>
+  <div class="flash-grid">
+    <div class="fc"><div class="in"><div class="f">סוכן-משנה</div><div class="b">עוזר שעובד בחלון שיחה משלו ומחזיר תשובה קצרה.</div></div></div>
+    <div class="fc"><div class="in"><div class="f">איפה הוא גר</div><div class="b">קובץ markdown ב-<span class="en">.claude/agents/</span>.</div></div></div>
+    <div class="fc"><div class="in"><div class="f">Skill או סוכן-משנה</div><div class="b">Skill רץ בחלון שלכם. סוכן-משנה בחלון נפרד.</div></div></div>
+    <div class="fc"><div class="in"><div class="f">למה להגביל כלים</div><div class="b">חוקר שרק קורא לא יכול לשנות או למחוק קבצים.</div></div></div>
+    <div class="fc"><div class="in"><div class="f">איך Claude מחליט להאציל</div><div class="b">לפי התיאור. כתבו אותו כמו מודעת דרושים.</div></div></div>
+    <div class="fc"><div class="in"><div class="f">מה עובר בין חוקר לבונה</div><div class="b">סיכום קצר בלבד. הקריאה הרועשת נשארת אצל החוקר.</div></div></div>
+  </div>
+  </section>
+
+<!-- 25 -->
+<section class="slide" data-mod="7">
+  <div class="kicker"><span class="badge quiz">Quiz 1/2</span></div>
+  <div class="body">
+    <div class="q">נועה רוצה סוכן-משנה שקורא את כל סיכומי ההרצאות שלה ולא נוגע בהם. מה הכי נכון להגדיר?</div>
+    <div class="opts" data-quiz>
+      <button class="opt" data-correct><span class="l">א</span>כלים: Read, Glob, Grep בלבד</button>
+      <button class="opt"><span class="l">ב</span>כלים: Read ו-Write</button>
+      <button class="opt"><span class="l">ג</span>כל הכלים, ושיהיה זהיר</button>
+      <button class="opt"><span class="l">ד</span>בלי תיאור, Claude כבר יבין</button>
+    </div>
+    <div class="explain">חוקר שרק קורא מקבל רק כלי קריאה. כך אין סיכוי שישנה קובץ, וגם ברור לסוכן הראשי למה לשלוח אליו.</div>
+  </div>
+  </section>
+
+<!-- 26 -->
+<section class="slide" data-mod="7">
+  <div class="kicker"><span class="badge quiz">Quiz 2/2</span></div>
+  <div class="body">
+    <div class="q">Claude לא שולח משימה לסוכן-המשנה ועושה אותה בעצמו. מה הכי כדאי לבדוק קודם?</div>
+    <div class="opts" data-quiz>
+      <button class="opt"><span class="l">א</span>אם המחשב איטי</button>
+      <button class="opt" data-correct><span class="l">ב</span>התיאור של הסוכן: האם הוא ברור ומסביר מתי להשתמש בו</button>
+      <button class="opt"><span class="l">ג</span>שם הקובץ, צריך להיות באנגלית</button>
+      <button class="opt"><span class="l">ד</span>כמה כלים יש לסוכן</button>
+    </div>
+    <div class="explain">הסוכן הראשי מחליט לפי התיאור. תיאור חד עם ״מתי להשתמש״ גורם לו לנתב נכון. אפשר גם להזכיר את שם הסוכן או לבחור אותו עם @.</div>
+  </div>
+  </section>
+
+<!-- 27 -->
+<section class="slide" data-mod="7">
+  <div class="kicker"><span class="mod">מודול 7</span> · סיכום</div>
+  <h2>מה עכשיו יש לכם</h2>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card acc"><h3>✔ למדנו</h3><p>סוכן-משנה הוא עוזר בחלון משלו. חלון נקי, כלים מוגבלים, ותיאור חד שגורם לסוכן הראשי להאציל.</p></div>
+      <div class="card"><h3>✔ בנינו</h3><p>שני סוכנים: <strong>חוקר</strong> שרק קורא, ו<strong>בונה</strong> שיוצר את הפלט. בקשה אחת הריצה את שניהם.</p></div>
+    </div>
+    <div class="example mt">
+      <div class="who">אבל…</div>
+      <p>הצוות רץ רק כשאתם מבקשים. איך גורמים לו להתחיל לבד, ואיך שומרים עליו שלא ישנה קבצים בטעות? <strong>זה מודול 8: אוטומציות והוקים.</strong></p>
+    </div>
+  </div>
+  </section>
+
+<div id="progress"></div>
+</div><!-- /stage -->
+
+<div id="nav"><button id="prev">→ הקודם</button><button id="fs">⛶</button><button id="next">הבא ←</button></div>
+<script src="day1.js"></script>
+</body>
+</html>

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>יום ב׳ · מודול 8 — אוטומציות והוקים</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="day1.css">
+<style>
+.code.sm{font-size:23px;padding:20px 26px}
+.code .stg{display:block;font-family:var(--mono);direction:ltr;text-align:left;color:#8C97B8;font-size:22px;margin-bottom:4px}
+.code.he.sm{font-size:25px;padding:22px 30px}
+.flow.g .step{padding:22px 14px}.flow.g .step b{font-size:26px}.flow.g .step span{font-size:23px}
+.flow .step.ro{background:#EAF4FF;border-color:#5B8DEF}.flow .step.ro b{color:#2F5FBF}
+.stop{background:#FFF6DC;border:2px solid var(--gold);border-radius:16px;padding:14px 24px;font-size:26px;margin-top:16px}
+.code.he,.code.he.sm{padding-left:132px}.code .copy{top:10px;left:10px;font-size:17px;padding:5px 12px}.code:has(>.copy):not(.he){padding-top:58px}
+</style>
+</head>
+<body data-start="92" data-total="147" data-day="ב׳" data-prev="module7.html" data-next="module9.html">
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="spark" viewBox="0 0 100 100"><g fill="currentColor">
+    <rect x="46" y="4" width="8" height="40" rx="4"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(30 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(60 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(90 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(120 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(150 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(180 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(210 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(240 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(270 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(300 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(330 50 50)"/>
+  </g></symbol>
+</svg>
+
+<div id="stage">
+
+<!-- 1 -->
+<section class="slide divider" data-mod="8">
+  <div class="num">8</div>
+  <h1>אוטומציות והוקים: Claude עובד גם כשלא מבקשים</h1>
+  <p class="lead">עד עכשיו כל עבודה התחילה בבקשה שלכם. עכשיו מלמדים את Claude להתחיל לבד: לפי אירוע, לפי שעון, לפי מטרה, או בלחיצה על קישור.</p>
+  </section>
+
+<section class="slide" data-mod="8">
+  <div class="kicker"><span class="mod">מודול 8</span> · חוזרים רגע</div>
+  <h2>מה חסר עדיין</h2>
+  <div class="body">
+    <div class="grid g2"><div class="card"><div class="icon">🙋</div><h3>עד עכשיו</h3><p>אתם מבקשים, Claude עושה. כל עבודה מתחילה ממכם: מקלידים, מחכים, בודקים.</p></div><div class="card acc"><div class="icon">⚡</div><h3>מה שחסר</h3><p>עבודה שמתחילה לבד. שומר שמונע טעויות בלי שתזכרו. בדיקה כל חצי שעה. סוכן שממשיך עד שהמשימה באמת גמורה.</p></div></div>
+    <div class="example mt"><div class="who">נועה</div><p>היא לא רוצה לזכור לבדוק שהסוכן לא שינה את סיכומי ההרצאות המקוריים. והיא לא רוצה לשבת מול המסך כל זמן שהוא עובד. אוטומציה פותרת את שני הדברים.</p></div>
+  </div>
+  </section>
+
+<section class="slide" data-mod="8">
+  <div class="kicker"><span class="mod">מודול 8</span> · המפה</div>
+  <h2>מי מתחיל את העבודה?</h2>
+  <div class="body">
+<div class="grid g3"><div class="card"><div class="icon">🪝</div><h3>הוק</h3><p>קורה אירוע (Claude עומד לערוך קובץ), ופקודה רצה אוטומטית.</p></div><div class="card"><div class="icon">⏰</div><h3>לולאה</h3><p>עובר זמן (כל 10 דקות), ובקשה רצה שוב.</p></div><div class="card acc"><div class="icon">🎯</div><h3>מטרה</h3><p>התנאי עוד לא מתקיים, אז Claude ממשיך לעבוד.</p></div><div class="card"><div class="icon">🧾</div><h3>ללא ממשק</h3><p>סקריפט שלכם מריץ Claude בשורת פקודה, בלי שיחה.</p></div><div class="card"><div class="icon">📨</div><h3>ערוץ</h3><p>הודעה מבחוץ (טלגרם, CI) נכנסת לשיחה שפתוחה.</p></div><div class="card"><div class="icon">🔗</div><h3>קישור</h3><p>לחיצה על כתובת פותחת Claude עם בקשה מוכנה.</p></div></div>
+  </div>
+  </section>
+
+<section class="slide" data-mod="8">
+  <div class="kicker"><span class="mod">מודול 8</span> · הוקים · מה זה</div>
+  <h2>הוק: פעולה אוטומטית ברגע מסוים</h2>
+  <div class="body">
+<div class="grid g2"><div class="card"><div class="icon">🚪</div><h3>דימוי</h3><p>דלת אוטומטית בכניסה לחנות. אף אחד לא מחליט לפתוח אותה בכל פעם: יש חיישן, ויש כלל. הוק הוא החיישן והכלל של Claude.</p></div><div class="card acc"><div class="icon">🪝</div><h3>הגדרה</h3><p>פקודה שאתם כותבים פעם אחת, ו-Claude מריץ אותה בכל פעם שמתרחש האירוע. בלי להסתמך על כך שהמודל &quot;יזכור&quot;.</p></div></div>
+    <div class="example mt"><div class="who">למה זה חשוב לכם</div><p>הוראה ב-<span class="en">CLAUDE.md</span> היא בקשה יפה. הוק הוא כלל שנאכף. אם חשוב שקובץ לעולם לא ישתנה, לא מבקשים: חוסמים.</p></div>
+  </div>
+  </section>
+
+<section class="slide" data-mod="8">
+  <div class="kicker"><span class="mod">מודול 8</span> · הוקים · מבנה</div>
+  <h2>שלושה חלקים: מתי, על מה, מה לעשות</h2>
+  <div class="body">
+    <div class="grid g2" style="align-items:center">
+      <div class="code sm"><span class="stg">settings.json</span>{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          { "type": "command",
+            "command": "..." }
+        ]
+      }
+    ]
+  }
+}</div>
+      <div class="callouts">
+        <div class="callout"><strong><span class="en">PreToolUse</span></strong><span>מתי: האירוע. כאן, רגע לפני שימוש בכלי</span></div><div class="callout"><strong><span class="en">matcher</span></strong><span>על מה: על אילו כלים זה חל. כאן עריכה או כתיבת קובץ</span></div><div class="callout"><strong><span class="en">command</span></strong><span>מה: הפקודה שרצה</span></div>
+      </div>
+    </div>
+    <p class="mt hint">⚡ ההגדרה נשמרת בקובץ ההגדרות: <code>.claude/settings.json</code> לפרויקט הזה, או <code>~/.claude/settings.json</code> לכל הפרויקטים.</p>
+  </div>
+  </section>
+
+<section class="slide" data-mod="8">
+  <div class="kicker"><span class="mod">מודול 8</span> · הוקים · אירועים</div>
+  <h2>האירועים שכדאי להכיר</h2>
+  <div class="body">
+    <table class="cmp">
+      <tr><th>אירוע</th><th>מתי הוא קורה</th><th>לדוגמה</th></tr>
+      <tr><td><span class="en">PreToolUse</span></td><td>לפני שימוש בכלי. אפשר לחסום</td><td>לא לערוך קבצי מקור</td></tr>
+      <tr><td><span class="en">PostToolUse</span></td><td>אחרי שכלי הצליח</td><td>לעצב קובץ שנערך</td></tr>
+      <tr><td><span class="en">Notification</span></td><td>Claude מחכה לכם</td><td>התראה על המסך</td></tr>
+      <tr><td><span class="en">Stop</span></td><td>Claude סיים לענות</td><td>בדיקה לפני עצירה</td></tr>
+      <tr><td><span class="en">SessionStart</span></td><td>תחילת שיחה</td><td>להזכיר כללים</td></tr>
+    </table>
+    <p class="mt hint">⚡ יש עוד אירועים רבים (בתיעוד של <span class="en">hooks</span>). אלה חמשת הראשונים לתחילת הדרך.</p>
+  </div>
+  </section>
+
+<section class="slide" data-mod="8">
+  <div class="kicker"><span class="mod">מודול 8</span> · בונים הוק 1 · שלב 1</div>
+  <h2>התראה כש-Claude מחכה לכם</h2>
+  <div class="body">
+    <ol class="steps">
+      <li>מדביקים בחלונית של <span class="en">Claude Code</span> את הבקשה למטה</li>
+      <li><span class="en">Claude</span> כותב את ההוק לקובץ ההגדרות, ועוצר. <strong>קוראים</strong> מה נכתב</li>
+      <li>מקלידים <code>/hooks</code>. ההוק מופיע ברשימה תחת <span class="en">Notification</span></li>
+    </ol>
+    <div class="code he sm mt"><button class="copy">העתק</button>הוסף לקובץ ההגדרות האישי שלי (~/.claude/settings.json) הוק על האירוע Notification, שמציג התראה על המסך בנוסח &quot;Claude Code needs your attention&quot;. המחשב שלי: Mac. אל תמחק הגדרות קיימות, ועצור כדי שאראה מה כתבת.</div>
+    <p class="hint">⚡ ב-Windows או ב-Linux? פשוט כתבו בבקשה את מערכת ההפעלה שלכם, ו-<span class="en">Claude</span> יתאים את הפקודה.</p>
+  </div>
+  </section>
+
+<section class="slide" data-mod="8">
+  <div class="kicker"><span class="mod">מודול 8</span> · בונים הוק 1 · שלב 2</div>
+  <h2>מה נכתב, ואיך בודקים</h2>
+  <div class="body">
+    <div class="grid g2" style="align-items:center">
+      <div class="code sm"><span class="stg">~/.claude/settings.json</span>{ "hooks": { "Notification": [ {
+    "matcher": "",
+    "hooks": [ {
+      "type": "command",
+      "command": "osascript -e '...'"
+    } ]
+} ] } }</div>
+      <ol class="steps" style="font-size:25px">
+        <li>מבקשים מ-<span class="en">Claude</span> משהו שדורש אישור (למשל ליצור קובץ)</li>
+        <li>עוברים לחלון אחר ומחכים כמה שניות</li>
+        <li>מופיעה התראה על המסך</li>
+      </ol>
+    </div>
+    <div class="done-when">✅ <strong>סיימתם כש:</strong> קיבלתם התראה כש-<span class="en">Claude</span> חיכה לכם.</div>
+  </div>
+  </section>
+
+<section class="slide" data-mod="8">
+  <div class="kicker"><span class="mod">מודול 8</span> · הוקים · חסימה</div>
+  <h2>איך הוק עוצר את Claude: שלושה קודי יציאה</h2>
+  <div class="body">
+<div class="grid g3"><div class="card"><div class="icon">✅</div><h3>0</h3><p>הכול בסדר, ממשיכים. אין התנגדות.</p></div><div class="card acc"><div class="icon">⛔</div><h3>2</h3><p>חוסמים. הטקסט שהוק כתב ל-stderr מגיע ל-Claude כהסבר, והוא מתאים את הדרך.</p></div><div class="card"><div class="icon">⚠️</div><h3>כל קוד אחר</h3><p>שגיאה לא חוסמת. הפעולה נמשכת, ומוצגת הודעת שגיאה.</p></div></div>
+    <div class="example mt"><div class="who">הדימוי</div><p>מאבטח בכניסה. מנהל אומר &quot;עבור&quot; (0) או &quot;עצור, ולא מכניסים בגלל...&quot; (2). Claude שומע את ההסבר ומחפש דרך אחרת.</p></div>
+  </div>
+  </section>
+
+<section class="slide" data-mod="8">
+  <div class="kicker"><span class="mod">מודול 8</span> · בונים הוק 2 · שלב 1</div>
+  <h2>שומר: אסור לגעת בקבצי המקור</h2>
+  <div class="body">
+    <div class="grid g2" style="align-items:center">
+      <div class="code sm"><span class="stg">.claude/hooks/protect-notes.sh</span>#!/bin/bash
+INPUT=$(cat)
+FILE=$(echo "$INPUT" | jq -r \
+  '.tool_input.file_path // empty')
+
+if [[ "$FILE" == *"/notes/"* ]]; then
+  echo "Blocked: notes/ is read-only" >&2
+  exit 2
+fi
+exit 0</div>
+      <div class="callouts">
+        <div class="callout"><strong>מה הוא עושה</strong><span>קורא את שם הקובץ ש-Claude עומד לערוך</span></div><div class="callout"><strong>אם הקובץ בתוך notes/</strong><span>כותב הסבר וחוזר עם קוד 2: חסימה</span></div><div class="callout"><strong>אחרת</strong><span>קוד 0: ממשיכים כרגיל</span></div>
+      </div>
+    </div>
+    <p class="mt hint">⚡ הסקריפט קורא את הקלט עם <span class="en">jq</span>. אם חסר לכם: <code>brew install jq</code>. אפשר לבקש מ-<span class="en">Claude</span> להתקין ולהסביר.</p>
+  </div>
+  </section>
+
+<section class="slide" data-mod="8">
+  <div class="kicker"><span class="mod">מודול 8</span> · בונים הוק 2 · שלב 2</div>
+  <h2>יוצרים ובודקים</h2>
+  <div class="body">
+    <ol class="steps">
+      <li>מדביקים את הבקשה למטה. <span class="en">Claude</span> כותב סקריפט והגדרה, ועוצר</li>
+      <li>קוראים את שניהם. מאשרים להפעיל את הסקריפט (<code>chmod +x</code>)</li>
+      <li>בודקים: &quot;הוסף שורה לקובץ notes/syllabus-dsp.md&quot;</li>
+    </ol>
+    <div class="code he sm mt"><button class="copy">העתק</button>צור הוק PreToolUse על Edit ו-Write בהגדרות הפרויקט (.claude/settings.json). הוא מריץ סקריפט .claude/hooks/protect-notes.sh שחוסם (קוד יציאה 2) כל עריכה של קובץ שנמצא בתיקייה notes/, עם הודעה &quot;Blocked: notes/ is read-only&quot;. הסקריפט קורא את הנתיב עם jq. הפוך אותו להרצה ועצור כדי שאראה.</div>
+    <div class="done-when">✅ <strong>סיימתם כש:</strong> הבקשה לערוך קובץ ב-<span class="en">notes/</span> נחסמה, ו-<span class="en">Claude</span> הסביר לכם למה.</div>
+  </div>
+  </section>
+
+<section class="slide" data-mod="8">
+  <div class="kicker"><span class="mod">מודול 8</span> · הוקים · עוד, ובטיחות</div>
+  <h2>מה עוד אפשר, ומה שחייבים לדעת</h2>
+  <div class="body">
+<div class="grid g2"><div class="card acc"><span class="badge">עוד סוגי הוקים</span><ul class="clean mt">
+        <li><strong>פקודה</strong>: סקריפט (מה שבנינו)</li>
+        <li><strong>פרומפט</strong>: מודל קטן שופט בשאלה, למשל ״האם המשימה גמורה?״</li>
+        <li><strong>כתובת</strong>: שולח את האירוע לשירות באינטרנט</li></ul></div>
+      <div class="card"><span class="badge demo">בטיחות</span><ul class="clean mt">
+        <li>הוק רץ <strong>עם ההרשאות שלכם</strong>. קוראים לפני שמוסיפים</li>
+        <li>לא מדביקים הוק מאתר לא מוכר</li>
+        <li>הוק בהגדרות הפרויקט רץ גם אצל מי שפותח אותו, בדקו מה בתיקיות שמורידים</li></ul></div>
+    </div>
+    <p class="mt hint">⚡ הוק שמבוסס על פרומפט הוא הבסיס של <code>/goal</code>, שנראה בהמשך.</p>
+  </div>
+  </section>
+
+<section class="slide" data-mod="8">
+  <div class="kicker"><span class="mod">מודול 8</span> · תזמון · /loop</div>
+  <h2>לחזור על בקשה לפי שעון</h2>
+  <div class="body">
+    <div class="grid g3"><div class="card"><div class="icon">⏱</div><h3>עם מרווח</h3><p><code>/loop 5m</code> ובקשה. רצה כל 5 דקות.</p></div><div class="card"><div class="icon">🧠</div><h3>בלי מרווח</h3><p>Claude בוחר לבד כמה לחכות: קצר כשיש פעילות, ארוך כשהכול שקט.</p></div><div class="card"><div class="icon">🧹</div><h3>בלי כלום</h3><p><code>/loop</code> לבד מריץ בדיקת תחזוקה מובנית.</p></div></div>
+    <div class="code mt"><button class="copy">העתק</button>/loop 10m check if new files appeared in notes/ and tell me what they are</div>
+    <p class="hint">⚡ נסו: הריצו, ואז גררו קובץ חדש ל-<span class="en">notes/</span>. בפעם הבאה ש-<span class="en">Claude</span> יבדוק, הוא ידווח.</p>
+  </div>
+  </section>
+
+<section class="slide" data-mod="8">
+  <div class="kicker"><span class="mod">מודול 8</span> · תזמון · תזכורות וניהול</div>
+  <h2>תזכורת חד-פעמית, ואיך מנהלים</h2>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card"><span class="badge">תזכורת חד-פעמית</span>
+        <div class="code he sm mt" style="font-size:22px"><button class="copy">העתק</button>תזכיר לי ב-15:00 לשלוח את הדוח למנחה</div>
+        <p class="muted mt">רצה פעם אחת ונמחקת.</p></div>
+      <div class="card acc"><span class="badge">ניהול</span>
+        <ul class="clean mt">
+          <li><strong>רשימה</strong>: &quot;אילו משימות מתוזמנות יש לי?&quot;</li>
+          <li><strong>ביטול</strong>: &quot;בטל את בדיקת הקבצים&quot;</li>
+          <li><strong>תפוגה</strong>: לולאה חוזרת נעצרת אחרי 7 ימים</li></ul></div>
+    </div>
+    <p class="mt hint">⚡ מעדיפים לא להסתמך על חלון פתוח? בהמשך: משימות בענן ובאפליקציית שולחן העבודה.</p>
+  </div>
+  </section>
+
+<section class="slide" data-mod="8">
+  <div class="kicker"><span class="mod">מודול 8</span> · תזמון · איפה זה רץ</div>
+  <h2>שלוש דרכים לתזמן, ואיפה כל אחת רצה</h2>
+  <div class="body">
+    <table class="cmp">
+      <tr><th></th><th><span class="en">/loop</span></th><th>שולחן עבודה</th><th>ענן</th></tr>
+      <tr><td>רץ על</td><td>המחשב שלכם</td><td>המחשב שלכם</td><td>הענן</td></tr>
+      <tr><td>דורש חלון פתוח</td><td>כן</td><td>לא</td><td>לא</td></tr>
+      <tr><td>דורש מחשב דלוק</td><td>כן</td><td>כן</td><td>לא</td></tr>
+      <tr><td>גישה לקבצים שלכם</td><td>כן</td><td>כן</td><td>לא</td></tr>
+      <tr><td>מרווח מינימלי</td><td>דקה</td><td>דקה</td><td>שעה</td></tr>
+    </table>
+    <p class="mt hint">⚡ בדיקה מהירה בזמן עבודה: <span class="en">/loop</span>. משהו קבוע שצריך קבצים מקומיים: שולחן עבודה. משהו שחייב לרוץ גם כשהמחשב כבוי: ענן.</p>
+  </div>
+  </section>
+
+<section class="slide" data-mod="8">
+  <div class="kicker"><span class="mod">מודול 8</span> · מטרה · /goal</div>
+  <h2>להמשיך עד שהמשימה באמת גמורה</h2>
+  <div class="body">
+    <div>
+      <ol class="steps" style="font-size:25px">
+        <li>כותבים <code>/goal</code> ותנאי שאפשר לבדוק</li>
+        <li><span class="en">Claude</span> מתחיל לעבוד מיד</li>
+        <li>אחרי כל תור, מודל קטן שופט: התנאי התקיים?</li>
+        <li>לא התקיים? <span class="en">Claude</span> ממשיך. כן? המטרה נסגרת</li>
+      </ol>
+    </div>
+    <div class="code mt"><button class="copy">העתק</button>/goal summary.html exists and has a section for every topic in notes/syllabus-dsp.md, or stop after 8 turns</div>
+  </div>
+  </section>
+
+<section class="slide" data-mod="8">
+  <div class="kicker"><span class="mod">מודול 8</span> · מטרה · ניסוח</div>
+  <h2>תנאי טוב: אפשר להוכיח אותו</h2>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card"><span class="badge demo">תנאי עמום</span><p class="mt">״הסיכום טוב״</p><p class="muted">איך השופט יודע? אין מה לבדוק.</p></div>
+      <div class="card acc"><span class="badge">תנאי חד</span><p class="mt">״summary.html קיים, יש בו סעיף לכל אחד מעשרת הנושאים, ושום קובץ ב-notes/ לא השתנה. או עצור אחרי 8 תורות״</p><p class="muted">אפשר לראות ולבדוק.</p></div>
+    </div>
+    <p class="mt hint">⚡ תנאי טוב כולל: <strong>מצב סופי אחד</strong> (קובץ שקיים, בדיקה שעוברת) · <strong>איך מוכיחים</strong> (&quot;git status נקי&quot;) · <strong>מה אסור לשנות</strong> (&quot;בלי לערוך קבצי מקור&quot;)</p>
+  </div>
+  </section>
+
+<section class="slide" data-mod="8">
+  <div class="kicker"><span class="mod">מודול 8</span> · מטרה · ניהול והשוואה</div>
+  <h2>לבדוק, לבטל, ולבחור בין הכלים</h2>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card"><span class="badge">פקודות</span>
+        <ul class="clean mt"><li><code>/goal</code> לבד: מצב נוכחי וסיבת השופט</li><li><code>/goal clear</code>: מבטל</li><li>סיום השיחה (<code>/clear</code>) מנקה גם אותו</li></ul></div>
+      <div class="card acc"><span class="badge">מתי מה</span>
+        <ul class="clean mt"><li><strong>/goal</strong>: ממשיך עד שתנאי מתקיים</li><li><strong>/loop</strong>: חוזר לפי שעון</li><li><strong>Stop hook</strong>: הכלל שלכם, בכל שיחה</li></ul></div>
+    </div>
+    <p class="mt hint">⚡ <span class="en">/goal</span> הוא קיצור: הוק פרומפט שחי רק בשיחה הנוכחית. הוק <span class="en">Stop</span> בקובץ ההגדרות חי בכל שיחה.</p>
+  </div>
+  </section>
+
+<section class="slide" data-mod="8">
+  <div class="kicker"><span class="mod">מודול 8</span> · הדגמה · ללא ממשק</div>
+  <h2>Claude משורת פקודה: claude -p</h2>
+  <div class="body">
+    <div class="code mt"><button class="copy">העתק</button>claude -p &quot;What does the syllabus say about the final exam?&quot;</div>
+    <div class="grid g3 mt">
+      <div class="card"><div class="icon">💬</div><h3>בלי שיחה</h3><p>שואלים, מקבלים תשובה, ושום דבר לא נשאר פתוח.</p></div><div class="card"><div class="icon">📜</div><h3>בתוך סקריפט</h3><p>אפשר לשים אותה בקובץ, ולהריץ מתי שרוצים.</p></div><div class="card"><div class="icon">🚦</div><h3>קוד יציאה</h3><p>0 כשהצליח, אחרת שגיאה. סקריפטים יכולים להגיב.</p></div>
+    </div>
+    <p class="mt hint">⚡ הדגמה בלבד. פותחים טרמינל בתוך <span class="en">VS Code</span> (<span class="en">Terminal → New Terminal</span>) ומריצים בתיקייה <span class="en">agents-lab/</span>.</p>
+  </div>
+  </section>
+
+<section class="slide" data-mod="8">
+  <div class="kicker"><span class="mod">מודול 8</span> · הדגמה · ללא ממשק</div>
+  <h2>לשלב קבצים, כלים ופלט מסודר</h2>
+  <div class="body">
+    <div class="code sm"><span class="stg">terminal</span>cat notes/syllabus-dsp.md | claude -p "list every exam as a table"
+claude -p "Summarize notes/project-eeg.md" --allowedTools "Read"
+claude -p "List the topics" --output-format json</div>
+    <div class="grid g3 mt">
+      <div class="callout"><strong>צינור (pipe)</strong><span>מעבירים תוכן של קובץ לתוך Claude</span></div><div class="callout"><strong><span class="en">--allowedTools</span></strong><span>אילו כלים מותרים בלי לשאול. כאן רק קריאה</span></div><div class="callout"><strong><span class="en">--output-format json</span></strong><span>פלט מובנה לתוכנית אחרת</span></div>
+    </div>
+  </div>
+  </section>
+
+<section class="slide" data-mod="8">
+  <div class="kicker"><span class="mod">מודול 8</span> · הדגמה · ערוצים</div>
+  <h2>הודעות מבחוץ שנכנסות לשיחה פתוחה</h2>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card"><div class="icon">📨</div><h3>מה זה</h3><p>ערוץ מכניס אירועים לשיחה שכבר פתוחה אצלכם: הודעה בטלגרם, כשל בבדיקות, התראה. Claude מגיב, ויכול לענות באותו ערוץ.</p></div><div class="card acc"><div class="icon">📠</div><h3>דימוי</h3><p>פקס של פעם, שמגיע ישר לשולחן העבודה שלכם, ליד הקבצים שכבר פתוחים.</p></div>
+    </div>
+    <div class="callouts mt">
+      <div class="callout"><strong>לאן</strong><span>טלגרם, דיסקורד ו-iMessage (בגרסת ניסוי)</span></div><div class="callout"><strong>דרישות</strong><span>כניסה עם חשבון claude.ai, והשיחה חייבת להיות פתוחה</span></div><div class="callout"><strong>ארגונים</strong><span>בחשבונות צוות וארגון המנהל צריך להפעיל את זה</span></div>
+    </div>
+  </div>
+  </section>
+
+<section class="slide" data-mod="8">
+  <div class="kicker"><span class="mod">מודול 8</span> · הדגמה · ערוצים</div>
+  <h2>הדגמה בטוחה: fakechat, ואיך נעולים</h2>
+  <div class="body">
+    <div class="code sm"><span class="stg">terminal</span>/plugin install fakechat@claude-plugins-official
+
+claude --channels plugin:fakechat@claude-plugins-official
+
+# then open http://localhost:8787 in your browser</div>
+    <div class="grid g2 mt">
+      <div class="card"><div class="icon">🧪</div><h3>הדגמה</h3><p>חלון צ׳אט מקומי: מקלידים בדפדפן, ההודעה מגיעה ל-Claude והתשובה חוזרת. אין חשבון חיצוני.</p></div><div class="card acc"><div class="icon">🔒</div><h3>אבטחה</h3><p>רק מי שברשימת ההיתרים (allowlist) יכול לשלוח הודעות. אחרים מסוננים בשקט.</p></div>
+    </div>
+  </div>
+  </section>
+
+<section class="slide" data-mod="8">
+  <div class="kicker"><span class="mod">מודול 8</span> · הדגמה · קישורים</div>
+  <h2>קישור שפותח Claude עם בקשה מוכנה</h2>
+  <div class="body">
+    <div class="code sm"><span class="stg">claude-cli://</span>claude-cli://open
+  ?cwd=/Users/noa/agents-lab
+  &amp;q=Review%20notes%2Fsyllabus-dsp.md</div>
+    <div class="grid g3 mt">
+      <div class="card"><div class="icon">📁</div><h3><span class="en">cwd</span></h3><p>באיזו תיקייה לפתוח. נתיב מלא.</p></div><div class="card"><div class="icon">✍️</div><h3><span class="en">q</span></h3><p>הבקשה שתופיע בתיבה. מקודדת ככתובת.</p></div><div class="card acc"><div class="icon">🔒</div><h3>הכלל</h3><p>הבקשה <strong>לא נשלחת</strong> עד שאתם לוחצים <span class="en">Enter</span>.</p></div>
+    </div>
+  </div>
+  </section>
+
+<section class="slide" data-mod="8">
+  <div class="kicker"><span class="mod">מודול 8</span> · הדגמה · קישורים</div>
+  <h2>ניסוי של 30 שניות</h2>
+  <div class="body">
+    <ol class="steps">
+      <li>מחליפים את הנתיב בנתיב המלא של <code>agents-lab/</code> אצלכם</li>
+      <li>מריצים בטרמינל (<span class="en">Mac</span>) את הפקודה למטה</li>
+      <li>נפתח חלון חדש עם <span class="en">Claude Code</span> והבקשה מוכנה</li>
+    </ol>
+    <div class="code mt"><button class="copy">העתק</button>open &quot;claude-cli://open?cwd=/Users/YOURNAME/Desktop/agents-lab&amp;q=List%20the%20files%20in%20notes%2F&quot;</div>
+    <p class="hint">⚡ ב-<span class="en">Windows</span>: <code>Start-Process "claude-cli://open?..."</code>. ב-<span class="en">GitHub</span> קישור כזה לא נלחץ בתוך <span class="en">README</span>, לכן שמים אותו בבלוק קוד.</p>
+  </div>
+  </section>
+
+<section class="slide" data-mod="8">
+  <div class="kicker"><span class="mod">מודול 8</span> · מסכמים את המפה</div>
+  <h2>איזה כלי בוחרים</h2>
+  <div class="body">
+    <table class="cmp">
+      <tr><th>אני רוצה ש...</th><th>הכלי</th></tr>
+      <tr><td>Claude לא ייגע בקבצים מסוימים</td><td>הוק <span class="en">PreToolUse</span></td></tr>
+      <tr><td>אקבל התראה כשהוא מחכה לי</td><td>הוק <span class="en">Notification</span></td></tr>
+      <tr><td>הוא יבדוק משהו כל כמה דקות</td><td><span class="en">/loop</span></td></tr>
+      <tr><td>הוא ימשיך עד שהמשימה גמורה</td><td><span class="en">/goal</span></td></tr>
+      <tr><td>סקריפט שלי יריץ אותו</td><td><span class="en">claude -p</span></td></tr>
+      <tr><td>הודעה מבחוץ תיכנס לשיחה</td><td>ערוץ</td></tr>
+      <tr><td>לחיצה תפתח אותו עם בקשה</td><td>קישור עמוק</td></tr>
+    </table>
+  </div>
+  </section>
+
+<section class="slide workshop" data-mod="8">
+  
+  <div class="kicker"><span class="badge work">Workshop 8</span> <span class="timer">15:00</span></div>
+  <h2>בונים אוטומציה אחת משלכם</h2>
+  <div class="body">
+    <div class="machine">
+      <span class="part on">📁 agents-lab/</span><span class="part">🪝 הוק</span><span class="part">⏰ לולאה</span><span class="part">🎯 מטרה</span><span class="part">✅ בדיקה</span>
+    </div>
+    <p class="lead mt">בוחרים מסלול אחד ובונים אותו על הסוכנים מהמודול הקודם.</p>
+    <div class="grid g3 mt">
+      <div class="card"><div class="icon">🪝</div><h3>מסלול א׳: שומר</h3><p>הוק שחוסם עריכה ב-<span class="en">notes/</span>, והוק התראה.</p></div><div class="card"><div class="icon">⏰</div><h3>מסלול ב׳: שומר זמן</h3><p>לולאה שמדווחת על קבצים חדשים, ותזכורת.</p></div><div class="card acc"><div class="icon">🎯</div><h3>מסלול ג׳: עד הסוף</h3><p>מטרה שמריצה את החוקר והבונה עד ש-<span class="en">summary.html</span> שלם.</p></div>
+    </div>
+  </div>
+  </section>
+
+<section class="slide workshop" data-mod="8">
+  <div class="kicker"><span class="mod">מודול 8</span> · <span class="badge work">Workshop 8</span> · שלבים</div>
+  <h2>חמישה צעדים</h2>
+  <div class="body">
+    <ol class="steps">
+      <li>בוחרים מסלול אחד, ופותחים את <code>agents-lab/</code></li>
+      <li>מדביקים את הבקשה של המסלול (בשקף הבא) ומחכים ש-<span class="en">Claude</span> יעצור</li>
+      <li><strong>קוראים</strong> מה נכתב: איזה אירוע, איזו פקודה, מה היא עושה</li>
+      <li>בודקים עם בקשה שאמורה להפעיל אותה, ובקשה שלא</li>
+      <li>שואלים: ״מה יכול להשתבש?״, ומתקנים תנאי אחד</li>
+    </ol>
+  </div>
+  </section>
+
+<section class="slide workshop" data-mod="8">
+  <div class="kicker"><span class="mod">מודול 8</span> · <span class="badge work">Workshop 8</span> · בקשות</div>
+  <h2>הבקשות לשלושת המסלולים</h2>
+  <div class="body">
+    <div class="callouts">
+      <div class="code he sm" style="font-size:23px"><button class="copy">העתק</button><strong>מסלול א׳:</strong> צור הוק PreToolUse על Edit ו-Write שחוסם (קוד 2) עריכת קבצים בתיקייה notes/ עם הודעה ברורה. כתוב סקריפט ב-.claude/hooks/ ועצור כדי שאראה.</div>
+      <div class="code he sm" style="font-size:23px"><button class="copy">העתק</button><strong>מסלול ב׳:</strong> /loop 10m בדוק אם נוספו קבצים חדשים לתיקייה notes/. אם כן, ציין את שמם בשורה אחת. אם לא, כתוב ״אין חדש״.</div>
+      <div class="code he sm" style="font-size:23px"><button class="copy">העתק</button><strong>מסלול ג׳:</strong> /goal summary.html קיים וכולל סעיף לכל נושא שהחוקר מצא ב-notes/, בלי לערוך אף קובץ ב-notes/, או עצור אחרי 8 תורות.</div>
+    </div>
+    <p class="mt muted">חומר אחר? מחליפים את שם התיקייה והקובץ. הרעיון זהה.</p>
+  </div>
+  </section>
+
+<section class="slide workshop" data-mod="8">
+  <div class="kicker"><span class="mod">מודול 8</span> · <span class="badge work">Workshop 8</span> · בדיקות</div>
+  <h2>איך יודעים שזה עובד</h2>
+  <div class="body">
+    <div class="callouts">
+      <div class="callout"><strong>הוק</strong><span>הבקשה לערוך קובץ ב-notes/ נחסמה, וההסבר הגיע ל-Claude</span></div><div class="callout"><strong>לולאה</strong><span>קובץ חדש ב-notes/ הופיע בדיווח, גם בלי שביקשתם</span></div><div class="callout"><strong>מטרה</strong><span>בסוף יש תוצר שלם, ואפשר לראות את סיבת השופט עם /goal</span></div>
+    </div>
+    <div class="done-when">✅ <strong>סיימתם כש:</strong> אוטומציה אחת רצה אצלכם בפועל, ואתם יכולים להסביר בשלוש מילים איזה אירוע מפעיל אותה.</div>
+    <p class="hint">⚡ נתקעתם? שאלו את <span class="en">Claude</span>: ״למה האוטומציה לא קרתה, ומה לשנות?״</p>
+  </div>
+  </section>
+
+<section class="slide" data-mod="8">
+  <div class="kicker"><span class="mod">מודול 8</span> · סיכום קצר</div>
+  <h2>טעויות נפוצות</h2>
+  <div class="body">
+    <div class="grid g2">
+      <ul class="clean">
+        <li><strong>הוק בלי לקרוא.</strong> הוא רץ עם ההרשאות שלכם</li>
+        <li><strong>חסימה רחבה מדי.</strong> matcher ריק חוסם הכול</li>
+        <li><strong>תנאי עמום ב-<span class="en">/goal</span>.</strong> השופט לא יודע מתי לעצור</li>
+      </ul>
+      <ul class="clean">
+        <li><strong>בלי גבול.</strong> תמיד ״או עצור אחרי N תורות״</li>
+        <li><strong>לולאה בלי חלון.</strong> היא רצה רק כשהסשן פתוח</li>
+        <li><strong>קישור או ערוץ ללא בדיקה.</strong> קוראים לפני שמאשרים</li>
+      </ul>
+    </div>
+  </div>
+  </section>
+
+<section class="slide" data-mod="8">
+  <div class="kicker"><span class="badge flash">Flashcards</span> · לחצו על כרטיס כדי להפוך</div>
+  <h2>בודקים שזה נקלט</h2>
+  <div class="flash-grid">
+    <div class="fc"><div class="in"><div class="f">הוק</div><div class="b">פקודה שרצה אוטומטית באירוע קבוע. אכיפה, לא בקשה.</div></div></div><div class="fc"><div class="in"><div class="f">קוד יציאה 2</div><div class="b">חוסם את הפעולה, וההסבר מגיע ל-Claude.</div></div></div><div class="fc"><div class="in"><div class="f"><span class="en">/loop</span></div><div class="b">בקשה שחוזרת לפי שעון, כל עוד הסשן פתוח.</div></div></div><div class="fc"><div class="in"><div class="f"><span class="en">/goal</span></div><div class="b">Claude ממשיך עד שתנאי שאפשר לבדוק מתקיים.</div></div></div><div class="fc"><div class="in"><div class="f"><span class="en">claude -p</span></div><div class="b">להריץ Claude מסקריפט, בלי שיחה.</div></div></div><div class="fc"><div class="in"><div class="f">קישור עמוק</div><div class="b">כתובת שפותחת Claude עם בקשה מוכנה, שלא נשלחת בלי Enter.</div></div></div>
+  </div>
+  </section>
+
+<section class="slide" data-mod="8">
+  <div class="kicker"><span class="badge quiz">Quiz 1/2</span></div>
+  <div class="body">
+    <div class="q">נועה רוצה לוודא ש-Claude לעולם לא יערוך את סיכומי ההרצאות המקוריים. מה הכי נכון?</div>
+    <div class="opts" data-quiz><button class="opt"><span class="l">א</span>לכתוב ב-<span class="en">CLAUDE.md</span> ״בבקשה אל תערוך״</button><button class="opt" data-correct><span class="l">ב</span>הוק <span class="en">PreToolUse</span> שחוסם עריכה בתיקייה, עם קוד יציאה 2</button><button class="opt"><span class="l">ג</span>להריץ <span class="en">/loop</span> כל 5 דקות</button><button class="opt"><span class="l">ד</span>לכתוב בקשה אחרי כל תשובה</button></div>
+    <div class="explain">הוראה ב-CLAUDE.md היא בקשה, והמודל עלול לסטות ממנה. הוק הוא קוד שרץ לפני כל עריכה, וקוד יציאה 2 חוסם בפועל.</div>
+  </div>
+  </section>
+
+<section class="slide" data-mod="8">
+  <div class="kicker"><span class="badge quiz">Quiz 2/2</span></div>
+  <div class="body">
+    <div class="q">כתבתם: ״/goal הסיכום טוב״. מה הבעיה העיקרית?</div>
+    <div class="opts" data-quiz><button class="opt"><span class="l">א</span>המטרה ארוכה מדי</button><button class="opt" data-correct><span class="l">ב</span>התנאי לא מדיד, השופט לא יודע מתי הוא התקיים</button><button class="opt"><span class="l">ג</span>צריך להריץ אותה פעמיים</button><button class="opt"><span class="l">ד</span>אי אפשר להשתמש ב-/goal בעברית</button></div>
+    <div class="explain">השופט קורא רק מה ש-Claude הציג בשיחה. תנאי טוב הוא מצב סופי שאפשר להוכיח, למשל קובץ שקיים ויש בו סעיף לכל נושא, עם גבול של מספר תורות.</div>
+  </div>
+  </section>
+
+<section class="slide" data-mod="8">
+  <div class="kicker"><span class="mod">מודול 8</span> · סיכום</div>
+  <h2>מה עכשיו יש לכם</h2>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card acc"><h3>✔ למדנו</h3><p>שישה דרכים להתחיל עבודה בלי לבקש: הוק (אירוע), <span class="en">/loop</span> (זמן), <span class="en">/goal</span> (תנאי), <span class="en">claude -p</span> (סקריפט), ערוץ (הודעה), וקישור (לחיצה).</p></div>
+      <div class="card"><h3>✔ בנינו</h3><p>אוטומציה אחת שרצה אצלכם: שומר על הקבצים, בדיקה לפי שעון, או מטרה שנסגרת רק כשהמשימה באמת גמורה.</p></div>
+    </div>
+    <div class="example mt">
+      <div class="who">אבל…</div>
+      <p>עכשיו יש לכם הרבה חלקים: הוראות, סוכנים, הוקים, תזמון. איך מחברים אותם לתהליך אחד ומשתפים אותו עם אחרים? <strong>זה מודול 9: מחברים הכול ומשתפים ב-<span class="en">GitHub</span>.</strong></p>
+    </div>
+  </div>
+  </section>
+
+<div id="progress"></div>
+</div><!-- /stage -->
+
+<div id="nav"><button id="prev">→ הקודם</button><button id="fs">⛶</button><button id="next">הבא ←</button></div>
+<script src="day1.js"></script>
+</body>
+</html>

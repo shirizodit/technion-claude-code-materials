@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>יום א׳ · מודול 3 — CLAUDE.md ומצבי הרשאה</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="day1.css">
+</head>
+<body data-start="73" data-total="126" data-prev="module2.html" data-next="module4.html">
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="spark" viewBox="0 0 100 100"><g fill="currentColor">
+    <rect x="46" y="4" width="8" height="40" rx="4"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(30 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(60 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(90 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(120 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(150 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(180 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(210 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(240 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(270 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(300 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(330 50 50)"/>
+  </g></symbol>
+</svg>
+
+<div id="stage">
+
+<!-- 64 -->
+<section class="slide divider" data-mod="3">
+  <div class="num">3</div>
+  <h1>CLAUDE.md ומצבי הרשאה</h1>
+  <p class="lead">לכתוב פעם אחת מי אתם, כך שכל שיחה מתחילה כש-Claude כבר מכיר אתכם. ולקבוע מה מותר לו לעשות לבד.</p>
+  </section>
+
+<!-- 65 -->
+<section class="slide" data-mod="3">
+  <div class="kicker"><span class="mod">מודול 3</span> · CLAUDE.md</div>
+  <h2>כל שיחה מתחילה מדף חלק</h2>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card"><span class="badge demo">בלי CLAUDE.md</span>
+        <p class="mt">בכל שיחה חדשה מסבירים שוב: מי אני, איך אני לומדת, באיזו שפה לענות, ומה לא לעשות.</p></div>
+      <div class="card acc"><span class="badge">עם CLAUDE.md</span>
+        <p class="mt">Claude קורא את הקובץ בתחילת כל שיחה, ומתחיל כשהוא כבר מכיר אתכם.</p></div>
+    </div>
+    <p class="mt lead">זה בדיוק מה ש-<span class="en">me.md</span> עשה ב-Workshop 2. עכשיו הופכים אותו לקובץ קבוע.</p>
+    <p class="mt hint">⚡ נסו עכשיו: כמה פעמים השבוע פתחתם שיחה ב״אני סטודנט ש…״ או ״ענה לי בעברית״?</p>
+  </div>
+  </section>
+
+<!-- 66 -->
+<section class="slide" data-mod="3">
+  <div class="kicker"><span class="mod">מודול 3</span> · CLAUDE.md</div>
+  <h2>מה זה CLAUDE.md?</h2>
+  <div class="body">
+    <div class="flow">
+      <div class="step"><b>אתם כותבים</b><span>פעם אחת, בעברית רגילה</span></div><div class="arrow">←</div>
+      <div class="step"><b>נשמר בתיקייה</b><span>קובץ טקסט בשם <span class="en">CLAUDE.md</span></span></div><div class="arrow">←</div>
+      <div class="step"><b>Claude קורא</b><span>בתחילת כל שיחה בתיקייה</span></div>
+    </div>
+    <p class="mt lead">כמו דף הכרות שנותנים לעוזר חדש ביום הראשון. קובץ טקסט רגיל, בלי קוד.</p>
+  </div>
+  </section>
+
+<!-- 67 -->
+<section class="slide" data-mod="3">
+  <div class="kicker"><span class="mod">מודול 3</span> · CLAUDE.md</div>
+  <h2><span class="en">.md</span> — קובץ טקסט רגיל עם עיצוב קל</h2>
+  <p class="sub">קומץ סימנים מכסה כמעט כל מה שתצטרכו.</p>
+  <div class="body">
+    <div class="grid mdgrid">
+      <div class="mdcol">
+        <div class="mdrows">
+          <div class="mdrow"><span class="mdkey">#</span><span class="mdlab">כותרת</span></div>
+          <div class="mdrow"><span class="mdkey">-</span><span class="mdlab">תבליט</span></div>
+          <div class="mdrow"><span class="mdkey">**word**</span><span class="mdlab">הדגשה</span></div>
+          <div class="mdrow"><span class="mdkey mdblank">שורה ריקה</span><span class="mdlab">הפרדה בין פסקאות</span></div>
+        </div>
+        <p class="mdnote">שורות ריקות חשובות יותר ממה שחושבים: ככה Claude יודע איפה נגמר רעיון אחד ומתחיל הבא.</p>
+      </div>
+      <div class="code he mdcard"><div class="mdfile">example.md</div><span class="mh">#</span> <strong>סיכום: עיבוד אותות</strong>
+
+<span class="mh">##</span> <strong>נושאים ששוכחים</strong>
+<span class="mb">-</span> <span class="en">DFT</span> ממיר זמן ל<span class="my">**תדר**</span>
+<span class="mb">-</span> <span class="en">FFT</span> הוא אלגוריתם <span class="my">**מהיר**</span>
+
+<span class="mh">##</span> <strong>המבחן ב-15.01</strong></div>
+    </div>
+  </div>
+  </section>
+
+<!-- 68 -->
+<section class="slide" data-mod="3">
+  <div class="kicker"><span class="mod">מודול 3</span> · CLAUDE.md</div>
+  <h2>אותה שאלה, שני Claude-ים</h2>
+  <p class="sub">המחשה: נועה שואלת על <span class="en">Fourier transform</span> לקראת המבחן.</p>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card"><span class="badge demo">בלי CLAUDE.md</span>
+        <div class="bubble sm"><div class="av">נ</div><p>הסבר לי <span class="en">Fourier transform</span> לקראת המבחן</p></div>
+        <div class="ans"><i style="width:96%;background:#C5CDE0"></i><i style="width:88%;background:#C5CDE0"></i><i style="width:100%;background:#C5CDE0"></i><i style="width:92%;background:#C5CDE0"></i><i style="width:70%;background:#C5CDE0"></i><i style="width:96%;background:#C5CDE0"></i><i style="width:55%;background:#C5CDE0"></i></div>
+        <div class="chips2"><span class="chip bad">ארוך וכללי</span><span class="chip bad">נוסחאות קודם</span><span class="chip bad">MATLAB</span></div></div>
+      <div class="card acc"><span class="badge">עם CLAUDE.md</span>
+        <div class="bubble sm"><div class="av">נ</div><p>הסבר לי <span class="en">Fourier transform</span> לקראת המבחן</p></div>
+        <div class="ans"><i style="width:90%;background:#9FD9BE"></i><i style="width:64%;background:#9FD9BE"></i><i style="width:82%;background:#9FD9BE"></i></div>
+        <div class="chips2"><span class="chip good">קצר, בעברית</span><span class="chip good">אינטואיציה קודם</span><span class="chip good">זמן + תדר</span><span class="chip good">Python</span></div></div>
+    </div>
+  </div>
+  </section>
+
+<!-- 69 -->
+<section class="slide" data-mod="3">
+  <div class="kicker"><span class="badge demo">Live Demo</span></div>
+  <h2>אותה שאלה, בשתי תיקיות</h2>
+  <div class="body">
+    <ul class="steps">
+      <li>פותחת את <code>demo/noa-study-plan/</code> — בלי CLAUDE.md</li>
+      <li>שואלת: "הסבר לי <span class="en">Fourier transform</span> לקראת המבחן" — ושומרת את התשובה</li>
+      <li>פותחת את <code>demo/noa/</code> — יש בה CLAUDE.md של נועה</li>
+      <li>שואלת את אותה שאלה בדיוק</li>
+      <li>משווים: שפה, אורך, מבנה, קוד</li>
+    </ul>
+    <p class="mt muted">שימו לב: לא שינינו את השאלה. רק את הקובץ שבתיקייה.</p>
+  </div>
+  </section>
+
+<!-- 70 -->
+<section class="slide" data-mod="3">
+  <div class="kicker"><span class="mod">מודול 3</span> · CLAUDE.md</div>
+  <h2>מה כותבים ב-CLAUDE.md</h2>
+  <div class="body tight">
+    <div class="grid g3">
+      <div class="card"><div class="icon">01</div><h3>מי אני</h3><p>סטודנטית שנה ג׳ הנדסת חשמל, טכניון.</p></div>
+      <div class="card"><div class="icon">02</div><h3>מה התיקייה הזאת</h3><p>סיכומים וסילבוסים של הסמסטר.</p></div>
+      <div class="card"><div class="icon">03</div><h3>איך לדבר איתי</h3><p>עברית, קצר, אינטואיציה לפני מתמטיקה.</p></div>
+      <div class="card"><div class="icon">04</div><h3>חוקים: תמיד ואף פעם</h3><p>✓ זמן ותדר ✗ בלי MATLAB</p></div>
+      <div class="card"><div class="icon">05</div><h3>מוסכמות קבצים</h3><p>סיכומים ב-<span class="en">summaries/</span>, בשם <span class="en">lecture-N.md</span></p></div>
+      <div class="card"><div class="icon">06</div><h3>משימות שחוזרות</h3><p><span class="en">exam-prep</span>: הסבר כאילו המבחן מחר</p></div>
+    </div>
+    <p class="mt hint">⚡ אין צורך בכולם. מתחילים בשלושה סעיפים (01, 03, 04) ומוסיפים עם הזמן.</p>
+  </div>
+  </section>
+
+<!-- 71 -->
+<section class="slide" data-mod="3">
+  <div class="kicker"><span class="mod">מודול 3</span> · CLAUDE.md</div>
+  <h2>הקובץ של נועה</h2>
+  <div class="body">
+    <div class="grid g2" style="align-items:center">
+      <div class="code he"><span class="c"># CLAUDE.md — נועה כהן</span>
+
+<span class="c">## Role &amp; Context</span>
+סטודנטית שנה ג׳ הנדסת חשמל · טכניון
+פרויקט גמר: זיהוי דפוסי EEG בזמן אמת
+
+<span class="c">## Communication Style</span>
+עברית תמיד · תשובות קצרות וישירות
+הסבר אינטואיטיבי לפני המתמטיקה
+
+<span class="c">## Rules</span>
+✓ בהסבר DSP: תמיד גם זמן וגם תדר
+✗ אל תשתמש ב-MATLAB. Python בלבד</div>
+      <div class="callouts">
+        <div class="callout"><strong>הקשר</strong><span>מי היא ומה היא עושה עכשיו</span></div>
+        <div class="callout"><strong>איך לדבר</strong><span>שפה, אורך, סדר ההסבר</span></div>
+        <div class="callout"><strong>חוקים</strong><span>ספציפיים, אפשר לבדוק אם נשמרו</span></div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+<!-- 72 -->
+<section class="slide" data-mod="3">
+  <div class="kicker"><span class="mod">מודול 3</span> · CLAUDE.md</div>
+  <h2>חוק גרוע מול חוק טוב</h2>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card"><span class="badge demo">✗ מעורפל</span>
+        <ul class="clean bad-list mt"><li>תהיה מועיל</li><li>תכתוב טוב</li><li>תהיה קצר</li><li>תענה כמו מומחה</li></ul></div>
+      <div class="card acc"><span class="badge">✓ ספציפי</span>
+        <ul class="clean mt"><li>עברית תמיד, גם אם שאלתי באנגלית</li><li>עד 5 משפטים, אלא אם ביקשתי הרחבה</li><li>אינטואיציה קודם, נוסחה אחר כך</li><li>אל תמחק קבצים בלי לשאול</li></ul></div>
+    </div>
+    <p class="mt lead">הטעות הכי נפוצה: חוקים מעורפלים. <strong style="color:var(--ink)">הבדיקה: האם מישהו אחר יבין בדיוק מה לעשות?</strong></p>
+  </div>
+  </section>
+
+<!-- 73 -->
+<section class="slide" data-mod="3">
+  <div class="kicker"><span class="mod">מודול 3</span> · CLAUDE.md</div>
+  <h2>איפה הזיכרון יושב: שלוש שכבות</h2>
+  <div class="body">
+    <div class="layers">
+      <div class="layer l1"><div class="lic">📁</div><div><h3>זיכרון פרויקט</h3><p><code>CLAUDE.md</code> בתיקייה. חי עם התיקייה, ורק בה.</p></div></div>
+      <div class="layer l2"><div class="lic">👤</div><div><h3>זיכרון אישי</h3><p><code>~/.claude/CLAUDE.md</code>. נכון לכל התיקיות שלכם.</p></div></div>
+      <div class="layer l3"><div class="lic">📝</div><div><h3>זיכרון אוטומטי</h3><p>הערות ש-Claude כותב לעצמו תוך כדי עבודה.</p></div></div>
+    </div>
+    <p class="mt lead">כלל אצבע: מה שנוגע <strong style="color:var(--ink)">למשימה</strong> ← בתיקייה. מה שנוגע <strong style="color:var(--ink)">אליכם</strong> ← אישי.</p>
+  </div>
+  </section>
+
+<!-- 74 -->
+<section class="slide" data-mod="3">
+  <div class="kicker"><span class="mod">מודול 3</span> · CLAUDE.md</div>
+  <h2>ארוך מדי? מפצלים לקבצים</h2>
+  <div class="body">
+    <div class="grid g2" style="align-items:center">
+      <div class="code" style="font-size:26px">technion-ai/
+├── CLAUDE.md       ← קצר
+├── style-guide.md  ← איך לכתוב
+├── glossary.md     ← מושגים
+└── examples/       ← דוגמאות</div>
+      <ul class="clean">
+        <li><span class="en">CLAUDE.md</span> ארוך מדי: Claude מתבלבל</li>
+        <li>מפצלים לקבצים נפרדים</li>
+        <li>מצביעים עם <span class="en">@</span>, ו-Claude קורא רק כשצריך</li>
+      </ul>
+    </div>
+    <p class="mt hint">⚡ בקובץ הראשי: "לפני כתיבה, קרא את @style-guide.md"</p>
+  </div>
+  </section>
+
+<!-- 75 -->
+<section class="slide workshop" data-mod="3">
+  <div class="kicker"><span class="badge work">Workshop 3</span> <span class="timer">20:00</span></div>
+  <h2>כותבים את ה-CLAUDE.md שלכם</h2>
+  <div class="body">
+    <div class="machine">
+      <span class="part on">📁 תיקיית עבודה</span><span class="part on">📄 תוכנית לימוד</span><span class="part on">🧭 הקשר נכון</span>
+      <span class="part on">🧠 CLAUDE.md אישי</span><span class="part">🔐 הרשאות בטוחות</span>
+    </div>
+    <p class="lead mt">המטרה: קובץ אחד שגורם ל-Claude להכיר אתכם, ועובד בכל שיחה חדשה בתיקייה.</p>
+    <p class="mt muted">יש לכם <code>me.md</code> מהשיעור הקודם? זו נקודת ההתחלה.</p>
+  </div>
+  </section>
+
+<!-- 76 -->
+<section class="slide workshop" data-mod="3">
+  <div class="kicker"><span class="badge work">Workshop 3</span> · שלבים</div>
+  <h2>חמישה צעדים</h2>
+  <div class="body">
+    <ol class="steps">
+      <li>פתחו את <code>me.md</code> מ-Workshop 2, או צרו קובץ חדש בתיקייה הראשית</li>
+      <li>בקשו מ-Claude לראיין אתכם (הבקשה בשקף הבא)</li>
+      <li>קראו את הטיוטה: מחקו כל חוק כללי והחליפו בחוק ספציפי</li>
+      <li>ודאו שהקובץ נקרא <code>CLAUDE.md</code> ויושב בתיקייה הראשית</li>
+      <li><code>/clear</code>, ושאלו: "מי אני, ואיך אני רוצה שתדבר איתי?"</li>
+    </ol>
+  </div>
+  </section>
+
+<!-- 77 -->
+<section class="slide workshop" data-mod="3">
+  <div class="kicker"><span class="badge work">Workshop 3</span> · להעתקה</div>
+  <h2>הבקשה: שיראיין אתכם</h2>
+  <div class="body">
+    <div class="code he"><button class="copy">העתק</button>ראיין אותי כדי לכתוב קובץ CLAUDE.md.
+שאל שאלה אחת בכל פעם: מי אני, מה התיקייה הזאת, איך אני רוצה
+שתדבר איתי, מה אתה צריך לעשות תמיד ומה אף פעם, ואילו משימות
+אני מבקש שוב ושוב.
+בסוף כתוב את הקובץ, קצר וספציפי, ושמור אותו כ-CLAUDE.md
+בתיקייה הראשית.</div>
+    <div class="done-when">✅ <strong>סיימתם כש:</strong> בשיחה חדשה Claude עונה נכון על "מי אני" ועל "איך לדבר איתי".</div>
+    <p class="hint">⚡ בונוס: הוסיפו חוק אחד שאתם חוזרים עליו שוב ושוב בבקשות שלכם</p>
+  </div>
+  </section>
+
+<!-- 78 -->
+<section class="slide divider" data-mod="3">
+  <div class="num">ב׳</div>
+  <h1>מצבי הרשאה</h1>
+  <p class="lead">מי מחליט מה Claude עושה בלי לשאול? אתם. ויש לכם כפתור בשביל זה.</p>
+  </section>
+
+<!-- 79 -->
+<section class="slide" data-mod="3">
+  <div class="kicker"><span class="mod">מודול 3</span> · מצבי הרשאה</div>
+  <h2>ארבעה מצבים, ממצב זהיר לחופשי</h2>
+  <div class="body">
+    <div class="axis"><span>הכי זהיר</span><span class="line"></span><span>הכי חופשי</span></div>
+    <div class="grid g4">
+      <div class="mode" style="--mc:var(--green)"><h3>תכנון<span class="en">plan</span></h3><p>חוקר וכותב תוכנית. לא משנה כלום עד שתאשרו.</p></div>
+      <div class="mode" style="--mc:var(--blue)"><h3>שואל<span class="en">default</span></h3><p>מבקש אישור לפני כל עריכה או פקודה.</p></div>
+      <div class="mode" style="--mc:var(--gold)"><h3>עורך לבד<span class="en">acceptEdits</span></h3><p>עורך קבצים בלי לשאול בכל פעם.</p></div>
+      <div class="mode" style="--mc:var(--orange)"><h3>אוטומטי<span class="en">auto</span></h3><p>מריץ גם פקודות, עם בדיקת בטיחות ברקע. זמין רק בחלק מהתוכניות.</p></div>
+    </div>
+    <div class="mwarn"><strong>⚠ <span class="en">bypassPermissions</span></strong> עוקף את כל הבדיקות. לא משתמשים בו בקורס הזה.</div>
+  </div>
+  </section>
+
+<!-- 80 -->
+<section class="slide" data-mod="3">
+  <div class="kicker"><span class="mod">מודול 3</span> · מצבי הרשאה</div>
+  <h2>ההרגל: קודם תוכנית, אחר כך אישור</h2>
+  <p class="sub">נועה מבקשת: ״ארגן לי את תיקיית ההורדות לפי סוג קובץ״.</p>
+  <div class="body">
+    <div class="tiles"><div class="tile"><svg viewBox="0 0 160 110" role="img" aria-hidden="true"><rect x="30" y="8" width="100" height="94" rx="8" fill="#fff" stroke="#E1E6F2" stroke-width="2"/><rect x="40" y="18" width="44" height="6" rx="3" fill="#0C1B3A" opacity="1"/><rect x="40" y="36" width="9" height="9" rx="2" fill="none" stroke="#8C97B8" stroke-width="2"/><rect x="56" y="37" width="62" height="7" rx="3" fill="#C5CDE0" opacity="1"/><rect x="40" y="52" width="9" height="9" rx="2" fill="none" stroke="#8C97B8" stroke-width="2"/><rect x="56" y="53" width="62" height="7" rx="3" fill="#C5CDE0" opacity="1"/><rect x="40" y="68" width="9" height="9" rx="2" fill="none" stroke="#8C97B8" stroke-width="2"/><rect x="56" y="69" width="62" height="7" rx="3" fill="#C5CDE0" opacity="1"/><rect x="40" y="84" width="9" height="9" rx="2" fill="none" stroke="#8C97B8" stroke-width="2"/><rect x="56" y="85" width="62" height="7" rx="3" fill="#C5CDE0" opacity="1"/></svg><span>Claude מציע תוכנית. שום דבר לא משתנה</span></div><div class="tarrow">←</div><div class="tile"><svg viewBox="0 0 160 110" role="img" aria-hidden="true"><rect x="22" y="38" width="116" height="38" rx="19" fill="#1F9D6B"/><path d="M42 57 l7 7 l13 -14" stroke="#fff" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="74" y="52" width="50" height="6" rx="3" fill="#fff" opacity="0.9"/><rect x="74" y="62" width="34" height="6" rx="3" fill="#fff" opacity="0.7"/></svg><span>אתם קוראים ומאשרים</span></div><div class="tarrow">←</div><div class="tile"><svg viewBox="0 0 160 110" role="img" aria-hidden="true"><rect x="14" y="14" width="26" height="20" rx="4" fill="#E8F0FE" stroke="#2F6FEB" stroke-width="2"/><rect x="48" y="20" width="70" height="7" rx="3" fill="#C5CDE0" opacity="1"/><rect x="14" y="44" width="26" height="20" rx="4" fill="#F0EBFC" stroke="#7B5CD6" stroke-width="2"/><rect x="48" y="50" width="56" height="7" rx="3" fill="#C5CDE0" opacity="1"/><rect x="14" y="74" width="26" height="20" rx="4" fill="#E3F5EC" stroke="#1F9D6B" stroke-width="2"/><rect x="48" y="80" width="64" height="7" rx="3" fill="#C5CDE0" opacity="1"/><circle cx="136" cy="90" r="13" fill="#1F9D6B"/><path d="M129 90 l5 5 l9 -10" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>רק אז הוא מבצע</span></div></div>
+    <p class="mt lead">שלוש דקות של קריאה חוסכות שעה של תיקון.</p>
+  </div>
+  </section>
+
+<!-- 81 -->
+<section class="slide" data-mod="3">
+  <div class="kicker"><span class="mod">מודול 3</span> · מצבי הרשאה</div>
+  <h2>איך עוברים בין מצבים</h2>
+  <div class="body">
+    <div class="keys"><span class="key">Shift</span><span class="plus">+</span><span class="key">Tab</span></div>
+    <ul class="clean mt">
+      <li>כל לחיצה מדפדפת למצב הבא. המצב הנוכחי מופיע בשורת המצב</li>
+      <li>או מקלידים <code>/plan</code> כדי להיכנס למצב תכנון</li>
+      <li>באפליקציית Desktop: בוחרים מצב ליד תיבת ההקלדה</li>
+    </ul>
+    <p class="mt hint">⚡ נסו עכשיו: לחצו Shift+Tab כמה פעמים, ואחר כך חזרו למצב תכנון</p>
+  </div>
+  </section>
+
+<!-- 82 -->
+<section class="slide" data-mod="3">
+  <div class="kicker"><span class="mod">מודול 3</span> · מצבי הרשאה</div>
+  <h2>איזה מצב מתי?</h2>
+  <div class="body">
+    <table class="cmp">
+      <tr><th>המשימה</th><th>המצב</th><th>למה</th></tr>
+      <tr><td>תיקייה חדשה, משימה גדולה</td><td><span class="en">plan</span></td><td>רואים תוכנית לפני שמשהו משתנה</td></tr>
+      <tr><td>מחיקות והעברות של קבצים</td><td><span class="en">plan</span>, ואז אישור</td><td>קשה לבטל</td></tr>
+      <tr><td>עריכות קטנות שאתם עוקבים אחריהן</td><td><span class="en">default</span></td><td>אישור קצר לכל שינוי</td></tr>
+      <tr><td>סבב עריכות על קבצים שגיבתם</td><td><span class="en">acceptEdits</span></td><td>מהר, בלי שאלות בכל קובץ</td></tr>
+    </table>
+    <p class="mt muted">ובכל מצב: אין צורך ב-<span class="en">bypassPermissions</span>.</p>
+  </div>
+  </section>
+
+<!-- 83 -->
+<section class="slide" data-mod="3">
+  <div class="kicker"><span class="mod">מודול 3</span> · מצבי הרשאה</div>
+  <h2>CLAUDE.md מבקש, ההרשאות אוכפות</h2>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card"><span class="badge flash">בקשה</span><h3 class="mt">CLAUDE.md</h3>
+        <p>טקסט ש-Claude לוקח בחשבון. "אל תמחק קבצים" היא הנחיה טובה, אבל לא מנעול.</p></div>
+      <div class="card acc"><span class="badge">מנעול</span><h3 class="mt">הרשאות</h3>
+        <p>הגדרה ש-Claude לא עוקף: פעולה שלא הותרה מחכה לאישור שלכם, או נחסמת.</p></div>
+    </div>
+    <p class="mt lead">מגדירים מה תמיד מותר ומה אף פעם דרך <code>/permissions</code>.</p>
+  </div>
+  </section>
+
+<!-- 84 -->
+<section class="slide workshop" data-mod="3">
+  <div class="kicker"><span class="badge work">Workshop 3 · חלק ב׳</span> <span class="timer">12:00</span></div>
+  <h2>קודם תוכנית, אחר כך אישור</h2>
+  <div class="body">
+    <div class="machine">
+      <span class="part on">📁 תיקיית עבודה</span><span class="part on">📄 תוכנית לימוד</span><span class="part on">🧭 הקשר נכון</span>
+      <span class="part on">🧠 CLAUDE.md אישי</span><span class="part on">🔐 הרשאות בטוחות</span>
+    </div>
+    <p class="lead mt">המטרה: לעבוד בהרגל החדש על תיקייה אמיתית שלכם, ולקבוע חוק אחד שתמיד נשמר.</p>
+  </div>
+  </section>
+
+<!-- 85 -->
+<section class="slide workshop" data-mod="3">
+  <div class="kicker"><span class="badge work">Workshop 3</span> · שלבים</div>
+  <h2>חמישה צעדים</h2>
+  <div class="body">
+    <ol class="steps">
+      <li>עברו למצב תכנון (<code>Shift+Tab</code>) ובדקו בשורת המצב</li>
+      <li>הדביקו את הבקשה מהשקף הבא על תיקייה אמיתית שלכם</li>
+      <li>קראו את התוכנית: מה היה משתנה? מה לא ברור?</li>
+      <li>אשרו או תקנו, ורק אז Claude מבצע</li>
+      <li>הוסיפו ל-<code>CLAUDE.md</code> חוק אחד חדש, ובדקו <code>/permissions</code></li>
+    </ol>
+  </div>
+  </section>
+
+<!-- 86 -->
+<section class="slide workshop" data-mod="3">
+  <div class="kicker"><span class="badge work">Workshop 3</span> · להעתקה</div>
+  <h2>הבקשה: רק תוכנית</h2>
+  <div class="body">
+    <div class="code he"><button class="copy">העתק</button>ארגן את התיקייה [שם התיקייה] לפי נושא.
+אל תשנה כלום עדיין. הצג רק תוכנית: מה יזוז לאן,
+ואילו קבצים לא ברור לך לאן לשייך.</div>
+    <div class="done-when">✅ <strong>סיימתם כש:</strong> ראיתם תוכנית מ-Claude, אישרתם אותה בעצמכם, ויש ב-<code>CLAUDE.md</code> חוק אחד חדש.</div>
+    <p class="hint">⚡ בונוס: "ציין בתוכנית מה אתה לא בטוח בו"</p>
+  </div>
+  </section>
+
+<!-- 87 -->
+<section class="slide" data-mod="3">
+  <div class="kicker"><span class="badge flash">Flashcards</span> · לחצו על כרטיס כדי להפוך</div>
+  <h2>בודקים שזה נקלט</h2>
+  <div class="flash-grid">
+    <div class="fc"><div class="in"><div class="f"><span class="en">CLAUDE.md</span></div><div class="b">קובץ הוראות קבוע שנקרא בתחילת כל שיחה.</div></div></div>
+    <div class="fc"><div class="in"><div class="f">חוק ספציפי</div><div class="b">אפשר לבדוק אותו. מישהו אחר יבין בדיוק מה לעשות.</div></div></div>
+    <div class="fc"><div class="in"><div class="f">שלוש שכבות זיכרון</div><div class="b">פרויקט · אישי · אוטומטי.</div></div></div>
+    <div class="fc"><div class="in"><div class="f">מצב תכנון</div><div class="b">חוקר ומציע. לא משנה כלום עד שתאשרו.</div></div></div>
+    <div class="fc"><div class="in"><div class="f"><span class="en">Shift+Tab</span></div><div class="b">מדפדף בין מצבי ההרשאה.</div></div></div>
+    <div class="fc"><div class="in"><div class="f">בקשה ומנעול</div><div class="b">CLAUDE.md מבקש. הרשאות אוכפות.</div></div></div>
+  </div>
+  </section>
+
+<!-- 88 -->
+<section class="slide" data-mod="3">
+  <div class="kicker"><span class="badge quiz">Quiz 1/2</span></div>
+  <div class="body">
+    <div class="q">מה הכי מתאים לכתוב ב-CLAUDE.md?</div>
+    <div class="opts" data-quiz>
+      <button class="opt"><span class="l">א</span>כל מה שלמדתי אי פעם, בלי לדלג</button>
+      <button class="opt"><span class="l">ב</span>"תהיה מועיל וכתוב טוב"</button>
+      <button class="opt" data-correct><span class="l">ג</span>חוקים ספציפיים שחוזרים: עברית, קצר, בלי MATLAB</button>
+      <button class="opt"><span class="l">ד</span>סיסמאות לאתרים, שלא אצטרך להקליד</button>
+    </div>
+    <div class="explain">ספציפי, קצר ובדיק. ולעולם לא סיסמאות או מידע אישי רגיש בקובץ.</div>
+  </div>
+  </section>
+
+<!-- 89 -->
+<section class="slide" data-mod="3">
+  <div class="kicker"><span class="badge quiz">Quiz 2/2</span></div>
+  <div class="body">
+    <div class="q">נועה רוצה לארגן 200 קבצים בתיקייה ולא בטוחה מה יזוז. באיזה מצב הכי בטוח להתחיל?</div>
+    <div class="opts" data-quiz>
+      <button class="opt"><span class="l">א</span><span class="en">bypassPermissions</span></button>
+      <button class="opt"><span class="l">ב</span><span class="en">acceptEdits</span></button>
+      <button class="opt" data-correct><span class="l">ג</span>מצב תכנון <span class="en">plan</span></button>
+      <button class="opt"><span class="l">ד</span>לכתוב ב-CLAUDE.md ״אל תטעה״</button>
+    </div>
+    <div class="explain">במצב תכנון רואים מה יקרה לפני שמשהו משתנה. ״אל תטעה״ היא בקשה, לא מנעול.</div>
+  </div>
+  </section>
+
+<!-- 90 -->
+<section class="slide" data-mod="3">
+  <div class="kicker"><span class="mod">מודול 3</span> · סיכום</div>
+  <h2>מה עכשיו יש לכם</h2>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card acc"><h3>✔ למדנו</h3><p><span class="en">CLAUDE.md</span> קבוע וספציפי, שלוש שכבות זיכרון, ארבעה מצבי הרשאה, וההרגל: תוכנית, אישור, ביצוע.</p></div>
+      <div class="card"><h3>✔ בנינו</h3><p><span class="en">CLAUDE.md</span> אישי, חוק הרשאה אחד, והרגל חדש של מצב תכנון.</p></div>
+    </div>
+    <div class="example mt">
+      <div class="who">אבל…</div>
+      <p>פתרתם אותה משימה פעמיים? בקשה שחוזרת על עצמה? <strong>זה בדיוק מודול 4: Skills.</strong></p>
+    </div>
+  </div>
+  </section>
+
+<div id="progress"></div>
+</div><!-- /stage -->
+
+<div id="nav"><button id="prev">→ הקודם</button><button id="fs">⛶</button><button id="next">הבא ←</button></div>
+<script src="day1.js"></script>
+</body>
+</html>

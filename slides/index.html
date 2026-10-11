@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Code for Everyone</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="day1.css">
+<style>
+/* home: same paper-and-line-art look as the opening slides, with the mascot running along the orange line */
+.home.slide::before{display:none}
+.home{padding:0}
+.home .logos{position:absolute;top:16px;right:110px;display:flex;align-items:center;gap:26px;z-index:2}
+.home .logos img{display:block;height:62px;width:auto;opacity:.92}
+.home .logos img.aid{height:84px}
+.home .logos .sep{width:3px;height:60px;background:var(--ink);opacity:.22;border-radius:2px}
+.home .track{position:absolute;top:112px;left:0;right:0;height:8px;background:var(--orange);z-index:2}
+.home .runner{position:absolute;top:56px;left:0;width:64px;z-index:3;animation:run 11s linear infinite}
+.home .runner svg{width:100%;height:auto;display:block;overflow:visible;animation:hop .3s ease-in-out infinite}
+.home .runner .b{fill:#D7876A} .home .runner .e{fill:#14213F}
+.home .runner .l1{animation:leg .3s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 0}
+.home .runner .l2{animation:leg .3s ease-in-out infinite .15s;transform-box:fill-box;transform-origin:50% 0}
+@keyframes run{from{transform:translateX(-110px)}to{transform:translateX(1700px)}}
+@keyframes hop{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes leg{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.55)}}
+.home .content{position:absolute;top:140px;right:110px;left:110px;bottom:40px;display:flex;flex-direction:column;justify-content:center;z-index:1}
+.home h1{font-size:64px;margin:0 0 14px}
+.home .dayhead{display:flex;align-items:center;gap:18px;margin:0 0 12px;font-size:25px;color:var(--muted)}
+.home .daytag{background:none;padding:0;color:var(--red);font-size:30px}
+.home .grid{gap:16px}
+.home .g4{grid-template-columns:repeat(4,1fr)}
+a.mod-card{text-decoration:none;color:inherit;display:block;transition:transform .15s}
+a.mod-card:hover{transform:translateY(-4px)}
+a.mod-card .range{font-family:var(--mono);font-size:18px;color:var(--muted);direction:ltr;display:inline-block}
+.mod-card.soon{opacity:.45;pointer-events:none}
+.g4 .card,.g5 .card{padding:16px 20px;background:rgba(255,255,255,.86)}
+.g4 h3{font-size:27px;line-height:1.2;margin:6px 0}
+.g4 p{font-size:21px;margin:0}
+.g5{grid-template-columns:repeat(5,1fr)}
+.g5 h3{font-size:23px;line-height:1.2;margin:6px 0}
+.g5 p{font-size:19px;margin:0}
+.g5 .range{font-size:16px}
+@media (prefers-reduced-motion:reduce){.home .runner,.home .runner *{animation:none!important}.home .runner{left:60px}}
+</style>
+</head>
+<body>
+<div id="stage">
+<section class="slide active home cover-bg" data-mod="1">
+  <div class="cover-art" data-flip="0"></div>
+  <div class="logos"><img src="../assets/technion-logo.png" alt="הטכניון, מכון טכנולוגי לישראל"><span class="sep"></span><img class="aid" src="../assets/ai-days-logo.png" alt="ימי AI בטכניון"></div>
+  <div class="track"></div>
+  <div class="runner" aria-hidden="true"><svg viewBox="0 0 160 140"><rect class="b l1" x="34" y="96" width="11" height="30"/><rect class="b l2" x="58" y="96" width="11" height="30"/><rect class="b l2" x="91" y="96" width="11" height="30"/><rect class="b l1" x="115" y="96" width="11" height="30"/><rect class="b" x="4" y="58" width="22" height="26"/><rect class="b" x="134" y="58" width="22" height="26"/><rect class="b" x="22" y="12" width="116" height="86"/><rect class="e" x="45" y="38" width="10" height="24"/><rect class="e" x="105" y="38" width="10" height="24"/></svg></div>
+  <div class="content">
+    <h1>Claude Code for Everyone</h1>
+    <div class="dayhead"><span class="daytag">יום א׳ - הבסיס</span><span>11.10 · סוכן, הקשר, <span class="en">CLAUDE.md</span> ו-Skills</span></div>
+    <div class="grid g4">
+      <a class="card mod-card" href="module1.html" style="border-top:10px solid var(--orange)">
+        <span class="range">1–46 · 10:00</span><h3>מודול 1 · מצ׳אט לסוכן</h3><p>תוצר: תיקיית עבודה + תוכנית לימוד ראשונה</p></a>
+      <a class="card mod-card" href="module2.html" style="border-top:10px solid var(--blue)">
+        <span class="range">47–71 · 11:30</span><h3>מודול 2 · <span class="en">Context</span> Engineering</h3><p>תוצר: תוכנית לימוד משודרגת + <span class="en">me.md</span></p></a>
+      <a class="card mod-card" href="module3.html" style="border-top:10px solid var(--green)">
+        <span class="range">72–98 · 13:30</span><h3>מודול 3 · <span class="en">CLAUDE.md</span> ומצבי הרשאה</h3><p>תוצר: <span class="en">CLAUDE.md</span> אישי + הגדרות הרשאה</p></a>
+      <a class="card mod-card" href="module4.html" style="border-top:10px solid var(--purple)">
+        <span class="range">99–125 · 15:00</span><h3>מודול 4 · Skills</h3><p>תוצר: Skill ראשון</p></a>
+    </div>
+    <div class="dayhead" style="margin-top:26px"><span class="daytag">יום ב׳ - מחברים ובונים</span><span>12.10 · חיבור, תזמור, אוטומציה ובנייה</span></div>
+    <div class="grid g5">
+      <a class="card mod-card" href="module5.html" style="border-top:10px solid var(--red)">
+        <span class="range">1–27</span><h3>מודול 5 · שרשרת עם שער אנושי</h3><p>שרשרת Skills + מתזמר</p></a>
+      <a class="card mod-card" href="module6.html" style="border-top:10px solid var(--teal)">
+        <span class="range">28–60</span><h3>מודול 6 · חיבור לעולם (<span class="en">MCP</span>)</h3><p>דף סיכום מחובר</p></a>
+      <a class="card mod-card" href="module7.html" style="border-top:10px solid var(--blue)">
+        <span class="range">61–91</span><h3>מודול 7 · סוכני-משנה</h3><p>תהליך של שני סוכנים</p></a>
+      <a class="card mod-card" href="module8.html" style="border-top:10px solid var(--purple)">
+        <span class="range">92–125</span><h3>מודול 8 · אוטומציות והוקים</h3><p>אוטומציה אחת משלכם</p></a>
+      <a class="card mod-card" href="module9.html" style="border-top:10px solid var(--orange)">
+        <span class="range">126–147</span><h3>מודול 9 · התהליך האישי ושיתוף</h3><p>תהליך אישי ב-<span class="en">GitHub</span></p></a>
+    </div>
+  </div>
+</section>
+</div>
+<script>
+(function(){
+  const stage=document.getElementById('stage');
+  // ranges follow the module files themselves, so adding slides never leaves the home page stale
+  document.querySelectorAll('a.mod-card').forEach(a=>{
+    fetch(a.getAttribute('href')).then(r=>r.ok?r.text():null).then(t=>{
+      if(!t)return; const st=+(t.match(/data-start="(\d+)"/)||[])[1], n=(t.match(/<section/g)||[]).length;
+      const el=a.querySelector('.range'); if(st&&n)el.textContent=st+'–'+(st+n-1)+el.textContent.replace(/^[\d–]+/,'');
+    }).catch(()=>{});
+  });
+  // grey out modules whose file doesn't exist yet
+  document.querySelectorAll('a.mod-card').forEach(a=>{
+    fetch(a.getAttribute('href'),{method:'HEAD'}).then(r=>{if(!r.ok)a.classList.add('soon')}).catch(()=>{});
+  });
+  function fit(){stage.style.transform='translate(-50%,-50%) scale('+Math.min(innerWidth/1600,innerHeight/900)+')'}
+  addEventListener('resize',fit); fit();
+})();
+// ---- opening slides: hand-drawn background art (network clusters, hands, steps, icons) ----
+(function(){
+  const hand=(x,y,rot,cls)=>'<g transform="translate('+x+' '+y+') rotate('+rot+')"><g class="float '+(cls||'')+'">'+
+    '<rect class="ink" x="-6" y="-92" width="30" height="96" rx="15"/><rect class="ink" x="30" y="-108" width="30" height="112" rx="15"/>'+
+    '<rect class="ink" x="66" y="-98" width="30" height="102" rx="15"/><rect class="ink" x="100" y="-76" width="28" height="82" rx="14"/>'+
+    '<path class="ink" d="M-6 -6 C-40 -30 -64 -10 -52 14 C-44 34 -12 40 -6 56 L128 56 L128 -6 Z"/></g></g>';
+  const net=(pts,edges,flow)=>'<g>'+edges.map(e=>'<line class="ln'+(flow?' flow':'')+'" x1="'+pts[e[0]][0]+'" y1="'+pts[e[0]][1]+'" x2="'+pts[e[1]][0]+'" y2="'+pts[e[1]][1]+'"/>').join('')+
+    pts.map(p=>'<circle class="nd" cx="'+p[0]+'" cy="'+p[1]+'" r="'+p[2]+'"/>').join('')+'</g>';
+  const svg=(flip)=>'<svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g'+(flip?' transform="translate(1600 0) scale(-1 1)"':'')+'>'+
+    // top-left network
+    net([[60,64,24],[250,128,20],[130,214,28],[430,56,18],[340,200,16]],[[0,1],[0,2],[1,2],[1,3],[1,4]],true)+
+    // top-right network + reaching hand
+    net([[1560,210,22],[1400,120,24],[1290,196,18],[1180,70,16]],[[0,1],[1,2],[1,3],[2,0]],true)+
+    hand(1490,150,160,'')+
+    // bottom-left: hand and a person made of nodes
+    hand(30,775,-8,'b')+
+    '<g transform="translate(190 0)"><g class="float b"><path class="ink nf" d="M170 840 C170 790 200 770 235 770 C270 770 300 790 300 840"/><circle class="ink" cx="235" cy="738" r="30"/>'+
+    '<circle class="nd" cx="215" cy="806" r="7"/><circle class="nd" cx="255" cy="812" r="7"/><circle class="nd" cx="235" cy="780" r="6"/>'+
+    '<line class="ln" x1="215" y1="806" x2="255" y2="812" style="stroke-width:3"/><line class="ln" x1="235" y1="780" x2="215" y2="806" style="stroke-width:3"/></g></g>'+
+    // bottom-centre: steps
+    '<g class="float"><rect class="ink" x="690" y="740" width="220" height="30"/><rect class="ink" x="660" y="770" width="280" height="30"/><rect class="ink" x="630" y="800" width="340" height="30"/><rect class="ink" x="600" y="830" width="400" height="40"/></g>'+
+    // bottom-right: small icon boards
+    '<g class="float b"><rect class="ink" x="1380" y="660" width="70" height="70" rx="4"/><circle class="ink nf" cx="1415" cy="695" r="16"/><circle cx="1415" cy="695" r="6" fill="#14182B"/>'+
+    '<rect class="ink" x="1460" y="680" width="100" height="76" rx="4"/><ellipse class="ink nf" cx="1510" cy="718" rx="30" ry="16"/><circle class="blink" cx="1510" cy="718" r="9" fill="#14182B"/>'+
+    '<rect class="ink" x="1388" y="744" width="46" height="46" rx="4"/><path class="ink nf" d="M1400 756 V778 H1422"/></g>'+
+    '</g></svg>';
+  document.querySelectorAll('.cover-art').forEach(el=>{el.innerHTML=svg(el.dataset.flip==='1')});
+})();
+
+</script>
+</body>
+</html>

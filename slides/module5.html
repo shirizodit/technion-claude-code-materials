@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>יום ב׳ · מודול 5 — שרשרת עם שער אנושי</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="day1.css">
+<style>
+.flow.g .step{padding:22px 14px}.flow.g .step b{font-size:28px;direction:ltr}.flow.g .step span{font-size:23px}
+.flow .step.gate{background:#FFF6DC;border-color:var(--gold)}.flow .step.gate b{color:#9A7A22;direction:rtl}
+.code.sk{font-size:23px;padding:22px 26px}
+.code.he.sm{font-size:25px;padding:22px 30px}.code .stg{display:block;font-family:var(--mono);direction:ltr;text-align:left;color:#8C97B8;font-size:22px;margin-bottom:4px}
+.stop{background:#FFF6DC;border:2px solid var(--gold);border-radius:16px;padding:14px 24px;font-size:26px;margin-top:16px}
+</style>
+</head>
+<body data-start="1" data-total="147" data-day="ב׳" data-prev="module4.html" data-next="module6.html">
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="spark" viewBox="0 0 100 100"><g fill="currentColor">
+    <rect x="46" y="4" width="8" height="40" rx="4"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(30 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(60 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(90 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(120 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(150 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(180 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(210 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(240 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(270 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(300 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(330 50 50)"/>
+  </g></symbol>
+</svg>
+
+<div id="stage">
+
+<!-- 1 -->
+<!-- Day 2 opening -->
+<section class="slide cover-bg" data-mod="5">
+  <div class="cover-art" data-flip="1"></div>
+  <div class="cover-logos"><img src="../assets/technion-logo.png" alt="הטכניון, מכון טכנולוגי לישראל"><span class="sep"></span><img class="aid" src="../assets/ai-days-logo.png" alt="ימי AI בטכניון"></div>
+  <div class="body cover">
+    <div class="cover-text">
+      <div class="cover-day">יום ב׳ - מחברים ובונים</div>
+      <h1>Claude Code for Everyone</h1>
+      <p class="mt cover-author" style="font-size:30px"><strong>שירי זוהר</strong> <span class="muted">· AI Corporate Apps Lead, monday.com</span></p>
+    </div>
+    <div class="cc-mascot" data-say="ברוכים השבים!|היום Claude יוצא מהתיקייה|נחבר אותו ליומן, לקבצים ולרשת|בסוף היום יש לכם תהליך משלכם"></div>
+  </div>
+  </section>
+
+<section class="slide divider" data-mod="5">
+  <div class="num">5</div>
+  <h1>שרשרת של Skills עם שער אנושי</h1>
+  <p class="lead">שרשרת של שלבים, וביניהם עצירה אחת שבה אתם מחליטים. בסוף השעה יש לכם שרשרת שעובדת על חומר אמיתי שלכם.</p>
+  </section>
+
+<!-- 2 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5</span> · חוזרים רגע</div>
+  <h2>מה יש לנו מאתמול</h2>
+  <div class="body">
+    <div class="grid g4">
+      <div class="card"><div class="icon">01</div><h3>לולאת הסוכן</h3><p>קורא, פועל, בודק, וחוזר חלילה.</p></div>
+      <div class="card"><div class="icon">02</div><h3><span class="en">CLAUDE.md</span></h3><p>הזיכרון הקבוע של התיקייה.</p></div>
+      <div class="card"><div class="icon">03</div><h3>מצב תכנון</h3><p>קודם תוכנית, אחר כך אישור.</p></div>
+      <div class="card acc"><div class="icon">04</div><h3>Skills</h3><p>בקשה שחוזרת, בפקודה אחת.</p></div>
+    </div>
+    <p class="mt lead">היום: מחברים כמה Skills לשרשרת אחת, ומכניסים לתוכה את מצב התכנון כשער.</p>
+  </div>
+  </section>
+
+<!-- 3 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5</span> · למה שרשרת</div>
+  <h2>משימה גדולה לא נכנסת ל-Skill אחד</h2>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card"><span class="badge demo">הכול בבקשה אחת</span>
+        <p class="mt">״קרא 30 מאמרים, תבחר, תחלץ ותכתוב סקירה.״ Claude רץ עד הסוף, ואם טעה בשלב 1, הטעות כבר בתוך הסקירה.</p></div>
+      <div class="card acc"><span class="badge">שלבים עם עצירה</span>
+        <p class="mt">כל שלב כותב קובץ ועוצר. אתם בודקים, מאשרים, ורק אז השלב הבא מתחיל.</p></div>
+    </div>
+    <div class="example mt"><div class="who">הדימוי</div><p>פס ייצור עם בקר איכות באמצע. המכונות מהירות, אבל מישהו מסתכל על החלק לפני שהוא נצבע.</p></div>
+  </div>
+  </section>
+
+<!-- 4 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5</span> · השער האנושי</div>
+  <h2>ההרגל מאתמול, עכשיו בתוך השרשרת</h2>
+  <div class="body">
+    <div class="flow">
+      <div class="step"><b>Claude מציע</b><span>כותב תוכנית לקובץ</span></div><div class="arrow">←</div>
+      <div class="step gate"><b>🛑 עצירה</b><span>אתם קוראים, מתקנים ומאשרים</span></div><div class="arrow">←</div>
+      <div class="step"><b>Claude מבצע</b><span>רק מה שאישרתם</span></div>
+    </div>
+    <p class="mt lead">זה מצב התכנון מאתמול, רק שהפעם הוא חלק קבוע מהשרשרת ולא משהו שצריך לזכור.</p>
+    <p class="mt hint">⚡ נסו עכשיו: איפה במשימה האחרונה שלכם היה כדאי לעצור ולבדוק לפני שממשיכים?</p>
+  </div>
+  </section>
+
+<!-- 5 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5</span> · השרשרת</div>
+  <h2>איך נראית שרשרת עם שער</h2>
+  <div class="body">
+    <div class="flow g">
+      <div class="step"><b>קלט</b><span>הקובץ הגולמי</span></div><div class="arrow">←</div>
+      <div class="step"><b>שלב 1</b><span>מציע תוכנית</span></div><div class="arrow">←</div>
+      <div class="step gate"><b>🛑 שער</b><span>אתם מאשרים</span></div><div class="arrow">←</div>
+      <div class="step"><b>שלב 2</b><span>מבצע</span></div><div class="arrow">←</div>
+      <div class="step"><b>שלב 3</b><span>מדווח</span></div>
+    </div>
+    <ul class="clean mt">
+      <li>כל שלב הוא <strong>Skill</strong> נפרד. שלושה Skills ושער אחד.</li>
+      <li>השלבים מדברים דרך <strong>קבצים</strong>: כל שלב כותב קובץ והבא קורא אותו.</li>
+      <li>אתם מקבלים רק את הקלט הגולמי. את כל השאר בונים בשעה הקרובה.</li>
+    </ul>
+  </div>
+  </section>
+
+<!-- 6 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5</span> · שלב 0</div>
+  <h2>כל שרשרת מתחילה ב-CLAUDE.md</h2>
+  <div class="body">
+    <div class="grid g2" style="align-items:center">
+      <ul class="clean">
+        <li>חוקי הבית של התיקייה, לפני שיש ולו Skill אחד</li>
+        <li>כל השלבים יקראו אותם אוטומטית</li>
+        <li>החוק הכי חשוב: <strong>לא ממציאים</strong></li>
+      </ul>
+      <div class="callouts">
+        <div class="callout"><strong>פלט</strong><span>קבצי markdown, או דוח <span class="en">HTML</span> אחד</span></div>
+        <div class="callout"><strong>קלט</strong><span>קבצי המקור לא משתנים אף פעם</span></div>
+        <div class="callout"><strong>כל שלב</strong><span>כותב קובץ לפני שהבא מתחיל</span></div>
+      </div>
+    </div>
+    <p class="mt hint">⚡ המבנה הזה זהה לכל שלוש הצנרות. את ה-CLAUDE.md כותבים פעם אחת.</p>
+  </div>
+  </section>
+
+<!-- 7 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5</span> · שלב 0</div>
+  <h2>הבקשה: כתוב את ה-CLAUDE.md</h2>
+  <div class="body">
+    <div class="code he"><button class="copy">העתק</button>כתוב קובץ CLAUDE.md לתיקייה הזאת.
+המוסכמות:
+- הפלט הוא קבצי markdown (או דוח report.html אחד עצמאי)
+- קבצי הקלט נשארים בתיקייה, ואף פעם לא משנים את הקלט הגולמי
+- לעולם אל תמציא עובדות, ניסיון או ציטוטים.
+אם לא ידוע, כתוב שלא ידוע
+- כל שלב כותב את הקובץ שלו לפני שהשלב הבא רץ
+בסוף עצור והראה לי את הקובץ.</div>
+    <div class="done-when">✅ <strong>סיימתם כש:</strong> <code>CLAUDE.md</code> יושב בתיקייה הראשית, ו-Claude עצר והראה אותו לפני שהמשיך.</div>
+  </div>
+  </section>
+
+<!-- 8 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5</span> · בוחרים שרשרת</div>
+  <h2>שלוש צנרות עם שער, בחרו אחת</h2>
+  <div class="body">
+    <div class="grid g3">
+      <div class="card acc"><div class="icon">A</div><h3>סקירת ספרות</h3><p>מחקר · שער סינון. מסננים מאמרים לפי הקריטריונים שלכם, מחלצים ראיות וכותבים סקירה.</p></div>
+      <div class="card acc"><div class="icon">B</div><h3>ניקוי נתונים</h3><p>נתונים · שער אישור. מציעים תוכנית ניקוי, אתם מאשרים, ורק אז נוגעים בקובץ.</p></div>
+      <div class="card"><div class="icon">C</div><h3>קורות חיים</h3><p>קריירה · שער אמת. להתאמת קו״ח לפרסום של התמחות, בלי להמציא ניסיון.</p></div>
+    </div>
+    <p class="mt lead">אין תשובה נכונה. בחרו את מה שהכי דומה למה שתעשו השבוע.</p>
+  </div>
+  </section>
+
+<!-- 9 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5</span> · אפשרות A · סקירת ספרות</div>
+  <h2>סוקרים מאמרים, ועוצרים לפני החילוץ</h2>
+  <div class="body">
+    <div class="flow g">
+      <div class="step"><b>screen-papers</b><span>מחליט: כן או לא, ולמה</span></div><div class="arrow">←</div>
+      <div class="step gate"><b>🛑 שער סינון</b><span>אתם מאשרים רשימה</span></div><div class="arrow">←</div>
+      <div class="step"><b>extract-evidence</b><span>שאלה, שיטה, תוצאה</span></div><div class="arrow">←</div>
+      <div class="step"><b>synthesize-review</b><span>סקירה אחת</span></div>
+    </div>
+    <div class="grid g2 mt">
+      <div class="card"><span class="badge">קלט</span><p class="mt"><code>papers/*.txt</code> + <code>review-brief.md</code> (שאלת המחקר והקריטריונים)</p></div>
+      <div class="card acc"><span class="badge">פלט</span><p class="mt"><code>review.md</code>, רק מהמאמרים שאישרתם</p></div>
+    </div>
+  </div>
+  </section>
+
+<!-- 10 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5</span> · אפשרות A · שלב 1</div>
+  <h2>סינון המאמרים</h2>
+  <div class="body">
+    <div class="code he sm"><button class="copy">העתק</button>בנה Skill בשם screen-papers.
+לכל קובץ בתיקייה papers/, קרא והחלט אם להכליל (INCLUDE) או להוציא (EXCLUDE) לפי הקריטריונים ב-review-brief.md.
+כתוב את screening.md כטבלה: מאמר · החלטה · סיבה בשורה אחת · ביטחון (גבוה/נמוך).
+סמן לי כל החלטה בביטחון נמוך.</div>
+    <div class="stop">🛑 <strong>שער:</strong> עברו על ההחלטות בביטחון נמוך, שנו מה שצריך, ואשרו את הרשימה הסופית. רק מאמרים מאושרים עוברים לשלב 2.</div>
+    <p class="mt hint">⚡ נסו עכשיו: האם ב-<code>review-brief.md</code> שלכם יש קריטריון ברור אחד שאפשר לבדוק?</p>
+  </div>
+  </section>
+
+<!-- 11 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5</span> · אפשרות A · שלבים 2 ו-3</div>
+  <h2>חילוץ ראיות וכתיבת הסקירה</h2>
+  <div class="body">
+    <div class="code he sm"><button class="copy">העתק</button><span class='stg'>STAGE 2 · extract-evidence</span>בנה Skill בשם extract-evidence.
+רק למאמרים המאושרים, חלץ: שאלת מחקר, שיטה, תוצאה מרכזית (עם המספר אם מצוין) ומגבלה אחת.
+כתוב evidence.md, בלוק אחד לכל מאמר, עם ציטוט המשפט המקורי לכל תוצאה.</div>
+    <div class="code he sm"><button class="copy">העתק</button><span class='stg'>STAGE 3 · synthesize-review</span>בנה Skill בשם synthesize-review.
+קרא את evidence.md וענה על השאלה מה-brief בקובץ review.md: טבלת השוואה בין המאמרים, סינתזה בשתי פסקאות ושאלות פתוחות.
+ציין את שמות המאמרים בגוף הטקסט.
+אל תמציא כלום.</div>
+    <p class="mt muted">בדיקה: בחרו בלוק אחד ב-<code>evidence.md</code> והשוו מול המאמר המקורי.</p>
+  </div>
+  </section>
+
+<!-- 12 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5</span> · אפשרות B · ניקוי נתונים</div>
+  <h2>מנקים נתונים, ועוצרים לפני שנוגעים</h2>
+  <div class="body">
+    <div class="flow g">
+      <div class="step"><b>profile-csv</b><span>מפרט מה לא תקין</span></div><div class="arrow">←</div>
+      <div class="step gate"><b>🛑 שער אישור</b><span>אתם מאשרים תוכנית</span></div><div class="arrow">←</div>
+      <div class="step"><b>apply-cleaning</b><span>מנקה לפי התוכנית</span></div><div class="arrow">←</div>
+      <div class="step"><b>report-csv</b><span>דוח עם גרפים</span></div>
+    </div>
+    <div class="grid g2 mt">
+      <div class="card"><span class="badge">קלט</span><p class="mt"><code>raw.csv</code>, קובץ מדידות מבולגן עם חריג אחד מוזר בשורה 11</p></div>
+      <div class="card acc"><span class="badge">פלט</span><p class="mt"><code>report.html</code>, על הנתונים שאישרתם בלבד</p></div>
+    </div>
+  </div>
+  </section>
+
+<!-- 13 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5</span> · אפשרות B · שלב 1</div>
+  <h2>פרופיל והצעת ניקוי</h2>
+  <div class="body">
+    <div class="code he sm"><button class="copy">העתק</button>בנה Skill בשם profile-csv.
+קרא את raw.csv וכתוב cleaning-plan.md: לכל עמודה, הסוג והאחוז החסר; כל שורה שהיית מוחק ולמה (ריקה, הערה, ערך חסר); וכל חריג עם הערך שלו.
+תציע בלבד, אל תשנה כלום.</div>
+    <div class="stop">🛑 <strong>שער:</strong> אשרו או ערכו את התוכנית. בשורה 11 (תפוקה 99.8, טמפרטורה 38.7): ריצה אמיתית או תקלת חיישן? שום דבר לא נמחק עד שתגידו.</div>
+    <p class="mt hint">⚡ נסו עכשיו: איזה חריג בנתונים שלכם הייתם רוצים שמישהו יעצור ויבדוק?</p>
+  </div>
+  </section>
+
+<!-- 14 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5</span> · אפשרות B · שלבים 2 ו-3</div>
+  <h2>ניקוי לפי התוכנית, ודוח</h2>
+  <div class="body">
+    <div class="code he sm"><button class="copy">העתק</button><span class='stg'>STAGE 2 · apply-cleaning</span>בנה Skill בשם apply-cleaning.
+הפעל רק את התוכנית המאושרת: כתוב clean.csv ו-applied-log.md (שורה לכל שינוי, עם מספר השורה).
+ספור שורות לפני ואחרי.
+התקן את pandas רק אם חסר.</div>
+    <div class="code he sm"><button class="copy">העתק</button><span class='stg'>STAGE 3 · report-csv</span>בנה Skill בשם report-csv.
+מ-clean.csv כתוב report.html עצמאי: טבלת סטטיסטיקה (ספירה, ממוצע, סטיית תקן, מינימום ומקסימום לכל עמודה), היסטוגרמה לכל עמודה מספרית, וסיכום בשני משפטים.
+התקן pandas ו-matplotlib רק אם חסרים.</div>
+    <p class="mt muted">בדיקה: מספר השורות שנמחקו ב-<code>applied-log.md</code> זהה למה שאישרתם. פתחו את <code>report.html</code> בדפדפן.</p>
+  </div>
+  </section>
+
+<!-- 15 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5</span> · אפשרות C · קורות חיים</div>
+  <h2>מתאימים קורות חיים להתמחות, בלי להמציא</h2>
+  <div class="body">
+    <div class="flow g">
+      <div class="step"><b>extract-requirements</b><span>מה המשרה דורשת</span></div><div class="arrow">←</div>
+      <div class="step gate"><b>🛑 שער ראשון</b><span>אתם קובעים עדיפויות</span></div><div class="arrow">←</div>
+      <div class="step"><b>match-and-plan</b><span>מה כבר יש, מה חסר</span></div><div class="arrow">←</div>
+      <div class="step gate"><b>🛑 שער אמת</b><span>מה נכון להדגיש</span></div>
+    </div>
+    <div class="grid g2 mt">
+      <div class="card"><span class="badge">קלט</span><p class="mt"><code>job-posting.md</code> (פרסום של התמחות) + <code>master-resume.md</code></p></div>
+      <div class="card acc"><span class="badge">פלט</span><p class="mt"><code>resume-tailored.md</code> + <code>match-report.md</code></p></div>
+    </div>
+  </div>
+  </section>
+
+<!-- 16 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5</span> · אפשרות C · שלבים 1 ו-2</div>
+  <h2>דרישות והתאמה</h2>
+  <div class="body">
+    <div class="code he sm"><button class="copy">העתק</button><span class='stg'>STAGE 1 · extract-requirements</span>בנה Skill בשם extract-requirements.
+קרא את job-posting.md וכתוב requirements.md: כישורי חובה, יתרונות, ומילות המפתח המדויקות שהפרסום משתמש בהן (בשביל מערכות סינון).
+סמן כל דרישה כחובה או כיתרון.</div>
+    <div class="stop">🛑 <strong>שער:</strong> אשרו את סדר העדיפויות והוסיפו הקשר שהפרסום רומז אליו ולא אומר. אתם קובעים מה חשוב.</div>
+    <div class="code he sm"><button class="copy">העתק</button><span class='stg'>STAGE 2 · match-and-plan</span>בנה Skill בשם match-and-plan.
+השווה את master-resume.md ל-requirements.md וכתוב match-report.md: לכל דרישה, מה קורות החיים כבר מראים (ציטוט הנקודה), פערים, ותוכנית התאמה: אילו נקודות להוביל איתן ואילו לנסח מחדש.
+הצע בלבד.</div>
+  </div>
+  </section>
+
+<!-- 17 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5</span> · אפשרות C · שלב 3</div>
+  <h2>התאמה אחרונה, רק מה שאושר</h2>
+  <div class="body">
+    <div class="stop">🛑 <strong>שער:</strong> אשרו את התוכנית. דחו כל דבר שמגזים. אתם מחליטים מה נכון להדגיש, ואין המצאות.</div>
+    <div class="code he"><button class="copy">העתק</button><span class='stg'>STAGE 3 · tailor-resume</span>בנה Skill בשם tailor-resume.
+הפעל רק את התוכנית המאושרת וכתוב resume-tailored.md: סדר מחדש ונסח מחדש את התוכן האמיתי של קורות החיים המקוריים לפי מילות המפתח של הפרסום, בעמוד אחד.
+אל תוסיף ניסיון שלא כתוב במקור.</div>
+    <div class="done-when">✅ <strong>סיימתם כש:</strong> קראתם את <code>resume-tailored.md</code> לצד המקור, ואין בו שום דבר שלא קרה.</div>
+  </div>
+  </section>
+
+<!-- 18 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5</span> · המתזמר</div>
+  <h2>Skill אחד שמריץ את כולם ועוצר בשער</h2>
+  <div class="body">
+    <div class="grid g2" style="align-items:center">
+      <div class="code sk">---
+name: cleaning-pipeline
+description: Raw CSV -> cleaned report
+argument-hint: [path-to-raw-csv]
+---
+Run in order; each stage reads
+the previous output.
+1. Profile: run profile-csv
+   STOP. Show me the plan, ASK.
+2. Apply: run apply-cleaning
+3. Report: run report-csv</div>
+      <div class="callouts">
+        <div class="callout"><strong>מריץ בסדר</strong><span>כל שלב קורא את הפלט של קודמו</span></div>
+        <div class="callout"><strong>STOP</strong><span>שורה אחת שעוצרת ושואלת אתכם</span></div>
+        <div class="callout"><strong>מפעילים בפקודה</strong><span>אחת, והשרשרת כולה רצה</span></div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+<!-- 19 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5</span> · המתזמר</div>
+  <h2>הבקשה: בנה את המתזמר</h2>
+  <div class="body">
+    <div class="code he"><button class="copy">העתק</button>בנה Skill מתזמר בשם [שם]-pipeline בתיקייה .claude/skills/. הוא מקבל את הנתיב לקלט, ומריץ את שלושת ה-Skills של השלבים לפי הסדר: כל שלב קורא את הפלט של הקודם.
+אחרי שלב 1 עצור (STOP), הראה לי את הקובץ ושאל אם לאשר או לערוך.
+המשך רק אחרי התשובה שלי.
+בסוף רשום כל קובץ פלט, ופתח את הדוח או הקובץ הסופי.</div>
+    <div class="done-when">✅ <strong>סיימתם כש:</strong> הפעלתם את המתזמר, הוא עצר בשער, חיכה לכם, וקיבלתם את הקובץ הסופי.</div>
+    <p class="mt hint">⚡ בונוס: הוסיפו שער נוסף לפני השלב האחרון</p>
+  </div>
+  </section>
+
+<!-- 20 -->
+<section class="slide workshop" data-mod="5">
+  <div class="kicker"><span class="badge work">Workshop 5</span> <span class="timer">35:00</span></div>
+  <h2>בונים שרשרת עם שער אנושי</h2>
+  <div class="body">
+    <div class="machine">
+      <span class="part on">📁 תיקיית קלט</span><span class="part on">🧠 CLAUDE.md</span><span class="part">🧩 Skills לשלבים</span>
+      <span class="part">🛑 שער אנושי</span><span class="part">🎼 מתזמר</span>
+    </div>
+    <p class="lead mt">המטרה: שרשרת אחת שעובדת מקצה לקצה, עם עצירה שבה אתם מחליטים.</p>
+    <p class="mt muted">בוחרים אפשרות אחת (A, B או C), ופותחים את <code>pipeline-starter/</code>: יש בה רק את הקלט.</p>
+  </div>
+  </section>
+
+<!-- 21 -->
+<section class="slide workshop" data-mod="5">
+  <div class="kicker"><span class="badge work">Workshop 5</span> · שלבים</div>
+  <h2>חמישה צעדים</h2>
+  <div class="body">
+    <ol class="steps">
+      <li>פתחו את <code>pipeline-starter/</code> ובחרו אפשרות אחת. הקלט כבר שם</li>
+      <li>שלב 0: הדביקו את בקשת ה-CLAUDE.md</li>
+      <li>בנו את שלושת ה-Skills מהבקשות, ובדקו כל אחד לפני שממשיכים</li>
+      <li>בנו את המתזמר שמריץ אותם בסדר ועוצר בשער</li>
+      <li>הריצו מקצה לקצה, ענו בשער, ופתחו את הקובץ הסופי</li>
+    </ol>
+  </div>
+  </section>
+
+<!-- 22 -->
+<section class="slide workshop" data-mod="5">
+  <div class="kicker"><span class="badge work">Workshop 5</span> · בדיקות</div>
+  <h2>איך יודעים שזה עובד</h2>
+  <div class="body">
+    <div class="callouts">
+      <div class="callout"><strong>כל Skill לבד</strong><span>פותחים את הקובץ שהוא כתב. הוא מה שציפיתם?</span></div>
+      <div class="callout"><strong>השער באמת עוצר</strong><span>השרשרת מחכה לתשובה שלכם ולא ממשיכה לבד</span></div>
+      <div class="callout"><strong>אין המצאות</strong><span>בוחרים פריט אחד בפלט ובודקים מול המקור</span></div>
+    </div>
+    <div class="done-when">✅ <strong>סיימתם כש:</strong> יש לכם <code>CLAUDE.md</code>, שלושה Skills, מתזמר שעצר בשער, וקובץ סופי שבדקתם מול המקור.</div>
+    <p class="hint">⚡ נתקעתם? הדביקו ל-Claude את ההודעה ושאלו: ״מה השלב שנכשל, ומה לתקן בבקשה?״</p>
+  </div>
+  </section>
+
+<!-- 23 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="badge flash">Flashcards</span> · לחצו על כרטיס כדי להפוך</div>
+  <h2>בודקים שזה נקלט</h2>
+  <div class="flash-grid">
+    <div class="fc"><div class="in"><div class="f">שרשרת</div><div class="b">כמה Skills בשרשרת, כל אחד כותב קובץ והבא קורא אותו.</div></div></div>
+    <div class="fc"><div class="in"><div class="f">שער אנושי</div><div class="b">עצירה שבה Claude מציג ושואל, ואתם מחליטים.</div></div></div>
+    <div class="fc"><div class="in"><div class="f">למה קבצים בין שלבים</div><div class="b">אפשר לפתוח, לבדוק ולתקן בכל רגע.</div></div></div>
+    <div class="fc"><div class="in"><div class="f">מתזמר</div><div class="b">Skill שמריץ את השלבים בסדר ועוצר ב-STOP.</div></div></div>
+    <div class="fc"><div class="in"><div class="f">איפה שמים שער</div><div class="b">לפני שלב שקשה לבטל או שמסתמך על שיפוט.</div></div></div>
+    <div class="fc"><div class="in"><div class="f">חוק ה״לא ממציאים״</div><div class="b">נכתב ב-CLAUDE.md, ותקף בכל שלב.</div></div></div>
+  </div>
+  </section>
+
+<!-- 24 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="badge quiz">Quiz 1/2</span></div>
+  <div class="body">
+    <div class="q">נועה בונה שרשרת לניקוי נתוני מעבדה. איפה הכי נכון לשים את השער?</div>
+    <div class="opts" data-quiz>
+      <button class="opt"><span class="l">א</span>אחרי השלב האחרון, לפני שמדפיסים</button>
+      <button class="opt" data-correct><span class="l">ב</span>אחרי שלב הפרופיל, לפני שמוחקים שורות</button>
+      <button class="opt"><span class="l">ג</span>לפני שלב הפרופיל</button>
+      <button class="opt"><span class="l">ד</span>בכל שורה בכל קובץ</button>
+    </div>
+    <div class="explain">השער נמצא לפני הפעולה שקשה לבטל. אחרי הפרופיל Claude מציע תוכנית, ואתם מאשרים לפני שנוגעים בנתונים.</div>
+  </div>
+  </section>
+
+<!-- 25 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="badge quiz">Quiz 2/2</span></div>
+  <div class="body">
+    <div class="q">מה מבדיל מתזמר עם שער מבקשה אחת גדולה?</div>
+    <div class="opts" data-quiz>
+      <button class="opt"><span class="l">א</span>הוא מהיר יותר</button>
+      <button class="opt" data-correct><span class="l">ב</span>הוא עוצר בשער ומחכה לאישור שלכם</button>
+      <button class="opt"><span class="l">ג</span>הוא לא צריך CLAUDE.md</button>
+      <button class="opt"><span class="l">ד</span>הוא יודע את התשובה מראש</button>
+    </div>
+    <div class="explain">המתזמר מריץ שלבים ועוצר איפה שקבעתם. הבקשה האחת רצה עד הסוף בלי שאתם רואים את האמצע.</div>
+  </div>
+  </section>
+
+<!-- 26 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5</span> · סיכום</div>
+  <h2>מה עכשיו יש לכם</h2>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card acc"><h3>✔ למדנו</h3><p>שרשרת: שלבים שמדברים דרך קבצים, <span class="en">CLAUDE.md</span> שקובע חוקים, ושער אנושי לפני כל מה שקשה לבטל.</p></div>
+      <div class="card"><h3>✔ בנינו</h3><p><span class="en">CLAUDE.md</span> + <span class="en">Skills</span> לכל שלב + מתזמר שעוצר בשער ומחכה לכם.</p></div>
+    </div>
+    <div class="example mt">
+      <div class="who">אבל…</div>
+      <p>עד עכשיו הכול נשאר בתיקייה אחת. מה אם השרשרת צריכה נתונים מהאינטרנט, מהמייל או מכלי שאתם משתמשים בו? <strong>זה מודול 6: מחברים את Claude לעולם שבחוץ.</strong></p>
+    </div>
+  </div>
+  </section>
+
+<div id="progress"></div>
+</div><!-- /stage -->
+
+<div id="nav"><button id="prev">→ הקודם</button><button id="fs">⛶</button><button id="next">הבא ←</button></div>
+<script src="day1.js"></script>
+</body>
+</html>
