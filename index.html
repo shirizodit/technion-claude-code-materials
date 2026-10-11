@@ -1,0 +1,1781 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Code for Everyone · חומרי הקורס לסטודנטים</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F8F9FF; --paper:#FFFFFF; --ink:#0C1B3A; --muted:#4A5578; --line:#E1E6F2;
+  --orange:#D97757; --orange-soft:#FBEDE7;
+  --blue:#2F6FEB;   --blue-soft:#E8F0FE;
+  --green:#1F9D6B;  --green-soft:#E3F5EC;
+  --gold:#C9A84C;   --gold-soft:#FAF3DF;
+  --purple:#7B5CD6; --purple-soft:#F0EBFC;
+  --teal:#0E8FA3;   --teal-soft:#E0F4F7;
+  --red:#D64545;    --red-soft:#FCEAEA;
+  --acc:var(--orange); --acc-soft:var(--orange-soft);
+  --sans:"Rubik","Heebo","Segoe UI",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:18px;line-height:1.65}
+a{color:inherit}
+code{font-family:var(--mono);font-size:.88em;background:var(--acc-soft);padding:1px 7px;border-radius:6px;direction:ltr;unicode-bidi:isolate}
+.wrap{max-width:900px;margin:0 auto;padding:0 20px}
+
+/* top nav */
+.top{position:sticky;top:0;z-index:20;background:rgba(248,249,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;gap:8px;align-items:center;padding-top:12px;padding-bottom:12px;overflow-x:auto}
+.top a{flex:none;text-decoration:none;font-weight:600;font-size:16px;padding:7px 16px;border-radius:99px;background:var(--paper);border:1px solid var(--line)}
+.top a:hover{border-color:var(--ink)}
+.top a.m1{border-color:var(--orange);color:var(--orange)} .top a.m2{border-color:var(--blue);color:var(--blue)} .top a.m3{border-color:var(--green);color:var(--green)}
+.top a.m4{border-color:var(--purple);color:var(--purple)} .top a.m5{border-color:var(--red);color:var(--red)} .top a.m6{border-color:var(--teal);color:var(--teal)} .top a.m7{border-color:var(--blue);color:var(--blue)} .top a.m8{border-color:var(--orange);color:var(--orange)}
+.top .prog{margin-inline-start:auto;flex:none;font-size:15px;color:var(--muted);padding-inline-start:12px}
+
+/* hero */
+.hero{padding:48px 0 12px}
+.eyebrow{font-weight:700;font-size:15px;letter-spacing:.06em;color:var(--orange)}
+h1{font-size:clamp(32px,6vw,52px);line-height:1.15;margin:8px 0 14px;font-weight:800}
+.lead{font-size:21px;color:var(--muted);max-width:720px}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:26px 0}
+.how div{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px;font-size:16.5px}
+.how b{display:block;font-size:18px;margin-bottom:2px}
+
+/* module blocks */
+.mod{padding:56px 0 8px}
+.mod.m1{--acc:var(--orange);--acc-soft:var(--orange-soft)}
+.mod.m2{--acc:var(--blue);--acc-soft:var(--blue-soft)}
+.mod.m3{--acc:var(--green);--acc-soft:var(--green-soft)}
+.mod.m4{--acc:var(--purple);--acc-soft:var(--purple-soft)}
+.mod.m5{--acc:var(--red);--acc-soft:var(--red-soft)}
+.mod.m6{--acc:var(--teal);--acc-soft:var(--teal-soft)}
+.mod.m7{--acc:var(--blue);--acc-soft:var(--blue-soft)}
+.mod.m8{--acc:var(--orange);--acc-soft:var(--orange-soft)}
+.mhead{border-top:8px solid var(--acc);background:var(--paper);border-radius:0 0 20px 20px;padding:26px 28px;box-shadow:0 6px 24px rgba(12,27,58,.06)}
+.mhead .num{font-size:15px;font-weight:700;color:var(--acc);letter-spacing:.05em}
+.mhead h2{font-size:clamp(26px,4.5vw,38px);margin:4px 0 8px;line-height:1.2}
+.mhead p{margin:0;color:var(--muted)}
+.mhead .out{display:inline-block;margin-top:12px;background:var(--acc-soft);color:var(--ink);padding:5px 14px;border-radius:99px;font-weight:600;font-size:15.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;padding:0;list-style:none}
+.toc a{font-size:15px;text-decoration:none;padding:5px 12px;border-radius:99px;background:var(--acc-soft)}
+
+h3{font-size:25px;margin:0 0 6px;line-height:1.3}
+.sec{margin-top:34px;background:var(--paper);border:1px solid var(--line);border-inline-start:8px solid var(--acc);border-radius:18px;padding:22px 26px}
+.badge{display:inline-block;font-size:14px;font-weight:700;padding:3px 12px;border-radius:99px;margin-bottom:8px;background:var(--acc-soft);color:var(--ink)}
+.badge.lab{background:var(--green-soft);color:var(--green)} .badge.demo{background:var(--red-soft);color:var(--red)} .badge.idea{background:var(--blue-soft);color:var(--blue)} .badge.ws{background:var(--gold-soft);color:#8a6d1c}
+.goal{color:var(--muted);margin:0 0 12px}
+
+/* steps with checkbox */
+ol.steps{list-style:none;counter-reset:s;padding:0;margin:14px 0}
+ol.steps li{counter-increment:s;display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line)}
+ol.steps li:first-child{border-top:0}
+ol.steps li::before{content:counter(s);flex:none;width:34px;height:34px;border-radius:50%;background:var(--acc);color:#fff;font-weight:700;display:grid;place-items:center;font-size:16px;margin-top:2px}
+ol.steps label{display:flex;gap:10px;cursor:pointer;flex:1}
+ol.steps input{flex:none;width:20px;height:20px;margin-top:6px;accent-color:var(--acc)}
+ol.steps li.done span{opacity:.45;text-decoration:line-through}
+
+/* prompt boxes */
+.prompt{position:relative;margin:14px 0;background:#0F1730;color:#F3F5FF;border-radius:14px;padding:18px 20px 16px;white-space:pre-wrap;font-size:17.5px;line-height:1.7}
+.prompt.ltr{direction:ltr;text-align:left;font-family:var(--mono);font-size:16px}
+.prompt .tag{display:block;font-size:13px;font-weight:700;color:#9AA7D6;margin-bottom:8px;letter-spacing:.04em;white-space:normal}
+.copy{position:absolute;top:10px;left:10px;border:0;border-radius:8px;background:#2A3763;color:#fff;font:600 14px var(--sans);padding:6px 14px;cursor:pointer}
+.copy:hover{background:#3b4a82} .copy.ok{background:var(--green)}
+.prompt .tag{padding-left:80px}
+.prompt .ph{background:rgba(201,168,76,.28);color:#FFE9A8;border-radius:4px;padding:0 4px}
+
+.done{margin-top:14px;border:2px dashed var(--green);border-radius:14px;padding:12px 18px;background:var(--green-soft)}
+.hint{margin:10px 0 0;color:var(--muted);font-size:16.5px}
+.help{margin-top:12px;background:var(--gold-soft);border-radius:12px;padding:10px 16px;font-size:16.5px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:14px 0}
+.card{background:var(--acc-soft);border-radius:14px;padding:14px 18px}
+.card.w{background:var(--paper);border:1px solid var(--line)}
+.card h4{margin:0 0 4px;font-size:19px}
+.card p{margin:0;font-size:16.5px}
+.bad{background:var(--red-soft)} .good{background:var(--green-soft)}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:16.5px}
+th,td{border:1px solid var(--line);padding:9px 12px;text-align:start;vertical-align:top}
+th{background:var(--acc-soft)}
+.warn{background:var(--red-soft);border:2px solid var(--red);border-radius:14px;padding:12px 18px;margin-top:14px}
+.todo{background:#FFE9A8;color:#6b4e00;border-radius:6px;padding:0 8px;font-weight:600;font-size:.92em}
+.where{display:inline-block;margin:0 0 10px;font-size:15px;font-weight:600;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:99px;padding:2px 14px}
+.cmd{margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
+.cmd:first-of-type{border-top:0;padding-top:0}
+.cmd h4{margin:0 0 4px;font-size:22px;direction:ltr;text-align:right}
+.cmd h4 code{font-size:1em;background:var(--acc-soft)}
+.cmd .row{display:grid;grid-template-columns:7.5em 1fr;gap:2px 14px;font-size:16.5px;margin:2px 0}
+.cmd .row b{color:var(--muted);font-weight:600}
+@media (max-width:600px){.cmd .row{grid-template-columns:1fr}}
+dl.gl{margin:10px 0 0;display:grid;grid-template-columns:max-content 1fr;gap:8px 18px;font-size:16.5px}
+dl.gl dt{font-weight:700} dl.gl dd{margin:0}
+@media (max-width:600px){dl.gl{grid-template-columns:1fr}dl.gl dd{margin-bottom:6px}}
+footer{margin:70px 0 50px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:15.5px}
+.reset{background:none;border:1px solid var(--line);border-radius:8px;padding:4px 12px;font:inherit;font-size:14px;color:var(--muted);cursor:pointer}
+@media (max-width:600px){body{font-size:17px}.sec{padding:18px}.mhead{padding:20px}table{display:block;overflow-x:auto}.prompt{font-size:16px;padding-top:44px}.copy{top:8px}.prompt .tag{padding-left:0}}
+@media print{.top,.copy{display:none}.sec{break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<nav class="top"><div class="wrap">
+  <a href="#start">להתחלה</a>
+  <a class="m1" href="#m1">מודול 1</a>
+  <a class="m2" href="#m2">מודול 2</a>
+  <a class="m3" href="#m3">מודול 3</a>
+  <a class="m4" href="#m4">מודול 4</a>
+  <a class="m5" href="#m5">מודול 5</a>
+  <a class="m6" href="#m6">מודול 6</a>
+  <a class="m7" href="#m7">מודול 7</a>
+  <a class="m8" href="#m8">מודול 8</a>
+  <a href="#cmds">פקודות</a>
+  <span class="prog" id="prog"></span>
+</div></nav>
+
+<main class="wrap">
+
+<header class="hero" id="start">
+  <div class="eyebrow">TECHNION AI DAYS · 2026 · יום א׳</div>
+  <h1>Claude Code for Everyone<br>חומרי הקורס</h1>
+  <p class="lead">כל מה שצריך כדי לתרגל לבד: הוראות צעד אחרי צעד, ובקשות מוכנות להעתקה. אפשר לעבוד איתו בזמן השיעור, ולחזור אליו אחר כך.</p>
+  <div class="how">
+    <div><b>1 · עוברים על הצעדים</b>מסמנים וי בכל צעד שסיימתם. ההתקדמות נשמרת בדפדפן שלכם.</div>
+    <div><b>2 · מעתיקים את הבקשה</b>לוחצים "העתק" ומדביקים בחלון של Claude Code. מה שבצהוב — מחליפים בשלכם.</div>
+    <div><b>3 · בודקים "סיימתם כש"</b>בכל תרגיל יש בדיקה פשוטה שאומרת אם הצלחתם.</div>
+  </div>
+
+  <div class="sec" style="--acc:var(--orange);--acc-soft:var(--orange-soft)">
+    <span class="badge">לפני שמתחילים</span>
+    <h3>מה צריך על המחשב</h3>
+    <ol class="steps" data-key="prep">
+      <li><label><input type="checkbox"><span>חשבון Claude Pro ומעלה (Claude Code לא זמין בחשבון החינמי). הרשמה והסבר: <span class="todo">[להוסיף קישור]</span></span></label></li>
+      <li><label><input type="checkbox"><span>VS Code (תוכנה לעבודה עם קבצים ותיקיות) מותקן, עם ההרחבה Claude Code. הסמל שלה מופיע בסרגל הצד השמאלי. הורדה: <span class="todo">[להוסיף קישור]</span></span></label></li>
+      <li><label><input type="checkbox"><span>אופציונלי: אפליקציית Claude Desktop מותקנת ואתם מחוברים אליה (בתרגילים של היום אפשר לעבוד גם רק עם VS Code)</span></label></li>
+      <li><label><input type="checkbox"><span>תיקייה בשם <code>claude-course</code> על המחשב (למשל בשולחן העבודה: קליק ימני ← תיקייה חדשה), שפותחים ב-VS Code: File ← Open Folder</span></label></li>
+      <li><label><input type="checkbox"><span>אופציונלי: אין לכם קבצים משלכם, או שאתם מעדיפים לא להעלות חומר אישי? הורידו את <a href="https://drive.google.com/drive/folders/1wBIdDSXyjY51rwsFPgUfDpbk75b_049Q" target="_blank" rel="noopener"><b>תיקיית הקבצים של נועה (Google Drive)</b></a> למחשב. בתוכה תיקייה לכל מודול, עם הקבצים שהמודול צריך. <b>בוחרים את התיקייה ← Download.</b></span></label></li>
+    </ol>
+    <p class="hint">הכול מוסבר ב<a href="https://claude.ai/artifact/NC7mzf763FKjMS2gpKhgNH" target="_blank" rel="noopener"><b>דף ההכנה לקורס</b></a>. ההתקנה לוקחת כ-30 דקות.</p>
+  </div>
+
+  <div class="sec" style="--acc:var(--blue);--acc-soft:var(--blue-soft)">
+    <span class="badge idea">מילון קצר</span>
+    <h3>מילים שיופיעו בדף, במילים פשוטות</h3>
+    <dl class="gl">
+      <dt>בקשה (פרומפט)</dt><dd>הטקסט שאתם כותבים ל-Claude. בדף כל בקשה מופיעה בתיבה כהה עם כפתור "העתק".</dd>
+      <dt>הלוח של Claude Code</dt><dd>חלון הצ׳אט של Claude בתוך VS Code. פותחים אותו מהסמל בסרגל הצד השמאלי. שם מדביקים את הבקשות.</dd>
+      <dt>טרמינל</dt><dd>חלון שבו מקלידים פקודות במקום ללחוץ על כפתורים. נפתח ב-VS Code דרך View ← Terminal. נשתמש בו רק פעם אחת, ואפשר לדלג.</dd>
+      <dt>Enter</dt><dd>המקש ששולח את מה שהקלדתם.</dd>
+      <dt>פרויקט / תיקייה פתוחה</dt><dd>התיקייה ש-VS Code פתוח עליה. Claude עובד רק על הקבצים שבתוכה.</dd>
+      <dt>הרשאה</dt><dd>כש-Claude רוצה ליצור או לשנות קובץ, הוא שואל אתכם בחלון קטן. מאשרים כשאתם מבינים מה הוא עומד לעשות.</dd>
+      <dt>Plan Mode (מצב תכנון)</dt><dd>מצב שבו Claude רק כותב תוכנית ולא משנה שום קובץ עד שתאשרו. מומלץ להתחיל בו.</dd>
+      <dt>קובץ <code>.md</code></dt><dd>קובץ טקסט רגיל. אפשר ליצור אחד ב-VS Code: File ← New File ← שומרים בשם עם הסיומת <code>.md</code>.</dd>
+      <dt>קובץ <code>.html</code></dt><dd>דף אינטרנט שנפתח בדפדפן בלחיצה כפולה.</dd>
+      <dt><code>@</code>, <code>/clear</code>, <code>/context</code></dt><dd>קיצורים שמקלידים בשיחה. מוסברים במודול 2.</dd>
+          <dt>Skill (סקיל)</dt><dd>תיקייה עם הוראות למשימה אחת שחוזרת, שנפתחת רק כשצריך. כמו כרטיס מתכון במגירה. מפעילים אותו עם /שם.</dd>
+      <dt>SKILL.md</dt><dd>הקובץ היחיד שחייב להיות בתיקייה של Skill. בו כתוב שם, תיאור והוראות.</dd>
+      <dt>תיאור (description)</dt><dd>השורה ב-SKILL.md ש-Claude קורא כדי להחליט מתי להפעיל את ה-Skill. כתבו בה מה הוא עושה ומתי להשתמש בו.</dd>
+      <dt>פלאגין (Plugin)</dt><dd>חבילה שמישהו פרסם, עם Skills ולפעמים עוד דברים. מתקינים אותה דרך /plugin. מתקינים רק ממקור מוכר.</dd>
+      <dt>קטלוג (Marketplace)</dt><dd>רשימה של פלאגינים, בפועל מאגר ב-GitHub. קודם מוסיפים קטלוג, ואז בוחרים ממנו מה להתקין.</dd>
+      <dt>skill-creator</dt><dd>פלאגין שמראיין אתכם ובונה בשבילכם תיקיית Skill שלמה. הכי נוח ל-Skill הראשון.</dd>
+      <dt>שרשרת (Pipeline)</dt><dd>כמה Skills בזה אחר זה, כל אחד עושה שלב אחד וכותב קובץ שהשלב הבא קורא. מודול 5.</dd>
+      <dt>שער אנושי</dt><dd>עצירה באמצע השרשרת שבה Claude מציג מה הוא מתכוון לעשות ואתם מחליטים אם להמשיך. מודול 5.</dd>
+      <dt>מתזמר</dt><dd>Skill שמריץ Skills אחרים לפי סדר ועוצר ב-STOP כדי לשאול אתכם. מודול 5.</dd>
+      <dt>קובץ CSV</dt><dd>קובץ טבלה פשוט: כל שורה היא רשומה והערכים מופרדים בפסיקים. נפתח באקסל או ב-VS Code.</dd>
+      <dt>חריג</dt><dd>ערך שנראה שונה מכל השאר: תקלת מדידה, או תוצאה אמיתית. רק מי שמכיר את הניסוי מחליט.</dd>
+      <dt>MCP</dt><dd>תקע סטנדרטי (כמו USB-C) שמחבר את Claude לאפליקציות ולכלים, כמו יומן, קבצים ואקסל. הקיצור של Model Context Protocol.</dd>
+      <dt>שרת MCP</dt><dd>תוכנה נפרדת שמציעה ל-Claude שירות, כמו "קרא את היומן" או "חפש במסמכים". יכולה לרוץ על המחשב שלכם (מקומי) או באינטרנט (מרוחק).</dd>
+      <dt>Connector</dt><dd>מתג בהגדרות (Settings ← Connectors) שמחבר אפליקציה מוכרת, כמו יומן גוגל או Drive, ל-Claude. מתחברים בדפדפן, בלי פקודה.</dd>
+      <dt>Prompt injection</dt><dd>הוראות נסתרות בתוך תוכן שהובא מבחוץ (דף אינטרנט, מסמך) שמנסות להטעות את Claude. ההגנה: לחבר רק שרתים אמינים, ולאשר פעולות רק כשמבינים אותן.</dd>
+      <dt>uv</dt><dd>כלי קטן שמריץ שרתי פייתון. מתקינים אותו פעם אחת כדי להפעיל את שרת האקסל.</dd>
+      <dt>סוכן-משנה</dt><dd>עוזר של Claude שעובד בחלון שיחה משלו, מקבל משימה קטנה ומחזיר תשובה קצרה. הוא נשמר כקובץ טקסט בתיקייה .claude/agents/.</dd>
+      <dt>תיאור של סוכן (description)</dt><dd>המשפט בקובץ הסוכן שאומר מתי להשתמש בו. Claude קורא אותו כמו מודעת דרושים ומחליט לפיו אם לשלוח לסוכן.</dd>
+      <dt>כלים של סוכן (tools)</dt><dd>הרשימה של מה מותר לסוכן לעשות. חוקר מקבל רק Read, Glob, Grep (קריאה וחיפוש), ולכן לא יכול לשנות קבצים.</dd>
+      <dt>README</dt><dd>קובץ טקסט שמסביר לאדם אחר מה הפרויקט עושה ואיך מריצים אותו. הדף הראשון שרואים ב-GitHub.</dd>
+      <dt>GitHub</dt><dd>אתר חינמי לשמירה ושיתוף של תיקיות פרויקט, כמו כונן משותף למי שבונים דברים.</dd>
+      <dt>Repository (רפו)</dt><dd>תיקיית הפרויקט באתר GitHub. אפשר לבחור שיהיה פרטי (רק מי שתזמינו) או ציבורי.</dd>
+      <dt>Commit ו-Push</dt><dd>Commit שומר תמונת מצב של הפרויקט אצלכם במחשב. Push מעלה אותה לאתר, ורק אז אפשר לשתף כתובת.</dd>
+      <dt>קובץ .gitignore</dt><dd>רשימה של קבצים ש-git לא יעלה לאתר, כדי שסודות ומידע אישי יישארו אצלכם.</dd>
+    </dl>
+  </div>
+
+  <div class="sec" style="--acc:var(--orange);--acc-soft:var(--orange-soft)">
+    <span class="badge">איפה עובדים</span>
+    <h3>איזו תיקייה פתוחה בכל תרגיל</h3>
+    <table>
+      <tr><th>תרגילים</th><th>תיקייה פתוחה ב-VS Code</th></tr>
+      <tr><td>Lab 1.1 עד 1.5 והדמו</td><td><code>claude-course</code></td></tr>
+      <tr><td>Workshop 1 ואילך (מודולים 1–3)</td><td><code>technion-ai</code> (תיקייה חדשה שיוצרים ב-Workshop 1, ובתוכה <code>courses</code> ו-<code>papers</code>)</td></tr>
+    </table>
+    <p class="hint">כדי לפתוח תיקייה אחרת: File ← Open Folder. אחרי החלפה, פותחים שיחה חדשה בלוח.</p>
+  </div>
+</header>
+
+<!-- ======================= MODULE 1 ======================= -->
+<section class="mod m1" id="m1">
+  <div class="mhead">
+    <div class="num">מודול 1</div>
+    <h2>מצ׳אט לסוכן, והאפליקציה הראשונה שלכם</h2>
+    <p>Claude Code הוא סוכן שעובד על הקבצים שלכם: הוא קורא, כותב ובודק. לא רק עונה בצ׳אט.</p>
+    <span class="out">תוצר: תיקיית עבודה, תוכנית לימוד, וכלי לימוד שעובד בדפדפן</span>
+    <ul class="toc">
+      <li><a href="#m1-ideas">רעיונות מרכזיים</a></li>
+      <li><a href="#m1-lab1">Lab 1.1 · לוח Claude Code</a></li>
+      <li><a href="#m1-lab2">Lab 1.2 · טרמינל</a></li>
+      <li><a href="#m1-demo">דמו · טריוויה</a></li>
+      <li><a href="#m1-lab3">Lab 1.3 · הכרות</a></li>
+      <li><a href="#m1-lab4">Lab 1.4–1.5 · כלי לימוד</a></li>
+      <li><a href="#m1-ws">Workshop 1 · תוכנית לימוד</a></li>
+    </ul>
+  </div>
+
+  <div class="sec" id="m1-ideas">
+    <span class="badge idea">רעיונות מרכזיים</span>
+    <h3>מה כדאי לזכור</h3>
+    <div class="grid2">
+      <div class="card"><h4>צ׳אט עונה. סוכן עושה.</h4><p>סוכן = מודל (המוח) + כלים (קורא וכותב קבצים) + זיכרון + משימות. הוא חושב, פועל, בודק, וחוזר עד שהמשימה גמורה.</p></div>
+      <div class="card"><h4>התיקייה היא העולם של Claude</h4><p>מה שלא בתיקייה שפתחתם, הוא לא ימצא לבד. תיקייה מסודרת נותנת תשובות טובות יותר. מומלץ תיקייה אחת לכל "עולם": לימודים, תזה, מעבדה.</p></div>
+    </div>
+    <h4 style="margin:18px 0 6px">בקשה טובה לסוכן: ארבעה רכיבים</h4>
+    <table>
+      <tr><th>רכיב</th><th>השאלה</th><th>דוגמה</th></tr>
+      <tr><td><b>מטרה</b></td><td>מה אני רוצה שיקרה בסוף?</td><td>בנה לי תוכנית לימוד ל-6 השבועות עד המבחנים</td></tr>
+      <tr><td><b>הקשר</b></td><td>אילו קבצים רלוונטיים? מה הוא צריך לדעת?</td><td>השתמש בסילבוסים בתיקיית <code>courses/</code></td></tr>
+      <tr><td><b>גבולות</b></td><td>מה לא לגעת בו? כמה זמן ביום?</td><td>יש לי 3 שעות ביום, בלי שישי</td></tr>
+      <tr><td><b>פורמט</b></td><td>איזה קובץ, באיזה מבנה, איפה לשמור?</td><td>שמור טבלה שבועית בקובץ <code>study-plan.md</code></td></tr>
+    </table>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">דוגמה מלאה, כל ארבעת הרכיבים</span>בנה לי תוכנית לימוד ל-6 השבועות עד המבחנים.
+השתמש בסילבוסים בתיקיית courses/.
+יש לי 3 שעות ביום, בלי שישי.
+שמור טבלה שבועית בקובץ study-plan.md.</div>
+  </div>
+
+  <div class="sec" id="m1-lab1">
+    <span class="badge lab">Lab 1.1 · כ-5 דקות</span><br><span class="where">תיקייה פתוחה: claude-course</span>
+    <h3>פותחים את לוח Claude Code</h3>
+    <p class="goal">המטרה: לוודא שההרחבה עובדת, בעזרת תשובה ראשונה.</p>
+    <ol class="steps" data-key="1.1">
+      <li><label><input type="checkbox"><span>פתחו את VS Code ← File ← Open Folder ← בחרו את <code>claude-course</code></span></label></li>
+      <li><label><input type="checkbox"><span>לחצו על סמל Claude Code בסרגל הצד השמאלי (אם מבקשים, היכנסו עם חשבון Anthropic)</span></label></li>
+      <li><label><input type="checkbox"><span>בתיבת הצ׳אט בתחתית הלוח, הדביקו את הבקשה שלמטה</span></label></li>
+      <li><label><input type="checkbox"><span>לחצו Enter וחכו לתשובה</span></label></li>
+    </ol>
+    <div class="prompt"><button class="copy">העתק</button>שלום Claude. באיזו תיקייה אתה נמצא?</div>
+    <div class="done">✅ <b>סיימתם כש:</b> Claude עונה עם השם או הנתיב של התיקייה <code>claude-course</code>.</div>
+    <div class="help"><b>לא עובד?</b> ודאו שפתחתם תיקייה (לא רק את VS Code), ושאתם מחוברים לחשבון Pro ומעלה.</div>
+  </div>
+
+  <div class="sec" id="m1-lab2">
+    <span class="badge lab">Lab 1.2 · כ-5 דקות · אפשר לדלג</span>
+    <h3>משתמשים ב-Claude מהטרמינל</h3>
+    <p class="goal">המטרה: לראות שהטרמינל הוא אותו Claude, רק דלת אחרת. (CLI = Claude שעובד בתוך הטרמינל.)</p>
+    <ol class="steps" data-key="1.2">
+      <li><label><input type="checkbox"><span>פתחו טרמינל משולב: View ← Terminal (או <code>Ctrl + `</code> / <code>Cmd + `</code>). הקלידו את הפקודה הראשונה למטה ולחצו Enter</span></label></li>
+      <li><label><input type="checkbox"><span>הקלידו <code>claude</code> ולחצו Enter: Claude נפתח בתוך הטרמינל</span></label></li>
+      <li><label><input type="checkbox"><span>הקלידו את הבקשה השנייה ולחצו Enter</span></label></li>
+      <li><label><input type="checkbox"><span>ליציאה: הקלידו <code>/exit</code></span></label></li>
+    </ol>
+    <div class="prompt ltr"><button class="copy">Copy</button><span class="tag">TERMINAL</span>claude --version</div>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">בתוך Claude</span>סכם לי אילו קבצים יש בתיקייה הזאת.</div>
+    <div class="done">✅ <b>סיימתם כש:</b> קיבלתם מספר גרסה, ואז תשובה על הקבצים שבתיקייה. אם עוד לא הוספתם כלום, "התיקייה ריקה" היא תשובה נכונה. אותה תשובה כמו בלוח, רק טקסט.</div>
+    <div class="help"><b>claude לא נמצא?</b> ההתקנה חסרה. דלגו על התרגיל והמשיכו בלוח; נטפל בזה אחרי השיעור.</div>
+  </div>
+
+  <div class="sec" id="m1-demo">
+    <span class="badge demo">דמו · נסו בעצמכם</span>
+    <h3>בונים אפליקציית טריוויה</h3>
+    <p class="goal">בקשה אחת, כ-30 שניות, וקובץ HTML עובד בתיקייה.</p>
+    <div class="prompt"><button class="copy">העתק</button>צור קובץ HTML אחד בשם trivia.html בתיקייה הזאת.
+זה צריך להיות חידון טריוויה בידע כללי עם 10 שאלות,
+שחושף את התשובה בלחיצה. עיצוב נקי ומודרני, אנימציות חלקות.
+HTML, CSS ו-JavaScript בלבד בקובץ אחד, בלי תלויות חיצוניות.</div>
+    <p class="hint">שימו לב מה קורה: Claude קורא קודם את התיקייה (כלים), מציע תוכנית (משימות), ואז כותב את הקובץ (עוד כלים). פתחו את <code>trivia.html</code> בדפדפן: בסרגל הצד של VS Code, קליק ימני על הקובץ ← Reveal in Finder (במק) או Reveal in File Explorer (בווינדוס) ← לחיצה כפולה. Claude ישאל קודם אם מותר לו ליצור את הקובץ: אשרו.</p>
+  </div>
+
+  <div class="sec" id="m1-lab3">
+    <span class="badge lab">Lab 1.3 · כ-8 דקות</span>
+    <h3>מעלים קבצים ונותנים ל-Claude להכיר אתכם</h3>
+    <p class="goal">המטרה: לראות את Claude קורא כמה קבצים בבת אחת.</p>
+    <div class="grid2">
+      <div class="card good"><h4>כן: 3–5 קבצי טקסט קטנים</h4><p>סיכום הרצאה או דף לימוד (<code>.md</code>, <code>.txt</code>, <code>.pdf</code>) · מאמר קצר · מתכון, רשימת קריאה או רשימת משימות · קובץ CSV מקורס או פרויקט</p></div>
+      <div class="card bad"><h4>לא עכשיו</h4><p>חומר רגיש (כספי, רפואי, סודי), קבצים מעל 5MB, תמונות או וידאו.</p></div>
+    </div>
+    <ol class="steps" data-key="1.3">
+      <li><label><input type="checkbox"><span>העתיקו 3–5 קבצים לתיקייה <code>claude-course</code>: גררו אותם מהמחשב אל התיקייה בסרגל הצד של VS Code (או העתיקו והדביקו בחלון התיקייה)</span></label></li>
+      <li><label><input type="checkbox"><span>הדביקו את הבקשה ב-Claude Code</span></label></li>
+    </ol>
+    <div class="prompt"><button class="copy">העתק</button>תסתכל על הקבצים בתיקייה הזאת. הצג את עצמך לפי מה שאתה רואה,
+ותגיד לי איזה סוג של אדם אתה חושב שאני לפי מה שיש כאן.</div>
+    <div class="done">✅ <b>סיימתם כש:</b> Claude מנה את הקבצים, סיכם מה בהם, וניחש בצורה סבירה מי אתם.</div>
+    <p class="hint">⚡ בונוס: סגרו את הלוח ונסו את אותה בקשה בטרמינל. השוו.</p>
+    <div class="help"><b>אין לכם קבצים מתאימים?</b> הדביקו את הבקשה הזאת ו-Claude ייצור לכם כמה קבצים לדוגמה:<div class="prompt" style="margin-bottom:0"><button class="copy">העתק</button>צור בתיקייה הזאת 3 קבצי טקסט קצרים לדוגמה: סיכום הרצאה, רשימת קריאה ורשימת משימות, של סטודנט להנדסה.</div></div>
+  </div>
+
+  <div class="sec" id="m1-lab4">
+    <span class="badge lab">Lab 1.4 + 1.5 · כ-20 דקות</span>
+    <h3>בונים כלי לימוד לאחד הקורסים שלכם, ואז משפרים אותו</h3>
+    <p class="goal">המטרה: קובץ HTML עובד שתוכלו להשתמש בו כבר הערב.</p>
+    <ol class="steps" data-key="1.4">
+      <li><label><input type="checkbox"><span>בחרו נושא מקורס שלכם (למשל קבוצות פונקציונליות בכימיה אורגנית, או יחסים בחשבונאות)</span></label></li>
+      <li><label><input type="checkbox"><span>בחרו פורמט: כרטיסיות, טיימר פומודורו, תרגול אוצר מילים או חידון אמריקאי</span></label></li>
+      <li><label><input type="checkbox"><span>הדביקו את הבקשה, והחליפו את מה שבצהוב בנושא ובפורמט שלכם</span></label></li>
+      <li><label><input type="checkbox"><span>Claude ישאל בחלון קטן אם מותר לו ליצור את הקובץ: אשרו (Yes / Allow)</span></label></li><li><label><input type="checkbox"><span>פתחו את <code>study-tool.html</code> בדפדפן: בסרגל הצד של VS Code, קליק ימני על הקובץ ← Reveal in Finder (במק) או Reveal in File Explorer (בווינדוס) ← לחיצה כפולה</span></label></li>
+    </ol>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">Lab 1.4</span>צור קובץ HTML אחד בשם study-tool.html בתיקייה הזאת.
+זה צריך להיות <span class="ph">[FORMAT]</span> בנושא <span class="ph">[TOPIC]</span>.
+עיצוב נקי ומודרני, קל לשימוש במחשב.
+HTML, CSS ו-JavaScript בלבד בקובץ אחד, בלי תלויות חיצוניות.</div>
+    <div class="done">✅ <b>סיימתם כש:</b> הקובץ נפתח בדפדפן וכלי הלימוד עובד.</div>
+
+    <h4 style="margin:22px 0 4px">Lab 1.5 · משפרים את הכלי</h4>
+    <ol class="steps" data-key="1.5">
+      <li><label><input type="checkbox"><span>חזרו ללוח Claude Code (השיחה עדיין שם)</span></label></li>
+      <li><label><input type="checkbox"><span>בחרו תוספת קטנה אחת והדביקו את הבקשה</span></label></li>
+      <li><label><input type="checkbox"><span>אשרו הרשאות, ורעננו את הלשונית בדפדפן</span></label></li>
+    </ol>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">Lab 1.5</span>שנה את study-tool.html כך ש<span class="ph">[התוספת שלכם]</span>.</div>
+    <p class="hint">⚡ רעיונות לתוספת: מצב כהה · מונה ניקוד · כפתור איפוס או ערבוב · צליל בהיפוך כרטיס · גופן גדול יותר בנייד</p>
+    <div class="done">✅ <b>סיימתם כש:</b> הקובץ השתנה במקום, ורענון הדפדפן מראה את ההתנהגות החדשה.</div>
+  </div>
+
+  <div class="sec" id="m1-ws">
+    <span class="badge ws">Workshop 1 · כ-25 דקות, עד 40 אם צריך להכין קבצים</span><br><span class="where">תיקייה פתוחה: technion-ai</span>
+    <h3>בונים את הבסיס: תיקיית העבודה שלכם</h3>
+    <p class="goal">המטרה: תיקייה אחת שמחזיקה את הסמסטר שלכם, ו-Claude שכבר עבד בה בפעם הראשונה.</p>
+    <ol class="steps" data-key="ws1">
+      <li><label><input type="checkbox"><span>צרו תיקייה בשם <code>technion-ai</code> ובתוכה תיקייה <code>courses</code> (קליק ימני ← תיקייה חדשה)</span></label></li>
+      <li><label><input type="checkbox"><span>הורידו את הסילבוסים של הסמסטר הנוכחי ושמרו בתוך <code>courses/</code> (אין סילבוסים? ראו את התיבה למטה)</span></label></li>
+      <li><label><input type="checkbox"><span>פתחו את <code>technion-ai</code> ב-Claude Code Desktop (Open Folder) או בלוח Claude Code ב-VS Code</span></label></li>
+      <li><label><input type="checkbox"><span>בקשה ראשונה: הדביקו את הבקשה "מה יש בתיקייה" שלמטה</span></label></li>
+      <li><label><input type="checkbox"><span>עברו ל-Plan Mode (בחרו אותו בתיבת ההקלדה של הלוח, או <code>Shift+Tab</code>), הדביקו את בקשת תוכנית הלימוד וקראו את התוכנית</span></label></li><li><label><input type="checkbox"><span>Claude עשוי לשאול כמה שאלות לפני שיציג תוכנית (למשל מתי מתחיל הסמסטר): ענו. כשהתוכנית מוכנה מופיעה אפשרות לאשר אותה. רק אז הוא יכתוב את הקובץ</span></label></li>
+    </ol>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">בקשה ראשונה</span>מה יש בתיקייה הזו? תן לי טבלה של הקורסים, המרצים ומועדי המבחנים.</div>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">בקשת תוכנית הלימוד · מתאימים לעצמכם</span>בנה לי תוכנית לימוד עד סוף הסמסטר.
+השתמש בכל הסילבוסים בתיקיית courses/.
+יש לי <span class="ph">[מספר]</span> שעות לימוד ביום, ואני לא לומד/ת בימים <span class="ph">[למשל: שישי ושבת]</span>.
+תן משקל גבוה יותר לקורסים עם מבחן מוקדם יותר.
+שמור טבלה שבועית בקובץ study-plan.md בתיקייה הראשית.</div>
+    <div class="done">✅ <b>סיימתם כש:</b> הקובץ <code>study-plan.md</code> קיים בתיקייה ואתם מזהים בו את המבחנים שלכם.</div>
+    <p class="hint">⚡ בונוס: <span style="user-select:all">תוסיף עמודה של נושא לחזרה בכל שבוע, לפי הסילבוס</span></p>
+    <div class="help"><b>אין סילבוסים בהישג יד?</b> אפשר להוריד תיקיית דוגמה עם 3 סילבוסים של נועה, סטודנטית להנדסת חשמל: <a href="https://drive.google.com/drive/folders/1wBIdDSXyjY51rwsFPgUfDpbk75b_049Q" target="_blank" rel="noopener"><b>תיקיית הקבצים של נועה (Google Drive)</b></a>, בתיקייה <code>day1-module1_meet-claude/workshop1_courses</code>. או שתבקשו מ-Claude ליצור סילבוסים לדוגמה:<div class="prompt" style="margin-bottom:0"><button class="copy">העתק</button>צור בתיקיית courses/ שלושה סילבוסים לדוגמה בקבצי טקסט, לשלושה קורסים בהנדסה. בכל אחד: נושאים לפי שבוע, מועד הגשה אחד ומועד מבחן, ומשקל הציון.</div></div>
+    <div class="help" style="background:var(--blue-soft)"><b>Plan Mode:</b> Claude חוקר וכותב תוכנית, ולא משנה כלום עד שתאשרו. כמו אדריכל שמראה שרטוט לפני שבונים. בוחרים אותו בתיבת ההקלדה, או עם <code>Shift+Tab</code>. ניסוח כפתורי האישור משתנה בין גרסאות.</div>
+  </div>
+</section>
+
+<!-- ======================= MODULE 2 ======================= -->
+<section class="mod m2" id="m2">
+  <div class="mhead">
+    <div class="num">מודול 2</div>
+    <h2>Context Engineering: מה Claude רואה</h2>
+    <p>Claude לא "שוכח". הוא רואה רק את מה שנמצא על השולחן שלו עכשיו. התפקיד שלכם: לסדר את השולחן.</p>
+    <span class="out">תוצר: תוכנית לימוד משודרגת + קובץ me.md</span>
+    <ul class="toc">
+      <li><a href="#m2-levers">שלושה מנופים</a></li>
+      <li><a href="#m2-demo">דמו · שלושה מאמרים</a></li>
+      <li><a href="#m2-ws">Workshop 2 · משדרגים את התוכנית</a></li>
+    </ul>
+  </div>
+
+  <div class="sec" id="m2-levers">
+    <span class="badge idea">רעיונות מרכזיים</span>
+    <h3>המנופים שלכם</h3>
+    <h4 style="margin:12px 0 6px">מנוף 1 · הבקשה: בקשה עמומה מקבלת תשובה עמומה</h4>
+    <div class="grid2">
+      <div class="card bad"><h4>לפני</h4><p>"תעזור לי ללמוד לאלקטרוניקה"<br><b>תשובה:</b> רשימה כללית של טיפים.</p></div>
+      <div class="card good"><h4>אחרי</h4><p>"המבחן באלקטרוניקה 2 בעוד 12 יום. אני חלשה בתגובת תדר. בנה תוכנית חזרה של שעה ביום, עם תרגיל אחד ממבחן קודם בכל יום."<br><b>תשובה:</b> תוכנית ל-12 יום, ממוקדת בחולשה.</p></div>
+    </div>
+    <h4 style="margin:18px 0 6px">מנוף 2 · הקבצים: מצביעים עליהם עם <code>@</code></h4>
+    <p>מקלידים <code>@</code> ← מופיעה רשימת קבצים מהתיקייה ← בוחרים. אפשר גם לגרור קובץ לחלון השיחה. ככה Claude לא צריך לנחש איזה קובץ אתם מתכוונים.</p>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">דוגמה · מחליפים בשמות הקבצים שלכם</span>סכם לי את @courses/electronics-2/syllabus.pdf
+והשווה למה שכבר כתוב ב-@study-plan.md</div>
+    <p class="hint"><b>יותר קבצים ≠ תשובה טובה יותר.</b> "תקרא את כל 40 המאמרים" מעמיס על השולחן, והמאמר החשוב נבלע. עדיף: "עבור רק על התקצירים, בחר 5 הכי רלוונטיים ושמור רשימה ב-shortlist.md", ואז מאמר אחד בכל פעם, לעומק.</p>
+    <h4 style="margin:18px 0 6px">מנוף 3 · השיחה: <code>/context</code> ו-<code>/clear</code></h4>
+    <ol class="steps" data-key="2.cmd">
+      <li><label><input type="checkbox"><span>הקלידו <code>/context</code> בשיחה: תראו כמה מקום תפוס על השולחן ובמה</span></label></li>
+      <li><label><input type="checkbox"><span>התקרבתם לקצה? הקלידו <code>/clear</code> כדי להתחיל שיחה נקייה. מה ששמרתם בקבצים נשאר</span></label></li>
+    </ol>
+  </div>
+
+  <div class="sec" id="m2-demo">
+    <span class="badge demo">דמו · נסו בעצמכם</span>
+    <h3>שלושה מאמרים, השוואה אחת</h3>
+    <p class="goal">המטרה: לראות איך מסכמים לקבצים, מנקים את השיחה, ומשווים רק מהסיכומים.</p>
+    <ol class="steps" data-key="2.demo">
+      <li><label><input type="checkbox"><span>צרו בתוך <code>technion-ai</code> תיקייה בשם <code>papers</code> ושמרו בה 3 מאמרים (PDF) על אותו נושא (או ראו את התיבה למטה)</span></label></li>
+      <li><label><input type="checkbox"><span>הדביקו את בקשת הסיכום</span></label></li>
+      <li><label><input type="checkbox"><span>הקלידו <code>/clear</code></span></label></li>
+      <li><label><input type="checkbox"><span>הדביקו את בקשת ההשוואה</span></label></li>
+    </ol>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">שלב 1</span>סכם כל מאמר בתיקיית papers/ בנפרד לקובץ משלו בתיקיית summaries/:
+שאלת מחקר, שיטה, תוצאה, מגבלות.</div>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">שלב 2 · אחרי /clear</span>השווה בין @summaries/ בטבלה ושמור ב-comparison.md.</div>
+    <p class="hint">שימו לב: בשלב האחרון Claude קורא רק מתיקיית הסיכומים, ולא עובר שוב על שלושת המאמרים המלאים.</p>
+    <div class="help"><b>אין לכם 3 מאמרים?</b> בקשו מ-Claude ליצור שלושה קצרים לדוגמה:<div class="prompt" style="margin-bottom:0"><button class="copy">העתק</button>צור בתיקיית papers/ שלושה מאמרים קצרים (כל אחד כ-300 מילים) בקבצי טקסט, על אותו נושא בהנדסה, עם שאלת מחקר, שיטה, תוצאה ומגבלות.</div></div>
+  </div>
+
+  <div class="sec" id="m2-ws">
+    <span class="badge ws">Workshop 2 · כ-30 דקות, עד 45 למתחילים</span><br><span class="where">תיקייה פתוחה: technion-ai</span>
+    <h3>משדרגים את תוכנית הלימוד</h3>
+    <p class="goal">המטרה: תוכנית לימוד שמבוססת על הקבצים הנכונים, וקובץ <code>me.md</code> שמחזיק את מה שאתם מקלידים שוב ושוב. אחרי הצהריים הופכים אותו ל-CLAUDE.md.</p>
+    <ol class="steps" data-key="ws2">
+      <li><label><input type="checkbox"><span>הקלידו <code>/context</code>: כמה מהשולחן כבר תפוס מ-Workshop 1?</span></label></li>
+      <li><label><input type="checkbox"><span>צרו קובץ <code>me.md</code> לפי התבנית שלמטה</span></label></li>
+      <li><label><input type="checkbox"><span><code>/clear</code>: מתחילים נקי</span></label></li>
+      <li><label><input type="checkbox"><span>הדביקו את הבקשה בשני השלבים, עם <code>@</code> על הקבצים הנכונים</span></label></li>
+      <li><label><input type="checkbox"><span>בדקו שוב <code>/context</code>: מה השתנה?</span></label></li>
+    </ol>
+    <p>איך יוצרים קובץ: ב-VS Code, File ← New File, ושומרים בשם <code>me.md</code> בתיקייה <code>technion-ai</code>. אפשר גם לבקש מ-Claude: "צור קובץ me.md בתיקייה הראשית".</p>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">תבנית me.md · משלימים את מה שבצהוב</span># me.md
+- מי אני: <span class="ph">[תואר, שנה, פקולטה]</span>
+- כמה שעות ביום אני לומד/ת: <span class="ph">[__]</span>
+- ימים חופשיים: <span class="ph">[__]</span>
+- איך אני אוהב/ת ללמוד: <span class="ph">[למשל: תרגילים לפני תיאוריה, הסבר קצר, בעברית]</span></div>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">שלב 1</span>עבור על כל סילבוס ב-@courses/ ושמור לכל קורס קובץ
+ב-course-notes/ עם: נושאים לפי שבוע, מועדי הגשה ומבחנים, משקל הציון.</div>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">שלב 2 · אחרי /clear</span>לפי @course-notes/ ו-@me.md
+עדכן את @study-plan.md, כולל שבוע חזרה לפני כל מבחן.</div>
+    <div class="done">✅ <b>סיימתם כש:</b> יש לכם <code>me.md</code>, תיקיית <code>course-notes/</code>, ו-<code>study-plan.md</code> מעודכן.</div>
+    <p class="hint">⚡ בונוס: <span style="user-select:all">תוסיף לכל שבוע 3 שאלות לבדיקה עצמית מתוך הנושאים</span></p>
+  </div>
+</section>
+
+<!-- ======================= MODULE 3 ======================= -->
+<section class="mod m3" id="m3">
+  <div class="mhead">
+    <div class="num">מודול 3</div>
+    <h2>CLAUDE.md ומצבי הרשאה</h2>
+    <p>כותבים פעם אחת מי אתם ואיך לדבר איתכם, וכל שיחה מתחילה כש-Claude כבר מכיר אתכם. ומחליטים מה מותר לו לעשות לבד.</p>
+    <span class="out">תוצר: CLAUDE.md אישי + הרגל "קודם תוכנית, אחר כך אישור"</span>
+    <ul class="toc">
+      <li><a href="#m3-ideas">מה זה CLAUDE.md</a></li>
+      <li><a href="#m3-ws">Workshop 3 · הקובץ שלכם</a></li>
+      <li><a href="#m3-modes">מצבי הרשאה</a></li>
+      <li><a href="#m3-ws2">Workshop 3ב׳ · קודם תוכנית</a></li>
+    </ul>
+  </div>
+
+  <div class="sec" id="m3-ideas">
+    <span class="badge idea">רעיונות מרכזיים</span>
+    <h3>כל שיחה מתחילה מדף חלק, אלא אם יש CLAUDE.md</h3>
+    <div class="grid2">
+      <div class="card bad"><h4>בלי CLAUDE.md</h4><p>בכל שיחה חדשה מסבירים שוב: מי אני, איך אני לומדת, באיזו שפה לענות, ומה לא לעשות.</p></div>
+      <div class="card good"><h4>עם CLAUDE.md</h4><p>Claude קורא את הקובץ בתחילת כל שיחה, ומתחיל כשהוא כבר מכיר אתכם.</p></div>
+    </div>
+    <p class="hint">⚡ נסו עכשיו: כמה פעמים השבוע פתחתם שיחה ב"אני סטודנט ש…" או "ענה לי בעברית"?</p>
+
+    <h4 style="margin:20px 0 6px">מה זה <code>.md</code>?</h4>
+    <p>קובץ טקסט רגיל עם עיצוב קל. כמה סימנים מכסים כמעט הכול:</p>
+    <table>
+      <tr><th>כותבים</th><th>מקבלים</th></tr>
+      <tr><td><code># כותרת</code></td><td>כותרת</td></tr>
+      <tr><td><code>- פריט</code></td><td>תבליט</td></tr>
+      <tr><td><code>**מילה**</code></td><td>הדגשה</td></tr>
+      <tr><td>שורה ריקה</td><td>הפרדה בין פסקאות (חשוב: כך Claude יודע איפה נגמר רעיון)</td></tr>
+    </table>
+
+    <h4 style="margin:20px 0 6px">הקובץ של נועה: דוגמה לקובץ טוב</h4>
+    <p>נועה, סטודנטית שנה ג׳ להנדסת חשמל, מוסיפה שלושה חלקים: <b>הקשר</b> (מי היא), <b>איך לדבר</b> (שפה, אורך, סדר ההסבר), <b>חוקים</b> (ספציפיים, כך שאפשר לבדוק אם נשמרו).</p>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">CLAUDE.md · דוגמה, לא להעתיק כמו שהוא</span># CLAUDE.md — נועה כהן
+
+## Role & Context
+סטודנטית שנה ג׳ הנדסת חשמל · טכניון
+פרויקט גמר: זיהוי דפוסי EEG בזמן אמת
+
+## Communication Style
+עברית תמיד · תשובות קצרות וישירות
+הסבר אינטואיטיבי לפני המתמטיקה
+
+## Rules
+✓ בהסבר DSP: תמיד גם זמן וגם תדר
+✗ אל תשתמש ב-MATLAB. Python בלבד</div>
+
+    <h4 style="margin:20px 0 6px">חוק גרוע מול חוק טוב</h4>
+    <div class="grid2">
+      <div class="card bad"><h4>✗ מעורפל</h4><p>תהיה מועיל<br>תכתוב טוב<br>תהיה קצר<br>תענה כמו מומחה</p></div>
+      <div class="card good"><h4>✓ ספציפי</h4><p>עברית תמיד, גם אם שאלתי באנגלית<br>עד 5 משפטים, אלא אם ביקשתי הרחבה<br>אינטואיציה קודם, נוסחה אחר כך<br>אל תמחק קבצים בלי לשאול</p></div>
+    </div>
+    <p class="hint"><b>הבדיקה:</b> האם מישהו אחר יבין בדיוק מה לעשות? אם לא, החוק מעורפל.</p>
+    <p class="hint"><b>הקובץ התארך?</b> מפצלים: CLAUDE.md קצר בתיקייה הראשית, ולצדו <code>style-guide.md</code>, <code>glossary.md</code>, <code>examples/</code>. בקובץ הראשי כותבים: "לפני כתיבה, קרא את @style-guide.md".</p>
+  </div>
+
+  <div class="sec" id="m3-ws">
+    <span class="badge ws">Workshop 3 · כ-20 דקות</span><br><span class="where">תיקייה פתוחה: technion-ai</span>
+    <h3>כותבים את ה-CLAUDE.md שלכם</h3>
+    <p class="goal">המטרה: קובץ אחד שגורם ל-Claude להכיר אתכם, ועובד בכל שיחה חדשה בתיקייה. יש לכם <code>me.md</code> מהשיעור הקודם? זו נקודת ההתחלה.</p>
+    <ol class="steps" data-key="ws3">
+      <li><label><input type="checkbox"><span>פתחו את <code>me.md</code> מ-Workshop 2, או צרו קובץ חדש בתיקייה הראשית</span></label></li>
+      <li><label><input type="checkbox"><span>בקשו מ-Claude לראיין אתכם (הבקשה למטה)</span></label></li>
+      <li><label><input type="checkbox"><span>קראו את הטיוטה: מחקו כל חוק כללי והחליפו בחוק ספציפי</span></label></li>
+      <li><label><input type="checkbox"><span>ודאו שהקובץ נקרא <code>CLAUDE.md</code> (בדיוק) ויושב בתיקייה הראשית</span></label></li>
+      <li><label><input type="checkbox"><span><code>/clear</code>, ושאלו: "מי אני, ואיך אני רוצה שתדבר איתי?"</span></label></li>
+    </ol>
+    <div class="prompt"><button class="copy">העתק</button>ראיין אותי כדי לכתוב קובץ CLAUDE.md.
+אם יש בתיקייה קובץ me.md, קרא אותו קודם ואל תשאל אותי שוב על מה שכבר כתוב בו.
+שאל שאלה אחת בכל פעם: מי אני, באיזו לשון לפנות אליי, מה התיקייה הזאת, איך אני רוצה
+שתדבר איתי, מה אתה צריך לעשות תמיד ומה אף פעם, ואילו משימות
+אני מבקש שוב ושוב.
+בסוף כתוב את הקובץ, קצר וספציפי, ושמור אותו כ-CLAUDE.md
+בתיקייה הראשית.</div>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">הבדיקה · בשיחה חדשה אחרי /clear</span>מי אני, ואיך אני רוצה שתדבר איתי?</div>
+    <div class="done">✅ <b>סיימתם כש:</b> בשיחה חדשה Claude עונה נכון על "מי אני" ועל "איך לדבר איתי".</div>
+    <p class="hint">⚡ בונוס: הוסיפו חוק אחד שאתם חוזרים עליו שוב ושוב בבקשות שלכם.</p>
+    <div class="help"><b>Claude לא מכיר אתכם?</b> בדקו שהשם הוא <code>CLAUDE.md</code> בדיוק, שהקובץ בתיקייה שפתחתם, ושפתחתם שיחה חדשה (<code>/clear</code>).</div>
+  </div>
+
+  <div class="sec" id="m3-modes">
+    <span class="badge idea">מצבי הרשאה</span>
+    <h3>מי מחליט מה Claude עושה בלי לשאול? אתם.</h3>
+    <table>
+      <tr><th>מצב</th><th>מה הוא עושה</th></tr>
+      <tr><td><b>תכנון</b> (plan)</td><td>חוקר וכותב תוכנית. לא משנה כלום עד שתאשרו. הכי זהיר.</td></tr>
+      <tr><td><b>שואל</b> (default)</td><td>מבקש אישור לפני כל עריכה או פקודה.</td></tr>
+      <tr><td><b>עורך לבד</b> (acceptEdits)</td><td>עורך קבצים בלי לשאול בכל פעם.</td></tr>
+      <tr><td><b>אוטומטי</b> (auto)</td><td>מריץ גם פקודות, עם בדיקת בטיחות ברקע. זמין רק בחלק מהתוכניות.</td></tr>
+    </table>
+    <p>עוברים בין המצבים עם <code>Shift+Tab</code>, והמצב הנוכחי מופיע בשורת המצב. כדי לראות מה מותר: <code>/permissions</code>.</p>
+    <div class="warn"><b>⚠ bypassPermissions</b> עוקף את כל הבדיקות. לא משתמשים בו בקורס הזה.</div>
+    <p class="hint"><b>ההרגל:</b> קודם תוכנית, אחר כך אישור, ואז ביצוע.</p>
+  </div>
+
+  <div class="sec" id="m3-ws2">
+    <span class="badge ws">Workshop 3ב׳ · כ-12 דקות</span>
+    <h3>קודם תוכנית, אחר כך אישור</h3>
+    <p><span class="where">תיקייה פתוחה: technion-ai</span></p>
+    <p class="goal">המטרה: לעבוד בהרגל החדש על תיקייה אמיתית שלכם, ולקבוע חוק אחד שתמיד נשמר.</p>
+    <ol class="steps" data-key="ws3b">
+      <li><label><input type="checkbox"><span>עברו למצב תכנון (<code>Shift+Tab</code>) ובדקו בשורת המצב</span></label></li>
+      <li><label><input type="checkbox"><span>הדביקו את הבקשה על תיקייה אמיתית שלכם</span></label></li>
+      <li><label><input type="checkbox"><span>קראו את התוכנית: מה היה משתנה? מה לא ברור?</span></label></li>
+      <li><label><input type="checkbox"><span>אשרו או תקנו, ורק אז Claude מבצע</span></label></li>
+      <li><label><input type="checkbox"><span>הוסיפו ל-CLAUDE.md חוק אחד חדש, ובדקו <code>/permissions</code></span></label></li>
+    </ol>
+    <div class="prompt"><button class="copy">העתק</button>ארגן את התיקייה <span class="ph">[שם של תיקייה אמיתית אצלכם, למשל: courses]</span> לפי נושא.
+אל תשנה כלום עדיין. הצג רק תוכנית: מה יזוז לאן,
+ואילו קבצים לא ברור לך לאן לשייך.</div>
+    <div class="done">✅ <b>סיימתם כש:</b> ראיתם תוכנית מ-Claude, אישרתם אותה בעצמכם, ויש ב-CLAUDE.md חוק אחד חדש.</div>
+    <p class="hint">⚡ בונוס: "ציין בתוכנית מה אתה לא בטוח בו".</p>
+  </div>
+</section>
+
+
+
+<!-- ======================= MODULE 4 ======================= -->
+<section class="mod m4" id="m4">
+  <div class="mhead">
+    <div class="num">מודול 4</div>
+    <h2>Skills: לארוז, להתקין, להשתמש שוב</h2>
+    <p>כותבים בקשה טובה פעם אחת, ומפעילים אותה אחר כך במילה אחת. ואפשר גם לקחת Skills מוכנים מאחרים.</p>
+    <span class="out">תוצר: Skill ראשון משלכם שרץ על קובץ אמיתי, וקובץ Word או מצגת שנוצרו על ידי Skill מותקן</span>
+    <ul class="toc">
+      <li><a href="#m4-ideas">מה זה Skill</a></li>
+      <li><a href="#m4-demo">דמו · בונים Skill בידיים</a></li>
+      <li><a href="#m4-ws">Workshop 4 א׳ · ה-Skill הראשון</a></li>
+      <li><a href="#m4-good">איך בונים Skill טוב</a></li>
+      <li><a href="#m4-prog">Skill עם תוכנית</a></li>
+      <li><a href="#m4-install">פלאגין וקטלוג</a></li>
+      <li><a href="#m4-ws-b">Workshop 4 ב׳ · Skill מוכן</a></li>
+    </ul>
+  </div>
+
+  <div class="sec" id="m4-ideas">
+    <span class="badge idea">רעיונות מרכזיים</span>
+    <h3>Skill הוא כרטיס מתכון</h3>
+    <p>יש בקשה שאתם כותבים ל-Claude שוב ושוב? למשל "סכם בעברית, נוסחאות בנפרד, ושאלות פתוחות בסוף". במקום להעתיק אותה בכל פעם, שומרים אותה פעם אחת כ-<b>Skill</b> (סקיל), ומפעילים אותה בשם קצר.</p>
+    <div class="grid2">
+      <div class="card bad"><h4>בלי Skill</h4><p>מוצאים את ההודעה הישנה, מעתיקים, משנים חצי משפט, מדביקים. ובפעם הבאה מחפשים שוב.</p></div>
+      <div class="card good"><h4>עם Skill</h4><p>מקלידים שם אחד, והעבודה מתבצעת לפי ההוראות שכתבתם פעם אחת.</p></div>
+    </div>
+    <p>כמו כרטיס מתכון במגירה: Claude רואה על הדלפק רק את שם הכרטיס ואת השורה הראשונה. את המתכון המלא הוא פותח רק כשצריך. ההבדל מ-<code>CLAUDE.md</code>: הקובץ הזה נקרא בכל שיחה, ו-Skill נפתח רק למשימה שלו.</p>
+    <p class="hint">⚡ נסו עכשיו: איזו בקשה כתבתם ל-Claude יותר משלוש פעמים החודש? רשמו אותה, תצטרכו אותה ב-Workshop 4.</p>
+
+    <h4 style="margin:20px 0 6px">איך Skill בנוי מבפנים</h4>
+    <p>Skill הוא <b>תיקייה</b> עם קובץ אחד חובה: <code>SKILL.md</code> (באותיות גדולות, בדיוק ככה). שם התיקייה הופך לפקודה: התיקייה <code>my-skill</code> נותנת את הפקודה <code>/my-skill</code>. כל השאר (תוכניות, דוגמאות, חומרי עזר) אופציונלי. אין כאן קסם: אלה קבצים רגילים שאפשר לפתוח, לערוך ולשלוח לחבר.</p>
+    <div class="prompt ltr"><button class="copy">Copy</button><span class="tag">my-skill/</span>my-skill/
+├── SKILL.md      ← חובה
+├── scripts/      ← אופציונלי
+├── reference.md
+└── examples/</div>
+    <p>בתוך <code>SKILL.md</code> יש שני חלקים: למעלה, בין שתי שורות של מקפים, <b>שם ותיאור</b>. ומתחת, ההוראות. זו דוגמה:</p>
+    <div class="prompt ltr"><button class="copy">Copy</button><span class="tag">SKILL.md · paper-to-bullets</span>---
+name: paper-to-bullets
+description: Turn a paper into 5 bullets.
+  Use when I share a paper.
+---
+Read the file I name. Write 5 bullets:
+title; question; method; result;
+main limitation.</div>
+    <dl class="gl">
+      <dt>שם (name)</dt><dd>הופך לפקודה <code>/paper-to-bullets</code>.</dd>
+      <dt>תיאור (description)</dt><dd>השורה ש-Claude קורא כדי להחליט <em>מתי</em> להפעיל את ה-Skill. אפשר לכתוב אותה גם בעברית. כתבו בה גם מה הוא עושה וגם מתי להשתמש בו.</dd>
+      <dt>הוראות</dt><dd>מה לעשות, כמו שהייתם מסבירים לעוזר חדש, בעברית פשוטה.</dd>
+    </dl>
+
+    <h4 style="margin:20px 0 6px">שתי דרכים להפעיל</h4>
+    <div class="grid2">
+      <div class="card"><h4>אתם קוראים לו</h4><p>מקלידים את הפקודה:<br><code>/paper-to-bullets smith-2021.pdf</code></p></div>
+      <div class="card"><h4>Claude מזהה לבד</h4><p>אתם כותבים "תסכמי לי את המאמר הזה שהורדתי". התיאור מתאים לבקשה, אז Claude פותח את ה-Skill בעצמו.</p></div>
+    </div>
+    <p class="hint"><b>הלקח:</b> התיאור הוא מה ש-Claude משווה לבקשה שלכם. Skill לא מופעל לבד? הקלידו <code>/השם</code> ידנית, ואחר כך שפרו את התיאור: מה הוא עושה, ומתי להשתמש בו.</p>
+
+    <h4 style="margin:20px 0 6px">פקודות סלאש הן Skills</h4>
+    <p>"פקודה מותאמת אישית" (קובץ בודד בתיקייה <code>.claude/commands/</code>) היא הדרך הישנה. Skill הוא הדרך היום: תיקייה עם קובץ הוראות, ועוד תיאור ש-Claude קורא ואפשרות לצרף קבצים ותוכניות. שניהם נותנים אותה פקודה <code>/שם</code>. ⚡ נסו עכשיו: הקלידו <code>/</code> בתיבת השיחה וגללו. כל מה שמופיע שם כבר מוכן לשימוש.</p>
+
+    <h4 style="margin:20px 0 6px">שלושה בתים ל-Skill</h4>
+    <table>
+      <tr><th>מקום</th><th>איפה</th><th>למי</th></tr>
+      <tr><td><b>👤 אישי</b></td><td><code>~/.claude/skills/</code></td><td>בכל התיקיות שלכם. למשימות שרק אתם צריכים</td></tr>
+      <tr><td><b>📁 פרויקט</b></td><td><code>.claude/skills/</code> בתוך התיקייה</td><td>כל מי שמקבל את התיקייה מקבל אותם: צוות מחקר, קבוצת פרויקט</td></tr>
+      <tr><td><b>🧩 חבילה מותקנת</b> (Plugin)</td><td>מותקן דרך <code>/plugin</code></td><td>Skills שמישהו אחר פרסם</td></tr>
+    </table>
+    <p class="hint">אותו כלל אצבע כמו ב-CLAUDE.md: מה שנוגע <b>אליכם</b> ← אישי. מה שנוגע <b>לקבוצה</b> ← פרויקט. (<code>~</code> היא תיקיית הבית שלכם במחשב.)</p>
+
+    <h4 style="margin:20px 0 6px">ארבע דרכים לקבל Skill</h4>
+    <table>
+      <tr><th>#</th><th>דרך</th><th>במילים פשוטות</th></tr>
+      <tr><td>1</td><td>לכתוב בידיים</td><td>תיקייה וקובץ <code>SKILL.md</code>, או לבקש מ-Claude לכתוב אותו</td></tr>
+      <tr><td>2</td><td><span dir="ltr">skill-creator</span></td><td>מחולל שמראיין אתכם ובונה את כל התיקייה. הכי נוח לראשון</td></tr>
+      <tr><td>3</td><td>להתקין חבילה</td><td>Skills שאחרים פרסמו, מתוך קטלוג (marketplace)</td></tr>
+      <tr><td>4</td><td>להעתיק תיקייה</td><td>קיבלתם תיקייה מחבר? שמים ב-<code>~/.claude/skills/</code></td></tr>
+    </table>
+    <p class="hint">ב-Workshop 4 א׳ תעשו דרך 2, וב-Workshop 4 ב׳ דרך 3.</p>
+  </div>
+
+  <div class="sec" id="m4-demo">
+    <span class="badge demo">דמו · נסו בעצמכם · כ-10 עד 15 דקות</span><br><span class="where">תיקייה פתוחה: technion-ai</span>
+    <h3>בונים Skill בידיים, ומריצים אותו</h3>
+    <p class="goal">המטרה: לראות שאין קסם. Skill הוא תיקייה, קובץ, ושורה אחת של תיאור.</p>
+    <ol class="steps" data-key="m4-demo">
+      <li><label><input type="checkbox"><span>בלוח Claude Code (לא בטרמינל), הדביקו את הבקשה הראשונה למטה. היא תיצור את התיקייה <code>.claude/skills/paper-to-bullets/</code> ואת הקובץ <code>SKILL.md</code> בתוכה</span></label></li>
+      <li><label><input type="checkbox"><span>Claude ישאל בחלון קטן אם מותר לו ליצור את הקובץ: אשרו (Yes / Allow). הניסוח משתנה בין גרסאות</span></label></li>
+      <li><label><input type="checkbox"><span>פתחו את <code>SKILL.md</code> בסרגל הצד של VS Code (התיקייה <code>.claude</code> מוסתרת בחלק מהתצוגות; אם לא רואים אותה, בקשו מ-Claude: "פתח לי את הקובץ") וקראו את שורת <code>description</code></span></label></li>
+      <li><label><input type="checkbox"><span>הקלידו <code>/</code> בתיבת השיחה: הפקודה <code>/paper-to-bullets</code> כבר ברשימה. אין צורך להפעיל מחדש</span></label></li>
+      <li><label><input type="checkbox"><span>הריצו אותה על מאמר אמיתי מהתיקייה <code>papers/</code> (הפקודה השנייה למטה, עם שם הקובץ שלכם)</span></label></li>
+    </ol>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">שלב 1 · ליצור את ה-Skill</span>צור Skill בשם paper-to-bullets שהופך מאמר לחמש נקודות</div>
+    <div class="prompt ltr"><button class="copy">Copy</button><span class="tag">שלב 5 · COMMAND · מחליפים את שם הקובץ בשלכם</span>/paper-to-bullets papers/smith-2021.pdf</div>
+    <div class="done">✅ <b>סיימתם כש:</b> הקלדתם <code>/paper-to-bullets</code> עם קובץ וקיבלתם חמש נקודות, בלי לכתוב את הבקשה הארוכה.</div>
+    <p class="hint">⚡ בונוס: מעתיקים את התיקייה לשם <code>abstract-to-bullets</code> ומשנים שורה אחת בקובץ: Skill חדש בדקה. ככה בונים אוסף. התוצאה לא טובה? משפרים את ההוראות בקובץ, לא את הבקשה.</p>
+    <div class="help"><b>אין לכם מאמר בתיקייה <code>papers/</code>?</b> בקשו מ-Claude ליצור אחד לדוגמה (הוא ייווצר כקובץ טקסט, אז בפקודה כתבו <code>.txt</code> במקום <code>.pdf</code>):<div class="prompt" style="margin-bottom:0"><button class="copy">העתק</button>צור בתיקיית papers/ מאמר קצר לדוגמה (כ-300 מילים) בקובץ טקסט בשם smith-2021.txt, בנושא בהנדסה, עם שאלת מחקר, שיטה, תוצאה ומגבלות.</div></div>
+    <div class="help"><b>אם הפקודה לא מופיעה ברשימה:</b> בדקו שהקובץ נקרא <code>SKILL.md</code> בדיוק, ושהוא בתוך <code>.claude/skills/paper-to-bullets/</code>. עדיין לא? פתחו שיחה חדשה בלוח (<code>/clear</code>) ונסו שוב. אפשר גם פשוט לבקש: "סכם לי את papers/smith-2021.pdf לחמש נקודות".</div>
+  </div>
+
+  <div class="sec" id="m4-ws">
+    <span class="badge ws">Workshop 4 · חלק א׳ · כ-20 עד 25 דקות</span><br><span class="where">תיקייה פתוחה: technion-ai</span>
+    <h3>בונים את ה-Skill הראשון שלכם</h3>
+    <p class="goal">המטרה: להפוך משימה שאתם חוזרים עליה ל-Skill שעובד, ולהריץ אותו על קובץ אמיתי. הבקשה שרשמתם בתחילת המודול היא נקודת ההתחלה. לא רשמתם? קחו אחד מהרעיונות: סיכום הרצאה · תקציר מאמר · דוח מעבדה · מייל למתרגל · כרטיסיות למבחן.</p>
+    <ol class="steps" data-key="m4-ws">
+      <li><label><input type="checkbox"><span>בחרו משימה שחוזרת ואפשר לומר במשפט אחד. אם צריך שני משפטים, זה שני Skills</span></label></li>
+      <li><label><input type="checkbox"><span>התקינו את <span dir="ltr">skill-creator</span> (המחולל שמראיין אתכם), פעם אחת: הקלידו את הפקודה הראשונה למטה בתיבת ההקלדה של <b>לוח Claude Code</b> ולחצו Enter. לא בטרמינל, ולא בתוך קובץ</span></label></li>
+      <li><label><input type="checkbox"><span>הדביקו את הבקשה השנייה למטה, ומלאו את שלושת החסרים בצהוב (יש דוגמה מלאה מתחתיה)</span></label></li>
+      <li><label><input type="checkbox"><span>ענו על השאלות של Claude, ואשרו בחלון הקטן כשהוא מבקש רשות ליצור קבצים. חכו שהתיקייה תיווצר</span></label></li>
+      <li><label><input type="checkbox"><span>הריצו על קובץ אמיתי: <code>/השם הקובץ</code>, למשל <code>/lecture-summary lecture-3.pdf</code></span></label></li>
+    </ol>
+    <div class="prompt ltr"><button class="copy">Copy</button><span class="tag">COMMAND · התקנה חד-פעמית</span>/plugin install skill-creator@claude-plugins-official</div>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">הבקשה · מחליפים את מה שבצהוב</span>השתמש ב-skill-creator כדי לבנות Skill בשם <span class="ph">[שם קצר באנגלית, למשל lecture-summary]</span>
+שעושה: <span class="ph">[מה הוא עושה, למשל: מסכם הרצאה בעברית, נוסחאות בנפרד ושאלות פתוחות בסוף]</span>.
+הוא צריך לעבוד כש<span class="ph">[מתי, למשל: אני משתפת קובץ הרצאה או מבקשת סיכום]</span>.</div>
+    <p class="hint"><b>דוגמה מלאה:</b> שם = <code>lecture-summary</code> · מה הוא עושה = "מסכם הרצאה בעברית, נוסחאות בנפרד ושאלות פתוחות בסוף" · מתי = "אני משתפת קובץ הרצאה או מבקשת סיכום". מחליפים את כל הסוגריים המרובעים, כולל הסוגריים עצמם.</p>
+    <div class="done">✅ <b>סיימתם כש:</b> התיקייה נוצרה, קראתם בקול את שורת התיאור ב-<code>SKILL.md</code>, והרצתם אותה פעם אחת על קובץ אמיתי.</div>
+    <p class="hint">⚡ בונוס: שאלו את עצמכם מתי Claude צריך להפעיל אותו לבד, וכתבו את זה בתיאור.</p>
+    <div class="help"><b>אין לכם קובץ אמיתי להריץ עליו?</b> בקשו מ-Claude ליצור קובץ הרצאה לדוגמה:<div class="prompt" style="margin-bottom:0"><button class="copy">העתק</button>צור בתיקייה הראשית קובץ טקסט בשם lecture-3.txt: סיכום גולמי של הרצאה אחת בהנדסה (כ-300 מילים), עם כמה נוסחאות ושאלה שנשארה פתוחה.</div></div>
+    <div class="help"><b>אם הפקודה לא עובדת:</b> ההתקנה מהקטלוג תלויה בגרסה, והקטלוג צריך להיות זמין. נסו קודם את הפקודה הזאת ואז שוב את ההתקנה (ואם צריך, הפקודה <code>/reload-plugins</code> מרעננת): <code dir="ltr">/plugin marketplace add anthropics/claude-plugins-official</code>. עדיין לא עובד? דלגו על ההתקנה והדביקו במקומה את הבקשה הזאת, עם השם והתיאור שלכם. Claude יכתוב את הקובץ ישירות:<div class="prompt" style="margin-bottom:0"><button class="copy">העתק</button>צור Skill ב-.claude/skills/ בשם <span class="ph">[שם]</span>, לפי התיאור הזה: <span class="ph">[…]</span></div></div>
+    <div class="help"><b>הפקודה נכתבה כטקסט בצ׳אט ולא רצה?</b> כנראה הקלדתם אותה בתיבה הלא נכונה. פקודות עם <code>/</code> מקלידים בתיבת ההקלדה של הלוח של Claude Code. ושימו לב: ניסוח התפריטים והכפתורים משתנה בין גרסאות.</div>
+  </div>
+
+  <div class="sec" id="m4-prog">
+    <span class="badge idea">רעיון מתקדם</span>
+    <h3>Skill יכול לארוז גם תוכנית</h3>
+    <p>כשחישוב צריך להיות מדויק, לא נותנים ל-Claude לעשות אותו "בערך". אורזים אותו בתוכנית (סקריפט) בתוך ה-Skill. התוכנית מחשבת, אותה תוצאה כל פעם, ו-Claude מריץ אותה ומסביר בעברית פשוטה מה יצא. כמו כרטיס המתכון (ההוראות) והמכשיר במטבח (התוכנית) שעושה את החלק המדויק.</p>
+    <div class="grid2">
+      <div class="card"><h4>1 · התוכנית מחשבת</h4><p>מדויק, אותה תוצאה כל פעם.</p></div>
+      <div class="card"><h4>2 · Claude מפעיל</h4><p>מריץ אותה על הקובץ שלכם.</p></div>
+      <div class="card"><h4>3 · Claude מסביר</h4><p>בעברית פשוטה, מה יצא.</p></div>
+    </div>
+    <p><b>דוגמה, דוח מעבדה של נועה:</b> תיקייה <code>lab-report/</code> עם <code>SKILL.md</code> ותוכנית <code>scripts/analyze.py</code>. נועה כותבת <code dir="ltr">/lab-report data.csv</code> ומקבלת גרף ושלושה משפטי הסבר. כך נראה ה-<code>SKILL.md</code> שלה:</p>
+    <div class="prompt ltr"><button class="copy">Copy</button><span class="tag">SKILL.md · lab-report · להצגה בלבד</span>---
+name: lab-report
+description: Analyze a CSV, make a plot.
+  Use when I share lab results.
+allowed-tools: Bash(python3 *)
+argument-hint: [path-to-csv]
+---
+!`python3 ${CLAUDE_SKILL_DIR}/
+  scripts/analyze.py $ARGUMENTS`
+Read the plot, then write three sentences.</div>
+    <dl class="gl">
+      <dt><code>allowed-tools</code></dt><dd>מאשר מראש רק את מה שצריך: הרצת פייתון. ככה לא מופיעות שאלות אישור באמצע.</dd>
+      <dt><code>CLAUDE_SKILL_DIR</code></dt><dd>הנתיב לתיקיית ה-Skill עצמה.</dd>
+      <dt><code>ARGUMENTS</code></dt><dd>הקובץ שכתבתם אחרי שם הפקודה.</dd>
+    </dl>
+    <p class="hint">לא צריך לזכור את התחביר, ולא חייבים לכתוב את התוכנית בעצמכם. מבקשים מ-<span dir="ltr">skill-creator</span> ו-Claude בונה גם אותה. צריך שפייתון עם numpy ו-matplotlib יהיה מותקן במחשב; אם יש שגיאה, אפשר לבקש מ-Claude להתקין.</p>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">אם רוצים לנסות</span>בנה Skill שמריץ סקריפט על CSV</div>
+  </div>
+
+  <div class="sec" id="m4-install">
+    <span class="badge idea">רעיונות מרכזיים</span>
+    <h3>להתקין Skills של אחרים: פלאגין וקטלוג</h3>
+    <div class="grid2">
+      <div class="card"><h4>פלאגין (Plugin)</h4><p>חבילה שמישהו פרסם: Skills, ולפעמים עוד דברים. השמות שלה מקבלים קידומת, אז אין התנגשות עם שלכם.</p></div>
+      <div class="card"><h4>קטלוג (Marketplace)</h4><p>רשימה של פלאגינים, בפועל מאגר ב-GitHub. כמו חנות אפליקציות: קודם מוסיפים קטלוג כדי לדפדף, ואז בוחרים מה להתקין.</p></div>
+    </div>
+    <div class="prompt ltr"><button class="copy">Copy</button><span class="tag">COMMANDS · בלוח Claude Code</span>/plugin marketplace add anthropics/skills
+/plugin</div>
+    <p><code>/plugin</code> פותח תפריט עם כל מה שזמין להתקנה. אם אחרי ההתקנה ה-Skill לא מופיע, הקלידו <code>/reload-plugins</code>.</p>
+    <h4 style="margin:18px 0 6px">Skills רשמיים שיוצרים קבצים אמיתיים</h4>
+    <table>
+      <tr><th>Skill</th><th>מה הוא יוצר</th></tr>
+      <tr><td><span dir="ltr">pptx</span></td><td>מצגות</td></tr>
+      <tr><td><span dir="ltr">docx</span></td><td>מסמכי Word</td></tr>
+      <tr><td><span dir="ltr">xlsx</span></td><td>גיליונות עם נוסחאות וגרפים</td></tr>
+      <tr><td><span dir="ltr">pdf</span></td><td>מילוי טפסים, מיזוג וחילוץ</td></tr>
+    </table>
+    <p>הם בקטלוג <span dir="ltr">anthropics/skills</span>, בחבילה <span dir="ltr">document-skills</span>. למה זה חשוב לכם: מצגת לסמינר, דף סיכום בוורד, טבלת תוצאות באקסל. הקובץ אמיתי, ואפשר לפתוח ולערוך אותו כרגיל.</p>
+    <div class="warn"><b>⚠ הרגל בטיחות לפני שמתקינים:</b> פלאגין יכול להריץ קוד על המחשב שלכם, באותן הרשאות שלכם, כמו כל תוכנה שמורידים. מתקינים רק ממקורות שאתם מכירים (כמו <span dir="ltr">anthropics/skills</span>), רק מה שאתם באמת צריכים, ומכבים (דרך <code>/plugin</code>) את מה שלא בשימוש. אפשר תמיד לפתוח את התיקייה ולקרוא מה כתוב בה לפני שמשתמשים: <b>Skill הוא רק קבצים.</b> על המחשב יש לפעמים נתוני מחקר ותזה.</div>
+  </div>
+
+  <div class="sec" id="m4-ws-b">
+    <span class="badge ws">Workshop 4 · חלק ב׳ · כ-15 עד 20 דקות</span><br><span class="where">תיקייה פתוחה: technion-ai</span>
+    <h3>מתקינים Skill מוכן ומשתמשים בו</h3>
+    <p class="goal">המטרה: להתקין Skill רשמי, ולקבל ממנו קובץ אמיתי: מסמך Word, מצגת או גיליון.</p>
+    <ol class="steps" data-key="m4-wsb">
+      <li><label><input type="checkbox"><span>בלוח Claude Code הקלידו את הפקודה הראשונה למטה ולחצו Enter (מוסיפה את הקטלוג)</span></label></li>
+      <li><label><input type="checkbox"><span>הקלידו <code>/plugin</code>, בחרו <span dir="ltr">document-skills</span> והתקינו (מנווטים בתפריט עם החיצים ו-Enter; הניסוח משתנה בין גרסאות), ואז הקלידו <code>/reload-plugins</code></span></label></li>
+      <li><label><input type="checkbox"><span>בחרו Skill אחד (<span dir="ltr">docx</span> או <span dir="ltr">pptx</span> לבחירתכם) והדביקו את הבקשה שלו מלמטה. בבקשה מחליפים את הנושא בנושא אמיתי מהקורס או מהמחקר שלכם, למשל "מעגלי RC"</span></label></li>
+      <li><label><input type="checkbox"><span>אשרו בחלון הקטן אם Claude מבקש רשות ליצור קובץ או להריץ משהו, ואז פתחו את הקובץ שנוצר: בסרגל הצד של VS Code, קליק ימני על הקובץ ← Reveal in Finder (במק) או Reveal in File Explorer (בווינדוס) ← לחיצה כפולה</span></label></li>
+    </ol>
+    <div class="prompt ltr"><button class="copy">Copy</button><span class="tag">COMMAND · שלב 1</span>/plugin marketplace add anthropics/skills</div>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">Word · מחליפים את מה שבצהוב</span>השתמש ב-skill של docx וכתוב סיכום של עמוד אחד על <span class="ph">[נושא מהקורס שלכם]</span>,
+עם כותרת, שלוש נקודות עיקריות ושאלה פתוחה בסוף.
+שמור כקובץ Word בשם summary.docx.</div>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">רוצים מצגת?</span>השתמש ב-skill של pptx וצור מצגת של 5 שקפים על <span class="ph">[נושא]</span>: שקף פתיחה, שלושה שקפי תוכן ושקף סיכום.</div>
+    <div class="done">✅ <b>סיימתם כש:</b> יש לכם קובץ Word או PowerPoint אמיתי שנוצר על ידי Skill מותקן, ופתחתם אותו.</div>
+    <p class="hint">⚡ בונוס: מי שמסיים מהר מנסה Skill שני (<span dir="ltr">xlsx</span> או <span dir="ltr">pdf</span>), או מבקש להוסיף לבקשה "ושמור כל כותרת בצבע אחד שאני בוחר/ת" ובודק שזה נשמר. זה מראה ש-Skill הוא משהו שמכוונים.</p>
+    <div class="help"><b>אם הפקודה לא עובדת:</b> ההתקנה מהקטלוג משתנה בין גרסאות, וצריך אינטרנט שמאפשר GitHub (ברשת של האולם זה לא מובטח). בדקו דרך <code>/plugin</code> שהקטלוג נוסף, והקלידו <code>/reload-plugins</code>. עדיין לא עובד? בקשו מ-Claude ליצור את הקובץ בלי ה-Skill: "כתוב סיכום של עמוד אחד על [נושא] ושמור כקובץ summary.docx". מי שנתקע ישלים בבית.</div>
+    <div class="help"><b>מה למדנו, ומה מחר:</b> Skill = תיקייה עם <code>SKILL.md</code> (שם, תיאור והוראות) שנפתחת רק כשצריך. התיאור הוא מה ש-Claude משווה לבקשה. מתקינים רק ממקור מוכר. עד עכשיו Claude עבד על הקבצים שבתיקייה. מחר הוא יוצא החוצה: מתחברים לאפליקציות ומשלבים Skills עם כלים אחרים. מטלת בית: להריץ את ה-Skill שלכם פעם אחת על משימה אמיתית מחר בבוקר.</div>
+  </div>
+
+  <div class="sec" id="m4-good">
+    <span class="badge idea">איך בונים Skill טוב</span>
+    <h3>שישה כללים</h3>
+    <ol class="steps" data-key="m4-good">
+      <li><label><input type="checkbox"><span><b>מתחילים מעבודה אמיתית.</b> לא מתיאוריה. עושים את המשימה עם Claude פעם אחת, ואז אומרים לו: "תהפוך את זה ל-Skill".</span></label></li>
+      <li><label><input type="checkbox"><span><b>מאכילים בדוגמאות.</b> סיכומים או תוצרים שאהבתם, ולמה. Claude לומד את הטעם שלכם מדוגמה, לא מהסבר.</span></label></li>
+      <li><label><input type="checkbox"><span><b>כל תיקון נהיה חוק.</b> "תוסיף את זה ל-Skill". אחרת תתקנו אותו דבר גם מחר.</span></label></li>
+      <li><label><input type="checkbox"><span><b>תיאור שאומר מתי.</b> כתבו אותו במילים שאתם באמת אומרים: "תסכם לי את ההרצאה", ולא "כלי לעיבוד מסמכים". Claude משווה את התיאור לבקשה שלכם.</span></label></li>
+      <li><label><input type="checkbox"><span><b>חוקים, לא בקשות.</b> "נוסחאות בנפרד, תמיד" עדיף על "תסכם יפה".</span></label></li>
+      <li><label><input type="checkbox"><span><b>Skill אחד, תפקיד אחד.</b> סיכום הרצאה בנפרד, תרגילים בנפרד. כל אחד קטן וברור.</span></label></li>
+    </ol>
+    <h4 style="margin:18px 0 6px">בדיקה לשלכם</h4>
+    <p>אחרי שבניתם Skill, בקשו מ-Claude לבדוק אותו מול הכללים:</p>
+    <div class="prompt"><button class="copy">העתק</button>בדוק את ה-Skill <span class="ph">[שם ה-Skill]</span> שיצרנו, מול הכללים האלה:
+1. התיאור אומר מתי להפעיל אותו, במילים שאני באמת אומר/ת.
+2. ההוראות הן חוקים ספציפיים ולא בקשות כלליות.
+3. יש לו תפקיד אחד בלבד.
+אל תשנה כלום עדיין. הצג רק מה כדאי לתקן, ולמה.</div>
+    <p class="hint">⚡ נסו עכשיו: בחרו משימה אחת שעשיתם השבוע פעמיים, וחשבו מה היה הכלל הראשון של ה-Skill שלה.</p>
+  </div>
+</section>
+
+<!-- ======================= MODULE 5 ======================= -->
+<section class="mod m5" id="m5">
+  <div class="mhead">
+    <div class="num">מודול 5 · יום ב׳</div>
+    <h2>צנרת של Skills עם שער אנושי</h2>
+    <p>שרשרת של שלבים, וביניהם עצירה אחת שבה אתם מחליטים. בסוף המודול יש לכם שרשרת שעובדת מקצה לקצה על חומר אמיתי שלכם.</p>
+    <span class="out">תוצר: CLAUDE.md + Skills לכל שלב + מתזמר שעוצר בשער ומחכה לכם</span>
+    <ul class="toc">
+      <li><a href="#m5-ideas">רעיונות מרכזיים</a></li>
+      <li><a href="#m5-ws">Workshop 5 · התחלה ו-CLAUDE.md</a></li>
+      <li><a href="#m5-ws-a">אפשרות A · סקירת ספרות</a></li>
+      <li><a href="#m5-ws-b">אפשרות B · ניקוי נתונים</a></li>
+      <li><a href="#m5-ws-c">אפשרות C · קורות חיים</a></li>
+      <li><a href="#m5-orch">המתזמר</a></li>
+      <li><a href="#m5-check">בדיקות ובעיות נפוצות</a></li>
+    </ul>
+  </div>
+
+  <div class="sec" id="m5-ideas">
+    <span class="badge idea">רעיונות מרכזיים</span>
+    <h3>משימה גדולה לא נכנסת ל-Skill אחד</h3>
+    <p>Skill הוא בקשה שמורה שמפעילים בפקודה אחת (למדתם אתמול). <b>שרשרת</b> היא כמה Skills בזה אחר זה, כשכל אחד עושה שלב אחד. <b>שער אנושי</b> הוא עצירה באמצע, שבה Claude מציג מה הוא מתכוון לעשות, ואתם מחליטים.</p>
+    <div class="grid2">
+      <div class="card bad"><h4>הכול בבקשה אחת</h4><p>"קרא 30 מאמרים, תבחר, תחלץ ותכתוב סקירה." Claude רץ עד הסוף, ואם טעה בשלב 1, הטעות כבר בתוך הסקירה.</p></div>
+      <div class="card good"><h4>שלבים עם עצירה</h4><p>כל שלב כותב קובץ ועוצר. אתם בודקים, מאשרים, ורק אז השלב הבא מתחיל.</p></div>
+    </div>
+    <div class="help" style="background:var(--blue-soft)"><b>הדימוי:</b> פס ייצור עם בקר איכות באמצע. המכונות מהירות, אבל מישהו מסתכל על החלק לפני שהוא נצבע. אתם הבקר.</div>
+    <h4 style="margin:18px 0 6px">איך נראית שרשרת עם שער</h4>
+    <table>
+      <tr><th>קלט</th><th>שלב 1</th><th>🛑 שער</th><th>שלב 2</th><th>שלב 3</th></tr>
+      <tr><td>הקובץ הגולמי</td><td>מציע תוכנית</td><td>אתם מאשרים</td><td>מבצע</td><td>מדווח</td></tr>
+    </table>
+    <ul>
+      <li>כל שלב הוא <b>Skill</b> נפרד: שלושה Skills ושער אחד.</li>
+      <li>השלבים מדברים דרך <b>קבצים</b>: כל שלב כותב קובץ והבא קורא אותו. אפשר לפתוח כל קובץ ולבדוק בכל רגע.</li>
+      <li>איפה שמים שער? לפני שלב שקשה לבטל (כמו מחיקת שורות) או שמסתמך על שיפוט.</li>
+    </ul>
+    <p class="hint">⚡ נסו עכשיו: חשבו על משימה אחת שלכם, ועל המקום שבו עצירה לבדיקה הייתה חוסכת לכם תיקון.</p>
+  </div>
+
+  <div class="sec" id="m5-ws">
+    <span class="badge ws">Workshop 5 · כ-35 דקות, עד 50 למתחילים</span><br><span class="where">תיקייה פתוחה: pipeline-starter (תיקיית עבודה חדשה)</span>
+    <h3>בונים שרשרת עם שער אנושי: התחלה ו-CLAUDE.md</h3>
+    <p class="goal">המטרה: שרשרת אחת שעובדת מקצה לקצה, עם עצירה שבה אתם מחליטים. בוחרים אפשרות אחת מתוך שלוש (A, B או C), והכול נבנה בתוך תיקייה אחת.</p>
+    <table>
+      <tr><th>אפשרות</th><th>למי</th><th>השער</th><th>קלט</th></tr>
+      <tr><td><b>A · סקירת ספרות</b></td><td>מחקר</td><td>שער סינון</td><td><code>papers/*.txt</code> + <code>review-brief.md</code></td></tr>
+      <tr><td><b>B · ניקוי נתונים</b></td><td>מדידות, ניסוי, מעבדה</td><td>שער אישור</td><td><code>raw.csv</code></td></tr>
+      <tr><td><b>C · קורות חיים</b></td><td>הגשה להתמחות</td><td>שער אמת</td><td><code>job-posting.md</code> + <code>master-resume.md</code></td></tr>
+    </table>
+    <p class="hint">אין תשובה נכונה. בחרו את מה שהכי דומה למה שתעשו השבוע.</p>
+    <ol class="steps" data-key="m5-ws">
+      <li><label><input type="checkbox"><span>פתחו ב-VS Code את תיקיית האפשרות שבחרתם (File ← Open Folder). התיקיות נמצאות ב-<a href="https://drive.google.com/drive/folders/1wBIdDSXyjY51rwsFPgUfDpbk75b_049Q" target="_blank" rel="noopener"><b>תיקיית הקבצים של נועה (Google Drive)</b></a>, בתוך <code>day2-module5_pipeline</code>: <code>optionA_literature-review</code>, <code>optionB_data-cleaning</code> או <code>optionC_resume</code>. הן נותנות קלט בלבד (הקבצים שהשרשרת תעבוד עליהם), ואת השאר בונים בעצמכם. אין לכם את התיקייה? צרו תיקייה ריקה ופתחו אותה, ואת הקלט תיצרו בעזרת Claude בצעד הבא.</span></label></li>
+      <li><label><input type="checkbox"><span>בחרו אפשרות אחת (A, B או C) ופתחו שיחה חדשה בלוח Claude Code</span></label></li>
+      <li><label><input type="checkbox"><span><b>שלב 0:</b> הדביקו את בקשת ה-CLAUDE.md שלמטה</span></label></li>
+      <li><label><input type="checkbox"><span>Claude עשוי לשאול בחלון קטן אם מותר לו ליצור את הקובץ: אשרו (Yes / Allow). הוא יעצור ויראה לכם את הקובץ. קראו אותו לפני שממשיכים</span></label></li>
+    </ol>
+    <div class="help" style="background:var(--blue-soft)"><b>מה זה CLAUDE.md?</b> "חוקי הבית" של התיקייה: קובץ שקורא Claude בתחילת כל שיחה. כאן הוא מגדיר את חוקי השרשרת, לפני שיש בה אפילו Skill אחד. כל השלבים יקראו אותם אוטומטית. החוק הכי חשוב: <b>לא ממציאים</b>. המבנה הזה זהה לכל שלוש האפשרויות, וכותבים אותו פעם אחת.</div>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">שלב 0 · CLAUDE.md</span>כתוב קובץ CLAUDE.md לתיקייה הזאת.
+המוסכמות:
+- הפלט הוא קבצי markdown (או דוח report.html אחד עצמאי)
+- קבצי הקלט נשארים בתיקייה, ואף פעם לא משנים את הקלט הגולמי
+- לעולם אל תמציא עובדות, ניסיון או ציטוטים.
+אם לא ידוע, כתוב שלא ידוע
+- כל שלב כותב את הקובץ שלו לפני שהשלב הבא רץ
+בסוף עצור והראה לי את הקובץ.</div>
+    <div class="done">✅ <b>סיימתם כש:</b> <code>CLAUDE.md</code> יושב בתיקייה הראשית, ו-Claude עצר והראה אותו לפני שהמשיך.</div>
+    <div class="help"><b>איך מאשרים הרשאה?</b> כש-Claude רוצה ליצור קובץ או להריץ פקודה, מופיע חלון קטן עם תיאור של מה שהוא עומד לעשות. קראו, ובחרו Yes או Allow. ניסוח הכפתורים משתנה בין גרסאות.</div>
+    <p class="hint">בהמשך: בכל אפשרות בונים שלושה Skills, ואז מתזמר אחד שמריץ אותם (ראו "המתזמר"). את הפקודות והבקשות מעתיקים בדיוק כמו שהן.</p>
+  </div>
+
+  <div class="sec" id="m5-ws-a">
+    <span class="badge ws">אפשרות A · סקירת ספרות · כ-20 דקות</span><br><span class="where">תיקייה פתוחה: pipeline-starter</span>
+    <h3>סוקרים מאמרים, ועוצרים לפני החילוץ</h3>
+    <p class="goal">המטרה: <code>review.md</code> שנבנה רק מהמאמרים שאישרתם. שלושה Skills: <code>screen-papers</code> (מחליט כן או לא), <code>extract-evidence</code> (שאלה, שיטה, תוצאה) ו-<code>synthesize-review</code> (סקירה אחת). השער נמצא אחרי הסינון, כי מאמר שנכנס בטעות מזהם את הסקירה כולה.</p>
+    <div class="help" style="background:var(--blue-soft)"><b>מה צריך בתיקייה:</b> תיקייה <code>papers/</code> עם קבצי טקסט (מאמרים או תקצירים) וקובץ <code>review-brief.md</code> שבו כותבים שאלת המחקר וקריטריוני ההכללה. למשל: "שאלה: האם למידה עמוקה משפרת זיהוי תקלות במנועים? כללו רק מאמרים משנת 2018 ואילך עם תוצאה מספרית."</div>
+    <div class="help"><b>אין לכם מאמרים?</b> בקשו מ-Claude ליצור:<div class="prompt" style="margin-bottom:0"><button class="copy">העתק</button>צור בתיקייה הזאת תיקייה papers/ עם 6 תקצירים קצרים בקבצי טקסט מתחום ההנדסה, על אותו נושא, ועוד תקציר אחד שלא קשור לנושא. צור גם קובץ review-brief.md עם שאלת מחקר אחת וקריטריוני הכללה ברורים (למשל שנה וסוג תוצאה).</div></div>
+    <ol class="steps" data-key="m5-a">
+      <li><label><input type="checkbox"><span>ודאו ש-<code>papers/</code> ו-<code>review-brief.md</code> בתיקייה, ושב-<code>review-brief.md</code> יש לפחות קריטריון אחד ברור שאפשר לבדוק</span></label></li>
+      <li><label><input type="checkbox"><span><b>שלב 1:</b> הדביקו את בקשת הסינון ובדקו את <code>screening.md</code></span></label></li>
+      <li><label><input type="checkbox"><span><b>🛑 השער:</b> עברו על ההחלטות בביטחון נמוך, שנו מה שצריך, ואשרו את הרשימה הסופית. רק מאמרים מאושרים עוברים לשלב 2. אפשר לערוך את הקובץ בעצמכם או לבקש מ-Claude לשנות החלטה</span></label></li>
+      <li><label><input type="checkbox"><span><b>שלב 2:</b> הדביקו את בקשת החילוץ</span></label></li>
+      <li><label><input type="checkbox"><span><b>שלב 3:</b> הדביקו את בקשת הסינתזה</span></label></li>
+      <li><label><input type="checkbox"><span>בדיקה: בחרו בלוק אחד ב-<code>evidence.md</code> והשוו מול המאמר המקורי</span></label></li>
+    </ol>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">שלב 1 · screen-papers</span>בנה Skill בשם screen-papers.
+לכל קובץ בתיקייה papers/, קרא והחלט אם להכליל (INCLUDE) או להוציא (EXCLUDE) לפי הקריטריונים ב-review-brief.md.
+כתוב את screening.md כטבלה: מאמר · החלטה · סיבה בשורה אחת · ביטחון (גבוה/נמוך).
+סמן לי כל החלטה בביטחון נמוך.</div>
+    <p class="hint">שימו לב לעמודת הביטחון: Claude אומר איפה הוא לא בטוח, ובדיוק שם אתם מסתכלים. אם הקריטריונים מעורפלים, גם הסינון יהיה מעורפל.</p>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">שלב 2 · extract-evidence</span>בנה Skill בשם extract-evidence.
+רק למאמרים המאושרים, חלץ: שאלת מחקר, שיטה, תוצאה מרכזית (עם המספר אם מצוין) ומגבלה אחת.
+כתוב evidence.md, בלוק אחד לכל מאמר, עם ציטוט המשפט המקורי לכל תוצאה.</div>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">שלב 3 · synthesize-review</span>בנה Skill בשם synthesize-review.
+קרא את evidence.md וענה על השאלה מה-brief בקובץ review.md: טבלת השוואה בין המאמרים, סינתזה בשתי פסקאות ושאלות פתוחות.
+ציין את שמות המאמרים בגוף הטקסט.
+אל תמציא כלום.</div>
+    <div class="done">✅ <b>סיימתם כש:</b> יש <code>review.md</code> עם טבלה, שתי פסקאות ושאלות פתוחות, והוא מבוסס רק על המאמרים שאישרתם. ציטוט אחד לפחות ב-<code>evidence.md</code> נבדק מול המקור.</div>
+    <div class="help"><b>הבלוק ב-evidence.md לא תואם למאמר?</b> תקנו את הבקשה (לא את הפלט) ובקשו מ-Claude להריץ את השלב שוב.</div>
+    <p class="hint">הלאה: בונים את המתזמר (ראו "המתזמר" למטה).</p>
+  </div>
+
+  <div class="sec" id="m5-ws-b">
+    <span class="badge ws">אפשרות B · ניקוי נתונים · כ-20 דקות</span><br><span class="where">תיקייה פתוחה: pipeline-starter</span>
+    <h3>מנקים נתונים, ועוצרים לפני שנוגעים</h3>
+    <p class="goal">המטרה: <code>report.html</code> על הנתונים שאישרתם בלבד. שלושה Skills: <code>profile-csv</code> (מפרט מה לא תקין), <code>apply-cleaning</code> (מנקה לפי התוכנית) ו-<code>report-csv</code> (דוח עם גרפים). השער נמצא לפני הניקוי, כי מחיקה של שורה קשה להחזיר.</p>
+    <div class="help" style="background:var(--blue-soft)"><b>מה זה CSV?</b> קובץ טבלה בפשטות: כל שורה היא רשומה, והערכים מופרדים בפסיקים. נפתח באקסל או ב-VS Code. <b>חריג</b> הוא ערך שנראה שונה מכל השאר: יכול להיות תקלת חיישן, או תוצאה אמיתית ומעניינת. רק מי שמכיר את הניסוי יכול להחליט.</div>
+    <div class="help"><b>אין לכם קובץ מדידות?</b> בקשו מ-Claude ליצור:<div class="prompt" style="margin-bottom:0"><button class="copy">העתק</button>צור בתיקייה הזאת קובץ raw.csv עם כ-20 שורות של מדידות מבולגנות מניסוי (עמודות: תפוקה, טמפרטורה): כמה שורות ריקות, שורה אחת עם הערה במקום מספר, כמה ערכים חסרים, ובשורה 11 חריג ברור: תפוקה 99.8 וטמפרטורה 38.7.</div></div>
+    <ol class="steps" data-key="m5-b">
+      <li><label><input type="checkbox"><span>ודאו ש-<code>raw.csv</code> בתיקייה (קובץ מדידות מבולגן, עם חריג אחד מוזר בשורה 11)</span></label></li>
+      <li><label><input type="checkbox"><span><b>שלב 1:</b> הדביקו את בקשת הפרופיל ופתחו את <code>cleaning-plan.md</code></span></label></li>
+      <li><label><input type="checkbox"><span><b>🛑 השער:</b> אשרו או ערכו את התוכנית. בשורה 11 (תפוקה 99.8, טמפרטורה 38.7): ריצה אמיתית או תקלת חיישן? אם נראה לכם אמיתי, בקשו להוציא אותו מרשימת המחיקות. שום דבר לא נמחק עד שתגידו</span></label></li>
+      <li><label><input type="checkbox"><span><b>שלב 2:</b> הדביקו את בקשת הניקוי. אם Claude שואל אם להתקין את pandas, אשרו</span></label></li>
+      <li><label><input type="checkbox"><span><b>שלב 3:</b> הדביקו את בקשת הדוח</span></label></li>
+      <li><label><input type="checkbox"><span>בדיקה: מספר השורות שנמחקו ב-<code>applied-log.md</code> זהה למה שאישרתם. פתחו את <code>report.html</code> בדפדפן (קליק ימני על הקובץ ← Reveal in Finder / Reveal in File Explorer ← לחיצה כפולה)</span></label></li>
+    </ol>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">שלב 1 · profile-csv</span>בנה Skill בשם profile-csv.
+קרא את raw.csv וכתוב cleaning-plan.md: לכל עמודה, הסוג והאחוז החסר; כל שורה שהיית מוחק ולמה (ריקה, הערה, ערך חסר); וכל חריג עם הערך שלו.
+תציע בלבד, אל תשנה כלום.</div>
+    <p class="hint">המילים "תציע בלבד, אל תשנה כלום" הן העיקר. ⚡ נסו עכשיו: איזה חריג בנתונים שלכם הייתם רוצים שמישהו יעצור ויבדוק?</p>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">שלב 2 · apply-cleaning</span>בנה Skill בשם apply-cleaning.
+הפעל רק את התוכנית המאושרת: כתוב clean.csv ו-applied-log.md (שורה לכל שינוי, עם מספר השורה).
+ספור שורות לפני ואחרי.
+התקן את pandas רק אם חסר.</div>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">שלב 3 · report-csv</span>בנה Skill בשם report-csv.
+מ-clean.csv כתוב report.html עצמאי: טבלת סטטיסטיקה (ספירה, ממוצע, סטיית תקן, מינימום ומקסימום לכל עמודה), היסטוגרמה לכל עמודה מספרית, וסיכום בשני משפטים.
+התקן pandas ו-matplotlib רק אם חסרים.</div>
+    <div class="done">✅ <b>סיימתם כש:</b> יש <code>clean.csv</code>, <code>applied-log.md</code> ו-<code>report.html</code> שנפתח בדפדפן, ומספר השורות שנמחקו זהה למה שאישרתם בשער.</div>
+    <div class="help"><b>אם ההתקנה של pandas לא עובדת:</b> pandas ו-matplotlib הן חבילות פייתון לעבודה עם טבלאות וגרפים. אם Claude לא מצליח להתקין אותן, בקשו ממנו: "pandas לא מצליחה להיות מותקנת. כתוב את הסקריפט בפייתון רגיל, בלי חבילות חיצוניות, והסבר מה השתנה". ההתקנות מאושרות בחלון ההרשאה כמו כל פעולה אחרת.</div>
+    <p class="hint">הלאה: בונים את המתזמר (ראו "המתזמר" למטה).</p>
+  </div>
+
+  <div class="sec" id="m5-ws-c">
+    <span class="badge ws">אפשרות C · קורות חיים · כ-20 דקות</span><br><span class="where">תיקייה פתוחה: pipeline-starter</span>
+    <h3>מתאימים קורות חיים להתמחות, בלי להמציא</h3>
+    <p class="goal">המטרה: <code>resume-tailored.md</code> (קורות חיים מותאמים) ו-<code>match-report.md</code> (דוח התאמה). שלושה Skills: <code>extract-requirements</code> (מה המשרה דורשת), <code>match-and-plan</code> (מה כבר יש ומה חסר) ו-<code>tailor-resume</code> (התאמה אחרונה). יש כאן שתי עצירות: אחרי שמבינים מה נדרש, ואחרי שמחליטים מה נכון להדגיש. ב<b>שער האמת</b> אתם מחליטים. Claude לא מוסיף ניסיון שאין.</p>
+    <div class="help"><b>אין לכם פרסום של התמחות וקורות חיים?</b> בקשו מ-Claude ליצור:<div class="prompt" style="margin-bottom:0"><button class="copy">העתק</button>צור בתיקייה הזאת שני קבצים: job-posting.md עם פרסום לדוגמה של התמחות בהנדסה (תיאור התפקיד, כישורי חובה ויתרונות), ו-master-resume.md עם קורות חיים לדוגמה של סטודנט להנדסה בשנה ג׳ (השכלה, פרויקטים, כישורים).</div></div>
+    <ol class="steps" data-key="m5-c">
+      <li><label><input type="checkbox"><span>ודאו ש-<code>job-posting.md</code> ו-<code>master-resume.md</code> בתיקייה</span></label></li>
+      <li><label><input type="checkbox"><span><b>שלב 1:</b> הדביקו את בקשת הדרישות ובדקו את <code>requirements.md</code></span></label></li>
+      <li><label><input type="checkbox"><span><b>🛑 השער הראשון:</b> אשרו את סדר העדיפויות והוסיפו הקשר שהפרסום רומז אליו ולא אומר. אתם קובעים מה חשוב</span></label></li>
+      <li><label><input type="checkbox"><span><b>שלב 2:</b> הדביקו את בקשת ההתאמה ובדקו את <code>match-report.md</code></span></label></li>
+      <li><label><input type="checkbox"><span><b>🛑 שער האמת:</b> אשרו את התוכנית. דחו כל דבר שמגזים. אתם מחליטים מה נכון להדגיש, ואין המצאות</span></label></li>
+      <li><label><input type="checkbox"><span><b>שלב 3:</b> הדביקו את בקשת ההתאמה האחרונה</span></label></li>
+    </ol>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">שלב 1 · extract-requirements</span>בנה Skill בשם extract-requirements.
+קרא את job-posting.md וכתוב requirements.md: כישורי חובה, יתרונות, ומילות המפתח המדויקות שהפרסום משתמש בהן (בשביל מערכות סינון).
+סמן כל דרישה כחובה או כיתרון.</div>
+    <p class="hint">"מערכות סינון" הן תוכנות שחברות מפעילות כדי לסנן קורות חיים לפי מילות מפתח, ולכן המילים המדויקות חשובות.</p>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">שלב 2 · match-and-plan</span>בנה Skill בשם match-and-plan.
+השווה את master-resume.md ל-requirements.md וכתוב match-report.md: לכל דרישה, מה קורות החיים כבר מראים (ציטוט הנקודה), פערים, ותוכנית התאמה: אילו נקודות להוביל איתן ואילו לנסח מחדש.
+הצע בלבד.</div>
+    <p class="hint">ציטוט של נקודה מקורות החיים מראה ש-Claude קורא ולא ממציא.</p>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">שלב 3 · tailor-resume</span>בנה Skill בשם tailor-resume.
+הפעל רק את התוכנית המאושרת וכתוב resume-tailored.md: סדר מחדש ונסח מחדש את התוכן האמיתי של קורות החיים המקוריים לפי מילות המפתח של הפרסום, בעמוד אחד.
+אל תוסיף ניסיון שלא כתוב במקור.</div>
+    <div class="done">✅ <b>סיימתם כש:</b> קראתם את <code>resume-tailored.md</code> לצד המקור, ואין בו שום דבר שלא קרה.</div>
+    <p class="hint">כלל אצבע: קורות חיים שאתם לא יכולים לעמוד מאחוריהם בראיון הם לא קורות חיים. כל דבר חדש בקובץ הוא חשוד. סיימתם מוקדם? נסו גם שרשרת A או B על חומר אחר. ואז: בונים את המתזמר (ראו למטה).</p>
+  </div>
+
+  <div class="sec" id="m5-orch">
+    <span class="badge ws">המתזמר · כ-10 דקות</span><br><span class="where">תיקייה פתוחה: pipeline-starter</span>
+    <h3>Skill אחד שמריץ את כולם ועוצר בשער</h3>
+    <p class="goal">המטרה: להפעיל פקודה אחת, והשרשרת כולה רצה: עוצרת בשער, מחכה לכם, ממשיכה לפי התשובה ומסיימת בקובץ הסופי.</p>
+    <div class="help" style="background:var(--blue-soft)"><b>מה זה מתזמר?</b> Skill כמו האחרים, רק שהוא מפעיל Skills אחרים לפי סדר, כמו מנצח שמסמן למי להתחיל. השורה החשובה בו היא <b>STOP</b>: הוא מציג, שואל ומחכה לתשובה. בלי השורה הזו Claude ירוץ עד הסוף. אין כאן סוכנים נוספים: סוכן אחד, שיחה אחת, כמה Skills.</div>
+    <p>דוגמה לקובץ של מתזמר, לשרשרת ניקוי הנתונים. <b>לא צריך להעתיק אותה</b>, Claude יבנה לכם אחד דומה. הקובץ כתוב באנגלית כי ככה Claude קורא אותו בצורה עקבית. בשרשרת שלכם מחליפים את שמות השלבים:</p>
+    <div class="prompt ltr"><button class="copy">Copy</button><span class="tag">EXAMPLE · SKILL.md</span>---
+name: cleaning-pipeline
+description: Raw CSV -&gt; cleaned report
+argument-hint: [path-to-raw-csv]
+---
+Run in order; each stage reads
+the previous output.
+1. Profile: run profile-csv
+   STOP. Show me the plan, ASK.
+2. Apply: run apply-cleaning
+3. Report: run report-csv</div>
+    <ol class="steps" data-key="m5-orch">
+      <li><label><input type="checkbox"><span>בחרו שם לשרשרת שלכם: <code>review</code> לאפשרות A, <code>cleaning</code> ל-B, <code>resume</code> ל-C</span></label></li>
+      <li><label><input type="checkbox"><span>הדביקו את הבקשה, והחליפו את מה שבצהוב בשם שבחרתם. כך השם <code>cleaning</code> יהפוך ל-<code>cleaning-pipeline</code></span></label></li>
+      <li><label><input type="checkbox"><span>הפעילו את המתזמר: הקלידו <code>/</code> ואת שם ה-Skill, ואז את שם קובץ הקלט (בדוגמה: <code>/cleaning-pipeline raw.csv</code>)</span></label></li>
+      <li><label><input type="checkbox"><span>כשהשרשרת עוצרת בשער, קראו את הקובץ, ענו "אשר" או הוסיפו תיקון. ורק אז היא ממשיכה</span></label></li>
+      <li><label><input type="checkbox"><span>אשרו הרשאות שמופיעות בדרך, ופתחו את הקובץ הסופי שהמתזמר מציג בסוף</span></label></li>
+    </ol>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">בקשת המתזמר · מחליפים את מה שבצהוב</span>בנה Skill מתזמר בשם <span class="ph">[שם]</span>-pipeline בתיקייה .claude/skills/. הוא מקבל את הנתיב לקלט, ומריץ את שלושת ה-Skills של השלבים לפי הסדר: כל שלב קורא את הפלט של הקודם.
+אחרי שלב 1 עצור (STOP), הראה לי את הקובץ ושאל אם לאשר או לערוך.
+המשך רק אחרי התשובה שלי.
+בסוף רשום כל קובץ פלט, ופתח את הדוח או הקובץ הסופי.</div>
+    <div class="done">✅ <b>סיימתם כש:</b> הפעלתם את המתזמר, הוא עצר בשער, חיכה לכם, וקיבלתם את הקובץ הסופי.</div>
+    <p class="hint">⚡ בונוס: הוסיפו שער נוסף לפני השלב האחרון.</p>
+    <div class="help"><b>אם הפקודה לא עובדת:</b> אם <code>/שם-pipeline</code> לא מזוהה, הקלידו <code>/</code> וחפשו את ה-Skill ברשימה. אם הוא לא שם, בדקו שהקובץ יושב בתיקייה <code>.claude/skills/</code> בתוך התיקייה הפתוחה, ופתחו שיחה חדשה. אפשר גם לכתוב בצ׳אט: "הפעל את ה-Skill cleaning-pipeline על raw.csv".</div>
+    <div class="help"><b>Claude לא עוצר?</b> הוסיפו לבקשה "אל תמשיך בלי תשובה שלי" והריצו שוב.</div>
+  </div>
+
+  <div class="sec" id="m5-check">
+    <span class="badge idea">בדיקות ובעיות נפוצות</span>
+    <h3>איך יודעים שזה עובד</h3>
+    <table>
+      <tr><th>בדיקה</th><th>איך</th></tr>
+      <tr><td><b>כל Skill לבד</b></td><td>פותחים את הקובץ שהוא כתב. הוא מה שציפיתם? (להסתכל על הקובץ, לא רק על התשובה בצ׳אט)</td></tr>
+      <tr><td><b>השער באמת עוצר</b></td><td>השרשרת מחכה לתשובה שלכם ולא ממשיכה לבד</td></tr>
+      <tr><td><b>אין המצאות</b></td><td>בוחרים פריט אחד בפלט ובודקים מול המקור</td></tr>
+    </table>
+    <div class="done">✅ <b>סיימתם את Workshop 5 כש:</b> יש לכם <code>CLAUDE.md</code>, שלושה Skills, מתזמר שעצר בשער, וקובץ סופי שבדקתם מול המקור.</div>
+    <div class="help"><b>נתקעתם?</b> הדביקו ל-Claude את ההודעה ושאלו: "מה השלב שנכשל, ומה לתקן בבקשה?". אם משהו נכשל, מתקנים את הבקשה של השלב ולא את הפלט.</div>
+    <p class="hint">הדברים לזכור: שרשרת היא שלבים שמדברים דרך קבצים · השער נמצא לפני כל מה שקשה לבטל, כמו מחיקה · כלל "לא ממציאים" נכתב ב-<code>CLAUDE.md</code> ותקף בכל שלב · המתזמר מריץ את השלבים בסדר ועוצר ב-STOP. סיימתם מוקדם? הסבירו את השרשרת לשכן: הסבר לאחר הוא בדיקה טובה.</p>
+    <div class="help" style="background:var(--blue-soft)"><b>מה הלאה:</b> עד עכשיו הכול נשאר בתיקייה אחת. מה אם השרשרת צריכה נתונים מהאינטרנט, מהמייל או מכלי שאתם משתמשים בו? זה מודול 6: מחברים את Claude לעולם שבחוץ.</div>
+  </div>
+</section>
+
+<!-- ======================= MODULE 6 ======================= -->
+<section class="mod m6" id="m6">
+  <div class="mhead">
+    <div class="num">מודול 6 · יום ב׳</div>
+    <h2>מחברים את Claude לעולם: MCP ו-Connectors</h2>
+    <p>עד עכשיו Claude ראה רק את התיקייה שפתחתם. עכשיו נותנים לו גישה ליומן, לקבצים ולרשת, והוא מביא משם מידע בעצמו, בלי שתעתיקו ותדביקו.</p>
+    <span class="out">תוצר: חיבור למקור אחד, ודף summary.html שנבנה ממידע שהוא הביא</span>
+    <ul class="toc">
+      <li><a href="#m6-ideas">רעיונות מרכזיים</a></li>
+      <li><a href="#m6-docs">דמו · מוסיפים שרת</a></li>
+      <li><a href="#m6-cal">דמו · Connector ליומן</a></li>
+      <li><a href="#m6-excel">דמו · שרת אקסל</a></li>
+      <li><a href="#m6-pipe">מחברים לצינור</a></li>
+      <li><a href="#m6-ws">Workshop 6 · דף סיכום</a></li>
+      <li><a href="#m6-deep">להעמקה · MCP לעומק</a></li>
+    </ul>
+  </div>
+
+  <div class="sec" id="m6-ideas">
+    <span class="badge idea">רעיונות מרכזיים</span>
+    <h3>Claude רואה רק את התיקייה. MCP מוסיף לו עיניים ויד</h3>
+    <div class="grid2">
+      <div class="card bad"><h4>בלי חיבור</h4><p>אי אפשר לשאול על היומן, על המייל, על הקבצים בענן או על מה שקורה עכשיו ברשת. אתם מורידים, מעתיקים ומדביקים בעצמכם.</p></div>
+      <div class="card good"><h4>עם MCP</h4><p>מחברים את האפליקציות ל-Claude, והוא קורא ופועל בהן בשבילכם. אחר כך שואלים בעברית כרגיל.</p></div>
+    </div>
+    <p><b>MCP</b> הוא כמו USB-C: תקע אחד שמתאים להרבה מכשירים. בלי תקע משותף, לכל מכשיר היה מטען אחר. עם MCP, כל שירות שתומך בו מתחבר ל-Claude באותה דרך, בלי תוכנה מיוחדת לכל אפליקציה. לא צריך לזכור מה הקיצור אומר, רק את התקע.</p>
+    <p><b>שרת MCP</b> הוא תוכנה נפרדת שמציעה ל-Claude שירות, למשל "קרא את היומן" או "חפש במסמכים". את Claude Code (האפליקציה שאתם עובדים בה) קוראים "מארח". בתוכו יש "לקוח", מחבר קטן שמדבר עם שרת אחד. את הלקוח אתם לא מגדירים, הוא נוצר לבד.</p>
+
+    <h4 style="margin:18px 0 6px">שלושה סוגי מתנות שרת יכול לתת</h4>
+    <table>
+      <tr><th>סוג</th><th>מה זה</th></tr>
+      <tr><td><b>כלים</b> (Tools)</td><td>פעולות ש-Claude מריץ בשבילכם: "חפש במסמכים", "קרא את היומן". הכי חשוב.</td></tr>
+      <tr><td><b>משאבים</b> (Resources)</td><td>מסמכים ונתונים ש-Claude יכול לקרוא, כמו עמוד אחד או קובץ אחד.</td></tr>
+      <tr><td><b>תבניות</b> (Prompts)</td><td>קיצורים מוכנים שהשרת מציע, כדי לא להקליד את הבקשה המלאה.</td></tr>
+    </table>
+    <p class="hint">הרעיון המרכזי: Claude משתמש בכלי של שרת בדיוק כמו בכלים שכבר מכירים, כמו קריאה ועריכת קבצים. אין כאן קסם חדש, רק עוד כלים בתפריט שלו.</p>
+
+    <h4 style="margin:18px 0 6px">מקומי או מרוחק</h4>
+    <div class="grid2">
+      <div class="card"><h4>מקומי (Local)</h4><p>תוכנה קטנה שרצה על המחשב שלכם, מתאימה לקבצים וכלים מקומיים. מגדירים פעם אחת בפקודה. דוגמה: שרת קבצים, שרת אקסל.</p></div>
+      <div class="card"><h4>מרוחק (Remote)</h4><p>שירות באינטרנט, מגיעים אליו בכתובת ומתחברים פעם אחת. אין מה להתקין. דוגמה: Google Calendar, Slack.</p></div>
+    </div>
+    <p class="hint">⚡ נסו עכשיו: איזה מהשלושה הוא שרת מרוחק: היומן, תיקיית הקבצים שלכם, או Gmail? (תשובה: היומן ו-Gmail. תיקיית הקבצים מקומית.)</p>
+
+    <div class="warn"><b>⚠ מחברים רק שרתים שסומכים עליהם.</b> שרת מחובר פועל עם ההרשאות שלכם: הוא יכול לקרוא קבצים, לשלוח מייל, לפרסם הודעות. הוא גם מביא תוכן מבחוץ (דף אינטרנט, מסמך) שעלול להסתיר הוראות שמנסות לבלבל את Claude. זה נקרא <b>prompt injection</b>. ההגנה: שרתים ממקור אמין, והרגל מהמודול הקודם: Claude שואל לפני שהוא פועל.<br><b>בכיתה:</b> לא מחברים חשבון עבודה או מייל עם מידע רגיש. לתרגול: חשבון אישי ריק, או תוכן שלא מפריע לכם שייחשף.</div>
+  </div>
+
+  <div class="sec" id="m6-docs">
+    <span class="badge demo">דמו · נסו בעצמכם · כ-10 עד 15 דקות</span><br><span class="where">תיקייה פתוחה: technion-ai</span>
+    <h3>מוסיפים שרת ובודקים שהוא עובד</h3>
+    <p class="goal">המטרה: להוסיף שרת חינמי (שרת המסמכים של Claude Code, בלי הרשמה), לראות מה הכלים שלו, ולהשתמש בו פעם אחת.</p>
+    <p><b>איפה מקלידים?</b> שלב 1 ושלב 2 הם פקודות לטרמינל, לא לתיבת השיחה של Claude. ב-VS Code: View ← Terminal, מדביקים ולוחצים Enter. שלב 3 ושלב 4 הם בתוך שיחה עם Claude.</p>
+    <ol class="steps" data-key="m6-docs">
+      <li><label><input type="checkbox"><span>בטרמינל: הדביקו את הפקודה הראשונה למטה ולחצו Enter. היא מוסיפה את השרת</span></label></li>
+      <li><label><input type="checkbox"><span>בטרמינל: הריצו את הפקודה השנייה, וחפשו ליד השם <code>claude-code-docs</code> את הסימן <code>✓ Connected</code></span></label></li>
+      <li><label><input type="checkbox"><span>בתוך שיחה עם Claude: הקלידו <code>/mcp</code> ובחרו את השרת. תראו את רשימת הכלים שלו, בדיוק מה ש-Claude יכול להפעיל</span></label></li>
+      <li><label><input type="checkbox"><span>בשיחה: הדביקו את השאלה למטה. בפעם הראשונה Claude יבקש רשות להפעיל את הכלי. לחצו על האישור (למשל "Yes"; הניסוח משתנה בין גרסאות) אחרי שקראתם מה הוא עומד לעשות</span></label></li>
+    </ol>
+    <div class="prompt ltr"><button class="copy">Copy</button><span class="tag">טרמינל · שלב 1</span>claude mcp add --transport http claude-code-docs https://code.claude.com/docs/mcp</div>
+    <div class="prompt ltr"><button class="copy">Copy</button><span class="tag">טרמינל · שלב 2</span>claude mcp list</div>
+    <div class="prompt ltr"><button class="copy">Copy</button><span class="tag">בשיחה · שלב 3</span>/mcp</div>
+    <div class="prompt ltr"><button class="copy">Copy</button><span class="tag">בשיחה · שלב 4</span>Use the claude-code-docs server to look up what MCP_TIMEOUT does.</div>
+    <div class="done">✅ <b>סיימתם כש:</b> <code>claude mcp list</code> מראה <code>✓ Connected</code>, והתשובה של Claude מסומנת בשם השרת <code>claude-code-docs</code>. זו ההוכחה שהיא הגיעה דרכו.</div>
+    <p class="hint">השם <code>claude-code-docs</code> הוא בחירה שלנו, אפשר לבחור אחר. ברירת המחדל: השרת נוסף לפרויקט הנוכחי. עם <code>--scope user</code> בסוף הפקודה הוא זמין בכל תיקייה.</p>
+    <div class="help"><b>אם הפקודה לא עובדת:</b> ודאו שהקלדתם אותה בטרמינל ולא בשיחה, ושהיא מתחילה ב-<code>claude</code>. אם הטרמינל לא מכיר את <code>claude</code>, אפשר לדלג על הדמו ולעבור ל-Connector ליומן (הסעיף הבא), שעובד עם כפתורים. אם מופיע <code>! Needs authentication</code>: הקלידו <code>/mcp</code>, בחרו את השרת, לחצו Authenticate והתחברו בדפדפן (לשרת הזה זה לא נדרש).</div>
+  </div>
+
+  <div class="sec" id="m6-cal">
+    <span class="badge demo">דמו · נסו בעצמכם · כ-15 עד 20 דקות</span>
+    <h3>Connector ליומן: אפליקציה פופולרית בלי פקודה</h3>
+    <p class="goal">המטרה: לחבר את Google Calendar ולשאול עליו בעברית. <b>Connector</b> הוא מתג בהגדרות שמחבר אפליקציה מוכרת (יומן, מייל, Drive) ל-Claude, עם התחברות בדפדפן. אין פקודה, ואין מה להתקין.</p>
+    <table>
+      <tr><th>שתי דרכים לחבר</th><th>מתי</th></tr>
+      <tr><td><b>שרת עם כתובת</b>: <code>claude mcp add …</code> כמו בסעיף הקודם</td><td>שרת המסמכים וכלי מפתחים</td></tr>
+      <tr><td><b>Connector</b>: Settings ← Connectors</td><td>אפליקציות פופולריות: יומן, Gmail, Drive. אחרי שמחברים ב-claude.ai, הן מופיעות גם ב-Claude Code</td></tr>
+    </table>
+    <p><b>זהירות:</b> לתרגול השתמשו בחשבון גוגל אישי או חשבון בדיקה, לא בחשבון עבודה.</p>
+    <ol class="steps" data-key="m6-cal">
+      <li><label><input type="checkbox"><span>פתחו Settings ← Connectors ב-claude.ai או באפליקציית Claude Desktop (השמות והמיקום עשויים להשתנות קצת בין גרסאות)</span></label></li>
+      <li><label><input type="checkbox"><span>מצאו Google Calendar ולחצו Connect. אפשר גם Add custom connector ולהדביק כתובת של שרת, אם יש לכם</span></label></li>
+      <li><label><input type="checkbox"><span>היכנסו בדפדפן עם חשבון הגוגל ואשרו את הגישה</span></label></li>
+      <li><label><input type="checkbox"><span>חזרו ל-Claude והדביקו את השאלה למטה. אם Claude מבקש רשות להשתמש בכלי של היומן, אשרו בלחיצה על האישור</span></label></li>
+    </ol>
+    <div class="prompt ltr"><button class="copy">Copy</button>What's on my calendar this Thursday, and find a free 30-minute slot on Friday?</div>
+    <p class="hint">אפשר לשאול גם בעברית. אין לכם אירועים ביומן? הוסיפו ידנית שלושה אירועים לדוגמה, למשל "מבחן באלקטרוניקה" ו"הגשת תרגיל", ואז שאלו.</p>
+    <div class="help"><b>אם משהו לא עובד:</b> מסך האישור של גוגל לא נפתח? ייתכן שחלון קופץ נחסם בדפדפן, אפשרו אותו ולחצו Connect שוב. המסך נראה שונה ממה שכתוב כאן? חפשו את Connectors או Integrations בהגדרות. טעות נפוצה: לצפות ש-Gmail ויומן יתחברו בפקודה מקומית. הם מתחברים דרך Connectors.</div>
+
+    <h4 style="margin:22px 0 6px">מה תחברו כסטודנטים וחוקרים</h4>
+    <table>
+      <tr><th>מקור</th><th>דוגמה לשאלה</th></tr>
+      <tr><td>📅 יומן</td><td>"מה יש לי ביום חמישי? כמה ימים נשארו עד כל מבחן?"</td></tr>
+      <tr><td>📁 Drive</td><td>"מצא את סיכומי ההרצאות של שבוע 4 וחלץ את הנוסחאות"</td></tr>
+      <tr><td>✉️ מייל</td><td>"סכם הודעות שלא קראתי ממעבדה ומהמרצים" (בזהירות: לא מחברים תיבה עם מידע רגיש)</td></tr>
+      <tr><td>🌐 רשת ומאמרים</td><td>"פתח את הדף הזה וסכם אותו" (שרת דפדפן או שרת מחקר)</td></tr>
+    </table>
+    <p class="hint">⚡ נסו עכשיו: איזה מהארבעה היה חוסך לכם הכי הרבה זמן השבוע?</p>
+
+    <h4 style="margin:22px 0 6px">דוגמה 1 · נועה: מועדי מבחנים מהיומן</h4>
+    <p>נועה (שנה ג׳ הנדסת חשמל) רוצה לדעת כמה ימים נשארו לכל מבחן, בלי להעתיק תאריכים ידנית. המקור: היומן. התוצר: טבלה שאפשר להדביק לתוכנית הלימוד ממודול 2.</p>
+    <div class="prompt"><button class="copy">העתק</button>הבא מהיומן את כל האירועים שמכילים ״מבחן״ או
+״הגשה״ עד סוף הסמסטר. הצג לכל אחד כמה ימים נשארו,
+ומיין לפי מועד. אל תשנה כלום ביומן.</div>
+    <p class="hint">שימו לב ל"אל תשנה כלום ביומן". זו קריאה בלבד, כמו מצב תכנון.</p>
+
+    <h4 style="margin:22px 0 6px">דוגמה 2 · חוקרת: תקציר שבועי של מאמרים</h4>
+    <p>המקור: תיקיית Drive בשם Papers עם מאמרים חדשים (או דף ברשת). התוצר: תקציר של שאלה, שיטה, ממצא, והאם לקרוא במלואו.</p>
+    <div class="prompt"><button class="copy">העתק</button>מצא ב-Drive את המאמרים שהוספו בשבוע האחרון בתיקייה
+בשם Papers. לכל מאמר כתוב: שאלת המחקר, השיטה, הממצא
+העיקרי, והאם כדאי לקרוא במלואו. אל תערוך קבצים.</div>
+    <p class="hint">מאמר או דף שמגיעים מהרשת הם תוכן לא אמין, וגם כאן prompt injection רלוונטי. ואם עשיתם Skill בשם <code>paper-to-bullets</code> (Session 4), אפשר להריץ אותו על מה שהשרת הביא.</p>
+    <div class="help"><b>אין לכם חיבור ל-Drive או תיקיית Papers?</b> בקשו מ-Claude ליצור מאמרים לדוגמה בתיקייה מקומית, ואז בקשו ממנו את התקציר מהתיקייה הזו (בלי חיבור):<div class="prompt" style="margin-bottom:0;padding-top:46px"><button class="copy">העתק</button>צור בתיקייה בשם Papers שלושה מאמרים קצרים (כל אחד כ-300 מילים) בקבצי טקסט, על אותו נושא בהנדסה, עם שאלת מחקר, שיטה, ממצא ומגבלות.</div></div>
+  </div>
+
+  <div class="sec" id="m6-excel">
+    <span class="badge demo">דמו · נסו בעצמכם · כ-15 עד 20 דקות</span><br><span class="where">תיקייה פתוחה: technion-ai</span>
+    <h3>שרת אקסל: Claude עובד בתוך קובץ אמיתי</h3>
+    <p class="goal">המטרה: להראות את ההבדל מצ׳אט. צ׳אט נותן טקסט. כאן Claude <b>פותח את הקובץ שלכם</b>, כותב נוסחאות חיות ומוסיף גרף. זה שרת מקומי: בלי חשבון ובלי התחברות.</p>
+    <p><b>לפני שמתחילים:</b> גבו עותק של הקובץ. Claude משנה קובץ אמיתי, וההרשאות הן המנעול.</p>
+    <ol class="steps" data-key="m6-excel">
+      <li><label><input type="checkbox"><span>בטרמינל (View ← Terminal): התקינו את <code>uv</code>, הכלי שמריץ שרתי פייתון. פעם אחת בלבד. אם הוא כבר מותקן, דלגו</span></label></li>
+      <li><label><input type="checkbox"><span>בטרמינל: הוסיפו את שרת האקסל בפקודה השנייה. אותה פקודה לכולם</span></label></li>
+      <li><label><input type="checkbox"><span>הריצו <code>claude mcp list</code> וודאו ש-<code>excel</code> מופיע עם <code>✓ Connected</code></span></label></li>
+      <li><label><input type="checkbox"><span>שימו קובץ בשם <code>sales.xlsx</code> בתיקייה <code>technion-ai</code> (עמודות: region, revenue, cost). אין לכם? ראו התיבה למטה</span></label></li>
+      <li><label><input type="checkbox"><span>בשיחה: הדביקו את הבקשה. אשרו את הכלי בפעם הראשונה, ופתחו את הקובץ באקסל כדי לראות עמודה, נוסחה וגרף</span></label></li>
+    </ol>
+    <div class="prompt ltr"><button class="copy">Copy</button><span class="tag">טרמינל · שלב 1</span>curl -LsSf https://astral.sh/uv/install.sh | sh</div>
+    <div class="prompt ltr"><button class="copy">Copy</button><span class="tag">טרמינל · שלב 2</span>claude mcp add excel -- uvx excel-mcp-server stdio</div>
+    <div class="prompt ltr"><button class="copy">Copy</button><span class="tag">בשיחה · הבקשה</span>Use the excel server to open sales.xlsx: add a margin column = (revenue-cost)/revenue, build a bar chart of revenue by region, and save it.</div>
+    <div class="done">✅ <b>סיימתם כש:</b> בקובץ <code>sales.xlsx</code> שנפתח באקסל יש עמודת margin עם נוסחאות וגרף עמודות של revenue לפי region.</div>
+    <p class="hint">⚡ נסו עכשיו על נתונים שלכם: "חשב ממוצע ציונים לכל קורס והוסף גרף".</p>
+    <div class="help"><b>אם הפקודה לא עובדת:</b> ההתקנה של <code>uv</code> עלולה להיחסם ברשתות מסוימות, ופקודות התקנה משתנות עם הזמן. אם <code>uvx</code> לא נמצא אחרי ההתקנה, סגרו את הטרמינל ופתחו אחד חדש. עדיין לא עובד? דלגו על הדמו הזה, ובסדנה בחרו מקור אחר (שרת המסמכים או היומן).</div>
+    <div class="help"><b>אין לכם sales.xlsx?</b> בקשו מ-Claude ליצור קובץ לדוגמה (אם השרת כבר מחובר הוא ישתמש בו, ואם לא, הוא ימצא דרך אחרת ליצור אותו):<div class="prompt" style="margin-bottom:0;padding-top:46px"><button class="copy">העתק</button>צור בתיקייה הראשית קובץ sales.xlsx עם 12 שורות נתונים לדוגמה ועמודות: region, revenue, cost. הנתונים בדויים, ארבעה אזורים שונים.</div></div>
+  </div>
+
+  <div class="sec" id="m6-pipe">
+    <span class="badge lab">מחברים לצינור · כ-10 דקות</span><br><span class="where">תיקייה פתוחה: technion-ai</span>
+    <h3>שרת מביא, הצינור מעבד</h3>
+    <p class="goal">במודול 5 בניתם צינור: שלבים, שערים ובדיקות. עד עכשיו הקלט שלו הגיע בעבודת יד: הורדה, העתקה, הדבקה. עכשיו Claude מביא אותו לבד.</p>
+    <ol class="steps" data-key="m6-pipe">
+      <li><label><input type="checkbox"><span>בחרו שרת שחיברתם: אקסל, שרת המסמכים, Drive או יומן</span></label></li>
+      <li><label><input type="checkbox"><span>בקשו מ-Claude להשתמש בכלי שלו כדי להביא משהו: נתוני טבלה, טקסט של דף, קבצים</span></label></li>
+      <li><label><input type="checkbox"><span>שמרו את זה כקובץ הקלט של הצינור (קובץ רגיל בתיקייה)</span></label></li>
+      <li><label><input type="checkbox"><span>הריצו שלב אחד, או את כל הצינור ממודול 5, עליו</span></label></li>
+    </ol>
+    <div class="done">✅ <b>סיימתם כש:</b> יש תוצאה, ושורה אחת שכתבתם: איזה שרת, איזה כלי, ולאיזה שלב הזנתם.</div>
+    <p class="hint">תוכן שהובא מבחוץ הוא לא אמין, והשערים ממודול 5 הם בדיוק המקום לבדוק אותו. לא סיימתם את הצינור? אפשר לעבוד גם בלי שערים.</p>
+  </div>
+
+  <div class="sec" id="m6-ws">
+    <span class="badge ws">Workshop 6 · 25 דקות, עד 40 למתחילים</span><br><span class="where">תיקייה פתוחה: technion-ai</span>
+    <h3>ממקור מחובר לדף סיכום חזותי</h3>
+    <p class="goal">המטרה: לחבר מקור אחד, להביא ממנו מידע אמיתי, ולהפוך אותו לדף HTML אחד שנפתח בדפדפן. אפשרויות: תדריך שבועי מהיומן, תקציר מאמרים מ-Drive או מהרשת, או גרף מקובץ אקסל. משתמשים בכל מה שבנינו: תיקיית עבודה, CLAUDE.md, צינור, ועכשיו מקור מחובר.</p>
+    <ol class="steps" data-key="m6-ws">
+      <li><label><input type="checkbox"><span>בחרו מקור <b>אחד</b> וחברו אותו (Connector בממשק, או <code>claude mcp add</code>). נתקעתם בחיבור? התחילו משרת המסמכים או מהאקסל, שלא דורשים התחברות</span></label></li>
+      <li><label><input type="checkbox"><span>ודאו שהוא עובד: הקלידו <code>/mcp</code> או שאלו שאלה קצרה, ובדקו שבתשובה מופיע שם השרת</span></label></li>
+      <li><label><input type="checkbox"><span>הדביקו את הבקשה למטה (אחרי שהחלפתם את מה שבצהוב), ובקשו מ-Claude להציג תוכנית קצרה לפני שהוא מבצע. זה ההרגל ממודול 3</span></label></li>
+      <li><label><input type="checkbox"><span>אשרו, ופתחו את הקובץ <code>summary.html</code> בדפדפן (לחיצה כפולה על הקובץ)</span></label></li>
+      <li><label><input type="checkbox"><span>תקנו דבר אחד שלא אהבתם: צבע, סדר או כותרת</span></label></li>
+    </ol>
+    <div class="prompt"><button class="copy">העתק</button>השתמש בכלי של השרת <span class="ph">[שם השרת]</span> כדי להביא <span class="ph">[מה: אירועי היומן
+של השבוע / מאמרים מתיקיית Papers / גיליון sales.xlsx]</span>.
+אל תשנה כלום במקור. ואז בנה קובץ HTML אחד, summary.html,
+בעברית: כותרת, 3 עד 5 נקודות עיקריות, וטבלה או גרף
+פשוט אחד. בסוף ציין איזה כלי הבאת ממנו מידע.</div>
+    <p class="hint"><b>דוגמה למילוי:</b> "השרת <span style="user-select:all">excel</span> כדי להביא <span style="user-select:all">גיליון sales.xlsx</span>". או: "השרת <span style="user-select:all">Google Calendar</span> כדי להביא <span style="user-select:all">אירועי היומן של השבוע</span>".</p>
+    <div class="done">✅ <b>סיימתם כש:</b> <code>summary.html</code> נפתח בדפדפן, הוא מבוסס על מידע שהובא מהמקור המחובר, ויש בסופו שורה עם שם השרת והכלי.</div>
+    <p class="hint">⚡ בונוס: <span style="user-select:all">הוסף לדף קטע ׳מה לעשות השבוע׳ עם שלוש פעולות</span></p>
+    <div class="help"><b>לא עובד?</b> בדקו ב-<code>/mcp</code> שהשרת מחובר, ושאישרתם את הכלי בפעם הראשונה (לחצו על כפתור האישור כשהוא מופיע). טעויות נפוצות: Connector שלא חובר עד הסוף, אישור כלי שלא נלחץ, וקובץ שנשמר בתיקייה אחרת מזו שפתחתם. חיפשתם את <code>summary.html</code> ולא מצאתם? שאלו את Claude "איפה שמרת את הקובץ?". את הדף אפשר לשלוח למרצה, לשמור לעצמכם, או להריץ מחדש כל שבוע.</div>
+    <div class="help"><b>המקור לא מתחבר בכלל?</b> בקשו מ-Claude ליצור קובץ נתונים לדוגמה בתיקייה, ועבדו עליו כאילו הוא הגיע מהשרת (התרגול על בניית הדף נשאר זהה):<div class="prompt" style="margin-bottom:0;padding-top:46px"><button class="copy">העתק</button>צור בתיקייה הראשית קובץ sample-week.md עם רשימה בדויה של 8 אירועים לשבוע אחד בחיי סטודנט להנדסת חשמל: הרצאות, הגשות ומבחן, עם תאריך ושעה לכל אחד.</div></div>
+  </div>
+
+  <div class="sec" id="m6-deep">
+    <span class="badge idea">להעמקה · אופציונלי</span>
+    <h3>MCP לעומק: מה כדאי לדעת</h3>
+    <p class="goal">לפי התיעוד הרשמי של MCP. לא חובה בשביל התרגילים, אבל עוזר להבין מה קורה מתחת למכסה.</p>
+    <div class="grid2">
+      <div class="card"><h4>תקן פתוח</h4><p>MCP הוא תקן פתוח (open-source) לחיבור אפליקציות AI למערכות חיצוניות: קבצים, מסדי נתונים, כלי חיפוש ועוד. Claude, ChatGPT, VS Code ו-Cursor תומכים בו, כך שבונים חיבור פעם אחת והוא עובד בכמה אפליקציות.</p></div>
+      <div class="card"><h4>דוגמאות מהעולם</h4><p>סוכן שניגש ליומן וב-Notion · Claude Code שבונה אתר מתוך עיצוב ב-Figma · צ׳אט ארגוני שמחובר למסדי נתונים · מודל שמעצב דגם ב-Blender ומדפיס אותו.</p></div>
+      <div class="card"><h4>מארח אחד, כמה שרתים</h4><p>המארח (למשל Claude Code) יוצר לקוח נפרד לכל שרת שמחברים. שרת מקומי (קבצים) ושרת מרוחק (למשל יומן) יכולים לעבוד באותו זמן.</p></div>
+      <div class="card"><h4>שתי שכבות</h4><p><b>מה אומרים:</b> שפה משותפת (מה הכלים שלך? הרץ את זה). <b>איך מעבירים:</b> שרת מקומי מדבר ישירות על המחשב (<code>stdio</code>), ושרת מרוחק דרך הרשת (<code>Streamable HTTP</code>) עם הרשמה בדפדפן (OAuth) או מפתח.</p></div>
+    </div>
+    <h4 style="margin:18px 0 6px">מה קורה מאחורי הקלעים</h4>
+    <ol class="steps" data-key="m6-deep">
+      <li><label><input type="checkbox"><span><b>היכרות</b> (<code>server/discover</code>): Claude שואל את השרת מה הוא יודע לעשות ואילו גרסאות הוא תומך.</span></label></li>
+      <li><label><input type="checkbox"><span><b>רשימה</b> (<code>tools/list</code>): השרת מחזיר את הכלים שלו, כל אחד עם שם, תיאור ופרמטרים.</span></label></li>
+      <li><label><input type="checkbox"><span><b>הרצה</b> (<code>tools/call</code>): Claude מריץ כלי עם פרמטרים (למשל מיקום, בכלי של מזג אוויר) ומקבל תשובה.</span></label></li>
+      <li><label><input type="checkbox"><span><b>עדכונים:</b> אם הכלים משתנים, שרת יכול להודיע על כך ל-Claude, אם ביקש לקבל עדכונים.</span></label></li>
+    </ol>
+    <p class="hint">שרת יכול גם <b>לשאול אתכם</b>: לבקש מידע נוסף או אישור לפני פעולה, בדיוק כמו השער האנושי ממודול 5.</p>
+    <div class="help"><b>קישורים לתיעוד הרשמי:</b>
+      <a href="https://modelcontextprotocol.io/docs/2026-07-28/getting-started/intro" target="_blank" rel="noopener">מבוא ל-MCP</a> ·
+      <a href="https://modelcontextprotocol.io/docs/2026-07-28/learn/architecture" target="_blank" rel="noopener">ארכיטקטורה</a> ·
+      <a href="https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices" target="_blank" rel="noopener">אבטחה ושיטות מומלצות</a>
+      (באנגלית)</div>
+  </div>
+</section>
+
+<!-- ======================= MODULE 7 ======================= -->
+<section class="mod m7" id="m7">
+  <div class="mhead">
+    <div class="num">מודול 7 · יום ב׳</div>
+    <h2>סוכני-משנה: צוות של מומחים</h2>
+    <p>במקום סוכן אחד שעושה הכול, בונים צוות קטן: חוקר שרק קורא, ובונה שרק כותב. הרעש נשאר אצל המומחה, ואליכם חוזר רק הסיכום.</p>
+    <span class="out">תוצר: שני סוכני-משנה (חוקר ובונה) שרצים בזה אחר זה על חומר שלכם</span>
+    <ul class="toc">
+      <li><a href="#m7-ideas">רעיונות מרכזיים</a></li>
+      <li><a href="#m7-setup">שלב 0 · מכינים תיקייה</a></li>
+      <li><a href="#m7-explore">נסו · סוכן מובנה</a></li>
+      <li><a href="#m7-first">שלב 1–2 · הסוכן הראשון</a></li>
+      <li><a href="#m7-fields">מבנה הקובץ</a></li>
+      <li><a href="#m7-own">נסו · סוכן משלכם</a></li>
+      <li><a href="#m7-desc">התיאור הוא ההגה</a></li>
+      <li><a href="#m7-ws">Workshop 7 · צוות של שניים</a></li>
+      <li><a href="#m7-mistakes">טעויות נפוצות</a></li>
+    </ul>
+  </div>
+
+  <div class="sec" id="m7-ideas">
+    <span class="badge idea">רעיונות מרכזיים</span>
+    <h3>למה צוות ולא סוכן אחד</h3>
+    <p class="goal">עד עכשיו עבדתם עם Claude אחד, בשיחה אחת. כל מה שהוא קורא נערם על "השולחן" שלו (זוכרים את <code>/context</code>?). אחרי הרבה קריאה השולחן מלא, והתשובות הופכות כלליות.</p>
+    <div class="grid2">
+      <div class="card bad"><h4>סוכן אחד, שיחה אחת</h4><p>קורא 20 מאמרים, וכל הטקסט נכנס לשיחה שלכם. קשה לו לשים לב לפרטים. כמו שולחן עבודה שכל הספרים פתוחים עליו ואין מקום לכתוב.</p></div>
+      <div class="card good"><h4>עם סוכן-משנה</h4><p>החוקר קורא את 20 המאמרים בחלון משלו, וחוזר עם סיכום קצר. בשיחה שלכם נכנס רק הסיכום. כמו עוזר מחקר שקורא בחדר אחר ומביא פתק.</p></div>
+    </div>
+    <dl class="gl">
+      <dt>סוכן-משנה</dt><dd>עוזר של Claude שעובד בחלון שיחה משלו, מקבל משימה קטנה, ומחזיר תשובה קצרה. "Claude הראשי" הוא מנהל הפרויקט: הוא מחלק משימות ולא עושה הכול בעצמו.</dd>
+      <dt>Skill לעומת סוכן-משנה</dt><dd>Skill הוא מתכון שהסוכן הראשי עוקב אחריו, באותו חלון. סוכן-משנה הוא עובד אחר, בחלון משלו.</dd>
+    </dl>
+    <h4 style="margin:18px 0 6px">ארבעה יתרונות</h4>
+    <table>
+      <tr><th>יתרון</th><th>מה זה אומר</th></tr>
+      <tr><td><b>חלון נפרד</b></td><td>העבודה הרועשת קורית שם, ואליכם חוזר סיכום קצר</td></tr>
+      <tr><td><b>כלים מוגבלים</b></td><td>נותנים לו רק מה שצריך. חוקר שרק קורא לא יכול למחוק לכם קובץ</td></tr>
+      <tr><td><b>שימוש חוזר</b></td><td>קובץ קטן שכותבים פעם אחת, ואפשר להשתמש בו בכל פרויקט</td></tr>
+      <tr><td><b>מודל זול יותר</b></td><td>לעבודה פשוטה אפשר לבחור מודל מהיר וזול, כמו Haiku</td></tr>
+    </table>
+    <div class="grid2">
+      <div class="card w"><h4>Explore</h4><p>סוכן-משנה מובנה: מחפש וקורא מהר. לקריאה בלבד.</p></div>
+      <div class="card w"><h4>Plan</h4><p>אוסף מידע לפני שמציגים לכם תוכנית. גם הוא לקריאה בלבד.</p></div>
+      <div class="card w"><h4>general-purpose</h4><p>למשימות של כמה שלבים. יש לו את כל הכלים, אז הוא גם קורא וגם משנה.</p></div>
+    </div>
+    <p class="hint"><b>למה זה חשוב לכם:</b> בתזה או בפרויקט גמר יש המון חומר לקרוא. עוזר שקורא בשבילכם משאיר לכם שולחן נקי. כלל אצבע: <b>Skill</b> כשרוצים לחזור על אותה עבודה, <b>סוכן-משנה</b> כשהעבודה רועשת או כשצריך להגביל כלים.</p>
+    <p class="hint">⚡ נסו עכשיו: חשבו על משימה שלכם שמתחלקת לשניים, "למצוא" ו"לעשות". על מה הייתם שמחים שמישהו יקרא בשבילכם השבוע?</p>
+  </div>
+
+  <div class="sec" id="m7-setup">
+    <span class="badge lab">שלב 0 · כ-3 דקות, עד 10 אם צריך להכין קבצים</span><br><span class="where">תיקייה פתוחה: agents-lab (תיקיית עבודה חדשה)</span>
+    <h3>מכינים שולחן עבודה</h3>
+    <p class="goal">המטרה: תיקייה עם חומר אמיתי לעבוד עליו בשעה הקרובה. הדוגמה: סיכומי הרצאות של נועה בעיבוד אותות (DSP).</p>
+    <ol class="steps" data-key="m7-setup">
+      <li><label><input type="checkbox"><span>צרו תיקייה חדשה בשם <code>agents-lab</code> ובתוכה תיקייה <code>notes</code> (קליק ימני ← תיקייה חדשה). מעדיפים להשתמש בקבצים של נועה? ב-<a href="https://drive.google.com/drive/folders/1wBIdDSXyjY51rwsFPgUfDpbk75b_049Q" target="_blank" rel="noopener"><b>תיקיית הקבצים של נועה (Google Drive)</b></a>, בתיקייה <code>day2-module7-8_agents-lab</code>, יש תיקיית <code>notes</code> מוכנה: גררו אותה לתוך <code>agents-lab</code></span></label></li>
+      <li><label><input type="checkbox"><span>ב-VS Code: <code>File ← Open Folder</code> ובחרו את <code>agents-lab</code>. זו תיקייה חדשה, לא <code>technion-ai</code></span></label></li>
+      <li><label><input type="checkbox"><span>פתחו את לוח Claude Code (הסמל בסרגל הצד), ושאלו: "אילו קבצים יש בתיקייה notes/?"</span></label></li>
+    </ol>
+    <div class="prompt ltr"><button class="copy">Copy</button><span class="tag">מבנה התיקייה</span>agents-lab/
+  notes/
+    lecture-notes-dsp.md
+    syllabus-dsp.md
+    project-eeg.md</div>
+    <p class="hint">יש לכם חומר משלכם? שימו אותו ב-<code>notes/</code> במקום שלושת הקבצים (קבצי טקסט או <code>.md</code>). אז החליפו בהמשך את שמות הקבצים בבקשות. שימו לב: בהמשך ההוראות מתייחסות לשלושת קבצי הדוגמה.</p>
+    <div class="help"><b>אין לכם קבצים? בקשו מ-Claude ליצור.</b> הדביקו את הבקשה הזאת בלוח, ו-Claude ייצור שלושה קבצים לדוגמה (יופיע חלון הרשאה: אשרו עם Yes / Allow):<div class="prompt" style="margin-bottom:0"><button class="copy">העתק</button>צור בתיקייה notes/ שלושה קבצי markdown של סטודנטית להנדסת חשמל בקורס עיבוד אותות ספרתי (DSP): lecture-notes-dsp.md (סיכומי הרצאות על דגימה, התמרת פורייה ומסננים, כעמוד אחד), syllabus-dsp.md (סילבוס עם נושאים לפי שבוע ומועד מבחן), project-eeg.md (תיאור קצר של פרויקט גמר על זיהוי דפוסי EEG בזמן אמת).</div></div>
+    <div class="done">✅ <b>סיימתם כש:</b> Claude מונה את שלושת הקבצים שבתיקייה <code>notes/</code>.</div>
+    <div class="help"><b>חשוב:</b> לא לפתוח כאן את התיקייה <code>noa</code> מהדמו של מודול 3. יש בה CLAUDE.md אישי שישנה את התנהגות Claude. ניסוח התפריטים והכפתורים משתנה בין גרסאות.</div>
+  </div>
+
+  <div class="sec" id="m7-explore">
+    <span class="badge lab">נסו עכשיו · כ-3 דקות</span><br><span class="where">תיקייה פתוחה: agents-lab</span>
+    <h3>כבר השתמשתם בסוכן-משנה בלי לדעת</h3>
+    <p class="goal">כשביקשתם מ-Claude להסתכל בתיקייה לפני שהתחיל לעבוד, סביר שהוא שלח את Explore. עכשיו קוראים לו בשם.</p>
+    <ol class="steps" data-key="m7-explore">
+      <li><label><input type="checkbox"><span>הדביקו את הבקשה בלוח Claude Code</span></label></li>
+      <li><label><input type="checkbox"><span>חפשו הודעה שאומרת ש-Claude מריץ סוכן-משנה: זה "הרגע" שבו הוא שולח במקום לענות בעצמו</span></label></li>
+    </ol>
+    <div class="prompt ltr"><button class="copy">Copy</button>Use the Explore subagent to find which files in this folder mention an exam date, and only tell me the file names.</div>
+    <div class="done">✅ <b>סיימתם כש:</b> ראיתם הודעה על סוכן-משנה, וחזרה רשימה של שמות קבצים בלבד.</div>
+  </div>
+
+  <div class="sec" id="m7-first">
+    <span class="badge lab">שלב 1–2 · כ-10 דקות, עד 20 למתחילים</span><br><span class="where">תיקייה פתוחה: agents-lab</span>
+    <h3>יוצרים את הסוכן הראשון ורואים אותו עובד</h3>
+    <p class="goal">המטרה: סוכן בשם reviewer שקורא קובץ אחד ומחזיר חוזקות, חולשות והמלצה. סוכן הוא פשוט <b>קובץ טקסט</b> בתיקייה <code>.claude/agents/</code>: כותרת קצרה ואחריה ההוראות שלו.</p>
+    <ol class="steps" data-key="m7-first">
+      <li><label><input type="checkbox"><span>הדביקו את בקשת היצירה למטה</span></label></li>
+      <li><label><input type="checkbox"><span>Claude יבקש רשות ליצור את הקובץ (חלון קטן עם Yes / Allow). קראו מה הוא עומד ליצור ואשרו</span></label></li>
+      <li><label><input type="checkbox"><span>Claude כותב קובץ ועוצר. <b>קראו אותו</b> לפני שממשיכים: בשורה <code>tools</code> צריך להיות רק Read, Glob, Grep. אם יש שם Write, בקשו להסיר</span></label></li>
+      <li><label><input type="checkbox"><span>הקלידו <code>/agents</code>. הסוכן <code>reviewer</code> אמור להופיע ברשימה</span></label></li>
+      <li><label><input type="checkbox"><span>הדביקו את בקשת ההרצאה למטה, וחפשו הודעה ש-Claude מריץ סוכן-משנה</span></label></li>
+    </ol>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">שלב 1 · יצירה</span>צור סוכן-משנה בשם reviewer בתיקייה .claude/agents/. הוא קורא קובץ אחד בלבד ומחזיר שלושה דברים: חוזקות, חולשות והמלצה אחת. כלים: Read, Glob, Grep בלבד. כתוב לו תיאור שמסביר מתי להשתמש בו, ועצור כדי שאראה את הקובץ.</div>
+    <p class="hint">⚡ מעדיפים תפריט? הקלידו <code>/agents</code>, בחרו <b>Create new agent</b> ואז <b>Project</b> (נשמר בתיקייה הזאת), ותארו במשפט מה הסוכן עושה. שמות האפשרויות עשויים להשתנות בין גרסאות.</p>
+    <p>זה מה שאמור להיות בקובץ <code>.claude/agents/reviewer.md</code> (בערך, הניסוח אצלכם יהיה קצת שונה):</p>
+    <div class="prompt ltr"><button class="copy">Copy</button><span class="tag">.claude/agents/reviewer.md</span>---
+name: reviewer
+description: Independent reviewer. Use to check one
+  document in a fresh context, blind to other notes.
+tools: Read, Glob, Grep
+---
+You are an exacting reviewer. Read only the document you
+are given. Report strengths, weaknesses, and a clear
+recommendation - nothing else.</div>
+    <p>שלוש שורות בכותרת: <code>name</code> (השם), <code>description</code> (מתי להשתמש בו), <code>tools</code> (מה מותר לו). מתחת לשלוש המקפים: ההוראות שלו, כמו CLAUDE.md קטן רק לסוכן הזה. אין Write, ולכן אין סיכוי שישנה קובץ.</p>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">שלב 2 · הרצה</span>השתמש בסוכן reviewer כדי לבדוק את הקובץ notes/lecture-notes-dsp.md</div>
+    <h4 style="margin:16px 0 6px">שלוש דרכים לקרוא לסוכן</h4>
+    <table>
+      <tr><th>דרך</th><th>איך</th></tr>
+      <tr><td><b>לפי שם</b></td><td>כמו בבקשה למעלה. Claude מזהה את השם ושולח</td></tr>
+      <tr><td><b>עם <code>@</code></b></td><td>מקלידים <code>@agent-reviewer</code> או בוחרים מהרשימה. זה מכריח את Claude להשתמש בו</td></tr>
+      <tr><td><b>לפי תיאור</b></td><td>מבקשים ביקורת בלי להזכיר שם. עובד רק אם התיאור חד</td></tr>
+    </table>
+    <div class="done">✅ <b>סיימתם כש:</b> ראיתם הודעה ש-Claude מריץ סוכן-משנה, וקיבלתם חוזקות, חולשות והמלצה אחת.</div>
+    <p class="hint">⚡ בונוס: הריצו פעם אחת לפי שם ופעם אחת עם <code>@</code>. יצא אותו דבר?</p>
+    <div class="help"><b>לא עבד?</b> בדיקה של 30 שניות:
+      <table>
+        <tr><th>מה רואים</th><th>למה</th><th>מה עושים</th></tr>
+        <tr><td>הסוכן לא ברשימה של <code>/agents</code></td><td>התיקייה <code>.claude/agents/</code> לא הייתה קיימת כשפתחתם את Claude</td><td>סוגרים ופותחים מחדש, פעם אחת</td></tr>
+        <tr><td>Claude עושה הכול בעצמו</td><td>התיאור עמום</td><td>מחדדים את התיאור, או משתמשים ב-<code>@</code></td></tr>
+        <tr><td>מבקשים מכם אישור</td><td>הסוכן רוצה לכתוב או להריץ משהו</td><td>זה תקין. קוראים ומאשרים</td></tr>
+        <tr><td>התשובה ארוכה מדי</td><td>ההוראות לא אומרות מה להחזיר</td><td>מוסיפים: "החזר עד 10 שורות"</td></tr>
+      </table>
+      <b>אם הפקודה <code>/agents</code> לא עובדת:</b> הקלידו <code>/help</code> וחפשו את הפקודה, או בקשו מ-Claude ישירות: "רשום לי את הסוכנים שיש בתיקייה .claude/agents/". או שמבקשים ממנו לתקן עצמו:
+      <div class="prompt" style="margin-bottom:0"><button class="copy">העתק</button>למה לא שלחת את זה לסוכן reviewer, ומה לשנות בתיאור שלו?</div>
+    </div>
+  </div>
+
+  <div class="sec" id="m7-fields">
+    <span class="badge idea">מבנה הקובץ</span>
+    <h3>ארבעה חלקים וכתובת אחת</h3>
+    <table>
+      <tr><th>חלק</th><th>מה זה</th></tr>
+      <tr><td><code>name</code></td><td>השם שאיתו קוראים לסוכן</td></tr>
+      <tr><td><code>description</code></td><td>מתי להשתמש בו. החלק הכי חשוב</td></tr>
+      <tr><td><code>tools</code></td><td>רק מה שצריך לעבודה</td></tr>
+      <tr><td>ההוראות</td><td>מי הוא ומה בדיוק הוא מחזיר</td></tr>
+    </table>
+    <div class="grid2">
+      <div class="card"><h4>📁 פרויקט</h4><p><code>.claude/agents/</code>. נשאר בתיקייה, וניתן לשיתוף. בשם זהה, פרויקט גובר על אישי.</p></div>
+      <div class="card"><h4>👤 אישי</h4><p><code>~/.claude/agents/</code>. זמין בכל הפרויקטים שלכם.</p></div>
+    </div>
+    <h4 style="margin:16px 0 6px">שלוש שורות שאפשר להוסיף (לא חובה)</h4>
+    <div class="prompt ltr"><button class="copy">Copy</button><span class="tag">.claude/agents/reviewer.md</span>---
+name: reviewer
+description: Independent reviewer. Use to check
+  one document in a fresh context.
+tools: Read, Glob, Grep
+model: haiku
+maxTurns: 10
+permissionMode: plan
+---
+...</div>
+    <table>
+      <tr><th>שורה</th><th>מה היא עושה</th></tr>
+      <tr><td><code>model</code></td><td><code>haiku</code> מהיר וזול, <code>sonnet</code> ו-<code>opus</code> חזקים יותר</td></tr>
+      <tr><td><code>maxTurns</code></td><td>כמה צעדים מותר לו לעשות לפני שהוא עוצר (גדר ביטחון)</td></tr>
+      <tr><td><code>permissionMode</code></td><td><code>plan</code>: רק מתכנן וקורא, לא משנה כלום</td></tr>
+    </table>
+    <p class="hint">⚡ מתחילים עם <code>name</code>, <code>description</code> ו-<code>tools</code>, ומוסיפים רק כשצריך. רוצים לנסות? בקשו מ-Claude:</p>
+    <div class="prompt"><button class="copy">העתק</button>הוסף ל-reviewer את המודל haiku ואת maxTurns 10</div>
+    <p class="hint">ואז פתחו את הקובץ ובדקו שהוא השתנה. עריכה של קובץ סוכן נטענת בדרך כלל תוך שניות, בלי להפעיל מחדש.</p>
+  </div>
+
+  <div class="sec" id="m7-own">
+    <span class="badge lab">נסו עכשיו · כ-3 דקות, עד 10 למתחילים</span><br><span class="where">תיקייה פתוחה: agents-lab</span>
+    <h3>סוכן ראשון משלכם: מסכם</h3>
+    <p class="goal">המטרה: סוכן שמסכם קובץ אחד לחמש נקודות.</p>
+    <ol class="steps" data-key="m7-own">
+      <li><label><input type="checkbox"><span>הקלידו <code>/agents</code> ובחרו <b>Create new agent</b> ואז <b>Project</b></span></label></li>
+      <li><label><input type="checkbox"><span>כשמבקשים תיאור, כתבו: "מסכם קובץ אחד לחמש נקודות, ואומר מתי להשתמש בו"</span></label></li>
+      <li><label><input type="checkbox"><span>שמרו, ובדקו שקובץ חדש הופיע ב-<code>.claude/agents/</code> (בסרגל הצד של VS Code)</span></label></li>
+      <li><label><input type="checkbox"><span>הדביקו את הבקשה למטה</span></label></li>
+    </ol>
+    <div class="prompt"><button class="copy">העתק</button>השתמש בסוכן-המשנה שיצרתי כדי לסכם את הקובץ notes/syllabus-dsp.md בחמש נקודות.</div>
+    <div class="done">✅ <b>סיימתם כש:</b> יש קובץ חדש ב-<code>.claude/agents/</code>, ו-Claude שלח אליו את העבודה בהרצה אחת.</div>
+    <p class="hint">⚡ בונוס: צרו מבקר עובדות במקום מסכם. לא רואים קובץ? ודאו שבחרתם Project ולא Personal. אין לכם תפריט? בקשו מ-Claude לכתוב את הקובץ, כמו בשלב 1.</p>
+  </div>
+
+  <div class="sec" id="m7-desc">
+    <span class="badge demo">הדגמה · התיאור הוא ההגה</span>
+    <h3>איך Claude מחליט לשלוח לסוכן</h3>
+    <p class="goal">הסוכן הראשי מחליט אם להאציל לפי ה-<b>תיאור</b> של כל סוכן, והוא קורא אותו כמו מודעת דרושים. "מישהו שעוזר" לא מביא אף אחד. "חוקר שמסכם מאמר בעמוד אחד" מביא בדיוק את מי שצריך.</p>
+    <div class="grid2">
+      <div class="card bad"><h4>תיאור עמום</h4><p>"עוזר עם מאמרים"<br>הסוכן הראשי לא יודע מתי להשתמש בו, ופשוט עושה לבד.</p></div>
+      <div class="card good"><h4>תיאור חד</h4><p>"קורא מאמר אחד ומחזיר שאלה, שיטה ותוצאה. להשתמש כשמבקשים ממני לסכם מאמר."<br>הסוכן הראשי מזהה את המצב, ושולח.</p></div>
+    </div>
+    <p><b>ההדגמה של המרצה (אפשר לחזור עליה בבית):</b></p>
+    <ol class="steps" data-key="m7-desc">
+      <li><label><input type="checkbox"><span>סוכן בשם <code>paper-critic</code> עם תיאור עמום, למשל "helps with papers"</span></label></li>
+      <li><label><input type="checkbox"><span>מבקשים ביקורת על טיוטה: הסוכן הראשי עושה לבד</span></label></li>
+      <li><label><input type="checkbox"><span>מחדדים את התיאור, למשל "Use proactively when I ask for feedback on a draft", ומנסים שוב: עכשיו הוא מאציל</span></label></li>
+    </ol>
+    <p class="hint">⚡ נסו על הסוכן שלכם: שפרו את התיאור שלו למשפט אחד שאומר <b>מתי</b> להשתמש בו, ובקשו משימה בלי להזכיר שם. האם Claude שולח? אם Claude לא מאציל, אל תתקנו אותו: חדדו את התיאור.</p>
+  </div>
+
+  <div class="sec" id="m7-ws">
+    <span class="badge ws">Workshop 7 · כ-35 דקות, עד 50 למתחילים</span><br><span class="where">תיקייה פתוחה: agents-lab</span>
+    <h3>בונים צוות של שני סוכנים</h3>
+    <p class="goal">המטרה: שני סוכנים שרצים בזה אחר זה על משימה אחת, על חומר אמיתי שלכם. <b>החוקר</b> קורא ומחפש ולא כותב. <b>הבונה</b> מקבל את הסיכום ויוצר את הפלט. רק סיכום קצר עובר ביניהם, והקריאה הרועשת נשארת אצל החוקר.</p>
+    <p><b>החוזה בין שניהם, במשפט אחד:</b> החוקר קורא את X ומחזיר Y. הבונה קורא את Y ויוצר את Z. אצל נועה: החוקר קורא את סיכומי ההרצאות ומחזיר את עשרת הנושאים החשובים, והבונה יוצר מהם דף סיכום למבחן.</p>
+    <table>
+      <tr><th>סוכן</th><th>כלים</th></tr>
+      <tr><td><b>חוקר</b></td><td><code>Read, Glob, Grep</code></td></tr>
+      <tr><td><b>בונה</b></td><td><code>Read, Write</code></td></tr>
+      <tr><td>רק אם מריץ סקריפט</td><td><code>Bash</code></td></tr>
+    </table>
+    <p>בחרו חומר: סיכומי הרצאות לדף למבחן (זה מה שבתיקייה <code>notes/</code>), מאמרים לסקירה קצרה, או טיוטה לביקורת. אם בוחרים מאמרים או טיוטה, צריך קודם ליצור את הקבצים (<code>papers/</code> או <code>draft.md</code>); ראו את התיבה בהמשך.</p>
+    <ol class="steps" data-key="m7-ws">
+      <li><label><input type="checkbox"><span>ודאו ש-<code>agents-lab</code> פתוחה ושהחומר ב-<code>notes/</code>, או החליפו בחומר משלכם</span></label></li>
+      <li><label><input type="checkbox"><span>בנו את <b>החוקר</b>: כלים <code>Read, Glob, Grep</code> בלבד, בדיוק כמו ה-reviewer מקודם</span></label></li>
+      <li><label><input type="checkbox"><span>בנו את <b>הבונה</b>: כלים <code>Read, Write</code>. הוא יוצר את <code>summary.html</code></span></label></li>
+      <li><label><input type="checkbox"><span>קראו את שני הקבצים (ב-<code>.claude/agents/</code>), וחדדו לכל אחד תיאור: מתי להשתמש בו</span></label></li>
+      <li><label><input type="checkbox"><span>הריצו בבקשה אחת (הבקשה השנייה למטה). Claude יעצור באמצע ויראה לכם את רשימת החוקר: קראו אותה. כשהבונה יבקש רשות לכתוב את הקובץ, אשרו</span></label></li>
+      <li><label><input type="checkbox"><span>פתחו את <code>summary.html</code> בדפדפן (בסרגל הצד של VS Code: קליק ימני על הקובץ ← Reveal in Finder / Reveal in File Explorer ← לחיצה כפולה), ובדקו פריט אחד מהפלט מול הקובץ המקורי</span></label></li>
+    </ol>
+    <p><b>בונים את שני הסוכנים במכה אחת:</b></p>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">צעדים 2–4 · יצירת החוקר והבונה</span>צור שני סוכני-משנה בתיקייה .claude/agents/:
+1. researcher: קורא את הקבצים בתיקייה notes/ ומחזיר רשימה קצרה של הנושאים החשובים, ליד כל אחד שם הקובץ. כלים: Read, Glob, Grep בלבד. לא ממציא ולא עורך.
+2. builder: מקבל את הרשימה ויוצר קובץ summary.html אחד, עצמאי. כלים: Read, Write. עונה בעברית.
+כתוב לכל אחד תיאור חד שמסביר מתי להשתמש בו, ועצור כדי שאראה את שני הקבצים.</div>
+    <p class="hint">חומר אחר? מחליפים את <code>notes/</code> ואת שמות הסוכנים (למשל <code>papers/</code>, ו-<code>paper-scout</code> ו-<code>slide-writer</code>).</p>
+    <p>כך אמורים להיראות שני הקבצים (בערך):</p>
+    <div class="prompt ltr"><button class="copy">Copy</button><span class="tag">.claude/agents/researcher.md</span>---
+name: researcher
+description: Reads my course notes or papers
+  and returns the key points. Use first,
+  before any writing.
+tools: Read, Glob, Grep
+---
+Read only. Return a short list of
+key topics, each with the source file.
+Never invent. Never edit.</div>
+    <div class="prompt ltr"><button class="copy">Copy</button><span class="tag">.claude/agents/builder.md</span>---
+name: builder
+description: Builds summary.html from the
+  researcher's key points. Use after the
+  researcher is done.
+tools: Read, Write
+---
+Create one self-contained summary.html
+from the points you are given.
+Answer in Hebrew.</div>
+    <p class="hint">שימו לב: לחוקר אין Write. זה מה שהופך אותו לבטוח. ב-"Answer in Hebrew" הפלט יוצא בעברית גם כשהקובץ באנגלית.</p>
+    <p><b>מפעילים את שניהם בבקשה אחת:</b></p>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">צעד 5 · הרצה</span>הפעל שני סוכני-משנה לפי הסדר:
+1. השתמש בסוכן researcher כדי לקרוא את כל הקבצים בתיקייה notes/ ולמצוא את הנושאים החשובים לקראת המבחן.
+2. אחר כך השתמש בסוכן builder כדי להפוך את הרשימה לדף summary.html אחד.
+בין השניים, הראה לי את הרשימה של ה-researcher.</div>
+    <p class="hint">הבקשה עושה שלושה דברים: שלב 1 החוקר קורא ומסכם, עצירה שבה אתם רואים את הרשימה (שער קטן), ושלב 2 הבונה יוצר את הדף. אפשר למחוק את שורת העצירה, אבל בפעם הראשונה שווה לראות מה החוקר מצא.</p>
+    <div class="help"><b>אין לכם מאמרים או טיוטה? בקשו מ-Claude ליצור.</b> (רק אם בחרתם באפשרות הזאת; בשביל התרגיל עם <code>notes/</code> אין צורך.) תארו במילים שלכם, למשל: "צור בתיקייה papers/ שלושה מאמרים קצרים לדוגמה על אותו נושא בהנדסה", או "צור קובץ draft.md עם טיוטה קצרה של סעיף בעבודה". אחרי זה החליפו בבקשות <code>notes/</code> ב-<code>papers/</code>.</div>
+    <h4 style="margin:16px 0 6px">איך יודעים שזה עובד</h4>
+    <table>
+      <tr><th>בדיקה</th><th>מה בודקים</th></tr>
+      <tr><td><b>החוקר לא כותב</b></td><td>בקובץ שלו אין Write, והוא רק מחזיר רשימה</td></tr>
+      <tr><td><b>הסוכן הראשי מאציל</b></td><td>רואים בהרצה ששני הסוכנים נקראו</td></tr>
+      <tr><td><b>אין המצאות</b></td><td>בוחרים פריט אחד בפלט ובודקים מול הקובץ המקורי</td></tr>
+    </table>
+    <div class="done">✅ <b>סיימתם כש:</b> יש שני קבצים ב-<code>.claude/agents/</code>, בקשה אחת הריצה את החוקר ואחריו את הבונה, ופתחתם את <code>summary.html</code> בדפדפן.</div>
+    <p class="hint">⚡ בונוס למי שסיים: הוסיפו שער אנושי בין השניים, או סוכן שלישי (מבקר). ולהסבר לשכן: למה לחוקר אין Write? הסבר לאחר הוא בדיקה טובה.</p>
+    <div class="help"><b>נתקעתם?</b> אם הסוכן הראשי עשה הכול לבד, התיאור עמום: חדדו אותו, או הזכירו את שם הסוכן. אם הבונה המציא, ודאו שקיבל רשימה מהחוקר והוסיפו לו "Never invent". אם הסוכנים לא מופיעים ב-<code>/agents</code>: בדקו שהתיקייה <code>.claude/agents/</code> נוצרה, ואם היא חדשה לגמרי, פתחו את Claude מחדש פעם אחת. ואפשר לשאול:
+      <div class="prompt" style="margin-bottom:0"><button class="copy">העתק</button>למה הסוכן הראשי לא שלח את העבודה לסוכן-המשנה, ומה לשנות בתיאור?</div>
+    </div>
+  </div>
+
+  <div class="sec" id="m7-mistakes">
+    <span class="badge idea">טעויות נפוצות</span>
+    <h3>ומה כדאי לזכור</h3>
+    <div class="grid2">
+      <div class="card bad"><h4>טעויות</h4><p><b>תיאור עמום.</b> כותבים כמו מודעת דרושים.<br><b>חוקר עם כלי כתיבה.</b> מומחים לקריאה נשארים לקריאה.<br><b>תיקייה חדשה.</b> בפעם הראשונה פותחים את Claude מחדש.<br><b>סוכן-משנה במקום Skill.</b> Skill נשאר בחלון שלכם.<br><b>החזרות ארוכות.</b> הן ממלאות שוב את השולחן.<br><b>משימה קטנה מדי.</b> לפעמים בקשה אחת פשוטה מספיקה.</p></div>
+      <div class="card good"><h4>הלקח</h4><p>סוכן-משנה הוא עוזר בחלון משלו: חלון נקי, כלים מוגבלים, ותיאור חד שגורם לסוכן הראשי להאציל. סוכן נמצא בקובץ markdown ב-<code>.claude/agents/</code>. בין חוקר לבונה עובר סיכום קצר בלבד.</p></div>
+    </div>
+    <p class="hint">הצוות והקבצים יושבים עכשיו אצלכם במחשב. איך משאירים את זה לטווח ארוך ומשתפים עם אחרים? זה מודול 8: מחברים הכול ומשתפים ב-GitHub. ללימוד עצמי: <span class="todo">[להוסיף קישור]</span> לתיעוד הרשמי של סוכני-משנה.</p>
+  </div>
+</section>
+
+<!-- ======================= MODULE 8 ======================= -->
+<section class="mod m8" id="m8">
+  <div class="mhead">
+    <div class="num">מודול 8 · יום ב׳</div>
+    <h2>התהליך האישי שלכם, שיתוף והצעדים הבאים</h2>
+    <p>מחברים את כל מה שבניתם (תיקייה, CLAUDE.md, Skill, צינור, חיבור, סוכנים) לתהליך אחד שעובד על משימה אמיתית שלכם, כותבים לו README, ומפרסמים אותו ב-GitHub.</p>
+    <span class="out">תוצר: תהליך אישי שעובד, README ברור, וכתובת אחת שאפשר לשלוח לחבר</span>
+    <ul class="toc">
+      <li><a href="#m8-ideas">המכונה ובחירת משימה</a></li>
+      <li><a href="#m8-ws">Workshop 8 · מרכיבים את התהליך</a></li>
+      <li><a href="#m8-readme">README</a></li>
+      <li><a href="#m8-github">GitHub ובטיחות</a></li>
+      <li><a href="#m8-ws-b">Workshop 8ב׳ · מפרסמים</a></li>
+      <li><a href="#m8-mistakes">טעויות נפוצות</a></li>
+      <li><a href="#m8-show">הצגה ומה הלאה</a></li>
+    </ul>
+  </div>
+
+  <div class="sec" id="m8-ideas">
+    <span class="badge idea">רעיונות מרכזיים</span>
+    <h3>כל החלקים כבר אצלכם. עכשיו מחברים</h3>
+    <p>דמיינו מטבח שלם: יש לכם סכינים, סירים ותבלינים, אבל עוד לא הכנתם ארוחה. היום מכינים ארוחה אחת מהחומרים, וכותבים מתכון כדי שאחרים (ואתם, בסמסטר הבא) יוכלו לחזור עליה.</p>
+    <p>זו הטבלה שממפה כל חלק שבניתם לתפקיד שלו במשימה. העמודה האחרונה היא הדוגמה של נועה, סטודנטית להנדסת חשמל.</p>
+    <table>
+      <tr><th>החלק</th><th>התפקיד במשימה</th><th>אצל נועה</th></tr>
+      <tr><td>📁 תיקייה + 🧠 <code>CLAUDE.md</code></td><td>הקשר וחוקים</td><td>עברית, אינטואיציה קודם</td></tr>
+      <tr><td>🔐 תכנון והרשאות</td><td>לא משנים בלי אישור</td><td>תוכנית לפני שמזיזים קבצים</td></tr>
+      <tr><td>🧰 Skill</td><td>הפעולה שחוזרת</td><td><code>exam-prep</code></td></tr>
+      <tr><td>⚙️ צינור + עצירה</td><td>שלבים, ובדיקה שלכם באמצע</td><td>אישור לשאלות לפני הפצה</td></tr>
+      <tr><td>🔌 חיבור</td><td>מידע חי מבחוץ</td><td>מועדי מבחנים מהיומן</td></tr>
+      <tr><td>🤖 תת-סוכנים</td><td>חוקר ובונה</td><td>סורק סילבוסים ← בונה לוח</td></tr>
+    </table>
+    <p class="hint">⚡ לא חייבים את כולם. חלק שלא מוסיף ערך למשימה שלכם, מוותרים עליו. מי שדילג על חלק באחד המודולים הקודמים: זה בסדר.</p>
+
+    <h4 style="margin:20px 0 6px">בוחרים משימה אחת אמיתית</h4>
+    <div class="grid2">
+      <div class="card"><h4>לימודים ומבחנים</h4><p>נועה: סיכומי הרצאות ב-DSP ← שאלות תרגול ולוח חזרות לפני המבחן.</p></div>
+      <div class="card"><h4>מחקר ותזה</h4><p>תיקיית מאמרים ← דירוג, סקירת ספרות קצרה וציטוטים, עם עצירה לאישור שלכם.</p></div>
+      <div class="card"><h4>אוטומציה אישית</h4><p>מועדי הגשה מהסילבוסים ומהיומן ← תדריך שבועי, או סדר בתיקיית ההורדות.</p></div>
+    </div>
+    <p class="hint">⚡ הבדיקה למשימה טובה: משהו שעשיתם כבר פעמיים, שייקח לכם לפחות 20 דקות, ויש לו קבצים אמיתיים בתיקייה. אין רעיון? קחו את המשימה שהכי עיצבנה אתכם השבוע. נסו עכשיו: כתבו אותה במשפט אחד על פתק, תצטרכו אותו בסדנה.</p>
+    <div class="help"><b>אין לכם משימה או קבצים?</b> אפשר להתחיל מתיקיית דוגמה. אין לכם? בקשו מ-Claude ליצור:<div class="prompt" style="margin-bottom:0"><button class="copy">העתק</button>צור בתיקייה הזאת תיקיית דוגמה לסטודנט להנדסה: שלושה סיכומי הרצאה קצרים בקבצי טקסט (בתיקייה summaries/) ורשימה של שני מועדי מבחנים.</div></div>
+  </div>
+
+  <div class="sec" id="m8-ws">
+    <span class="badge ws">Workshop 8 · כ-25 דקות, עד 40 למתחילים</span><br><span class="where">תיקייה פתוחה: התיקייה של התהליך האישי שלכם</span>
+    <h3>מרכיבים את התהליך שלכם</h3>
+    <p class="goal">המטרה: תהליך אחד שרץ על משימה אמיתית שלכם, ו-<code>README.md</code> שמסביר אותו. עובדים בתיקייה שכבר יש בה את מה שבניתם (למשל <code>technion-ai</code>), לא מתחילים מאפס. ב-VS Code: File ← Open Folder ← בוחרים אותה, ופותחים שיחה חדשה בלוח.</p>
+    <p>README הוא קובץ טקסט שמסביר לאדם אחר מה הפרויקט עושה ואיך מריצים אותו. הקובץ הזה ייווצר בסדנה, והסבר מלא יש בהמשך.</p>
+    <ol class="steps" data-key="m8-ws">
+      <li><label><input type="checkbox"><span>כתבו את המשימה במשפט אחד, ועברו למצב תכנון (<code>Shift+Tab</code>). המצב הנוכחי מופיע בשורת המצב: ודאו שכתוב שם תכנון</span></label></li>
+      <li><label><input type="checkbox"><span>הדביקו את הבקשה שלמטה. החליפו את מה שבצהוב במשפט שלכם, כולל הסוגריים. קראו את התוכנית שהוא מציע: מי עושה מה, באיזה סדר, ואיפה אתם מאשרים</span></label></li>
+      <li><label><input type="checkbox"><span>תקנו את התוכנית אם צריך, ואשרו. כשמופיעה בקשת הרשאה בחלון קטן (ליצור או לשנות קובץ), קראו מה הוא עומד לעשות ולחצו על כפתור האישור (Yes / Allow). נסו קודם לאשר פעם אחת, ולא "תמיד". לאחר מכן הוא יריץ את התהליך פעם אחת על דוגמה אמיתית</span></label></li>
+      <li><label><input type="checkbox"><span>בדקו את התוצאה בעצמכם: האם זה מה שהייתם עושים ידנית? רק אתם יודעים אם היא טובה</span></label></li>
+      <li><label><input type="checkbox"><span>פתחו את <code>README.md</code> שנוצר בסרגל הצד, קראו, ותקנו כל מה שלא ברור</span></label></li>
+    </ol>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">הבקשה: להרכיב את התהליך ולכתוב README · מחליפים את הצהוב</span>אני במצב תכנון. המשימה שלי: <span class="ph">[משפט אחד, למשל: להפוך
+סיכומי הרצאות לשאלות תרגול ולוח חזרות]</span>.
+השתמש במה שכבר בניתי בתיקייה: CLAUDE.md, ה-Skill, החיבור
+והסוכנים. הצג תוכנית: מי עושה מה, באיזה סדר, ואיפה אני
+מאשר לפני שמשהו נשמר.
+אחרי האישור: הרכב את התהליך, הרץ אותו פעם אחת על דוגמה
+אמיתית שלי, וכתוב README.md בעברית: מה התהליך עושה,
+איך מריצים אותו, ומה צריך להכין. בלי סודות ובלי מידע אישי.</div>
+    <div class="done">✅ <b>סיימתם כש:</b> התהליך רץ מקצה לקצה על דוגמה אמיתית, ויש <code>README.md</code> שאדם אחר יבין.</div>
+    <p class="hint">⚡ בונוס: מי שסיים מוקדם יכול להוסיף נקודת עצירה לאישור, או לנסות על קובץ שני.</p>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">בונוס</span>הוסף ל-README שלוש שאלות שהתהליך לא יודע לענות עליהן</div>
+    <p class="hint">למה זה חשוב: אחד שעובד טוב מוכיח יותר מעשרה חצי-עובדים, לכן מריצים על דוגמה אחת בלבד. ו-README שנכתב בלי שקראתם אותו כמעט תמיד כללי מדי. ניסוח כפתורי האישור והתפריטים משתנה בין גרסאות.</p>
+    <div class="help"><b>לא עובד?</b> בדקו שהחלקים באמת נמצאים בתיקייה שפתחתם: <code>CLAUDE.md</code>, תיקיית ה-Skill, הגדרת החיבור. חיבור יכול לפוג, וה-Skill צריך להיקרא בשם הנכון. אחר כך נסו שוב בשיחה חדשה (<code>/clear</code>).</div>
+  </div>
+
+  <div class="sec" id="m8-readme">
+    <span class="badge idea">README</span>
+    <h3>README: הדף הראשון שאחרים רואים</h3>
+    <p>README הוא החלון של הפרויקט. אם הוא לא ברור, אף אחד לא ינסה את התהליך, כולל אתם בעוד חצי שנה. שישה סעיפים:</p>
+    <table>
+      <tr><th>סעיף</th><th>מה כותבים</th></tr>
+      <tr><td><b>מה זה</b></td><td>משפט או שניים: איזו בעיה זה פותר, ולמי.</td></tr>
+      <tr><td><b>איך מריצים</b></td><td>צעדים ממוספרים, ובקשה אחת להעתקה.</td></tr>
+      <tr><td><b>מה צריך</b></td><td>איזה חיבורים או קבצים להכין לפני.</td></tr>
+      <tr><td><b>דוגמה</b></td><td>קלט קטן ותוצאה, כדי לראות שזה עובד.</td></tr>
+      <tr><td><b>מגבלות</b></td><td>מה התהליך לא עושה, ואיפה צריך בדיקה אנושית (הסעיף הכי חשוב והכי נשכח).</td></tr>
+      <tr><td><b>מבנה התיקייה</b></td><td>איזה קובץ עושה מה.</td></tr>
+    </table>
+    <p>שלד קצר לדוגמה, של התהליך של נועה. אפשר לכתוב README בעברית או באנגלית, העיקר שיהיה ברור. הוא כתוב באנגלית וב-Markdown, אותם סימנים שלמדתם ב-<code>.md</code>:</p>
+    <div class="prompt ltr"><button class="copy">Copy</button><span class="tag">README · שלד לדוגמה, לא להעתיק כמו שהוא</span># Exam Prep Workflow
+
+Turns lecture summaries into practice
+questions and a revision calendar.
+
+## How to run
+1. Open this folder in Claude Code
+2. Paste the prompt from `run.md`
+3. Review the plan, then approve
+
+## Needs
+- lecture summaries in `summaries/`
+- calendar connector (optional)
+
+## Limits
+Questions need your review before use.</div>
+    <p class="hint">⚡ בקשו מ-Claude: "כתוב README לפי השלד הזה על הפרויקט שלי". אתם קוראים ומתקנים. הבדיקה: חבר שלא מכיר את הפרויקט יכול להריץ אותו תוך 5 דקות? תנו לו לקרוא ושאלו מה לא ברור.</p>
+  </div>
+
+  <div class="sec" id="m8-github">
+    <span class="badge idea">GitHub ובטיחות</span>
+    <h3>GitHub: חשבון, ארבעה מושגים, ומה לא עולה לשם</h3>
+    <p>GitHub הוא אתר חינמי לשמירה ושיתוף של תיקיות פרויקט, כמו כונן משותף למי שבונים דברים. אתם לא מקלידים פקודות: אתם אומרים ל-Claude מה רוצים, הוא מריץ, ואתם מאשרים כל פקודה.</p>
+    <dl class="gl">
+      <dt>Repository (רפו)</dt><dd>תיקיית הפרויקט באתר.</dd>
+      <dt>Commit</dt><dd>שומרים תמונת מצב של הפרויקט, אצלכם במחשב בלבד. לבד, זה לא משתף אף אחד.</dd>
+      <dt>Push</dt><dd>מעלים לאתר. רק אחרי push יש כתובת שאחרים יכולים לפתוח.</dd>
+      <dt>README</dt><dd>הדף הראשון של הפרויקט, כפי שכתבתם.</dd>
+    </dl>
+    <p style="margin-bottom:0"><b>צעדים ראשונים, אם אין לכם חשבון (כ-3 דקות):</b></p>
+    <ol class="steps" data-key="m8-gh">
+      <li><label><input type="checkbox"><span>היכנסו ל-<code>github.com</code> ויצרו חשבון חינמי</span></label></li>
+      <li><label><input type="checkbox"><span>אמתו את האימייל (הקישור מגיע אליכם למייל)</span></label></li>
+      <li><label><input type="checkbox"><span>זכרו את שם המשתמש שבחרתם. בהמשך Claude יבקש להתחבר, ובכל פקודה git שיריץ תאשרו אתם</span></label></li>
+    </ol>
+
+    <h4 style="margin:20px 0 6px">לפני שמפרסמים: מה לא עולה לשם</h4>
+    <div class="grid2">
+      <div class="card bad"><h4>✗ לא מפרסמים</h4><p>סיסמאות ומפתחות גישה<br>מידע אישי: ת.ז., טלפון, ציונים<br>חומרי מבחן וקבצי PDF עם זכויות יוצרים<br>נתוני מחקר רגישים</p></div>
+      <div class="card good"><h4>✓ בטוח</h4><p>הקבצים שכתבתם בעצמכם: Skill, README<br><code>CLAUDE.md</code> בלי מידע אישי<br>דוגמאות קטנות שהכנתם בעצמכם<br>רפו <b>פרטי</b> כשיש ספק</p></div>
+    </div>
+    <div class="warn"><b>⚠ מפתח או סיסמה שדלפו:</b> מחיקה לא מספיקה. מה שנכנס להיסטוריה של git נשאר שם. מבטלים את המפתח אצל הספק ויוצרים חדש. ובקשה כמו "אל תפרסם סודות" ב-<code>CLAUDE.md</code> היא בקשה, לא מנעול. לכן בודקים בעצמכם לפני.</div>
+    <p class="hint">⚡ שניה לפני: בקשו מ-Claude רשימה של מה עומד לעלות. אפשר להשתמש בבקשה בסדנה למטה, שכוללת את הבדיקה הזאת.</p>
+  </div>
+
+  <div class="sec" id="m8-ws-b">
+    <span class="badge ws">Workshop 8ב׳ · כ-10 דקות, עד 25 למתחילים</span><br><span class="where">תיקייה פתוחה: התיקייה של התהליך האישי שלכם</span>
+    <h3>מפרסמים ב-GitHub</h3>
+    <p class="goal">המטרה: כתובת אחת שאפשר לשלוח לחבר, ושהוא פותח ורואה README. מי שלא סיים את חלק א׳: מפרסמים את מה שיש, עם README בסיסי.</p>
+    <ol class="steps" data-key="m8-wsb">
+      <li><label><input type="checkbox"><span>ודאו שיש חשבון GitHub, ושהוא מחובר ל-Claude Code (Claude יגיד לכם אם משהו חסר, ויסביר איך)</span></label></li>
+      <li><label><input type="checkbox"><span>הדביקו את הבקשה שלמטה. החליפו את הצהוב: בחרו <b>פרטי</b> או <b>ציבורי</b>, ושם בלי רווחים ובאותיות אנגליות, למשל <code>exam-prep-workflow</code></span></label></li>
+      <li><label><input type="checkbox"><span>קראו את רשימת הקבצים שלא כדאי לפרסם, ואשרו. זה שלב הבטיחות: קראו באמת לפני האישור</span></label></li>
+      <li><label><input type="checkbox"><span>כל פקודת git ש-Claude מבקש להריץ מופיעה בחלון אישור. קראו, ואם משהו לא מוכר שאלו אותו מה זה עושה. אז לחצו על האישור (Yes / Allow)</span></label></li>
+      <li><label><input type="checkbox"><span>פתחו את הכתובת בדפדפן, והחליפו קישור עם מי שלידכם: כל אחד קורא את ה-README של השני ואומר מה לא ברור</span></label></li>
+    </ol>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">הבקשה: לפרסם, עם בדיקת בטיחות · מחליפים את הצהוב</span>אני רוצה לפרסם את הפרויקט הזה ב-GitHub.
+קודם הצג רשימה של קבצים שלא כדאי לפרסם: סודות, מפתחות,
+מידע אישי, חומרי מבחן וקבצי PDF עם זכויות יוצרים.
+צור קובץ .gitignore, ותחכה לאישור שלי.
+אחר כך צור repo <span class="ph">[פרטי / ציבורי]</span> בשם <span class="ph">[שם]</span>, שמור commit עם
+הודעה ברורה, ועשה push. הסבר לי כל פקודה לפני שאתה מריץ.</div>
+    <p class="hint">קובץ <code>.gitignore</code> הוא רשימה של קבצים ש-git לא יעלה. "הסבר לי כל פקודה" הופך את זה גם ללמידה: אחרי פעם אחת תבינו מה קורה.</p>
+    <div class="done">✅ <b>סיימתם כש:</b> הכתובת נפתחת בדפדפן, ה-README מוצג בעמוד הראשי, ואין שם קבצים רגישים.</div>
+    <p class="hint">⚡ ספק? בחרו פרטי. אפשר לשתף עם אדם אחד, ולשנות לציבורי בהמשך.</p>
+    <div class="help"><b>אם ההתחברות ל-GitHub לא עובדת:</b> הדביקו ל-Claude את הודעת השגיאה כמו שהיא, וכתבו "הסבר לי צעד אחר צעד איך מתחברים ל-GitHub". אם עדיין תקוע, השאירו את הפרויקט על המחשב (ה-README כבר שלם), בקשו עזרה ממי שלידכם, ופרסמו מאוחר יותר. הכתובת היא בונוס, התהליך שבניתם כבר שלכם.</div>
+  </div>
+
+  <div class="sec" id="m8-mistakes">
+    <span class="badge idea">טעויות נפוצות</span>
+    <h3>לא עובד? שש טעויות שכדאי להימנע מהן</h3>
+    <div class="grid2">
+      <div class="card"><h4>משימה ענקית</h4><p>תהליך אחד, בעיה אחת.</p></div>
+      <div class="card"><h4>README לעצמכם</h4><p>כתבו לאדם שלא מכיר את הפרויקט.</p></div>
+      <div class="card"><h4>בדקתם רק פעם אחת</h4><p>נסו על דוגמה שנייה.</p></div>
+      <div class="card"><h4>Commit בלי push</h4><p>שמרתם, אבל לא שיתפתם. אם לא השתנה כלום באתר, לא עשיתם push.</p></div>
+      <div class="card"><h4>סודות בקובץ</h4><p>סיסמה, מפתח, מידע אישי.</p></div>
+      <div class="card"><h4>חלק חסר בתיקייה</h4><p>ה-Skill וה-<code>CLAUDE.md</code> צריכים לעלות איתו. אם ה-Skill בתיקייה נסתרת (<code>.claude</code>), שאלו את Claude אם היא עלתה.</p></div>
+    </div>
+    <p class="hint">⚡ כשמשהו לא עובד: הדביקו ל-Claude את השגיאה ושאלו מה היא אומרת.</p>
+  </div>
+
+  <div class="sec" id="m8-show">
+    <span class="badge demo">הצגה ומה הלאה</span>
+    <h3>30 שניות: איך מציגים את התהליך</h3>
+    <p>לכל מציג כ-3 דקות: 30 שניות על שלושת המשפטים שלמטה, ואחר כך מראים את הכתובת ב-GitHub ופותחים את ה-README. הקהל שואל שאלה אחת: "איך אתחיל מזה?". לא הצגתם? מוסיפים את הכתובת לרשימה המשותפת <span class="todo">[להוסיף קישור]</span>.</p>
+    <table>
+      <tr><th>משפט</th><th>דוגמה (נועה)</th></tr>
+      <tr><td><b>הבעיה</b></td><td>"לפני כל מבחן אני מפרקת 12 הרצאות ידנית."</td></tr>
+      <tr><td><b>מה Claude עושה</b></td><td>"קורא את הסיכומים, שואל אותי, ובונה שאלות ולוח חזרות."</td></tr>
+      <tr><td><b>מה חסכתי</b></td><td>"כ-3 שעות בכל מבחן, ואני עוד בודקת כל שאלה." (כתבו מספר אמיתי שלכם, בלי להגזים)</td></tr>
+    </table>
+    <p class="hint">⚡ נסו עכשיו: כתבו את שלושת המשפטים שלכם בטלפון.</p>
+
+    <h4 style="margin:20px 0 6px">הלאה: איך ממשיכים ללמוד</h4>
+    <div class="grid2">
+      <div class="card"><h4>מקורות</h4><p>התיעוד הרשמי: <code>code.claude.com/docs</code> · קהילות ופורומים של משתמשי Claude Code · ה-README-ים של חברים: קוראים ולוקחים רעיון.</p></div>
+      <div class="card good"><h4>ההרגלים</h4><p>מתחילים ממשימה אחת שחוזרת · מעדכנים את <code>CLAUDE.md</code> כל פעם שמשהו חוזר · תכנון לפני ביצוע, תמיד.</p></div>
+    </div>
+    <p class="hint">העולם של Claude זז מהר: מודלים, חיבורים ודרכי הרצה חדשים. אל תרדפו אחרי כל חידוש. מה שבניתם (<code>CLAUDE.md</code>, Skill, תהליך) נשאר, והכלים סביבו משתפרים. לפני פרסום, בדקו תמיד מה עולה.</p>
+    <div class="done">✅ <b>הדבר האחד למחר:</b> פתחו שיחה בתיקייה שלכם והוסיפו חוק אחד ל-<code>CLAUDE.md</code>. כל משימה שחוזרת היא התהליך הבא שלכם.</div>
+  </div>
+</section>
+
+<!-- ======================= COMMANDS ======================= -->
+<section class="mod" id="cmds" style="--acc:var(--blue);--acc-soft:var(--blue-soft)">
+  <div class="mhead">
+    <div class="num">מדריך עזר</div>
+    <h2>פקודות שכדאי להכיר</h2>
+    <p>פקודות הן קיצורים שמקלידים בתיבת השיחה של Claude, מתחילים ב-<code>/</code> ושולחים עם Enter. הן לא בקשות ל-Claude, אלא כפתורי שליטה: הן מנהלות את השיחה עצמה.</p>
+    <span class="out">הקלידו / בתיבת השיחה כדי לראות את הרשימה המלאה</span>
+    <ul class="toc">
+      <li><a href="#cmd-context" dir="ltr">/context</a></li><li><a href="#cmd-compact" dir="ltr">/compact</a></li><li><a href="#cmd-clear" dir="ltr">/clear</a></li><li><a href="#cmd-rewind" dir="ltr">/rewind</a></li><li><a href="#cmd-init" dir="ltr">/init</a></li><li><a href="#cmd-more">עוד פקודות</a></li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <span class="badge idea">הארבע המרכזיות + /clear</span>
+    <h3>פקודות לניהול השיחה והקבצים</h3>
+
+    <div class="cmd" id="cmd-context">
+      <h4><code>/context</code></h4>
+      <div class="row"><b>מה זה עושה</b><span>מראה כמה מהשולחן של Claude כבר תפוס, ובמה: הוראות המערכת, קבצי CLAUDE.md, ההודעות שלכם והקבצים שהוא קרא. השולחן מוגבל, ושיחה ארוכה מתמלאת.</span></div>
+      <div class="row"><b>מתי להשתמש</b><span>כש-Claude מתחיל לענות פחות טוב או "לשכוח", לפני שמתחילים משימה גדולה, ולפני שמחליטים אם לנקות.</span></div>
+      <div class="row"><b>נסו עכשיו</b><span>הקלידו <code>/context</code> באמצע שיחה קיימת, ובדקו מה תופס הכי הרבה מקום.</span></div>
+    </div>
+
+    <div class="cmd" id="cmd-compact">
+      <h4><code>/compact</code></h4>
+      <div class="row"><b>מה זה עושה</b><span>מכווץ את השיחה לסיכום קצר, כדי לפנות מקום על השולחן, ושומר את העיקר: מה ביקשתם, מה הוחלט ואילו קבצים שונו. השיחה ממשיכה, רק קלה יותר.</span></div>
+      <div class="row"><b>מתי להשתמש</b><span>כשהשיחה ארוכה אבל אתם עדיין באמצע אותה משימה ורוצים להמשיך ממנה. (אם עוברים לנושא אחר לגמרי: <code>/clear</code>.)</span></div>
+      <div class="row"><b>טיפ</b><span>אפשר להוסיף הנחיה מה לשמור:</span></div>
+      <div class="prompt ltr"><button class="copy">Copy</button><span class="tag">COMMAND</span>/compact שמור את הרשימה של מועדי המבחנים ואת ההחלטות על תוכנית הלימוד</div>
+      <div class="row"><b>שימו לב</b><span>פרטים קטנים מהשיחה עלולים ללכת לאיבוד בסיכום. מה שחשוב באמת, שמרו בקובץ (למשל <code>study-plan.md</code>) לפני הכיווץ.</span></div>
+    </div>
+
+    <div class="cmd" id="cmd-clear">
+      <h4><code>/clear</code></h4>
+      <div class="row"><b>מה זה עושה</b><span>מתחיל שיחה חדשה ונקייה. Claude שוכח את כל מה שנאמר בשיחה, אבל הקבצים בתיקייה נשארים כמו שהם, וגם ה-CLAUDE.md נקרא שוב.</span></div>
+      <div class="row"><b>מתי להשתמש</b><span>כשעוברים למשימה חדשה, או כשהשולחן מלא. זה גם הדרך לבדוק ש-CLAUDE.md באמת עובד.</span></div>
+      <div class="row"><b>ההבדל מ-/compact</b><span><code>/compact</code> = ממשיכים אותה משימה עם זיכרון מקוצר. <code>/clear</code> = מתחילים מאפס.</span></div>
+    </div>
+
+    <div class="cmd" id="cmd-rewind">
+      <h4><code>/rewind</code></h4>
+      <div class="row"><b>מה זה עושה</b><span>מחזיר אחורה לנקודה מוקדמת יותר בשיחה, ומאפשר לבחור: לבטל רק את השיחה, רק את השינויים שבוצעו בקבצים, או את שניהם. כמו כפתור "בטל" (Undo) לעבודה עם Claude. אפשר גם ללחוץ <code>Esc</code> פעמיים.</span></div>
+      <div class="row"><b>מתי להשתמש</b><span>כש-Claude עשה שינוי שלא רציתם, או שהשיחה פנתה לכיוון לא טוב ורוצים לחזור לרגע שלפני.</span></div>
+      <div class="row"><b>נסו עכשיו</b><span>בקשו מ-Claude לשנות קובץ של ניסיון, ואז הקלידו <code>/rewind</code> ובחרו לשחזר את הקובץ.</span></div>
+      <div class="row"><b>שימו לב</b><span>השחזור חל על קבצים ש-Claude ערך בעצמו, לא על שינויים שעשיתם ידנית או שפקודות אחרות בטרמינל עשו. לא תחליף ל-git או לגיבוי, ובקבצים חשובים שמרו עותק.</span></div>
+    </div>
+
+    <div class="cmd" id="cmd-init">
+      <h4><code>/init</code></h4>
+      <div class="row"><b>מה זה עושה</b><span>Claude סורק את התיקייה הפתוחה ויוצר לבד קובץ <code>CLAUDE.md</code> ראשוני: מה יש בפרויקט, איך הוא מסודר ומה כדאי לדעת עליו.</span></div>
+      <div class="row"><b>מתי להשתמש</b><span>בתחילת עבודה על תיקייה חדשה, כנקודת פתיחה במקום דף ריק.</span></div>
+      <div class="row"><b>איך זה קשור ל-Workshop 3</b><span>שם Claude ראיין אתכם על עצמכם. <code>/init</code> מתבסס על הקבצים שבתיקייה, ולכן הוא מכיר את התיקייה אבל לא אתכם. הדרך הטובה: להריץ <code>/init</code> ואחר כך להוסיף ידנית (או בעזרת הריאיון) מי אתם ואיך לדבר איתכם.</span></div>
+      <div class="row"><b>שימו לב</b><span>תמיד קראו ומחקו מה שלא נכון או כללי מדי. זו טיוטה, לא גרסה סופית.</span></div>
+    </div>
+  </div>
+
+  <div class="sec" id="cmd-more">
+    <span class="badge idea">עוד פקודות שכדאי להכיר</span>
+    <h3>רשימה מהירה</h3>
+    <table>
+      <tr><th>פקודה</th><th>מה היא עושה</th><th>מתי</th></tr>
+      <tr><td><code>/help</code></td><td>מציגה את כל הפקודות הזמינות.</td><td>כשלא זוכרים פקודה</td></tr>
+      <tr><td><code>/resume</code></td><td>מראה שיחות קודמות ומאפשר להמשיך באחת מהן.</td><td>סגרתם את החלון באמצע משימה</td></tr>
+      <tr><td><code>/memory</code></td><td>פותחת לעריכה את קבצי ה-CLAUDE.md ש-Claude טוען.</td><td>לעדכן חוק או הוראה קבועה</td></tr>
+      <tr><td><code>/permissions</code></td><td>מראה ומשנה מה Claude רשאי לעשות בלי לשאול.</td><td>אחרי שקבעתם חוק בטיחות</td></tr>
+      <tr><td><code>/model</code></td><td>בוחרת באיזה מודל Claude משתמש (חזק יותר או מהיר וזול יותר).</td><td>משימה קשה, או משימה פשוטה וחוזרת</td></tr>
+      <tr><td><code>/status</code></td><td>מציגה גרסה, חשבון והגדרות נוכחיות.</td><td>כשמשהו לא עובד ורוצים לברר</td></tr>
+      <tr><td><code>/exit</code></td><td>יוצאת מ-Claude (בטרמינל).</td><td>סיימתם</td></tr>
+          <tr><td><code>/plugin</code></td><td>פותח תפריט לניהול פלאגינים וקטלוגים: להתקין, לכבות ולדפדף. עם /plugin marketplace add [שם] מוסיפים קטלוג, ועם /plugin install [שם] מתקינים פלאגין.</td><td>כשרוצים להתקין Skills שאחרים פרסמו</td></tr>
+      <tr><td><code>/reload-plugins</code></td><td>מרענן את הפלאגינים המותקנים כדי ש-Skill חדש יופיע.</td><td>אחרי התקנה, אם ה-Skill לא מופיע ברשימה</td></tr>
+      <tr><td><code>/mcp</code></td><td>מראה אילו שרתים מחוברים ומה הכלים של כל אחד. מכאן גם מתחברים לשרת שדורש התחברות (Authenticate).</td><td>אחרי חיבור שרת, כדי לוודא שהוא עובד</td></tr>
+      <tr><td><code>claude mcp add</code></td><td>מוסיף שרת MCP. מקלידים בטרמינל, לא בתוך שיחה.</td><td>מחברים שרת עם כתובת או שרת מקומי</td></tr>
+      <tr><td><code>claude mcp list</code></td><td>מציג את השרתים שהוספתם, עם הסימן ✓ Connected ליד מי שעובד. מקלידים בטרמינל.</td><td>בודקים שחיבור הצליח</td></tr>
+      <tr><td><code>/agents</code></td><td>מציגה את סוכני-המשנה שיש בתיקייה ומאפשרת ליצור סוכן חדש (Create new agent ואז Project).</td><td>כשרוצים ליצור סוכן או לבדוק שהוא נטען</td></tr>
+    </table>
+    <p class="hint">קיצורי מקלדת שימושיים: <code>Shift+Tab</code> מחליף מצב הרשאה (כולל Plan Mode), <code>Esc</code> עוצר את Claude באמצע פעולה, ו-<code>Esc Esc</code> פותח את <code>/rewind</code>.</p>
+    <div class="help"><b>חשוב:</b> הרשימה, הניסוח והמסכים משתנים בין גרסאות. אם פקודה לא מגיבה כמו שכתוב כאן, הקלידו <code>/help</code> ובדקו מה זמין אצלכם.</div>
+    <p class="hint">פקודות של Skills, חיבורים וסוכני-משנה (<code>/plugin</code>, <code>/mcp</code>, <code>/agents</code>) מופיעות בטבלה כאן למעלה ובמודולים 4, 6 ו-7.</p>
+  </div>
+</section>
+
+<footer>
+  <p>ליצירת קשר: <a href="https://il.linkedin.com/in/shiri-zohar" target="_blank" rel="noopener">LinkedIn</a> · <a href="mailto:shirisa@gmail.com">shirisa@gmail.com</a></p>
+  <p>Technion AI Days · 11–12.10.2026 · מנחה: שירי זוהר, AI Corporate Apps Lead ב-monday.com.<br>
+  <button class="reset" id="reset">איפוס הסימונים שלי</button></p>
+</footer>
+</main>
+
+<script>
+(function(){
+  // copy buttons: copy the prompt text without the label tag or the button itself
+  document.querySelectorAll('.copy').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var box=btn.parentElement.cloneNode(true);
+      box.querySelectorAll('.copy,.tag').forEach(function(n){n.remove()});
+      var txt=box.textContent.replace(/^\s+|\s+$/g,'');
+      var done=function(){var o=btn.textContent;btn.textContent=btn.closest('.ltr')?'Copied ✓':'הועתק ✓';btn.classList.add('ok');
+        setTimeout(function(){btn.textContent=o;btn.classList.remove('ok')},1600)};
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,fallback)}else fallback();
+      function fallback(){var t=document.createElement('textarea');t.value=txt;document.body.appendChild(t);t.select();try{document.execCommand('copy');done()}catch(e){}t.remove()}
+    });
+  });
+
+  // step checkboxes are remembered in this browser only
+  var store={};try{store=JSON.parse(localStorage.getItem('cc-materials')||'{}')}catch(e){}
+  var boxes=[];
+  document.querySelectorAll('ol.steps[data-key]').forEach(function(ol){
+    ol.querySelectorAll('li').forEach(function(li,i){
+      var cb=li.querySelector('input'),id=ol.dataset.key+'-'+i;
+      cb.checked=!!store[id];li.classList.toggle('done',cb.checked);boxes.push(cb);
+      cb.addEventListener('change',function(){
+        store[id]=cb.checked;li.classList.toggle('done',cb.checked);
+        try{localStorage.setItem('cc-materials',JSON.stringify(store))}catch(e){}
+        count();
+      });
+    });
+  });
+  function count(){var d=boxes.filter(function(b){return b.checked}).length;
+    document.getElementById('prog').textContent=d+' / '+boxes.length+' צעדים'}
+  count();
+  document.getElementById('reset').onclick=function(){
+    if(!confirm('לאפס את כל הסימונים?'))return;
+    store={};try{localStorage.removeItem('cc-materials')}catch(e){}
+    boxes.forEach(function(b){b.checked=false;b.closest('li').classList.remove('done')});count();
+  };
+})();
+</script>
+</body>
+</html>
