@@ -18,7 +18,7 @@
 .code.he,.code.he.sm{padding-left:132px}.code .copy{top:10px;left:10px;font-size:17px;padding:5px 12px}.code:has(>.copy):not(.he){padding-top:58px}
 </style>
 </head>
-<body data-start="92" data-total="147" data-day="ב׳" data-prev="module7.html" data-next="module9.html">
+<body data-start="94" data-total="149" data-day="ב׳" data-prev="module7.html" data-next="module9.html">
 <svg width="0" height="0" style="position:absolute">
   <symbol id="spark" viewBox="0 0 100 100"><g fill="currentColor">
     <rect x="46" y="4" width="8" height="40" rx="4"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(30 50 50)"/>
@@ -37,7 +37,8 @@
   <div class="num">8</div>
   <h1>אוטומציות והוקים: Claude עובד גם כשלא מבקשים</h1>
   <p class="lead">עד עכשיו כל עבודה התחילה בבקשה שלכם. עכשיו מלמדים את Claude להתחיל לבד: לפי אירוע, לפי שעון, לפי מטרה, או בלחיצה על קישור.</p>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-1 דק׳</p><ul><li>מודול 8, שעה אחת. [לעדכן שעות לפי לוח הזמנים הסופי של יום ב׳]</li><li>חלוקת הזמן המוצעת: הוקים כ-20 דק׳ (בונים שניים), תזמון ומטרות כ-12 דק׳, הדגמות (מצב ללא ממשק, ערוצים, קישורים) כ-8 דק׳, סדנה כ-15 דק׳, סיכום כ-5 דק׳.</li><li>התוצר: לפחות אוטומציה אחת שרצה אצל כל משתתף, בתיקיית agents-lab/ מהמודול הקודם.</li><li>גשר: במודול 7 נתנו לבונה כלי Write. הוק יהיה השומר שמוודא שהוא לא נוגע בקבצי המקור.</li></ul></aside>
+</section>
 
 <section class="slide" data-mod="8">
   <div class="kicker"><span class="mod">מודול 8</span> · חוזרים רגע</div>
@@ -46,7 +47,8 @@
     <div class="grid g2"><div class="card"><div class="icon">🙋</div><h3>עד עכשיו</h3><p>אתם מבקשים, Claude עושה. כל עבודה מתחילה ממכם: מקלידים, מחכים, בודקים.</p></div><div class="card acc"><div class="icon">⚡</div><h3>מה שחסר</h3><p>עבודה שמתחילה לבד. שומר שמונע טעויות בלי שתזכרו. בדיקה כל חצי שעה. סוכן שממשיך עד שהמשימה באמת גמורה.</p></div></div>
     <div class="example mt"><div class="who">נועה</div><p>היא לא רוצה לזכור לבדוק שהסוכן לא שינה את סיכומי ההרצאות המקוריים. והיא לא רוצה לשבת מול המסך כל זמן שהוא עובד. אוטומציה פותרת את שני הדברים.</p></div>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-2 דק׳</p><ul><li>הגשר ממודול 7: יש לנו סוכנים. השאלה עכשיו: מי מתחיל אותם, ומי שומר עליהם.</li><li>שתי בעיות אמיתיות: (1) סוכן עם כלי כתיבה יכול לשנות קבצי מקור בטעות. (2) משימה ארוכה דורשת שתשבו ותלחצו המשך.</li><li>נסו עכשיו: איזה דבר אתם עושים ל-Claude שוב ושוב, באותו אופן? אותו הרגל הוא מועמד לאוטומציה.</li></ul></aside>
+</section>
 
 <section class="slide" data-mod="8">
   <div class="kicker"><span class="mod">מודול 8</span> · המפה</div>
@@ -54,7 +56,8 @@
   <div class="body">
 <div class="grid g3"><div class="card"><div class="icon">🪝</div><h3>הוק</h3><p>קורה אירוע (Claude עומד לערוך קובץ), ופקודה רצה אוטומטית.</p></div><div class="card"><div class="icon">⏰</div><h3>לולאה</h3><p>עובר זמן (כל 10 דקות), ובקשה רצה שוב.</p></div><div class="card acc"><div class="icon">🎯</div><h3>מטרה</h3><p>התנאי עוד לא מתקיים, אז Claude ממשיך לעבוד.</p></div><div class="card"><div class="icon">🧾</div><h3>ללא ממשק</h3><p>סקריפט שלכם מריץ Claude בשורת פקודה, בלי שיחה.</p></div><div class="card"><div class="icon">📨</div><h3>ערוץ</h3><p>הודעה מבחוץ (טלגרם, CI) נכנסת לשיחה שפתוחה.</p></div><div class="card"><div class="icon">🔗</div><h3>קישור</h3><p>לחיצה על כתובת פותחת Claude עם בקשה מוכנה.</p></div></div>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-2 דק׳</p><ul><li>שישה כלים, שישה גורמים שמתחילים עבודה: אירוע, זמן, תנאי, סקריפט, הודעה, קישור.</li><li>אנחנו בונים ביחד את שלושת הראשונים (הוק, לולאה, מטרה). את השלושה האחרים מדגימים: הם דורשים טרמינל, חשבון חיצוני או תכונה בגרסת ניסוי.</li><li>כלל: להתחיל מהכי פשוט. הוק אחד קטן שווה יותר מכל התשתית.</li></ul></aside>
+</section>
 
 <section class="slide" data-mod="8">
   <div class="kicker"><span class="mod">מודול 8</span> · הוקים · מה זה</div>
@@ -63,7 +66,8 @@
 <div class="grid g2"><div class="card"><div class="icon">🚪</div><h3>דימוי</h3><p>דלת אוטומטית בכניסה לחנות. אף אחד לא מחליט לפתוח אותה בכל פעם: יש חיישן, ויש כלל. הוק הוא החיישן והכלל של Claude.</p></div><div class="card acc"><div class="icon">🪝</div><h3>הגדרה</h3><p>פקודה שאתם כותבים פעם אחת, ו-Claude מריץ אותה בכל פעם שמתרחש האירוע. בלי להסתמך על כך שהמודל &quot;יזכור&quot;.</p></div></div>
     <div class="example mt"><div class="who">למה זה חשוב לכם</div><p>הוראה ב-<span class="en">CLAUDE.md</span> היא בקשה יפה. הוק הוא כלל שנאכף. אם חשוב שקובץ לעולם לא ישתנה, לא מבקשים: חוסמים.</p></div>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-3 דק׳</p><ul><li>הוק: פקודת מעטפת (shell) ש-Claude Code מריץ בנקודה קבועה במחזור החיים שלו. לפי התיעוד: שליטה דטרמיניסטית, פעולות מסוימות קורות תמיד ולא תלויות בהחלטה של המודל.</li><li>ההבדל המרכזי מ-CLAUDE.md: CLAUDE.md הוא הנחיה שהמודל קורא וייתכן שיסטה ממנה. הוק הוא קוד שרץ.</li><li>נסו עכשיו: חשבו על כלל אחד שהייתם רוצים לאכוף על Claude (למשל ״לא נוגעים בקבצי המקור״).</li></ul></aside>
+</section>
 
 <section class="slide" data-mod="8">
   <div class="kicker"><span class="mod">מודול 8</span> · הוקים · מבנה</div>
@@ -89,7 +93,8 @@
     </div>
     <p class="mt hint">⚡ ההגדרה נשמרת בקובץ ההגדרות: <code>.claude/settings.json</code> לפרויקט הזה, או <code>~/.claude/settings.json</code> לכל הפרויקטים.</p>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-3 דק׳</p><ul><li>שלושה חלקים: אירוע (PreToolUse), סינון (matcher), פקודה (command). רוב ההוקים הם בדיוק זה.</li><li>matcher ריק פירושו כל המופעים של האירוע. Edit|Write פירושו רק כלי עריכה או כתיבה.</li><li>שתי כתובות לקובץ ההגדרות, כמו ב-Skills וב-agents: בתיקייה (לפרויקט) או אצלכם אישית.</li><li>חשוב: לא צריך לזכור את המבנה. אפשר לבקש מ-Claude לכתוב את ההוק (עושים זאת בשקף הבא), ורק לקרוא אותו.</li></ul></aside>
+</section>
 
 <section class="slide" data-mod="8">
   <div class="kicker"><span class="mod">מודול 8</span> · הוקים · אירועים</div>
@@ -105,7 +110,8 @@
     </table>
     <p class="mt hint">⚡ יש עוד אירועים רבים (בתיעוד של <span class="en">hooks</span>). אלה חמשת הראשונים לתחילת הדרך.</p>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-2 דק׳</p><ul><li>חמישה מתוך הרשימה הארוכה של אירועי hooks בתיעוד.</li><li>PreToolUse הוא היחיד שחוסם לפני שהפעולה קורית. זה הכלי לכללים מחמירים.</li><li>Notification: Claude מחכה לאישור או לקלט. מתאים להתראה כשעובדים בחלון אחר.</li><li>Stop: נקרא בסוף כל תשובה. /goal נבנה על האירוע הזה, נראה בהמשך.</li><li>SessionStart: אפשר להזריק טקסט להקשר, למשל תזכורת אחרי דחיסת שיחה.</li><li>התיעוד: code.claude.com/docs/en/hooks-guide</li></ul></aside>
+</section>
 
 <section class="slide" data-mod="8">
   <div class="kicker"><span class="mod">מודול 8</span> · בונים הוק 1 · שלב 1</div>
@@ -119,7 +125,8 @@
     <div class="code he sm mt"><button class="copy">העתק</button>הוסף לקובץ ההגדרות האישי שלי (~/.claude/settings.json) הוק על האירוע Notification, שמציג התראה על המסך בנוסח &quot;Claude Code needs your attention&quot;. המחשב שלי: Mac. אל תמחק הגדרות קיימות, ועצור כדי שאראה מה כתבת.</div>
     <p class="hint">⚡ ב-Windows או ב-Linux? פשוט כתבו בבקשה את מערכת ההפעלה שלכם, ו-<span class="en">Claude</span> יתאים את הפקודה.</p>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-4 דק׳</p><ul><li>זה ההוק הראשון: הכי פשוט וכבר שימושי. מדגימים חי.</li><li>הדרך הבטוחה למי שלא רגיל ל-JSON: לבקש מ-Claude לכתוב את ההוק. התיעוד עצמו אומר שאפשר לבקש מ-Claude לכתוב אותו.</li><li>״אל תמחק הגדרות קיימות״: חשוב. אם כבר יש קובץ settings.json, ההוק נוסף ולא מחליף. אם ההגדרות קיימות, מוסיפים את Notification בתוך אובייקט hooks הקיים.</li><li>/hooks פותח את דפדפן ההוקים. ככה מוודאים שההוק נקלט, בלי לחכות לאירוע.</li><li>אם אין התראה ב-Mac: בפעם הראשונה ייתכן שצריך לאשר התראות עבור Script Editor בהגדרות המערכת (System Settings > Notifications). [לוודא במחשב ההדגמה]</li><li>נסו עכשיו: אחרי שההוק מופיע ב-/hooks, עוברים לשקף הבא לבדיקה.</li></ul></aside>
+</section>
 
 <section class="slide" data-mod="8">
   <div class="kicker"><span class="mod">מודול 8</span> · בונים הוק 1 · שלב 2</div>
@@ -141,7 +148,8 @@
     </div>
     <div class="done-when">✅ <strong>סיימתם כש:</strong> קיבלתם התראה כש-<span class="en">Claude</span> חיכה לכם.</div>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-4 דק׳</p><ul><li>זה מה ש-Claude צריך לכתוב (ב-Mac). Notification, matcher ריק (כל סוגי ההתראות), ופקודה אחת.</li><li>בדיקה: ביקשו משהו שדורש אישור, ועברו חלון. ההתראה מגיעה אחרי כמה שניות של המתנה (בערך שש שניות לאישור הרשאה, לפי התיעוד).</li><li>matcher ריק פירושו הכול. אפשר לצמצם: permission_prompt (אישור), idle_prompt (Claude סיים ואתם לא כותבים כבר דקה).</li><li>אם לא קורה כלום: מריצים בטרמינל את פקודת ההתראה לבד ורואים אם היא עובדת. אפשר גם לשאול את Claude: ״למה ההוק לא התריע?״</li><li>מי שסיים: מבקש מ-Claude לצמצם ל-permission_prompt בלבד.</li></ul></aside>
+</section>
 
 <section class="slide" data-mod="8">
   <div class="kicker"><span class="mod">מודול 8</span> · הוקים · חסימה</div>
@@ -150,7 +158,8 @@
 <div class="grid g3"><div class="card"><div class="icon">✅</div><h3>0</h3><p>הכול בסדר, ממשיכים. אין התנגדות.</p></div><div class="card acc"><div class="icon">⛔</div><h3>2</h3><p>חוסמים. הטקסט שהוק כתב ל-stderr מגיע ל-Claude כהסבר, והוא מתאים את הדרך.</p></div><div class="card"><div class="icon">⚠️</div><h3>כל קוד אחר</h3><p>שגיאה לא חוסמת. הפעולה נמשכת, ומוצגת הודעת שגיאה.</p></div></div>
     <div class="example mt"><div class="who">הדימוי</div><p>מאבטח בכניסה. מנהל אומר &quot;עבור&quot; (0) או &quot;עצור, ולא מכניסים בגלל...&quot; (2). Claude שומע את ההסבר ומחפש דרך אחרת.</p></div>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-3 דק׳</p><ul><li>המנגנון: ההוק מקבל JSON על stdin (איזה כלי, איזה קובץ). הוא מחליט ומחזיר קוד יציאה.</li><li>קוד 2 הוא המפתח לחסימה. מה שנכתב ל-stderr מוצג ל-Claude כמשוב, כך שהוא מבין למה נחסם ומתאים את הצעד הבא.</li><li>חשוב: ב-PreToolUse, קוד 0 לא ״מאשר״ את הפעולה. הוא רק אומר שאין התנגדות, ותהליך ההרשאות הרגיל ממשיך.</li><li>יש גם פלט JSON למי שצריך שליטה עדינה יותר. לא נכנסים לזה עכשיו.</li><li>נסו עכשיו: איך הייתם מנסחים הודעת חסימה שתעזור ל-Claude להבין מה לעשות במקום?</li></ul></aside>
+</section>
 
 <section class="slide" data-mod="8">
   <div class="kicker"><span class="mod">מודול 8</span> · בונים הוק 2 · שלב 1</div>
@@ -173,7 +182,8 @@ exit 0</div>
     </div>
     <p class="mt hint">⚡ הסקריפט קורא את הקלט עם <span class="en">jq</span>. אם חסר לכם: <code>brew install jq</code>. אפשר לבקש מ-<span class="en">Claude</span> להתקין ולהסביר.</p>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-3 דק׳</p><ul><li>הוק שחוסם: סקריפט קצר שקורא את הנתיב של הקובץ ש-Claude עומד לערוך ובודק אם הוא בתוך notes/.</li><li>זה הקשר למודול 7: לבונה יש כלי Write. עכשיו, גם אם יטעה, לא יוכל לגעת בקבצי המקור.</li><li>jq: כלי לקריאת JSON בשורת פקודה. ב-Mac: brew install jq. אם אין לכם, מבקשים מ-Claude להתקין (הוא יבקש אישור).</li><li>הדרך הקלה: מבקשים מ-Claude לכתוב את הסקריפט ואת ההוק (השקף הבא).</li><li>התיעוד מציג גרסה כללית עם רשימת תבניות מוגנות (.env, package-lock.json, .git/). כאן מצמצמים ל-notes/.</li></ul></aside>
+</section>
 
 <section class="slide" data-mod="8">
   <div class="kicker"><span class="mod">מודול 8</span> · בונים הוק 2 · שלב 2</div>
@@ -187,7 +197,8 @@ exit 0</div>
     <div class="code he sm mt"><button class="copy">העתק</button>צור הוק PreToolUse על Edit ו-Write בהגדרות הפרויקט (.claude/settings.json). הוא מריץ סקריפט .claude/hooks/protect-notes.sh שחוסם (קוד יציאה 2) כל עריכה של קובץ שנמצא בתיקייה notes/, עם הודעה &quot;Blocked: notes/ is read-only&quot;. הסקריפט קורא את הנתיב עם jq. הפוך אותו להרצה ועצור כדי שאראה.</div>
     <div class="done-when">✅ <strong>סיימתם כש:</strong> הבקשה לערוך קובץ ב-<span class="en">notes/</span> נחסמה, ו-<span class="en">Claude</span> הסביר לכם למה.</div>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-5 דק׳</p><ul><li>מדביקים ומריצים חי. אחרי הבדיקה Claude אמור לומר שהעריכה נחסמה בגלל ההודעה מהסקריפט.</li><li>הדרך השנייה לראות שזה עובד: /hooks מציג את ההוק תחת PreToolUse.</li><li>אם Claude מצליח לערוך בכל זאת: הסקריפט לא הופעל. בודקים chmod +x ושהנתיב ב-settings.json נכון. אפשר לשאול: ״למה ההוק לא חסם?״</li><li>בדיקה הפוכה: מבקשים ליצור קובץ בתיקייה אחרת. אמור לעבוד כרגיל.</li><li>נסו עכשיו: הריצו שוב את הסוכן builder מהמודול הקודם ובקשו ממנו לתקן קובץ ב-notes/. ההוק יחסום, והוא יחפש דרך אחרת.</li></ul></aside>
+</section>
 
 <section class="slide" data-mod="8">
   <div class="kicker"><span class="mod">מודול 8</span> · הוקים · עוד, ובטיחות</div>
@@ -204,7 +215,8 @@ exit 0</div>
     </div>
     <p class="mt hint">⚡ הוק שמבוסס על פרומפט הוא הבסיס של <code>/goal</code>, שנראה בהמשך.</p>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-3 דק׳</p><ul><li>חמישה סוגי הוקים בתיעוד: פקודה, כתובת (http), כלי MCP, פרומפט, וסוכן (ניסיוני). מציגים שלושה.</li><li>הוק פרומפט: מודל קטן בודק תנאי שדורש שיקול דעת (למשל ״האם הושלמו כל המשימות?״). /goal הוא עטיפה סביב הוק כזה על האירוע Stop.</li><li>בטיחות: הוק הוא קוד שרץ במחשב שלכם. אין הבדל בינו לבין כל סקריפט אחר. לכן קוראים אותו.</li><li>אתר חיצוני שמציע ״הוסיפו את ההוק הזה להגדרות״: קוראים, או שואלים את Claude מה הוא עושה לפני שמדביקים.</li><li>בהגדרות פרויקט ששיתפו איתכם יכולים להיות הוקים. מי שפותח תיקייה מ-GitHub צריך להציץ ב-.claude/settings.json.</li></ul></aside>
+</section>
 
 <section class="slide" data-mod="8">
   <div class="kicker"><span class="mod">מודול 8</span> · תזמון · /loop</div>
@@ -214,7 +226,8 @@ exit 0</div>
     <div class="code mt"><button class="copy">העתק</button>/loop 10m check if new files appeared in notes/ and tell me what they are</div>
     <p class="hint">⚡ נסו: הריצו, ואז גררו קובץ חדש ל-<span class="en">notes/</span>. בפעם הבאה ש-<span class="en">Claude</span> יבדוק, הוא ידווח.</p>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-4 דק׳</p><ul><li>/loop הוא כישור מובנה (skill). הוא נותן להריץ בקשה בחזרה כל פרק זמן. יחידות: s, m, h, d. שניות מעוגלות לדקה.</li><li>בלי מרווח: Claude בוחר המתנה דינמית בין דקה לשעה, ומדפיס את הסיבה בסוף כל סבב.</li><li>בלי בקשה: בדיקת תחזוקה מובנית (ממשיך עבודה לא גמורה, מטפל ב-PR של הענף). אפשר להחליף אותה בקובץ loop.md משלכם.</li><li>נסו עכשיו: מריצים, מוסיפים קובץ ל-notes/ ומחכים. כדי לעצור, Esc בזמן ההמתנה (בלולאה עם מרווח דינמי).</li><li>שימו לב: לולאה פועלת רק כל עוד Claude Code פתוח והסשן לא עסוק. סוגרים את החלון, והיא נעצרת.</li></ul></aside>
+</section>
 
 <section class="slide" data-mod="8">
   <div class="kicker"><span class="mod">מודול 8</span> · תזמון · תזכורות וניהול</div>
@@ -232,7 +245,8 @@ exit 0</div>
     </div>
     <p class="mt hint">⚡ מעדיפים לא להסתמך על חלון פתוח? בהמשך: משימות בענן ובאפליקציית שולחן העבודה.</p>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-3 דק׳</p><ul><li>תזכורת: לא צריך /loop, פשוט מתארים במילים. Claude מתזמן פעם אחת.</li><li>ניהול: שואלים בשפה רגילה. מאחורי הקלעים יש שלושה כלים (CronCreate, CronList, CronDelete) ועד 50 משימות בשיחה.</li><li>תפוגה: משימה חוזרת נמחקת אחרי 7 ימים (אחרי הרצה אחרונה). זה מונע לולאות שנשכחו.</li><li>אי-דיוק בזמן: Claude מוסיף השהיה קטנה כדי לא להעמיס. אם הדקה חשובה, מתזמנים על דקה לא עגולה (למשל 09:03 במקום 09:00).</li><li>נסו עכשיו: מבקשים תזכורת לעוד 3 דקות, ומחכים לה.</li></ul></aside>
+</section>
 
 <section class="slide" data-mod="8">
   <div class="kicker"><span class="mod">מודול 8</span> · תזמון · איפה זה רץ</div>
@@ -248,7 +262,8 @@ exit 0</div>
     </table>
     <p class="mt hint">⚡ בדיקה מהירה בזמן עבודה: <span class="en">/loop</span>. משהו קבוע שצריך קבצים מקומיים: שולחן עבודה. משהו שחייב לרוץ גם כשהמחשב כבוי: ענן.</p>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-2 דק׳</p><ul><li>הטבלה מהתיעוד של scheduled tasks. שלוש רמות עמידות.</li><li>/loop: מהיר, אבל קיים רק כל עוד החלון פתוח.</li><li>משימות באפליקציית שולחן העבודה: ממשיכות גם בלי חלון פתוח, אבל המחשב צריך להיות דלוק.</li><li>משימות בענן (/schedule, Routines): רצות על שיבוץ בענן, בלי המחשב שלכם. אין גישה לקבצים מקומיים (עובדות על עותק נקי מ-GitHub).</li><li>לא בונים אותן בקורס: דורש חשבון ו-repo. מי שמעוניין: code.claude.com/docs/en/scheduled-tasks.</li></ul></aside>
+</section>
 
 <section class="slide" data-mod="8">
   <div class="kicker"><span class="mod">מודול 8</span> · מטרה · /goal</div>
@@ -264,7 +279,8 @@ exit 0</div>
     </div>
     <div class="code mt"><button class="copy">העתק</button>/goal summary.html exists and has a section for every topic in notes/syllabus-dsp.md, or stop after 8 turns</div>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-4 דק׳</p><ul><li>/goal מגדיר תנאי סיום ו-Claude ממשיך לעבוד בלי שתבקשו בכל צעד. אחרי כל תור, מודל קטן בודק אם התנאי מתקיים.</li><li>שלוש תוצאות: לא התקיים עדיין (Claude ממשיך עם הסיבה כהנחיה), התקיים (המטרה נסגרת), בלתי אפשרי (נסגרת עם הסבר).</li><li>הוספת ״או עצור אחרי 8 תורות״ מגבילה כמה זמן ירוץ. מומלץ תמיד.</li><li>במצב ברירת מחדל Claude עדיין שואל הרשאות. כדי שיעבוד ללא נוכחות, משתמשים במצב אוטומטי (auto mode).</li><li>נסו עכשיו: אחרי שהבונה מהמודול הקודם יצר summary.html, מריצים את ה-goal ורואים ש-Claude משלים נושאים שחסרים.</li></ul></aside>
+</section>
 
 <section class="slide" data-mod="8">
   <div class="kicker"><span class="mod">מודול 8</span> · מטרה · ניסוח</div>
@@ -276,7 +292,8 @@ exit 0</div>
     </div>
     <p class="mt hint">⚡ תנאי טוב כולל: <strong>מצב סופי אחד</strong> (קובץ שקיים, בדיקה שעוברת) · <strong>איך מוכיחים</strong> (&quot;git status נקי&quot;) · <strong>מה אסור לשנות</strong> (&quot;בלי לערוך קבצי מקור&quot;)</p>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-3 דק׳</p><ul><li>השופט לא מריץ פקודות ולא פותח קבצים. הוא קורא רק מה ש-Claude הציג בשיחה. לכן כותבים תנאי ש-Claude יכול להראות.</li><li>שלושה מרכיבים לתנאי טוב: מצב סופי מדיד, בדיקה מוצהרת, אילוצים שלא משתנים. עד 4,000 תווים.</li><li>טיפ: תמיד להוסיף גבול (״או עצור אחרי 8 תורות״). בלעדיו, משימה בלתי מושגת עלולה לרוץ ארוך.</li><li>נסו עכשיו: שפרו את התנאי ששלחתם קודם לפי שלושת המרכיבים.</li></ul></aside>
+</section>
 
 <section class="slide" data-mod="8">
   <div class="kicker"><span class="mod">מודול 8</span> · מטרה · ניהול והשוואה</div>
@@ -290,7 +307,8 @@ exit 0</div>
     </div>
     <p class="mt hint">⚡ <span class="en">/goal</span> הוא קיצור: הוק פרומפט שחי רק בשיחה הנוכחית. הוק <span class="en">Stop</span> בקובץ ההגדרות חי בכל שיחה.</p>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-3 דק׳</p><ul><li>/goal ללא ארגומנטים: מציג תנאי, כמה זמן רץ, כמה תורות, כמה אסימונים, והסיבה האחרונה של השופט.</li><li>/goal clear (או stop, off, cancel) מבטל. /clear מתחיל שיחה חדשה ומוחק גם מטרה.</li><li>מתי מה: מטרה כשיש מצב סיום ברור. לולאה כשהשאלה היא ״מה קרה בינתיים״. הוק Stop כשהכלל צריך לחול תמיד.</li><li>אם השופט לא רואה התקדמות (בלי שימוש בכלים כמה תורות רצוף), הלולאה נעצרת וחוזרת אליכם.</li><li>מגבלה: אם הכול כבוי ב-disableAllHooks, /goal לא זמין ויש הודעה שמסבירה למה.</li></ul></aside>
+</section>
 
 <section class="slide" data-mod="8">
   <div class="kicker"><span class="mod">מודול 8</span> · הדגמה · ללא ממשק</div>
@@ -302,7 +320,8 @@ exit 0</div>
     </div>
     <p class="mt hint">⚡ הדגמה בלבד. פותחים טרמינל בתוך <span class="en">VS Code</span> (<span class="en">Terminal → New Terminal</span>) ומריצים בתיקייה <span class="en">agents-lab/</span>.</p>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-3 דק׳</p><ul><li>claude -p (או --print) מריץ Claude פעם אחת וללא שיחה. מתאים לסקריפטים, לבדיקות ול-CI.</li><li>הדגמה חיה: טרמינל משולב ב-VS Code, בתיקייה agents-lab/. מריצים פקודה, ורואים שהתשובה מודפסת וחוזרים לשורת הפקודה.</li><li>קוד יציאה 0 בהצלחה, אחרת קוד שגיאה. זה מה שמאפשר לסקריפט להחליט מה לעשות.</li><li>זה השימוש שפחות מתאים למי שלא רגיל לטרמינל. אם יש צורך, מדלגים לשקף הבא.</li><li>נסו עכשיו (לרוצים): מריצים את הפקודה בטרמינל של VS Code.</li></ul></aside>
+</section>
 
 <section class="slide" data-mod="8">
   <div class="kicker"><span class="mod">מודול 8</span> · הדגמה · ללא ממשק</div>
@@ -315,7 +334,8 @@ claude -p "List the topics" --output-format json</div>
       <div class="callout"><strong>צינור (pipe)</strong><span>מעבירים תוכן של קובץ לתוך Claude</span></div><div class="callout"><strong><span class="en">--allowedTools</span></strong><span>אילו כלים מותרים בלי לשאול. כאן רק קריאה</span></div><div class="callout"><strong><span class="en">--output-format json</span></strong><span>פלט מובנה לתוכנית אחרת</span></div>
     </div>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-3 דק׳</p><ul><li>שלוש דוגמאות מהתיעוד: צינור של קובץ, הרשאת כלים, ופלט JSON.</li><li>--allowedTools: בלי שיחה אין מי שיאשר הרשאות, אז מגדירים מראש מה מותר. כאן Read בלבד, בטוח.</li><li>--output-format json: מחזיר מבנה עם התשובה והמטא-נתונים (כולל עלות משוערת), נוח לסקריפט.</li><li>במסגרת סקריפט או CI מוסיפים --bare כדי שהריצה תהיה זהה בכל מחשב, בלי הוקים ו-CLAUDE.md מקומיים. מצב bare דורש מפתח API ולא משתמש בכניסה הרגילה, לכן לא נריץ אותו בקורס.</li><li>כל הרצה צורכת מכסת שימוש. לא מריצים בלולאה על הרבה קבצים בלי לחשוב.</li></ul></aside>
+</section>
 
 <section class="slide" data-mod="8">
   <div class="kicker"><span class="mod">מודול 8</span> · הדגמה · ערוצים</div>
@@ -328,7 +348,8 @@ claude -p "List the topics" --output-format json</div>
       <div class="callout"><strong>לאן</strong><span>טלגרם, דיסקורד ו-iMessage (בגרסת ניסוי)</span></div><div class="callout"><strong>דרישות</strong><span>כניסה עם חשבון claude.ai, והשיחה חייבת להיות פתוחה</span></div><div class="callout"><strong>ארגונים</strong><span>בחשבונות צוות וארגון המנהל צריך להפעיל את זה</span></div>
     </div>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-2 דק׳</p><ul><li>ערוץ הוא שרת MCP שדוחף אירועים לתוך סשן קיים. התיעוד: code.claude.com/docs/en/channels.</li><li>הערוץ מותקן כתוסף. נתמכים בגרסת הניסוי: Telegram, Discord, iMessage (ב-Mac).</li><li>חשוב: זו גרסת ניסוי (research preview). התחביר עשוי להשתנות. לא בונים אותה בסדנה.</li><li>אירועים מגיעים רק כשהשיחה פתוחה. למצב תמידי מריצים את Claude בתהליך רקע.</li><li>בחשבונות Team ו-Enterprise צריך שבעל הארגון יפעיל ערוצים. משתמשי Pro ו-Max בלי ארגון פטורים מכך.</li><li>שימושי לנועה: לשאול את Claude משהו מהטלפון בזמן שהוא עובד על המחשב בבית.</li></ul></aside>
+</section>
 
 <section class="slide" data-mod="8">
   <div class="kicker"><span class="mod">מודול 8</span> · הדגמה · ערוצים</div>
@@ -343,7 +364,8 @@ claude --channels plugin:fakechat@claude-plugins-official
       <div class="card"><div class="icon">🧪</div><h3>הדגמה</h3><p>חלון צ׳אט מקומי: מקלידים בדפדפן, ההודעה מגיעה ל-Claude והתשובה חוזרת. אין חשבון חיצוני.</p></div><div class="card acc"><div class="icon">🔒</div><h3>אבטחה</h3><p>רק מי שברשימת ההיתרים (allowlist) יכול לשלוח הודעות. אחרים מסוננים בשקט.</p></div>
     </div>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-3 דק׳</p><ul><li>fakechat: ערוץ הדגמה רשמי, צ׳אט מקומי על localhost:8787. אין מה לאמת, אין שירות חיצוני. דורש Bun מותקן.</li><li>שלבים: מתקינים את התוסף, יוצאים ופותחים מחדש עם --channels, פותחים את הכתובת ומקלידים.</li><li>אבטחה: כל ערוץ מאושר מחזיק רשימת שולחים מורשים. בטלגרם ובדיסקורד מצמידים חשבון עם קוד התאמה (pairing) ואז נועלים עם /telegram:access policy allowlist.</li><li>אסור לתת הרשאה לשולחים שלא סומכים עליהם: מי שיכול לענות בערוץ יכול גם לאשר פעולות בשיחה, אם הערוץ תומך בכך.</li><li>[לוודא Bun ו-claude.ai בגרסה במחשב ההדגמה לפני הקורס. אם זה לא עובד, מציגים תמונה ולא מריצים חי.]</li></ul></aside>
+</section>
 
 <section class="slide" data-mod="8">
   <div class="kicker"><span class="mod">מודול 8</span> · הדגמה · קישורים</div>
@@ -356,7 +378,8 @@ claude --channels plugin:fakechat@claude-plugins-official
       <div class="card"><div class="icon">📁</div><h3><span class="en">cwd</span></h3><p>באיזו תיקייה לפתוח. נתיב מלא.</p></div><div class="card"><div class="icon">✍️</div><h3><span class="en">q</span></h3><p>הבקשה שתופיע בתיבה. מקודדת ככתובת.</p></div><div class="card acc"><div class="icon">🔒</div><h3>הכלל</h3><p>הבקשה <strong>לא נשלחת</strong> עד שאתם לוחצים <span class="en">Enter</span>.</p></div>
     </div>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-2 דק׳</p><ul><li>קישור עמוק: כתובת claude-cli:// שפותחת חלון טרמינל חדש עם Claude Code, בתיקייה ובבקשה שבקישור.</li><li>הפרמטרים: cwd (נתיב מלא), repo (שם owner/name של מאגר GitHub שהיה לכם מקומי), q (הבקשה, מקודדת).</li><li>הבטיחות: הקישור לא מריץ כלום. הוא רק ממלא את תיבת ההודעה. מוצגת אזהרה ״Prompt from an external link״ והבקשה לא נשלחת בלי Enter.</li><li>הרישום מתבצע אוטומטית אחרי שליחת הבקשה הראשונה בשיחה אינטראקטיבית, בלי התקנה נפרדת.</li><li>שימוש: README של פרויקט, דף הקורס ב-Moodle, או מסמך הוראות שמוביל ישר לבקשה מוכנה.</li></ul></aside>
+</section>
 
 <section class="slide" data-mod="8">
   <div class="kicker"><span class="mod">מודול 8</span> · הדגמה · קישורים</div>
@@ -370,7 +393,8 @@ claude --channels plugin:fakechat@claude-plugins-official
     <div class="code mt"><button class="copy">העתק</button>open &quot;claude-cli://open?cwd=/Users/YOURNAME/Desktop/agents-lab&amp;q=List%20the%20files%20in%20notes%2F&quot;</div>
     <p class="hint">⚡ ב-<span class="en">Windows</span>: <code>Start-Process "claude-cli://open?..."</code>. ב-<span class="en">GitHub</span> קישור כזה לא נלחץ בתוך <span class="en">README</span>, לכן שמים אותו בבלוק קוד.</p>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-2 דק׳</p><ul><li>מדגימים בחי: לוקחים את הנתיב המלא של התיקייה, מריצים פקודה אחת.</li><li>חייבים להחליף YOURNAME ואת הנתיב בנתיב האמיתי. cwd חייב להיות נתיב מוחלט.</li><li>אם לא קורה כלום: הרישום לא בוצע עדיין. פותחים Claude Code, שולחים בקשה כלשהי, יוצאים, ומנסים שוב.</li><li>GitHub מסנן סכמות כתובת שאינן http/https, לכן ב-README הקישור יופיע כטקסט. פתרון: בלוק קוד שאפשר להעתיק.</li><li>הקישור הוא ללא סיכון בפני עצמו, אבל כדאי לקרוא את הבקשה לפני Enter, במיוחד בקישור שקיבלתם מאחרים.</li></ul></aside>
+</section>
 
 <section class="slide" data-mod="8">
   <div class="kicker"><span class="mod">מודול 8</span> · מסכמים את המפה</div>
@@ -387,7 +411,8 @@ claude --channels plugin:fakechat@claude-plugins-official
       <tr><td>לחיצה תפתח אותו עם בקשה</td><td>קישור עמוק</td></tr>
     </table>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-2 דק׳</p><ul><li>טבלת החלטה: ממה מתחילים. שבע שורות.</li><li>אם יש רק דקה: הוק אחד (PreToolUse) ו-/goal עם גבול. שני אלה משנים הכי הרבה.</li><li>שאלו את הקהל: איזה כלי מתאים לבדיקה של אתר הקורס כל בוקר? (לולאה, או משימה בענן.)</li></ul></aside>
+</section>
 
 <section class="slide workshop" data-mod="8">
   
@@ -402,7 +427,8 @@ claude --channels plugin:fakechat@claude-plugins-official
       <div class="card"><div class="icon">🪝</div><h3>מסלול א׳: שומר</h3><p>הוק שחוסם עריכה ב-<span class="en">notes/</span>, והוק התראה.</p></div><div class="card"><div class="icon">⏰</div><h3>מסלול ב׳: שומר זמן</h3><p>לולאה שמדווחת על קבצים חדשים, ותזכורת.</p></div><div class="card acc"><div class="icon">🎯</div><h3>מסלול ג׳: עד הסוף</h3><p>מטרה שמריצה את החוקר והבונה עד ש-<span class="en">summary.html</span> שלם.</p></div>
     </div>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-2 דק׳</p><ul><li>Workshop 8: כ-15 דקות עבודה. לוחצים על הטיימר.</li><li>שלושה מסלולים. מי שסיים אחד, ממשיך לשני. מי שמתקשה: מסלול ב׳ הקל ביותר.</li><li>כולם עובדים בתיקייה agents-lab/ עם החוקר והבונה מהמודול הקודם (אם הם עדיין לא נבנו, בונים רק את ה-hook או ה-loop).</li><li>[להכין סקריפט protect-notes.sh לדוגמה לפני הקורס, לכל מי שנתקע]</li></ul></aside>
+</section>
 
 <section class="slide workshop" data-mod="8">
   <div class="kicker"><span class="mod">מודול 8</span> · <span class="badge work">Workshop 8</span> · שלבים</div>
@@ -416,7 +442,8 @@ claude --channels plugin:fakechat@claude-plugins-official
       <li>שואלים: ״מה יכול להשתבש?״, ומתקנים תנאי אחד</li>
     </ol>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-10 דק׳</p><ul><li>חמישה צעדים. עוברים בקול ונותנים לעבוד.</li><li>צעד 3 חשוב: אף אחד לא מריץ אוטומציה שלא קרא. הוק רץ עם ההרשאות שלכם.</li><li>צעד 4: שתי בדיקות. אחת שמפעילה, אחת שלא. מוודאים שהוק לא חוסם יותר מדי.</li><li>מי שמסיים מוקדם: מוסיפים סוג שני (הוק + לולאה), או כותבים README קצר שמסביר מה האוטומציה עושה (קישור למודול 9).</li></ul></aside>
+</section>
 
 <section class="slide workshop" data-mod="8">
   <div class="kicker"><span class="mod">מודול 8</span> · <span class="badge work">Workshop 8</span> · בקשות</div>
@@ -429,7 +456,8 @@ claude --channels plugin:fakechat@claude-plugins-official
     </div>
     <p class="mt muted">חומר אחר? מחליפים את שם התיקייה והקובץ. הרעיון זהה.</p>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-2 דק׳</p><ul><li>שלוש בקשות, אחת לכל מסלול. מי שבחר מסלול אחר מתאים את הניסוח.</li><li>מסלול ג׳ מניח שהחוקר והבונה כבר קיימים מהמודול הקודם. אם לא, מוותרים עליו או בונים אותם מחדש בקצרה.</li><li>אפשר גם להריץ את שלושתם יחד: ההוק שומר, ה-goal מניע, והלולאה מדווחת.</li></ul></aside>
+</section>
 
 <section class="slide workshop" data-mod="8">
   <div class="kicker"><span class="mod">מודול 8</span> · <span class="badge work">Workshop 8</span> · בדיקות</div>
@@ -441,7 +469,8 @@ claude --channels plugin:fakechat@claude-plugins-official
     <div class="done-when">✅ <strong>סיימתם כש:</strong> אוטומציה אחת רצה אצלכם בפועל, ואתם יכולים להסביר בשלוש מילים איזה אירוע מפעיל אותה.</div>
     <p class="hint">⚡ נתקעתם? שאלו את <span class="en">Claude</span>: ״למה האוטומציה לא קרתה, ומה לשנות?״</p>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-3 דק׳</p><ul><li>שלוש בדיקות ללא קוד.</li><li>אם ההוק לא חוסם: /hooks, ואז לבדוק chmod +x ושהנתיב נכון.</li><li>אם הלולאה לא מדווחת: בודקים שהשיחה פתוחה ועובדת (הלולאה מגיבה רק כשהיא פנויה).</li><li>אם ה-goal לא נסגר: /goal לבדוק מה השופט כתב. לרוב התנאי מעורפל או שחסר גבול.</li><li>מי שסיים: מסביר לשכן. הסבר טוב הוא הבדיקה האחרונה.</li></ul></aside>
+</section>
 
 <section class="slide" data-mod="8">
   <div class="kicker"><span class="mod">מודול 8</span> · סיכום קצר</div>
@@ -460,7 +489,8 @@ claude --channels plugin:fakechat@claude-plugins-official
       </ul>
     </div>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-2 דק׳</p><ul><li>שש טעויות. עוברים מהר.</li><li>חסימה רחבה: matcher ריק על PreToolUse חוסם כל כלי. תמיד מצמצמים (Edit|Write) ובודקים בקובץ הספציפי.</li><li>בלי גבול: גם לולאה וגם goal. מומלץ תמיד לבנות כלי עצירה.</li><li>שאלו: איזו מהן הכי קרובה למה שקרה לכם בסדנה?</li></ul></aside>
+</section>
 
 <section class="slide" data-mod="8">
   <div class="kicker"><span class="badge flash">Flashcards</span> · לחצו על כרטיס כדי להפוך</div>
@@ -468,7 +498,8 @@ claude --channels plugin:fakechat@claude-plugins-official
   <div class="flash-grid">
     <div class="fc"><div class="in"><div class="f">הוק</div><div class="b">פקודה שרצה אוטומטית באירוע קבוע. אכיפה, לא בקשה.</div></div></div><div class="fc"><div class="in"><div class="f">קוד יציאה 2</div><div class="b">חוסם את הפעולה, וההסבר מגיע ל-Claude.</div></div></div><div class="fc"><div class="in"><div class="f"><span class="en">/loop</span></div><div class="b">בקשה שחוזרת לפי שעון, כל עוד הסשן פתוח.</div></div></div><div class="fc"><div class="in"><div class="f"><span class="en">/goal</span></div><div class="b">Claude ממשיך עד שתנאי שאפשר לבדוק מתקיים.</div></div></div><div class="fc"><div class="in"><div class="f"><span class="en">claude -p</span></div><div class="b">להריץ Claude מסקריפט, בלי שיחה.</div></div></div><div class="fc"><div class="in"><div class="f">קישור עמוק</div><div class="b">כתובת שפותחת Claude עם בקשה מוכנה, שלא נשלחת בלי Enter.</div></div></div>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-2 דק׳</p><ul><li>פלאשקארדס. מבקשים מהקהל להסביר לפני שהופכים.</li></ul></aside>
+</section>
 
 <section class="slide" data-mod="8">
   <div class="kicker"><span class="badge quiz">Quiz 1/2</span></div>
@@ -477,7 +508,8 @@ claude --channels plugin:fakechat@claude-plugins-official
     <div class="opts" data-quiz><button class="opt"><span class="l">א</span>לכתוב ב-<span class="en">CLAUDE.md</span> ״בבקשה אל תערוך״</button><button class="opt" data-correct><span class="l">ב</span>הוק <span class="en">PreToolUse</span> שחוסם עריכה בתיקייה, עם קוד יציאה 2</button><button class="opt"><span class="l">ג</span>להריץ <span class="en">/loop</span> כל 5 דקות</button><button class="opt"><span class="l">ד</span>לכתוב בקשה אחרי כל תשובה</button></div>
     <div class="explain">הוראה ב-CLAUDE.md היא בקשה, והמודל עלול לסטות ממנה. הוק הוא קוד שרץ לפני כל עריכה, וקוד יציאה 2 חוסם בפועל.</div>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-1 דק׳</p><ul><li>תשובה נכונה: ב. הוק עם קוד 2.</li></ul></aside>
+</section>
 
 <section class="slide" data-mod="8">
   <div class="kicker"><span class="badge quiz">Quiz 2/2</span></div>
@@ -486,7 +518,8 @@ claude --channels plugin:fakechat@claude-plugins-official
     <div class="opts" data-quiz><button class="opt"><span class="l">א</span>המטרה ארוכה מדי</button><button class="opt" data-correct><span class="l">ב</span>התנאי לא מדיד, השופט לא יודע מתי הוא התקיים</button><button class="opt"><span class="l">ג</span>צריך להריץ אותה פעמיים</button><button class="opt"><span class="l">ד</span>אי אפשר להשתמש ב-/goal בעברית</button></div>
     <div class="explain">השופט קורא רק מה ש-Claude הציג בשיחה. תנאי טוב הוא מצב סופי שאפשר להוכיח, למשל קובץ שקיים ויש בו סעיף לכל נושא, עם גבול של מספר תורות.</div>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-1 דק׳</p><ul><li>תשובה נכונה: ב. תנאי לא מדיד.</li></ul></aside>
+</section>
 
 <section class="slide" data-mod="8">
   <div class="kicker"><span class="mod">מודול 8</span> · סיכום</div>
@@ -501,7 +534,8 @@ claude --channels plugin:fakechat@claude-plugins-official
       <p>עכשיו יש לכם הרבה חלקים: הוראות, סוכנים, הוקים, תזמון. איך מחברים אותם לתהליך אחד ומשתפים אותו עם אחרים? <strong>זה מודול 9: מחברים הכול ומשתפים ב-<span class="en">GitHub</span>.</strong></p>
     </div>
   </div>
-  </section>
+  <aside class="notes"><p class="time">⏱ כ-3 דק׳</p><ul><li>סיכום: אירוע, זמן, תנאי, סקריפט, הודעה, קישור. ששת הגורמים שמתחילים עבודה.</li><li>בנינו: הוק או לולאה או מטרה, בתיקיית agents-lab/.</li><li>גשר למודול 9: אחרי ההפסקה מחברים הכול (CLAUDE.md, Skills, שרשרת, MCP, סוכנים, הוקים) ומפרסמים ב-GitHub. כדאי לכלול את ההוקים ב-.claude/settings.json של הפרויקט.</li><li>[לעדכן אורך הפסקה לפני מודול 9]</li></ul></aside>
+</section>
 
 <div id="progress"></div>
 </div><!-- /stage -->

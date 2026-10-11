@@ -140,7 +140,9 @@
     if(!w){alert('הדפדפן חסם את החלון. אפשרו חלונות קופצים לדף הזה ונסו שוב.');return}
     setTimeout(()=>w.postMessage({state:viewState()},'*'),700);
   }
+  addEventListener('keydown',e=>{if(e.key==='p'||e.key==='P')openPresenter()});
   const navBox=document.getElementById('nav');
+  if(navBox){const nb=document.createElement('button');nb.textContent='הערות';nb.title='P';nb.onclick=openPresenter;navBox.insertBefore(nb,document.getElementById('fs'))}
 
   // module jump menu: button in the nav bar (or key M) lists every module; a file with no hash opens on its first slide
   const MODULES=[
