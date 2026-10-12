@@ -486,3 +486,18 @@ ul.bad-list li::before{background:var(--red)}
 .mcp-def .lead{margin-top:20px}
 .chips{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:16px;font-size:28px;color:var(--muted)}
 .chips b{background:var(--acc-soft);color:var(--acc);border:2px solid var(--acc);border-radius:999px;padding:6px 22px;font-size:28px}
+
+/* ---- download-as-PDF button (cover slides) ---- */
+.pdf-btn{display:inline-flex;align-items:center;gap:12px;margin-top:28px;padding:14px 30px;border-radius:999px;background:var(--acc);color:#fff;font:700 28px var(--sans);text-decoration:none;box-shadow:0 6px 18px rgba(12,27,58,.15)}
+.pdf-btn:hover{filter:brightness(1.08)}
+
+/* ---- print / save as PDF: one 1600x900 page per slide ---- */
+@media print{
+  @page{size:1600px 900px;margin:0}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  html,body{height:auto;overflow:visible;background:#fff}
+  #stage{position:static;transform:none!important;width:1600px;height:auto;box-shadow:none;overflow:visible}
+  .slide{position:relative;display:flex!important;width:1600px;height:900px;overflow:hidden;break-after:page;page-break-after:always;animation:none!important}
+  .reveal{opacity:1!important;transform:none!important}
+  #nav,#progress,.pdf-btn,.copy,.notes{display:none!important}
+}
