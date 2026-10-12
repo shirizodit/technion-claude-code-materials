@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>הפרויקט הראשון שלנו · בונים מצגת עם Claude Code</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F8F9FF; --paper:#FFFFFF; --ink:#0C1B3A; --muted:#4A5578; --line:#E1E6F2;
+  --orange:#D97757; --orange-soft:#FBEDE7;
+  --blue:#2F6FEB;   --blue-soft:#E8F0FE;
+  --green:#1F9D6B;  --green-soft:#E3F5EC;
+  --gold:#C9A84C;   --gold-soft:#FAF3DF;
+  --purple:#7B5CD6; --purple-soft:#F0EBFC;
+  --teal:#0E8FA3;   --teal-soft:#E0F4F7;
+  --red:#D64545;    --red-soft:#FCEAEA;
+  --acc:var(--orange); --acc-soft:var(--orange-soft);
+  --sans:"Rubik","Heebo","Segoe UI",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:18px;line-height:1.65}
+a{color:inherit}
+code{font-family:var(--mono);font-size:.88em;background:var(--acc-soft);padding:1px 7px;border-radius:6px;direction:ltr;unicode-bidi:isolate}
+.wrap{max-width:900px;margin:0 auto;padding:0 20px}
+
+/* top bar + side panel */
+.bar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:16px;min-height:56px;padding:0 20px;background:rgba(248,249,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar .menu{margin:9px 0;white-space:nowrap;font:600 16px var(--sans);color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:99px;padding:7px 18px;cursor:pointer}
+.bar .menu:hover{border-color:var(--ink)}
+.bar .prog{font-size:15px;color:var(--muted);white-space:nowrap}
+.lane{--w:46px;flex:1;min-width:0;align-self:stretch;position:relative;direction:ltr}
+.scrim{position:fixed;inset:0;z-index:30;background:rgba(12,27,58,.45)}
+#side{position:fixed;top:0;bottom:0;inset-inline-start:0;z-index:40;width:min(340px,86vw);background:var(--paper);box-shadow:0 0 40px rgba(12,27,58,.25);overflow-y:auto;padding:0 0 24px;outline:0;animation:side-in .2s ease-out}
+#side[hidden],.scrim[hidden]{display:none}
+@keyframes side-in{from{transform:translateX(100%)}to{transform:none}}
+@media (prefers-reduced-motion:reduce){#side{animation:none}}
+.side-head{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:var(--paper);border-bottom:1px solid var(--line);font-size:19px}
+.side-head .x{font:600 18px var(--sans);border:0;background:transparent;color:var(--muted);cursor:pointer;padding:4px 8px}
+#side h5{margin:18px 20px 6px;font-size:14px;letter-spacing:.04em;color:var(--muted)}
+#side nav a{display:flex;align-items:center;gap:10px;margin:2px 10px;padding:9px 12px;border-radius:10px;border-inline-start:5px solid transparent;text-decoration:none;font-weight:500;font-size:17px;line-height:1.35}
+#side nav a:hover{background:var(--bg)}
+#side nav a i{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:700 14px var(--sans);font-style:normal;color:#fff;background:var(--c)}
+#side nav a.s0{font-weight:600}
+#side nav a.on{background:var(--bg);font-weight:700;border-inline-start-color:var(--c,var(--ink))}
+#side .m1{--c:var(--orange)} #side .m2{--c:var(--blue)} #side .m3{--c:var(--green)} #side .m4{--c:var(--purple)}
+#side .m5{--c:var(--red)} #side .m6{--c:var(--teal)} #side .m7{--c:var(--blue)} #side .m8{--c:var(--orange)}
+
+/* hero */
+.hero{padding:48px 0 12px}
+.lecturer{margin:6px 0 14px;font-size:20px;color:var(--muted)} .lecturer b{color:var(--ink)}
+.hero-logos{display:flex;align-items:center;gap:22px;margin:0 0 26px}
+.hero-logos img{display:block;height:50px;width:auto}
+.hero-logos img.aid{height:76px}
+.hero-logos .sep{width:2px;height:54px;background:var(--ink);opacity:.2;border-radius:2px}
+.walker{position:absolute;bottom:0;left:0;width:var(--w);animation:walk-x 18s linear infinite}
+.walker .flip{animation:walk-flip 18s steps(1) infinite}
+.walker svg{display:block;width:100%;height:auto;overflow:visible}
+.walker .body{fill:#D7876A} .walker .eye{fill:#14213F;transform-box:fill-box;transform-origin:center;animation:walk-blink 5s infinite}
+.walker .all{transform-box:fill-box;transform-origin:50% 100%;animation:walk-bob .7s ease-in-out infinite}
+.walker .leg{fill:#D7876A;transform-box:fill-box;transform-origin:50% 0}
+.walker .leg.a{animation:walk-step .7s ease-in-out infinite} .walker .leg.b{animation:walk-step .7s ease-in-out infinite .35s}
+@keyframes walk-x{0%{left:0}48%{left:calc(100% - var(--w))}50%{left:calc(100% - var(--w))}98%{left:0}100%{left:0}}
+@keyframes walk-flip{0%{transform:scaleX(1)}50%{transform:scaleX(-1)}100%{transform:scaleX(1)}}
+@keyframes walk-step{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.7)}}
+@keyframes walk-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes walk-blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.08)}}
+@media (prefers-reduced-motion:reduce){.walker,.walker *{animation:none!important}.walker{left:calc(50% - 23px)}}
+@media (max-width:600px){.hero-logos img{height:38px}.hero-logos img.aid{height:58px}.hero-logos .sep{height:40px}}
+
+.eyebrow{font-weight:700;font-size:15px;letter-spacing:.06em;color:var(--orange)}
+h1{font-size:clamp(32px,6vw,52px);line-height:1.15;margin:8px 0 14px;font-weight:800}
+.lead{font-size:21px;color:var(--muted);max-width:720px}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:26px 0}
+.how div{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px;font-size:16.5px}
+.how b{display:block;font-size:18px;margin-bottom:2px}
+
+/* module blocks */
+.mod{padding:56px 0 8px}
+.mod.m1{--acc:var(--orange);--acc-soft:var(--orange-soft)}
+.mod.m2{--acc:var(--blue);--acc-soft:var(--blue-soft)}
+.mod.m3{--acc:var(--green);--acc-soft:var(--green-soft)}
+.mod.m4{--acc:var(--purple);--acc-soft:var(--purple-soft)}
+.mod.m5{--acc:var(--red);--acc-soft:var(--red-soft)}
+.mod.m6{--acc:var(--teal);--acc-soft:var(--teal-soft)}
+.mod.m7{--acc:var(--blue);--acc-soft:var(--blue-soft)}
+.mod.m8{--acc:var(--orange);--acc-soft:var(--orange-soft)}
+.mhead{border-top:8px solid var(--acc);background:var(--paper);border-radius:0 0 20px 20px;padding:26px 28px;box-shadow:0 6px 24px rgba(12,27,58,.06)}
+.mhead .num{font-size:15px;font-weight:700;color:var(--acc);letter-spacing:.05em}
+.mhead h2{font-size:clamp(26px,4.5vw,38px);margin:4px 0 8px;line-height:1.2}
+.mhead p{margin:0;color:var(--muted)}
+.mhead .sl{display:inline-block;margin:10px 0 0 10px;font-weight:600;font-size:16px;color:var(--acc);text-decoration:none;border:1.5px solid var(--acc);border-radius:99px;padding:5px 16px}
+.mhead .sl:hover{background:var(--acc-soft)}
+.slbtn{display:inline-block;text-decoration:none;background:var(--ink);color:#fff;border-radius:12px;padding:12px 26px;font-size:18px}
+.slbtn:hover{background:#1c2f5c}
+.mhead .out{display:inline-block;margin-top:12px;background:var(--acc-soft);color:var(--ink);padding:5px 14px;border-radius:99px;font-weight:600;font-size:15.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;padding:0;list-style:none}
+.toc a{font-size:15px;text-decoration:none;padding:5px 12px;border-radius:99px;background:var(--acc-soft)}
+
+h3{font-size:25px;margin:0 0 6px;line-height:1.3}
+.sec{margin-top:34px;background:var(--paper);border:1px solid var(--line);border-inline-start:8px solid var(--acc);border-radius:18px;padding:22px 26px}
+.badge{display:inline-block;font-size:14px;font-weight:700;padding:3px 12px;border-radius:99px;margin-bottom:8px;background:var(--acc-soft);color:var(--ink)}
+.badge.lab{background:var(--green-soft);color:var(--green)} .badge.demo{background:var(--red-soft);color:var(--red)} .badge.idea{background:var(--blue-soft);color:var(--blue)} .badge.ws{background:var(--gold-soft);color:#8a6d1c}
+.goal{color:var(--muted);margin:0 0 12px}
+
+/* steps with checkbox */
+ol.steps{list-style:none;counter-reset:s;padding:0;margin:14px 0}
+ol.steps li{counter-increment:s;display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line)}
+ol.steps li:first-child{border-top:0}
+ol.steps li::before{content:counter(s);flex:none;width:34px;height:34px;border-radius:50%;background:var(--acc);color:#fff;font-weight:700;display:grid;place-items:center;font-size:16px;margin-top:2px}
+ol.steps label{display:flex;gap:10px;cursor:pointer;flex:1}
+ol.steps input{flex:none;width:20px;height:20px;margin-top:6px;accent-color:var(--acc)}
+ol.steps li.done span{opacity:.45;text-decoration:line-through}
+
+/* prompt boxes */
+.prompt{position:relative;margin:14px 0;background:#0F1730;color:#F3F5FF;border-radius:14px;padding:18px 20px 16px;white-space:pre-wrap;font-size:17.5px;line-height:1.7}
+.prompt.ltr{direction:ltr;text-align:left;font-family:var(--mono);font-size:16px}
+.prompt .tag{display:block;font-size:13px;font-weight:700;color:#9AA7D6;margin-bottom:8px;letter-spacing:.04em;white-space:normal}
+.copy{position:absolute;top:10px;left:10px;border:0;border-radius:8px;background:#2A3763;color:#fff;font:600 14px var(--sans);padding:6px 14px;cursor:pointer}
+.copy:hover{background:#3b4a82} .copy.ok{background:var(--green)}
+.prompt .tag{padding-left:80px}
+.prompt .ph{background:rgba(201,168,76,.28);color:#FFE9A8;border-radius:4px;padding:0 4px}
+
+.done{margin-top:14px;border:2px dashed var(--green);border-radius:14px;padding:12px 18px;background:var(--green-soft)}
+.hint{margin:10px 0 0;color:var(--muted);font-size:16.5px}
+.help{margin-top:12px;background:var(--gold-soft);border-radius:12px;padding:10px 16px;font-size:16.5px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:14px 0}
+.card{background:var(--acc-soft);border-radius:14px;padding:14px 18px}
+.card.w{background:var(--paper);border:1px solid var(--line)}
+.card h4{margin:0 0 4px;font-size:19px}
+.card p{margin:0;font-size:16.5px}
+.bad{background:var(--red-soft)} .good{background:var(--green-soft)}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:16.5px}
+th,td{border:1px solid var(--line);padding:9px 12px;text-align:start;vertical-align:top}
+th{background:var(--acc-soft)}
+.warn{background:var(--red-soft);border:2px solid var(--red);border-radius:14px;padding:12px 18px;margin-top:14px}
+.todo{background:#FFE9A8;color:#6b4e00;border-radius:6px;padding:0 8px;font-weight:600;font-size:.92em}
+.where{display:inline-block;margin:0 0 10px;font-size:15px;font-weight:600;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:99px;padding:2px 14px}
+.cmd{margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
+.cmd:first-of-type{border-top:0;padding-top:0}
+.cmd h4{margin:0 0 4px;font-size:22px;direction:ltr;text-align:right}
+.cmd h4 code{font-size:1em;background:var(--acc-soft)}
+.cmd .row{display:grid;grid-template-columns:7.5em 1fr;gap:2px 14px;font-size:16.5px;margin:2px 0}
+.cmd .row b{color:var(--muted);font-weight:600}
+@media (max-width:600px){.cmd .row{grid-template-columns:1fr}}
+ul.links{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:10px}
+ul.links a{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;text-decoration:none;background:var(--paper);border:1px solid var(--line);border-inline-start:6px solid var(--acc);border-radius:12px;padding:12px 18px}
+ul.links a:hover{border-color:var(--acc)}
+ul.links span{font-family:var(--mono);font-size:15px;color:var(--muted);unicode-bidi:isolate}
+dl.gl{margin:10px 0 0;display:grid;grid-template-columns:max-content 1fr;gap:8px 18px;font-size:16.5px}
+dl.gl dt{font-weight:700} dl.gl dd{margin:0}
+@media (max-width:600px){dl.gl{grid-template-columns:1fr}dl.gl dd{margin-bottom:6px}}
+footer{margin:70px 0 50px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:15.5px}
+.reset{background:none;border:1px solid var(--line);border-radius:8px;padding:4px 12px;font:inherit;font-size:14px;color:var(--muted);cursor:pointer}
+@media (max-width:600px){body{font-size:17px}.sec{padding:18px}.mhead{padding:20px}table{display:block;overflow-x:auto}.prompt{font-size:16px;padding-top:44px}.copy{top:8px}.prompt .tag{padding-left:0}}
+@media print{.bar,#side,.scrim,.copy{display:none}.sec{break-inside:avoid}}
+
+.tree{direction:ltr;text-align:left;background:#0F1730;color:#F3F5FF;border-radius:14px;padding:16px 22px;font:16px/1.7 var(--mono);white-space:pre;overflow-x:auto;margin:14px 0}
+.tree .c{color:#9AA7D6}
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:22px 0}
+.flow div{background:var(--paper);border:1px solid var(--line);border-top:6px solid var(--c);border-radius:14px;padding:12px 16px;font-size:16.5px}
+.flow b{display:block;font-size:18px}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <a class="menu" href="index.html" style="text-decoration:none">→ חזרה לחומרי הקורס</a>
+  <div class="lane" aria-hidden="true"><div class="walker"><div class="flip"><svg viewBox="0 0 160 140"><g class="all">
+    <rect class="leg a" x="34" y="96" width="11" height="30"/><rect class="leg b" x="58" y="96" width="11" height="30"/>
+    <rect class="leg b" x="91" y="96" width="11" height="30"/><rect class="leg a" x="115" y="96" width="11" height="30"/>
+    <rect class="body" x="4" y="58" width="22" height="26"/><rect class="body" x="134" y="58" width="22" height="26"/>
+    <rect class="body" x="22" y="12" width="116" height="86"/>
+    <rect class="eye" x="45" y="38" width="10" height="24"/><rect class="eye" x="105" y="38" width="10" height="24"/>
+  </g></svg></div></div></div>
+  <span class="prog" id="prog"></span>
+</header>
+
+<main class="wrap">
+
+<header class="hero" id="start">
+  <div class="hero-logos"><img src="assets/technion-logo.png" alt="הטכניון, מכון טכנולוגי לישראל"><span class="sep"></span><img class="aid" src="assets/ai-days-logo.png" alt="ימי AI בטכניון"></div>
+  <div class="eyebrow">TECHNION AI DAYS · 2026 · פרויקט משותף</div>
+  <h1>הפרויקט הראשון שלנו: מצגת שנבנית לבד</h1>
+  <p class="lead">לוקחים שני קבצי PDF, Skill אחד ו-CLAUDE.md, ובשלוש בקשות מקבלים קובץ HTML עם מצגת שלמה. זה כל מה שלמדנו היום, מחובר לתוצר אחד.</p>
+
+  <div class="flow">
+    <div style="--c:var(--orange)"><b>1 · מתווה</b>Claude קורא את ה-PDF-ים וכותב תוכנית שקף אחר שקף</div>
+    <div style="--c:var(--blue)"><b>2 · עיצוב</b>מוודאים שהוא קרא את הנחיות העיצוב ב-CLAUDE.md</div>
+    <div style="--c:var(--green)"><b>3 · מצגת</b>הופך את המתווה לקובץ HTML אחד שנפתח בדפדפן</div>
+  </div>
+
+  <div class="sec" style="--acc:var(--purple);--acc-soft:var(--purple-soft)">
+    <span class="badge idea">למה זה חשוב לכם</span>
+    <h3>אותו תהליך, כל מצגת שתצטרכו</h3>
+    <p>דנה, ממנהלות הכספים ב-monday.com, צריכה כל רבעון מצגת סיכום למנהלים. במקום להתחיל מדף ריק היא נותנת ל-Claude את הדוחות, את כללי העיצוב ואת ה-Skill, והוא מחזיר טיוטה מוכנה. אצלכם זה יכול להיות מצגת לסמינר, הרצאה על המחקר, או הגנה על פרויקט. התהליך זהה, מחליפים רק את קבצי המקור.</p>
+    <p class="hint">התרגיל משתמש בשלושה דברים מהיום: <a href="index.html#m3"><b>CLAUDE.md</b></a> (כללי העיצוב), <a href="index.html#m4"><b>Skill</b></a> (היכולת לבנות מצגת), ו<a href="index.html#m5"><b>שער אנושי</b></a> (אתם מאשרים את המתווה לפני שהמצגת נבנית).</p>
+  </div>
+</header>
+
+<section class="mod m1" id="prep">
+  <div class="mhead">
+    <div class="num">שלב 0 · כ-10 דקות</div>
+    <h2>מכינים את התיקייה</h2>
+    <p>מורידים את הקבצים מ-Google Drive ומסדרים אותם בתיקייה חדשה, כך ש-Claude רואה הכול במקום אחד.</p>
+    <span class="out">תוצר: תיקייה מוכנה לעבודה, פתוחה ב-VS Code</span>
+  </div>
+
+  <div class="sec" id="prep-1">
+    <span class="badge lab">הכנה</span><br><span class="where">תיקייה חדשה: my-first-deck</span>
+    <h3>מורידים ומסדרים</h3>
+    <p class="goal">המטרה: שיהיו בתיקייה אחת ה-Skill, שני קבצי ה-PDF וקובץ הנחיות העיצוב.</p>
+    <p><a class="slbtn" href="https://drive.google.com/drive/folders/1dOserfcT5utwebeEqd4Dp306GlZMXi42?dmr=1&ec=wgc-drive-%5Bmodule%5D-goto" target="_blank" rel="noopener"><b>📁 פתחו את תיקיית Google Drive</b></a></p>
+    <ol class="steps" data-key="deck-prep"><li><label><input type="checkbox"><span>בתיקיית ה-Drive, סמנו הכול ולחצו הורדה. נוצר קובץ ZIP, פתחו אותו.</span></label></li><li><label><input type="checkbox"><span>על המחשב צרו תיקייה חדשה בשם <code>my-first-deck</code> (למשל בשולחן העבודה).</span></label></li><li><label><input type="checkbox"><span>העתיקו לתוכה את הקבצים מה-Drive: שני קבצי ה-PDF (חומרי המקור), קובץ <code>CLAUDE.md</code>, ותיקיית ה-Skill של המצגות.</span></label></li><li><label><input type="checkbox"><span>פתחו את התיקייה ב-VS Code: File ← Open Folder ← <code>my-first-deck</code>.</span></label></li><li><label><input type="checkbox"><span>פתחו את לוח Claude Code ופתחו שיחה חדשה בתוך התיקייה הזאת.</span></label></li></ol>
+    <p>בסוף התיקייה אמורה להיראות בערך כך:</p>
+    <div class="tree">my-first-deck/
+├── CLAUDE.md          <span class="c"># הנחיות עיצוב, צבעים, טון וסטוריטלינג</span>
+├── (שני קבצי ה-PDF)   <span class="c"># חומרי המקור למצגת</span>
+└── .claude/skills/
+    └── (תיקיית ה-Skill של המצגות)</div>
+    <p class="hint">שמות הקבצים יהיו כמו ב-Drive. מה שחשוב: <code>CLAUDE.md</code> בתיקייה הראשית, ותיקיית ה-Skill בתוך <code>.claude/skills/</code>.</p>
+    <p>לבדיקה, הדביקו בלוח:</p>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">בדיקה</span>אילו קבצים יש בתיקייה הזאת, ואילו Skills זמינים לך כאן?</div>
+    <div class="done">✅ <b>סיימתם כש:</b> Claude מזכיר את שני ה-PDF-ים, את <code>CLAUDE.md</code> ואת ה-Skill של המצגות.</div>
+    <div class="help"><b>ה-Skill לא מופיע?</b> ודאו שהתיקייה שלו נמצאת בתוך <code>.claude/skills/</code> (התיקייה <code>.claude</code> מתחילה בנקודה, ולכן לפעמים היא מוסתרת בסייר הקבצים). אחרי ההזזה, פתחו שיחה חדשה בלוח.</div>
+  </div>
+</section>
+
+<section class="mod m2" id="s1">
+  <div class="mhead">
+    <div class="num">שלב 1 · כ-10 דקות</div>
+    <h2>ניתוח חומרים ומתווה שקפים</h2>
+    <p>Claude קורא את שני ה-PDF-ים, מוצא את הסיפור המרכזי ובונה תוכנית: מה בכל שקף, ואיפה יבוא גרף או צילום מסך.</p>
+    <span class="out">תוצר: מתווה שקף אחר שקף שאתם מאשרים</span>
+  </div>
+
+  <div class="sec" id="s1-do">
+    <span class="badge lab">שלב 1</span>
+    <h3>מבקשים מתווה, ולא מצגת</h3>
+    <p class="goal">המטרה: לראות תוכנית על הנייר לפני שמשקיעים בעיצוב. כמו שרטוט לפני בנייה.</p>
+    <ol class="steps" data-key="deck-1"><li><label><input type="checkbox"><span>עברו ל-Plan Mode (מצב תכנון), כדי ש-Claude רק יתכנן ולא ייצור קבצים. אם לא זוכרים איך, חזרו ל<a href="index.html#m3-modes"><b>מודול 3</b></a>.</span></label></li><li><label><input type="checkbox"><span>הדביקו את הבקשה שלמטה ולחצו Enter.</span></label></li><li><label><input type="checkbox"><span>קראו את המתווה. בכל שקף יש כותרת, תוכן, ומקום מסומן לעזר חזותי.</span></label></li><li><label><input type="checkbox"><span>לא מרוצים? כתבו בשיחה מה לשנות, למשל &quot;תמזג את שקפים 3 ו-4&quot; או &quot;תוסיף שקף סיכום&quot;. חוזרים על זה עד שהמתווה נראה לכם נכון.</span></label></li></ol>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">שלב 1 · ניתוח חומרים ויצירת מתווה</span>נתח את הקבצים בתיקייה, גבש מהם את הסיפור והמסר המרכזי של המצגת, וצור תוכנית מפורטת לשקפים – שקף אחר שקף. עבור כל שקף ציין כותרת, תוכן מפורט, וזיהוי מיקומים מיועדים לעזרים ויזואליים (כמו גרפים, תרשימים או צילומי מסך) שהמשתמש יוסיף בהמשך.</div>
+    <div class="done">✅ <b>סיימתם כש:</b> יש לכם מתווה שקף אחר שקף שאתם מרוצים ממנו, ואמרתם ל-Claude שהוא מאושר.</div>
+    <div class="help"><b>למה לא לדלג?</b> זה השער האנושי: אתם מחליטים על הסיפור לפני שהעיצוב מתחיל. תיקון של שורה במתווה לוקח שנייה, תיקון של שקף מעוצב לוקח הרבה יותר.</div>
+  </div>
+</section>
+
+<section class="mod m3" id="s2">
+  <div class="mhead">
+    <div class="num">שלב 2 · כ-3 דקות</div>
+    <h2>מאשרים הנחיות עיצוב וסגנון</h2>
+    <p>לפני שבונים, מוודאים ש-Claude מחויב לצבעים, לטון ולכללי הסטוריטלינג שכתובים ב-<code>CLAUDE.md</code>.</p>
+    <span class="out">תוצר: Claude מאשר שהוא מיישם את ההנחיות על המתווה שאושר</span>
+  </div>
+
+  <div class="sec" id="s2-do">
+    <span class="badge lab">שלב 2</span>
+    <h3>מצמידים את המתווה לכללי העיצוב</h3>
+    <p class="goal">המטרה: ש-Claude יקרא את <code>CLAUDE.md</code> ויציג איך הוא מתכוון ליישם אותו.</p>
+    <ol class="steps" data-key="deck-2"><li><label><input type="checkbox"><span>יוצאים מ-Plan Mode (חזרה למצב רגיל) אחרי שהמתווה אושר.</span></label></li><li><label><input type="checkbox"><span>הדביקו את הבקשה שלמטה ולחצו Enter.</span></label></li><li><label><input type="checkbox"><span>בדקו שבתשובה מוזכרים הצבעים, הטון והסטוריטלינג מהקובץ.</span></label></li></ol>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">שלב 2 · אישור הנחיות עיצוב</span>קראתי והבנתי את הנחיות העיצוב, פלטת הצבעים, ה-tone of voice וכללי הסטוריטלינג הנדרשים בקובץ CLAUDE.md. אני מוכן ליישם אותם על מתווה השקפים שאושר, תוך ציון המיקומים לעזרים ויזואליים באופן ברור.</div>
+    <div class="done">✅ <b>סיימתם כש:</b> Claude מציין את כללי העיצוב מ-<code>CLAUDE.md</code> (למשל הצבעים) ומאשר שהמקומות לעזרים חזותיים יסומנו בבירור.</div>
+    <div class="help"><b>Claude לא הזכיר את הקובץ?</b> כתבו לו: &quot;פתח וקרא את CLAUDE.md עכשיו, וסכם לי בשלוש שורות את כללי העיצוב.&quot; אחר כך הדביקו שוב את הבקשה.</div>
+  </div>
+</section>
+
+<section class="mod m4" id="s3">
+  <div class="mhead">
+    <div class="num">שלב 3 · כ-15 דקות</div>
+    <h2>בונים את קובץ ה-HTML</h2>
+    <p>Claude הופך את המתווה ואת כללי העיצוב למצגת מלאה בקובץ אחד, עם מעברים ומקומות שמורים לתמונות ולגרפים.</p>
+    <span class="out">תוצר: קובץ HTML אחד שנפתח בדפדפן ומכיל את כל השקפים</span>
+  </div>
+
+  <div class="sec" id="s3-do">
+    <span class="badge lab">שלב 3</span>
+    <h3>מבקשים את המצגת</h3>
+    <p class="goal">המטרה: לקבל קובץ שאפשר להציג כבר היום.</p>
+    <ol class="steps" data-key="deck-3"><li><label><input type="checkbox"><span>הדביקו את הבקשה שלמטה ולחצו Enter.</span></label></li><li><label><input type="checkbox"><span>כש-Claude מבקש רשות ליצור קובץ, אשרו.</span></label></li><li><label><input type="checkbox"><span>ב-VS Code, מצאו את קובץ ה-HTML החדש בסייר הקבצים, קליק ימני ← Reveal in Finder (או Reveal in File Explorer), ואז לחיצה כפולה לפתיחה בדפדפן.</span></label></li><li><label><input type="checkbox"><span>עברו על השקפים בדפדפן. אפשר להשתמש בחצים במקלדת.</span></label></li></ol>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">שלב 3 · יישום ויצירת קובץ ה-HTML</span>ממש כעת את המצגת המלאה בקובץ HTML אחד (יחד עם CSS מובנה). הקפד על התאמה מוחלטת למתווה שאושר ולכללי העיצוב ב-CLAUDE.md. כלול שקפים מעוצבים, מעברים, ומקומות שמורים (placeholders) ברורים עבור הויזואליזציות והתמונות שיוספו ידנית.</div>
+    <div class="done">✅ <b>סיימתם כש:</b> המצגת נפתחת בדפדפן, כל השקפים מהמתווה נמצאים בה, ובמקומות של הגרפים והתמונות יש מלבנים שמורים.</div>
+    <div class="help"><b>משהו לא נראה טוב?</b> אל תתחילו מחדש. כתבו ל-Claude מה לתקן, בשקף ספציפי. למשל: &quot;בשקף 5 הטקסט קטן מדי, הגדל אותו&quot;.</div>
+  </div>
+
+  <div class="sec" id="s3-more">
+    <span class="badge ws">אופציונלי</span>
+    <h3>מוסיפים תמונות וגרפים משלכם</h3>
+    <p class="goal">המקומות השמורים הם הזמנה להוסיף חומר משלכם. שימו צילום מסך או גרף בתיקייה, ובקשו מ-Claude להכניס אותו.</p>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">דוגמה · מחליפים בשם הקובץ ובמספר השקף שלכם</span>החלף את המקום השמור בשקף <span class="ph">[מספר]</span> בתמונה <span class="ph">[שם-הקובץ.png]</span> שנמצאת בתיקייה. התאם את הגודל כך שלא תיחתך.</div>
+    <p class="hint">ואם רוצים להמשיך: &quot;הוסף הערות דובר לכל שקף&quot; או &quot;קצר את המצגת ל-8 שקפים&quot;.</p>
+  </div>
+</section>
+
+<section class="mod m5" id="recap">
+  <div class="mhead">
+    <div class="num">סיכום</div>
+    <h2>מה בנינו, ואיך משתמשים בזה שוב</h2>
+  </div>
+  <div class="sec" style="--acc:var(--green);--acc-soft:var(--green-soft)">
+    <span class="badge idea">להמשיך מכאן</span>
+    <h3>התבנית שלכם למצגת הבאה</h3>
+    <div class="grid2">
+      <div class="card"><h4>מחליפים רק את המקור</h4><p>שני PDF-ים אחרים (מאמר, סילבוס, דוח), אותו <code>CLAUDE.md</code>, אותו Skill. שלוש הבקשות נשארות כמו שהן.</p></div>
+      <div class="card"><h4>מתאימים את העיצוב</h4><p>רוצים צבעים או טון אחרים? עורכים את <code>CLAUDE.md</code> ופותחים שיחה חדשה. אין צורך לשנות את הבקשות.</p></div>
+      <div class="card"><h4>שומרים ומשתפים</h4><p>הכול כבר בתיקייה אחת. אפשר להעלות אותה ל-GitHub, כמו ב<a href="index.html#m8"><b>מודול 8</b></a>, ולשלוח לחבר.</p></div>
+    </div>
+    <p class="hint">חזרה ל<a href="index.html"><b>חומרי הקורס</b></a>.</p>
+  </div>
+</section>
+
+<footer>
+  <p>ליצירת קשר: <a href="https://il.linkedin.com/in/shiri-zohar" target="_blank" rel="noopener">LinkedIn</a> · <a href="mailto:shirisa@gmail.com">shirisa@gmail.com</a></p>
+  <p>Technion AI Days · 11–12.10.2026 · מנחה: שירי זוהר, AI Corporate Apps Lead ב-monday.com.<br>
+  <button class="reset" id="reset">איפוס הסימונים שלי</button></p>
+</footer>
+</main>
+
+<script>
+(function(){
+  document.querySelectorAll('.copy').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var box=btn.parentElement.cloneNode(true);
+      box.querySelectorAll('.copy,.tag').forEach(function(n){n.remove()});
+      var txt=box.textContent.replace(/^\s+|\s+$/g,'');
+      var done=function(){var o=btn.textContent;btn.textContent='הועתק ✓';btn.classList.add('ok');
+        setTimeout(function(){btn.textContent=o;btn.classList.remove('ok')},1600)};
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,fallback)}else fallback();
+      function fallback(){var t=document.createElement('textarea');t.value=txt;document.body.appendChild(t);t.select();try{document.execCommand('copy');done()}catch(e){}t.remove()}
+    });
+  });
+  var store={};try{store=JSON.parse(localStorage.getItem('cc-build-deck')||'{}')}catch(e){}
+  var boxes=[];
+  document.querySelectorAll('ol.steps[data-key]').forEach(function(ol){
+    ol.querySelectorAll('li').forEach(function(li,i){
+      var cb=li.querySelector('input'),id=ol.dataset.key+'-'+i;
+      cb.checked=!!store[id];li.classList.toggle('done',cb.checked);boxes.push(cb);
+      cb.addEventListener('change',function(){
+        store[id]=cb.checked;li.classList.toggle('done',cb.checked);
+        try{localStorage.setItem('cc-build-deck',JSON.stringify(store))}catch(e){}
+        count();
+      });
+    });
+  });
+  function count(){var d=boxes.filter(function(b){return b.checked}).length;
+    document.getElementById('prog').textContent=d+' / '+boxes.length+' צעדים'}
+  count();
+  document.getElementById('reset').onclick=function(){
+    if(!confirm('לאפס את כל הסימונים?'))return;
+    store={};try{localStorage.removeItem('cc-build-deck')}catch(e){}
+    boxes.forEach(function(b){b.checked=false;b.closest('li').classList.remove('done')});count();
+  };
+})();
+</script>
+</body>
+</html>
