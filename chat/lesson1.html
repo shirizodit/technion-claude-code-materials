@@ -1,0 +1,93 @@
+<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>שיעור 1: הודעות להעתקה</title><style>
+:root{--bg:#F8F9FF;--paper:#fff;--ink:#0C1B3A;--muted:#4A5578;--line:#E1E6F2;--blue:#2F6FEB;--green:#1F9D6B;--code:#F1F4FC}
+@media(prefers-color-scheme:dark){:root{--bg:#0F1426;--paper:#171E36;--ink:#EDF0FA;--muted:#9AA5C6;--line:#2A3354;--code:#0F1426}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Arial,sans-serif}main{max-width:720px;margin:0 auto;padding:16px 14px 60px}
+h1{margin:0 0 10px;font-size:22px}h2{font-size:13px;margin:18px 0 6px;color:var(--muted);font-weight:700;letter-spacing:.02em}
+details{background:var(--paper);border:1px solid var(--line);border-radius:12px;margin-bottom:8px}
+summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:10px 14px}summary::-webkit-details-marker{display:none}
+summary .t{flex:1;font-weight:600}summary .w{font-size:12px;font-weight:700;color:var(--blue);white-space:nowrap}
+summary::before{content:"◂";color:var(--muted);font-size:12px;transition:transform .15s}details[open]>summary::before{transform:rotate(-90deg)}
+.body{padding:0 14px 12px}pre{margin:0;background:var(--code);border:1px solid var(--line);border-radius:8px;padding:10px 12px;white-space:pre-wrap;font:15px/1.5 ui-monospace,Menlo,monospace;direction:auto;unicode-bidi:plaintext;text-align:start}
+.note{color:var(--muted);font-size:14px;margin-top:6px}
+button.cp{flex:none;border:1px solid var(--blue);background:var(--blue);color:#fff;border-radius:99px;padding:7px 18px;font:700 14px system-ui,Arial,sans-serif;cursor:pointer;min-width:84px}
+button.cp:active{transform:scale(.97)}button.cp.ok{background:var(--green);border-color:var(--green)}
+.links summary{font-size:17px;font-weight:700}.lk{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--line)}.lk:first-of-type{border-top:0}.lk .i{flex:1;min-width:0}.lk .n{font-weight:600}.lk .u{font-size:12px;color:var(--muted);direction:ltr;text-align:right;overflow-wrap:anywhere}.lk .d{font-size:13px;color:var(--muted)}
+</style></head><body><main><h1>שיעור 1: הודעות להעתקה לצ׳אט</h1>
+<details class="links"><summary>קישורים</summary><div class="body">
+<div class="lk"><div class="i"><div class="n">כל הקישורים בהודעה אחת</div><div class="d">ארבעת הקישורים הציבוריים</div></div><button class="cp" data-t="חומרי הקורס לסטודנטים: https://shirizodit.github.io/technion-claude-code-materials/
+השקפים של הקורס: https://shirizodit.github.io/technion-claude-code-materials/slides/index.html
+דף ההכנה לפני הקורס: https://shirizodit.github.io/claude-course-prep/
+סילבוס הקורס: https://shirizodit.github.io/claude-course-prep/syllabus.html">העתק הכול</button></div>
+
+<div class="lk"><div class="i"><div class="n">חומרי הקורס לסטודנטים</div><div class="u">https://shirizodit.github.io/technion-claude-code-materials/</div><div class="d">הדף שאליו מוביל ה-QR</div></div><button class="cp" data-t="https://shirizodit.github.io/technion-claude-code-materials/">העתק</button></div>
+<div class="lk"><div class="i"><div class="n">השקפים של הקורס</div><div class="u">https://shirizodit.github.io/technion-claude-code-materials/slides/index.html</div><div class="d">כל המודולים</div></div><button class="cp" data-t="https://shirizodit.github.io/technion-claude-code-materials/slides/index.html">העתק</button></div>
+<div class="lk"><div class="i"><div class="n">דף ההכנה לפני הקורס</div><div class="u">https://shirizodit.github.io/claude-course-prep/</div><div class="d">התקנות ובדיקת מערכת</div></div><button class="cp" data-t="https://shirizodit.github.io/claude-course-prep/">העתק</button></div>
+<div class="lk"><div class="i"><div class="n">סילבוס הקורס</div><div class="u">https://shirizodit.github.io/claude-course-prep/syllabus.html</div><div class="d">שישה שיעורים</div></div><button class="cp" data-t="https://shirizodit.github.io/claude-course-prep/syllabus.html">העתק</button></div>
+<div class="lk"><div class="i"><div class="n">תיקיית הדוגמה של נועה (3 סילבוסים)</div><div class="u">https://drive.google.com/drive/folders/1wBIdDSXyjY51rwsFPgUfDpbk75b_049Q</div><div class="d">הגישה לא אומתה, כדאי לוודא שפתוח</div></div><button class="cp" data-t="https://drive.google.com/drive/folders/1wBIdDSXyjY51rwsFPgUfDpbk75b_049Q">העתק</button></div>
+</div></details>
+<h2>לפני שמתחילים</h2>
+<details><summary><span class="w">לפני שמתחילים</span><span class="t">בדיקת מערכת (שקף 8)</span><button class="cp" data-t="בדיקת מערכת, 3 דקות:
+1. פתחו את Claude Code Desktop. השם שלכם מופיע? אתם מחוברים.
+2. פתחו את VS Code, ואז את לוח Claude Code בצד, ושלחו &quot;שלום&quot;.
+קיבלתם תשובה בשניהם? כתבו בצ׳אט: מוכן ✅
+נדרש מנוי Claude Pro ומעלה. Claude Code לא זמין בחשבון החינמי.">העתק</button></summary><div class="body"><pre>בדיקת מערכת, 3 דקות:
+1. פתחו את Claude Code Desktop. השם שלכם מופיע? אתם מחוברים.
+2. פתחו את VS Code, ואז את לוח Claude Code בצד, ושלחו &quot;שלום&quot;.
+קיבלתם תשובה בשניהם? כתבו בצ׳אט: מוכן ✅
+נדרש מנוי Claude Pro ומעלה. Claude Code לא זמין בחשבון החינמי.</pre></div></details>
+<details><summary><span class="w">לפני שמתחילים</span><span class="t">הכנה למעבדה: תיקיית עבודה (שקף 46)</span><button class="cp" data-t="הכנה לתרגול:
+1. צרו תיקייה בשם technion-ai ובתוכה תיקייה בשם courses
+2. הורידו את הסילבוסים של הסמסטר הנוכחי ושמרו בתוך courses/
+3. פתחו את technion-ai ב-Claude Code Desktop (Open Folder) או בלוח Claude Code ב-VS Code">העתק</button></summary><div class="body"><pre>הכנה לתרגול:
+1. צרו תיקייה בשם technion-ai ובתוכה תיקייה בשם courses
+2. הורידו את הסילבוסים של הסמסטר הנוכחי ושמרו בתוך courses/
+3. פתחו את technion-ai ב-Claude Code Desktop (Open Folder) או בלוח Claude Code ב-VS Code</pre></div></details>
+<h2>הדגמות</h2>
+<details><summary><span class="w">הדגמה</span><span class="t">תוכנית לימוד בארבעה רכיבים (שקף 30)</span><button class="cp" data-t="בנה לי תוכנית לימוד ל-6 השבועות עד המבחנים (מטרה).
+השתמש בסילבוסים בתיקיית courses/ (הקשר).
+יש לי 3 שעות ביום, בלי שישי (גבולות).
+שמור טבלה שבועית בקובץ study-plan.md (פורמט).">העתק</button></summary><div class="body"><pre>בנה לי תוכנית לימוד ל-6 השבועות עד המבחנים (מטרה).
+השתמש בסילבוסים בתיקיית courses/ (הקשר).
+יש לי 3 שעות ביום, בלי שישי (גבולות).
+שמור טבלה שבועית בקובץ study-plan.md (פורמט).</pre><div class="note">הדגמה בזמן אמת. דוגמה לבקשה טובה: מטרה, הקשר, גבולות, פורמט.</div></div></details>
+<details><summary><span class="w">הדגמה</span><span class="t">אפליקציית טריוויה (שקף 36)</span><button class="cp" data-t="צור קובץ HTML אחד בשם trivia.html בתיקייה הזאת.
+זה צריך להיות חידון טריוויה בידע כללי עם 10 שאלות,
+שחושף את התשובה בלחיצה. עיצוב נקי ומודרני, אנימציות חלקות.
+HTML, CSS ו-JavaScript בלבד בקובץ אחד, בלי תלויות חיצוניות.">העתק</button></summary><div class="body"><pre>צור קובץ HTML אחד בשם trivia.html בתיקייה הזאת.
+זה צריך להיות חידון טריוויה בידע כללי עם 10 שאלות,
+שחושף את התשובה בלחיצה. עיצוב נקי ומודרני, אנימציות חלקות.
+HTML, CSS ו-JavaScript בלבד בקובץ אחד, בלי תלויות חיצוניות.</pre><div class="note">בקשה אחת בלוח Claude Code. כ-30 שניות לקובץ עובד.</div></div></details>
+<h2>מעבדות</h2>
+<details><summary><span class="w">מעבדה 1.1</span><span class="t">לפתוח את לוח Claude Code (שקף 37)</span><button class="cp" data-t="שלום Claude. באיזו תיקייה אתה נמצא?">העתק</button></summary><div class="body"><pre>שלום Claude. באיזו תיקייה אתה נמצא?</pre><div class="note">סיימתם כש: Claude עונה עם השם או הנתיב של התיקייה.</div></div></details>
+<details><summary><span class="w">מעבדה 1.2</span><span class="t">טרמינל: גרסה (שקף 38)</span><button class="cp" data-t="claude --version">העתק</button></summary><div class="body"><pre>claude --version</pre><div class="note">פותחים טרמינל משולב ב-VS Code: View ← Terminal.</div></div></details>
+<details><summary><span class="w">מעבדה 1.2</span><span class="t">טרמינל: פותחים את Claude</span><button class="cp" data-t="claude">העתק</button></summary><div class="body"><pre>claude</pre><div class="note">פותח את Claude בתוך הטרמינל.</div></div></details>
+<details><summary><span class="w">מעבדה 1.2</span><span class="t">טרמינל: בקשה ראשונה</span><button class="cp" data-t="סכם לי אילו קבצים יש בתיקייה הזאת">העתק</button></summary><div class="body"><pre>סכם לי אילו קבצים יש בתיקייה הזאת</pre><div class="note">אותה תשובה כמו בלוח, רק טקסט.</div></div></details>
+<details><summary><span class="w">מעבדה 1.2</span><span class="t">טרמינל: יציאה</span><button class="cp" data-t="/exit">העתק</button></summary><div class="body"><pre>/exit</pre></div></details>
+<details><summary><span class="w">מעבדה 1.3</span><span class="t">שיכיר אתכם (שקף 40)</span><button class="cp" data-t="תסתכל על הקבצים בתיקייה הזאת. הצג את עצמך לפי מה שאתה רואה,
+ותגיד לי איזה סוג של אדם אתה חושב שאני לפי מה שיש כאן.">העתק</button></summary><div class="body"><pre>תסתכל על הקבצים בתיקייה הזאת. הצג את עצמך לפי מה שאתה רואה,
+ותגיד לי איזה סוג של אדם אתה חושב שאני לפי מה שיש כאן.</pre><div class="note">לפני כן: שמים בתיקייה 3–5 קבצי טקסט קטנים, ולא חומר רגיש.</div></div></details>
+<details><summary><span class="w">מעבדה 1.4</span><span class="t">כלי לימוד (שקף 42)</span><button class="cp" data-t="צור קובץ HTML אחד בשם study-tool.html בתיקייה הזאת.
+זה צריך להיות [FORMAT] בנושא [TOPIC].
+עיצוב נקי ומודרני, קל לשימוש במחשב.
+HTML, CSS ו-JavaScript בלבד בקובץ אחד, בלי תלויות חיצוניות.">העתק</button></summary><div class="body"><pre>צור קובץ HTML אחד בשם study-tool.html בתיקייה הזאת.
+זה צריך להיות [FORMAT] בנושא [TOPIC].
+עיצוב נקי ומודרני, קל לשימוש במחשב.
+HTML, CSS ו-JavaScript בלבד בקובץ אחד, בלי תלויות חיצוניות.</pre><div class="note">תבנית: מחליפים [FORMAT] (כרטיסיות, טיימר פומודורו, תרגול אוצר מילים או חידון אמריקאי) ו-[TOPIC] (נושא מקורס שלכם).</div></div></details>
+<details><summary><span class="w">מעבדה 1.5</span><span class="t">משפרים את הכלי (שקף 43)</span><button class="cp" data-t="שנה את study-tool.html כך ש-[התוספת שלכם]">העתק</button></summary><div class="body"><pre>שנה את study-tool.html כך ש-[התוספת שלכם]</pre><div class="note">תבנית. רעיונות: מצב כהה, מונה ניקוד, כפתור איפוס/ערבוב, צליל בהיפוך כרטיס, גופן גדול יותר בנייד.</div></div></details>
+<h2>סדנה</h2>
+<details><summary><span class="w">סדנה</span><span class="t">בקשה ראשונה בתיקיית העבודה (שקף 46)</span><button class="cp" data-t="מה יש בתיקייה הזו? תני לי טבלה של הקורסים, המרצים ומועדי המבחנים">העתק</button></summary><div class="body"><pre>מה יש בתיקייה הזו? תני לי טבלה של הקורסים, המרצים ומועדי המבחנים</pre><div class="note">אחר כך עוברים ל-Plan Mode (Shift+Tab) ומדביקים את הבקשה הבאה.</div></div></details>
+<details><summary><span class="w">סדנה</span><span class="t">תוכנית לימוד אישית (שקף 47)</span><button class="cp" data-t="בנה לי תוכנית לימוד עד סוף הסמסטר.
+השתמש בכל הסילבוסים בתיקיית courses/.
+יש לי [__] שעות לימוד ביום, ואני לא לומד/ת ב-[__].
+תן משקל גבוה יותר לקורסים עם מבחן מוקדם יותר.
+שמור טבלה שבועית בקובץ study-plan.md בתיקייה הראשית.">העתק</button></summary><div class="body"><pre>בנה לי תוכנית לימוד עד סוף הסמסטר.
+השתמש בכל הסילבוסים בתיקיית courses/.
+יש לי [__] שעות לימוד ביום, ואני לא לומד/ת ב-[__].
+תן משקל גבוה יותר לקורסים עם מבחן מוקדם יותר.
+שמור טבלה שבועית בקובץ study-plan.md בתיקייה הראשית.</pre><div class="note">תבנית: ממלאים שעות ביום, ואת היום שבו לא לומדים. סיימתם כש: study-plan.md קיים ואתם מזהים בו את המבחנים שלכם.</div></div></details>
+<details><summary><span class="w">סדנה</span><span class="t">בונוס (שקף 47)</span><button class="cp" data-t="תוסיף עמודה של נושא לחזרה בכל שבוע, לפי הסילבוס">העתק</button></summary><div class="body"><pre>תוסיף עמודה של נושא לחזרה בכל שבוע, לפי הסילבוס</pre><div class="note">למי שסיים מוקדם.</div></div></details>
+<script>
+document.querySelectorAll('button.cp').forEach(b=>b.addEventListener('click',async ev=>{ev.preventDefault();ev.stopPropagation();const t=b.dataset.t;
+try{await navigator.clipboard.writeText(t)}catch(e){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(_){}a.remove()}
+const o=b.textContent;b.textContent='הועתק ✓';b.classList.add('ok');setTimeout(()=>{b.textContent=o;b.classList.remove('ok')},1300)}));
+</script></main></body></html>
