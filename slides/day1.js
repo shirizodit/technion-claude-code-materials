@@ -2,7 +2,7 @@
   const stage=document.getElementById('stage');
   const slides=[...stage.querySelectorAll('.slide')];
   const bar=document.getElementById('progress');
-  // each module file declares where it sits in the day: <body data-start data-total data-prev data-next>
+  // each module file declares where it sits in its lesson: <body data-start data-total data-lesson data-prev data-next>
   const cfg=document.body.dataset;
   const START=+cfg.start||1, TOTAL=+cfg.total||slides.length;
   let i=0;
@@ -26,7 +26,7 @@
   // footer with slide number on every slide
   slides.forEach((s,n)=>{
     const f=document.createElement('div'); f.className='foot';
-    f.innerHTML='<span>Claude Code for Everyone · יום '+(cfg.day||'א׳')+'</span><span dir="ltr">'+(START+n)+' / '+TOTAL+'</span>';
+    f.innerHTML='<span>Claude Code for Everyone'+(cfg.lesson?' · שיעור '+cfg.lesson:'')+'</span><span dir="ltr">'+(START+n)+' / '+TOTAL+'</span>';
     s.appendChild(f);
   });
 
