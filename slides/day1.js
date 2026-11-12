@@ -147,7 +147,8 @@
   // module jump menu: button in the nav bar (or key M) lists every module; a file with no hash opens on its first slide
   const MODULES=[
     {t:'דף הבית',f:'index.html'},
-    {t:'פתיחה + מודול 1 · מצ׳אט לסוכן',f:'module1.html'},
+    {t:'פתיח · היכרות וכללי העבודה',f:'module0.html'},
+    {t:'מודול 1 · מצ׳אט לסוכן',f:'module1.html'},
     {t:'מודול 2 · Context Engineering',f:'module2.html'},
     {t:'מודול 3 · CLAUDE.md ומצבי הרשאה',f:'module3.html'},
     {t:'מודול 4 · Skills',f:'module4.html'},
@@ -173,7 +174,7 @@
     mb.onclick=e=>{e.stopPropagation();toggleMenu()};
     navBox.insertBefore(mb,navBox.firstChild);
     const sb=document.createElement('button');sb.textContent='⏮';sb.title='להתחלה';sb.setAttribute('aria-label','להתחלה');
-    sb.onclick=()=>{if(location.pathname.split('/').pop()==='module1.html')go(0);else location.href='module1.html#1'};
+    sb.onclick=()=>{if(location.pathname.split('/').pop()==='module0.html')go(0);else location.href='module0.html#1'};
     navBox.insertBefore(sb,mb.nextSibling);
     addEventListener('click',()=>{menu.hidden=true});
     addEventListener('keydown',e=>{if(e.key==='m'||e.key==='M')toggleMenu();else if(e.key==='Escape')menu.hidden=true});

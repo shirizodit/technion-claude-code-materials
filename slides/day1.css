@@ -501,3 +501,15 @@ ul.bad-list li::before{background:var(--red)}
   .reveal{opacity:1!important;transform:none!important}
   #nav,#progress,.pdf-btn,.copy,.notes{display:none!important}
 }
+
+/* opening module */
+.slide.nofoot>.foot{display:none}
+.shot-frame{border:3px solid var(--ink);border-radius:18px;overflow:hidden;box-shadow:0 14px 34px rgba(12,27,58,.14);background:#fff;max-width:660px}
+.shot-frame img{display:block;width:100%;height:auto}
+.method-row{display:flex;gap:14px;flex-wrap:wrap;margin:14px 0 22px}
+.method-row span{font-size:28px;font-weight:700;padding:6px 22px;border-radius:999px;background:var(--acc-soft);color:var(--acc)}
+.flow .step .ico{font-size:72px;line-height:1;margin-bottom:12px}
+.big-lead{font-size:46px;line-height:1.3}
+.tl.compact{gap:10px}.tl.compact .it{padding:10px 28px}
+.rules .card{display:flex;align-items:center;gap:18px;padding:18px 22px}.rules .icon{margin:0;flex:none}.rules h3{margin:0;font-size:30px}
+.safe-note p{font-size:26px}
