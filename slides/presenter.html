@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Presenter</title>
+<style>
+body{margin:0;font-family:Rubik,Arial,sans-serif;background:#0C1B3A;color:#fff;display:flex;flex-direction:column;height:100vh}
+header{display:flex;justify-content:space-between;align-items:center;padding:14px 24px;background:#16264d;font-size:20px;color:#B9C3E0}
+#num{font-weight:700;color:#fff;direction:ltr}
+#clock{direction:ltr;font-family:monospace;font-size:24px;color:#fff}
+#cur{font-size:32px;font-weight:700;padding:18px 24px 4px}
+#notes{flex:1;overflow:auto;padding:4px 24px;font-size:28px;line-height:1.5}
+#notes ul{padding-right:28px;margin:8px 0}
+#notes li{margin-bottom:12px}
+#notes .time{color:#D97757;font-weight:700;font-size:22px;margin:6px 0}
+#notes code,#notes .en{direction:ltr;unicode-bidi:isolate;font-family:Menlo,monospace}
+#next{padding:12px 24px;background:#16264d;font-size:20px;color:#B9C3E0}
+#next b{color:#fff}
+footer{display:flex;gap:10px;padding:12px 24px}
+button{font:600 20px Rubik,Arial,sans-serif;border:0;border-radius:10px;padding:10px 22px;background:#2F6FEB;color:#fff;cursor:pointer}
+button.alt{background:#26304F}
+</style>
+</head>
+<body>
+<header><span id="num">–</span><span>הערות מגיש · חצים להזזת השקף</span><span id="clock">00:00</span></header>
+<div id="cur">ממתין לשקפים…</div>
+<div id="notes"></div>
+<div id="next"></div>
+<footer><button id="b-prev" class="alt">→ הקודם</button><button id="b-next">הבא ←</button></footer>
+<script>
+// talks to the slides window (the one that opened this page) by postMessage; it keeps working across module files
+var t0=Date.now();
+var target=function(){return window.opener||window.parent};
+function ask(){try{target().postMessage({req:1},"*")}catch(e){}}
+function go(d){try{target().postMessage({go:d},"*")}catch(e){}}
+addEventListener("message",function(e){
+  var s=e.data&&e.data.state; if(!s)return;
+  document.getElementById("num").textContent=s.n+" / "+s.total;
+  document.getElementById("cur").textContent=s.title;
+  document.getElementById("notes").innerHTML=s.notes;
+  document.getElementById("next").innerHTML="<b>הבא:</b> "+s.next;
+});
+setInterval(ask,600); ask();
+setInterval(function(){var x=Math.floor((Date.now()-t0)/1000);
+  document.getElementById("clock").textContent=String(Math.floor(x/60)).padStart(2,"0")+":"+String(x%60).padStart(2,"0")},1000);
+document.getElementById("b-prev").onclick=function(){go(-1)};
+document.getElementById("b-next").onclick=function(){go(1)};
+addEventListener("keydown",function(e){
+  if(["ArrowRight","PageDown"," ","Enter"].indexOf(e.key)>-1){e.preventDefault();go(1)}
+  else if(["ArrowLeft","PageUp","Backspace"].indexOf(e.key)>-1){e.preventDefault();go(-1)}
+});
+</script>
+</body>
+</html>
