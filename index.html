@@ -674,6 +674,7 @@ HTML, CSS ו-JavaScript בלבד בקובץ אחד, בלי תלויות חיצו
       <li><a href="#m4-prog">Skill עם תוכנית</a></li>
       <li><a href="#m4-install">פלאגין וקטלוג</a></li>
       <li><a href="#m4-ws-b">תרגול בבית · Skill מוכן</a></li>
+      <li><a href="#m4-hw">שיעורי בית · תיקיית סיכום</a></li>
     </ul>
   </div>
 
@@ -873,6 +874,40 @@ Read the plot, then write three sentences.</div>
 3. יש לו תפקיד אחד בלבד.
 אל תשנה כלום עדיין. הצג רק מה כדאי לתקן, ולמה.</div>
     <p class="hint">⚡ נסו עכשיו: בחרו משימה אחת שעשיתם השבוע פעמיים, וחשבו מה היה הכלל הראשון של ה-Skill שלה.</p>
+  </div>
+
+  <div class="sec" id="m4-hw">
+    <span class="badge ws">שיעורי בית (רשות) · תרגול מסכם של מודולים 1 עד 4 · כ-45 עד 60 דקות</span><br><span class="where">תיקייה חדשה: my-summaries</span>
+    <h3>תיקיית סיכום משלכם</h3>
+    <p class="goal">המטרה: תיקייה אחת שמחברת את כל מה שלמדנו, על קבצים אמיתיים שלכם. בסוף יש בה סיכומים מעוצבים וממוקדים של הקבצים, קובץ <code>CLAUDE.md</code> שמסביר מי אתם ומה מטרת הפרויקט, ו-Skill שקובע איך התוצר אמור להיראות. אין חובה, ואפשר לעשות רק חלק.</p>
+    <div class="prompt ltr"><span class="tag">המבנה בסוף</span>my-summaries/
+├── CLAUDE.md          מי אני, מה מטרת הפרויקט
+├── .claude/skills/
+│   └── summary-style/   איך סיכום אמור להיראות
+├── source/            הקבצים שלי
+└── summaries/         סיכומים מעוצבים וממוקדים</div>
+    <ol class="steps" data-key="m4-hw">
+      <li><label><input type="checkbox"><span><b>מודול 1:</b> צרו תיקייה חדשה בשם <code>my-summaries</code>, ובתוכה תיקייה <code>source</code>. שימו בה 2 עד 3 קבצים אמיתיים שלכם (סיכום הרצאה, מאמר, מצגת). פתחו את <code>my-summaries</code> ב-Claude Code</span></label></li>
+      <li><label><input type="checkbox"><span><b>מודול 3:</b> הדביקו את בקשת הראיון (הראשונה למטה), ענו על השאלות, וקראו את הקובץ שנוצר. מחקו כל חוק כללי והחליפו בחוק ספציפי</span></label></li>
+      <li><label><input type="checkbox"><span><b>מודול 4:</b> הדביקו את בקשת ה-Skill (השנייה למטה). בדקו שנוצרה התיקייה <code>.claude/skills/summary-style/</code> עם <code>SKILL.md</code>, וקראו את שורת התיאור</span></label></li>
+      <li><label><input type="checkbox"><span><b>מודול 3:</b> עברו למצב תכנון (<code>Shift+Tab</code>) והדביקו את בקשת התוכנית. קראו אותה באמת, ותקנו מה שלא מתאים לפני שמאשרים</span></label></li>
+      <li><label><input type="checkbox"><span><b>מודול 2:</b> סיכום אחד בכל שיחה. הדביקו את בקשת הסיכום עם <code>@</code> על קובץ אחד, ואחרי שהסיכום נשמר ב-<code>summaries/</code> הקלידו <code>/clear</code> והמשיכו לקובץ הבא</span></label></li>
+      <li><label><input type="checkbox"><span>פתחו שיחה חדשה ובקשו סיכום של קובץ נוסף. בדקו ש-Claude מכיר אתכם ושהסיכום נראה כמו שהגדרתם ב-Skill</span></label></li>
+    </ol>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">1 · CLAUDE.md</span>ראיין אותי כדי לכתוב קובץ CLAUDE.md לתיקייה הזאת. שאל שאלה אחת בכל פעם:
+מי אני, מה מטרת הפרויקט ומי יקרא את הסיכומים, איך אני רוצה שתדבר איתי,
+ומה אתה צריך לעשות תמיד ומה אף פעם. בסוף כתוב קובץ קצר וספציפי
+ושמור אותו כ-CLAUDE.md בתיקייה הראשית.</div>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">2 · Skill לעיצוב</span>צור Skill בשם summary-style בתיקייה .claude/skills/summary-style
+הוא קובע איך סיכום נראה: כותרת, 3 עד 5 נקודות מפתח, מושגים ונוסחאות בנפרד,
+שאלה לבדיקה עצמית בסוף, ולא יותר מעמוד. בתיאור כתוב מתי להפעיל אותו,
+במילים שאני באמת אומר/ת, כמו "סכם לי את הקובץ".</div>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">3 · תוכנית, בלי לבצע</span>קרא את הקבצים בתיקייה source והצג תוכנית בלבד: איזה סיכום ייווצר
+לכל קובץ ומה יהיה בו. אל תיצור כלום עדיין.</div>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">4 · סיכום · מחליפים את מה שבצהוב</span>סכם את @source/<span class="ph">[שם הקובץ]</span> לפי summary-style ושמור בתיקייה summaries.</div>
+    <div class="done">✅ <b>סיימתם כש:</b> יש תיקייה עם <code>CLAUDE.md</code>, Skill בשם <code>summary-style</code>, ותיקיית <code>summaries/</code> עם סיכום מעוצב לכל קובץ.</div>
+    <p class="hint">⚡ בונוס: מצאתם משהו שלא אהבתם בעיצוב? בקשו "תוסיף את זה כחוק ל-Skill", כמו הכלל השלישי ב"איך בונים Skill טוב".</p>
+    <div class="help"><b>אם ה-Skill לא מופיע ברשימה:</b> בדקו ששם הקובץ הוא <code>SKILL.md</code> באותיות גדולות, ושהתיקייה <code>.claude/skills/summary-style/</code> נמצאת בתוך <code>my-summaries</code>. אפשר גם לכתוב בבקשה "השתמש ב-summary-style" ולא להסתמך על זיהוי אוטומטי.</div>
   </div>
 </section>
 

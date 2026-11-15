@@ -18,7 +18,7 @@
 .gsk p{font-size:25px;line-height:1.4;color:var(--muted);margin:0}
 </style>
 </head>
-<body data-start="54" data-total="67" data-lesson="2" data-prev="module3.html" data-next="module4b.html">
+<body data-start="54" data-total="71" data-lesson="2" data-prev="module3.html" data-next="module4b.html">
 <svg width="0" height="0" style="position:absolute">
   <symbol id="spark" viewBox="0 0 100 100"><g fill="currentColor">
     <rect x="46" y="4" width="8" height="40" rx="4"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(30 50 50)"/>
@@ -256,6 +256,75 @@ main limitation.</div>
 </section>
 
 <!-- 109 -->
+<section class="slide workshop" data-mod="4">
+  <div class="kicker"><span class="badge work">שיעורי בית · רשות</span> · מודולים 1 עד 4</div>
+  <h2>התרגול המסכם: תיקיית סיכום משלכם</h2>
+  <div class="body">
+    <div class="grid g2" style="align-items:center">
+      <div class="code" style="font-size:24px;line-height:1.5">my-summaries/
+├── CLAUDE.md      ← מי אני ומה המטרה
+├── .claude/skills/
+│   └── summary-style/ ← איך נראה סיכום
+├── source/        ← הקבצים שלי
+└── summaries/     ← הסיכומים</div>
+      <div class="machine" style="flex-direction:column;align-items:flex-start">
+        <span class="part on">📁 מודול 1 · תיקייה וקבצים אמיתיים</span>
+        <span class="part on">🧭 מודול 2 · שלב אחרי שלב, <span class="en">@</span> ו-<span class="en">/clear</span></span>
+        <span class="part on">🧠 מודול 3 · <span class="en">CLAUDE.md</span> ותוכנית לפני ביצוע</span>
+        <span class="part on">🧩 מודול 4 · <span class="en">Skill</span> לעיצוב התוצר</span>
+      </div>
+    </div>
+    <p class="mt lead">המטרה: תיקייה אחת שמחברת את כל מה שלמדנו, על קבצים אמיתיים שלכם.</p>
+    <p class="mt muted">בבית, בקצב שלכם. אין חובה, והצעדים והבקשות בשקפים הבאים ובדף הליווי.</p>
+  </div>
+  <aside class="notes"><p class="time">⏱ כ-3 דק׳</p><ul><li>מציגה את שיעורי הבית (רשות): תרגול מסכם של מודולים 1 עד 4.</li><li>בסוף יש תיקייה אחת עם שלושה דברים: סיכומים מעוצבים וממוקדים של הקבצים שלהם, קובץ CLAUDE.md שמסביר מי הם ומה מטרת הפרויקט, ו-Skill שקובע איך התוצר אמור להיראות.</li><li>כל חלק מתחבר למודול: תיקייה (1), שלבים עם @ ו-clear (2), CLAUDE.md ותוכנית (3), Skill (4).</li><li>למה זה חשוב לכם: זה כלי שאפשר להשתמש בו כבר השבוע, על הרצאות או מאמרים אמיתיים.</li></ul></aside>
+</section>
+
+<section class="slide workshop" data-mod="4">
+  <div class="kicker"><span class="badge work">שיעורי בית · רשות</span> · שלבים</div>
+  <h2>שישה צעדים</h2>
+  <div class="body">
+    <ol class="steps">
+      <li><b>מודול 1:</b> תיקייה חדשה <code>my-summaries</code>, ובתוכה <code>source/</code> עם 2 עד 3 קבצים אמיתיים שלכם</li>
+      <li><b>מודול 3:</b> Claude מראיין אתכם וכותב <code>CLAUDE.md</code>: מי אתם, מה מטרת הפרויקט</li>
+      <li><b>מודול 4:</b> Claude כותב Skill בשם <code>summary-style</code>, שמגדיר איך סיכום נראה</li>
+      <li><b>מודול 3:</b> עוברים למצב תכנון (<code>Shift+Tab</code>) ומבקשים תוכנית סיכום, בלי ליצור כלום</li>
+      <li><b>מודול 2:</b> סיכום אחד בכל שיחה, עם <code>@</code> על הקובץ ו-<code>/clear</code> בין קובץ לקובץ</li>
+      <li>שיחה חדשה: מבקשים סיכום נוסף ובודקים שה-Skill וה-CLAUDE.md נקלטו</li>
+    </ol>
+  </div>
+  <aside class="notes"><p class="time">⏱ בתוך ההצגה</p><ul><li>עוברת על הצעדים בקול, בלי להדגים.</li><li>את ה-Skill כותבים בבקשה ל-Claude, כמו שראינו בדמו. את skill-creator נראה בשיעור הבא, ואפשר להשתמש בו אחר כך.</li><li>צעד 4 הוא ההרגל ממודול 3: לקרוא את התוכנית באמת לפני אישור.</li></ul></aside>
+</section>
+
+<section class="slide workshop" data-mod="4">
+  <div class="kicker"><span class="badge work">שיעורי בית · רשות</span> · להעתקה 1 מתוך 2</div>
+  <h2>הבקשות: CLAUDE.md ו-Skill</h2>
+  <div class="body">
+    <div class="code he"><button class="copy">העתק</button>ראיין אותי כדי לכתוב קובץ CLAUDE.md לתיקייה הזאת. שאל שאלה אחת בכל פעם:
+מי אני, מה מטרת הפרויקט ומי יקרא את הסיכומים, איך אני רוצה שתדבר איתי,
+ומה אתה צריך לעשות תמיד ומה אף פעם. בסוף כתוב קובץ קצר וספציפי
+ושמור אותו כ-CLAUDE.md בתיקייה הראשית.</div>
+    <div class="code he mt"><button class="copy">העתק</button>צור Skill בשם summary-style בתיקייה .claude/skills/summary-style
+הוא קובע איך סיכום נראה: כותרת, 3 עד 5 נקודות מפתח, מושגים ונוסחאות בנפרד,
+שאלה לבדיקה עצמית בסוף, ולא יותר מעמוד. בתיאור כתוב מתי להפעיל אותו,
+במילים שאני באמת אומר/ת, כמו ״סכם לי את הקובץ״.</div>
+  </div>
+  <aside class="notes"><p class="time">⏱ בתוך ההצגה</p><ul><li>הבקשה הראשונה היא הראיון ממודול 3. השנייה היא Skill לעיצוב, לפי הכללים ממודול 4: תיאור שאומר מתי, וחוקים ספציפיים.</li><li>אפשר להחליף את מבנה הסיכום בטעם שלכם.</li></ul></aside>
+</section>
+
+<section class="slide workshop" data-mod="4">
+  <div class="kicker"><span class="badge work">שיעורי בית · רשות</span> · להעתקה 2 מתוך 2</div>
+  <h2>הבקשות: תוכנית וסיכום</h2>
+  <div class="body">
+    <div class="code he"><button class="copy">העתק</button>קרא את הקבצים בתיקייה source והצג תוכנית בלבד: איזה סיכום ייווצר
+לכל קובץ ומה יהיה בו. אל תיצור כלום עדיין.</div>
+    <div class="code he mt"><button class="copy">העתק</button>סכם את @source/[שם הקובץ] לפי summary-style ושמור בתיקייה summaries.</div>
+    <div class="done-when">✅ <strong>סיימתם כש:</strong> יש תיקייה עם <code>CLAUDE.md</code>, Skill <code>summary-style</code>, ו-<code>summaries/</code> עם סיכום מעוצב לכל קובץ.</div>
+    <p class="hint">⚡ בונוס: מצאו משהו שלא אהבתם בעיצוב, ובקשו: ״תוסיף את זה כחוק ל-Skill״</p>
+  </div>
+  <aside class="notes"><p class="time">⏱ בתוך ההצגה</p><ul><li>הבקשה הראשונה: תוכנית בלבד, בלי ליצור כלום. השנייה: סיכום אחד לכל שיחה, עם /clear בין קבצים.</li><li>סיימתם כש: שלושה דברים בתיקייה.</li><li>בונוס: כל תיקון נהיה חוק, הכלל השלישי ממודול 4.</li><li>רשות לגמרי. מי שנתקע שואל בצ׳אט או בשיעור הבא.</li></ul></aside>
+</section>
+
 <section class="slide" data-mod="4">
   <div class="kicker"><span class="mod">מודול 4</span> · סיכום חלק א׳</div>
   <h2>מה ראינו, ומה בשיעור הבא</h2>
@@ -269,7 +338,7 @@ main limitation.</div>
       <p>שימו לב השבוע: איזו בקשה אתם מדביקים שוב ושוב? זה ה-Skill הראשון שלכם.</p>
     </div>
   </div>
-  <aside class="notes"><p class="time">⏱ כ-2 דק׳</p><ul><li>סיכום של החלק הראשון של מודול 4.</li><li>בשיעור הבא נבנה Skill עם skill-creator ונתקין Skills מוכנים.</li><li>משימה קטנה ורשות: לשים לב השבוע לבקשה שחוזרת.</li><li>מזכירה את שיעורי הבית (רשות) בדף הליווי: CLAUDE.md אישי, שדרוג תוכנית הלימוד, ותוכנית לפני ביצוע.</li></ul></aside>
+  <aside class="notes"><p class="time">⏱ כ-2 דק׳</p><ul><li>סיכום של החלק הראשון של מודול 4.</li><li>בשיעור הבא נבנה Skill עם skill-creator ונתקין Skills מוכנים.</li><li>משימה קטנה ורשות: לשים לב השבוע לבקשה שחוזרת.</li><li>מזכירה את שיעורי הבית (רשות): התרגול המסכם בשקפים הקודמים, ועוד התרגולים הקטנים בדף הליווי.</li></ul></aside>
 </section>
 
 
