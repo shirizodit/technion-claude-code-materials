@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>שיעור 3 · מודול 5 · זום — שרשרת של Skills עם שני שערים</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="day1.css">
+<style>
+.flow.g .step{padding:22px 14px}.flow.g .step b{font-size:28px;direction:ltr}.flow.g .step span{font-size:23px}
+.flow .step.gate{background:#FFF6DC;border-color:var(--gold)}.flow .step.gate b{color:#9A7A22;direction:rtl}
+.stop{background:#FFF6DC;border:2px solid var(--gold);border-radius:16px;padding:14px 24px;font-size:26px;margin-top:16px}
+.code b{color:#FFD76A;font-weight:600}
+.flow.g5 .step{padding:22px 8px}.flow.g5 .step b{font-size:25px}
+.mkw{background:var(--paper);border:2px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 6px 20px rgba(12,27,58,.06)}
+.mkw .mkb{background:#EEF1F8;padding:10px 24px;font-size:22px;color:var(--muted);text-align:right}
+.mkw .mki{padding:18px 28px;font-size:27px;line-height:1.45}
+.mkw .mks{display:inline-block;font-family:var(--mono);direction:ltr;background:#FFF6DC;border:2px solid var(--gold);border-radius:10px;padding:2px 14px;font-size:25px}
+.mkw table{width:100%;border-collapse:collapse;font-size:25px}
+.mkw th,.mkw td{padding:7px 14px;border-bottom:2px solid var(--line);text-align:right}
+.mkw th{color:var(--acc);font-size:23px}
+</style>
+</head>
+<body data-start="17" data-total="50" data-lesson="3" data-prev="module4b.html" data-next="module6.html">
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="spark" viewBox="0 0 100 100"><g fill="currentColor">
+    <rect x="46" y="4" width="8" height="40" rx="4"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(30 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(60 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(90 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(120 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(150 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(180 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(210 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(240 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(270 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(300 50 50)"/>
+    <rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(330 50 50)"/>
+  </g></symbol>
+</svg>
+
+<div id="stage">
+
+<!-- 1 -->
+<section class="slide divider" data-mod="5">
+  <div class="num">5</div>
+  <h1>שרשרת של Skills, עם שני שערים</h1>
+  <p class="lead">שלושה Skills שעובדים בזה אחר זה, ושני מקומות שבהם הכול עוצר ואתם מחליטים. נבנה אותה צעד אחר צעד, על התיקייה של נועה.</p>
+  </section>
+
+<!-- 2 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5 · זום</span> · למה שרשרת</div>
+  <h2>משימה גדולה לא נכנסת ל-Skill אחד</h2>
+  <div class="body">
+    <div class="grid g3">
+      <div class="card"><div class="icon">1</div><h3>Skill אחד</h3><p>עושה דבר אחד. מתאים כשהמשימה קצרה ואפשר לבדוק את התוצאה בעין.</p></div>
+      <div class="card"><div class="icon">2</div><h3>שרשרת</h3><p>כמה Skills. כל אחד עושה דבר אחד וכותב קובץ, והבא בתור קורא אותו.</p></div>
+      <div class="card acc"><div class="icon">3</div><h3>שער</h3><p>עצירה בין שני שלבים, שבה אדם מחליט. בלי שער, טעות בשלב 1 גדלה עד הסוף.</p></div>
+    </div>
+    <p class="mt hint">⚡ נסו עכשיו: חשבו על משימה שלכם שיש בה שלושה שלבים. איפה טעות בשלב הראשון הייתה הכי יקרה?</p>
+  </div>
+  </section>
+
+<!-- 3 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5 · זום</span> · הדוגמה שלנו</div>
+  <h2>נועה והבחינה ב-DSP</h2>
+  <div class="body">
+    <div class="example"><div class="who">נועה, שנה ג׳ הנדסת חשמל</div>
+      <p>הבחינה ב-DSP ב-15.01.2027, ספר פתוח. בסילבוס 14 שבועות, ויש לה סיכומים של שלושה שיעורים בלבד. היא צריכה תוכנית חזרה, ודפי חזרה שאפשר לסמוך עליהם.</p></div>
+    <div class="code mt">noa/
+  CLAUDE.md
+  exams.md                  <span class="c">← תאריכים וסוג הבחינה</span>
+  syllabus-dsp.md           <span class="c">← 14 שבועות</span>
+  lecture-notes-dsp.md      <span class="c">← סיכומי שלושה שיעורים</span>
+  project-eeg.md · syllabus-analog.md
+  .claude/skills/exam-prep/SKILL.md   <span class="c">← Skill קיים</span></div>
+  </div>
+  </section>
+
+<!-- 4 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5 · זום</span> · השרשרת</div>
+  <h2>שלושה Skills ושני שערים</h2>
+  <div class="body">
+    <div class="flow g g5">
+      <div class="step"><b>exam-plan</b><span>בונה תוכנית</span></div><div class="arrow">←</div>
+      <div class="step gate"><b>🛑 שער 1</b><span>עריכה</span></div><div class="arrow">←</div>
+      <div class="step"><b>exam-prep</b><span>דף לכל נושא</span></div><div class="arrow">←</div>
+      <div class="step"><b>sample-check</b><span>בוחר נוסחאות</span></div><div class="arrow">←</div>
+      <div class="step gate"><b>🛑 שער 2</b><span>מדגם</span></div>
+    </div>
+    <ul class="clean" style="margin-top:44px">
+      <li>שלושה Skills, וכל אחד כותב קובץ לפני שהבא בתור רץ.</li>
+      <li>שני שערים, מסוגים שונים: בשער 1 <strong>עורכים</strong>, בשער 2 <strong>בודקים מדגם</strong>.</li>
+      <li>מתזמר אחד, <span class="en">exam-chain</span>, מריץ את כולם ועוצר בשערים.</li>
+    </ul>
+  </div>
+  </section>
+
+<!-- 5 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5 · זום</span> · שני סוגי שערים</div>
+  <h2>עריכה כשהפלט קטן, מדגם כשהוא גדול</h2>
+  <div class="body">
+    <table class="cmp">
+      <tr><th></th><th>שער עריכה</th><th>שער מדגם</th></tr>
+      <tr><td>מה אתם עושים</td><td>קוראים הכול ועורכים</td><td>בודקים כמה פריטים מתוך הרבה</td></tr>
+      <tr><td>מתי מתאים</td><td>הפלט קטן וקובע מה יקרה הלאה</td><td>הפלט גדול מכדי לקרוא עד הסוף</td></tr>
+      <tr><td>מה תופסים</td><td>החלטה שגויה, לפני שהיא מתפשטת</td><td>טעות שחוזרת על עצמה בהרבה מקומות</td></tr>
+      <tr><td>אצל נועה</td><td>תוכנית החזרה</td><td>הנוסחאות בדפי החזרה</td></tr>
+    </table>
+    <p class="mt hint">⚡ נסו עכשיו: במשימה שציירתם, איזה שלב נותן פלט קטן שקובע הכול, ואיזה נותן פלט גדול?</p>
+  </div>
+  </section>
+
+<!-- 6 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5 · זום</span> · איך שער נאכף</div>
+  <h2>שער אמיתי הוא שער שאי אפשר לעקוף</h2>
+  <div class="body">
+    <div class="grid g2" style="align-items:center">
+      <div class="code">study-plan.md
+
+<b>status: draft</b>
+
+<span class="c"># אחרי העריכה נועה משנה בעצמה</span>
+<b>status: approved</b></div>
+      <div class="callouts">
+        <div class="callout"><strong>השורה הראשונה</strong><span>כל קובץ שער נפתח בשורת סטטוס</span></div>
+        <div class="callout"><strong>רק האדם משנה אותה</strong><span>Claude אסור לו לאשר בשמכם</span></div>
+        <div class="callout"><strong>השלב הבא בודק</strong><span>לא אושר? הוא עוצר ולא כותב כלום</span></div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+<!-- 7 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5 · זום</span> · ההעברה בין השלבים</div>
+  <h2>כל שלב משאיר קובץ שאפשר לפתוח</h2>
+  <div class="body">
+    <div class="code">study-plan.md              <span class="c">← exam-plan · status: draft ← approved</span>
+summaries/
+  exam-prep-DFT.md          <span class="c">← exam-prep · דף לכל נושא (דוגמה)</span>
+  MISSING.md                <span class="c">← נושאים בלי סיכום</span>
+sample-check.md             <span class="c">← sample-check · status: pending ← verified</span></div>
+    <p class="mt lead">אין קסם בין השלבים. יש קובץ שנכתב וקובץ שנקרא, ואתם יכולים לפתוח כל אחד מהם בכל רגע.</p>
+    <p class="mt hint">⚡ נסו עכשיו: איזה קובץ הייתם רוצים שהשלב הראשון במשימה שלכם יכתוב?</p>
+  </div>
+  </section>
+
+<!-- 8 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5 · זום</span> · שלב 0 · קודם הכללים</div>
+  <h2>כל שרשרת מתחילה ב-CLAUDE.md</h2>
+  <div class="body">
+<div class="code he"><button class="copy">העתק</button>הוסף ל-CLAUDE.md שלי סעיף חדש בשם "שרשרת בחינות" עם הכללים האלה:
+- כל שלב כותב את הקובץ שלו לפני שהשלב הבא רץ
+- לעולם לא משנים את קבצי הקלט: exams.md, syllabus-*.md, lecture-notes-dsp.md
+- אסור להמציא נוסחאות. נוסחה שלא מופיעה בסיכומים או בסילבוס לא נכנסת, ובמקומה כותבים מה חסר
+- בשער: מציגים את הקובץ, עוצרים ומחכים לי. אסור לשנות בעצמך שורת status
+אל תשנה דבר אחר בקובץ. בסוף הראה לי מה הוספת.</div>
+    <p class="mt hint">⚡ נסו עכשיו: איזה כלל אחד הייתם מוסיפים לשרשרת שלכם?</p>
+  </div>
+  </section>
+
+<!-- 9 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5 · זום</span> · <span class="badge demo">בדמו</span> עוברים ל-Claude</div>
+  <h2>מוסיפים את הכללים ל-CLAUDE.md</h2>
+  <div class="body">
+    <ol class="steps">
+      <li>פתחו ב-VS Code את התיקייה <span class="en">noa</span>, ואת חלון Claude</li>
+      <li>הדביקו את הבקשה מהשקף הקודם ושלחו</li>
+      <li>Claude מראה מה הוסיף. קראו לפני שמאשרים</li>
+      <li>פתחו את <span class="en">CLAUDE.md</span> בעורך והצביעו על הסעיף החדש</li>
+    </ol>
+    <div class="done-when">✅ <strong>אמור להופיע:</strong> סעיף ״שרשרת בחינות״ בסוף <span class="en">CLAUDE.md</span>, וכל מה שהיה בקובץ לפניו נשאר כמו שהיה.</div>
+  </div>
+  </section>
+
+<!-- 10 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5 · זום</span> · שלב 1 · exam-plan</div>
+  <h2>בונים את ה-Skill שמציע תוכנית</h2>
+  <div class="body">
+<div class="code he"><button class="copy">העתק</button>בנה Skill בשם exam-plan בתיקייה .claude/skills/.
+הוא קורא את exams.md, את syllabus-dsp.md ואת lecture-notes-dsp.md, וכותב את study-plan.md לבחינה ב-DSP:
+- שורה ראשונה: status: draft
+- תאריך הבחינה וסוגה (ספר פתוח או סגור), מתוך exams.md
+- טבלה: נושא · שבוע בסילבוס · יש סיכום? (כן / חלקי / לא) · עדיפות · כמה ימי חזרה. העדיפות לפי הטיפים והערות בקבצים
+- סעיף "חסר חומר": נושאים בלי סיכום, ומה צריך להשלים
+רק מציעים. אל תכתוב נוסחאות, אל תמציא נושאים שלא בסילבוס, ואל תשנה קבצים אחרים.</div>
+  </div>
+  </section>
+
+<!-- 11 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5 · זום</span> · <span class="badge demo">בדמו</span> עוברים ל-Claude</div>
+  <h2>בונים ומריצים את exam-plan</h2>
+  <div class="body">
+    <ol class="steps">
+      <li>הדביקו את הבקשה. Claude בונה את התיקייה <span class="en">.claude/skills/exam-plan/</span></li>
+      <li>הקלידו <span class="en">/</span> ובדקו ש-<span class="en">exam-plan</span> מופיע ברשימה</li>
+      <li>הריצו <span class="en">/exam-plan</span> והמתינו. Claude קורא שלושה קבצים וכותב אחד</li>
+      <li>פתחו את <span class="en">study-plan.md</span> והצביעו על שורת הסטטוס ועל סעיף ״חסר חומר״</li>
+    </ol>
+    <div class="done-when">✅ <strong>אמור להופיע:</strong> <span class="en">study-plan.md</span> עם <span class="en">status: draft</span> בשורה הראשונה, טבלת נושאים וסעיף ״חסר חומר״.</div>
+    <p class="hint">⚡ יקפוץ חלון הרשאה לכתיבה בתיקיית <span class="en">.claude/skills</span>? אשרו. זו התיקייה שבה Skills גרים.</p>
+  </div>
+  </section>
+
+<!-- 12 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5 · זום</span> · שלב 1 · מה יוצא</div>
+  <h2>כך נראה study-plan.md</h2>
+  <div class="body">
+    <div class="mkw">
+      <div class="mkb">study-plan.md · דוגמה, קיצרנו</div>
+      <div class="mki">
+        <span class="mks">status: draft</span>
+        <p style="margin:10px 0 8px">בחינה: 15.01.2027 · ספר פתוח · תקציב חזרה: 14 ימים</p>
+        <table>
+          <tr><th>נושא</th><th>שבוע</th><th>יש סיכום?</th><th>עדיפות</th><th>ימים</th></tr>
+          <tr><td>תמרת DTFT ותכונותיה</td><td>2</td><td>חלקי</td><td>בינונית</td><td>1.25</td></tr>
+          <tr><td>תמרת DFT: הגדרה ותכונות</td><td>3</td><td>כן</td><td>בינונית</td><td>1</td></tr>
+          <tr><td>FFT: אלגוריתם ויישומים</td><td>4</td><td>כן</td><td>גבוהה</td><td>1.5</td></tr>
+          <tr><td>תמרת Z: הגדרה ותכונות</td><td>6</td><td>חלקי</td><td>גבוהה</td><td>1.75</td></tr>
+          <tr><td>פילטרי FIR: שיטת החלון</td><td>9</td><td>לא</td><td>נמוכה</td><td>0.75</td></tr>
+        </table>
+        <p style="margin-top:8px"><strong>חסר חומר:</strong> שבוע 1, 8, 9–13: אין סיכום בכלל, ומה להשלים מהספר.</p>
+      </div>
+    </div>
+  </div>
+  </section>
+
+<!-- 13 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5 · זום</span> · שלב 2 · exam-prep</div>
+  <h2>לא בונים Skill חדש, משדרגים את הקיים</h2>
+  <div class="body">
+    <table class="cmp">
+      <tr><th></th><th>עד עכשיו</th><th>בתוך השרשרת</th></tr>
+      <tr><td>מתי רץ</td><td>כשנועה מבקשת</td><td>רק אם התוכנית <span class="en">approved</span></td></tr>
+      <tr><td>כמה נושאים</td><td>נושא אחד בכל הרצה</td><td>כל הנושאים שבתוכנית</td></tr>
+      <tr><td>אין סיכום</td><td>כותב מה חסר</td><td>שורה ב-<span class="en">MISSING.md</span></td></tr>
+      <tr><td>נוסחאות</td><td>מהסיכומים או הסילבוס</td><td>וליד כל אחת: איזה קובץ ואיזה שיעור</td></tr>
+    </table>
+    <p class="mt hint">⚡ נסו עכשיו: איזה Skill שכבר יש לכם אפשר לשדרג כך שיהיה חוליה בשרשרת?</p>
+  </div>
+  </section>
+
+<!-- 14 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5 · זום</span> · שלב 2 · השדרוג</div>
+  <h2>מבקשים מ-Claude לשדרג את exam-prep</h2>
+  <div class="body">
+<div class="code he"><button class="copy">העתק</button>עדכן את ה-Skill הקיים .claude/skills/exam-prep/SKILL.md. אל תמחק את הכללים שיש בו, רק הוסף:
+1. לפני הכול קרא את study-plan.md. אם בשורה הראשונה לא כתוב status: approved, עצור, אמור לי שהתוכנית עוד לא אושרה, ואל תכתוב שום קובץ.
+2. אם ביקשתי "הכול": בלי לשאול שאלות, עבור על כל נושא בתוכנית שיש לו סיכום, ושמור דף לכל נושא ב-summaries/.
+3. נושא בלי סיכום: אל תכתוב לו דף. הוסף שורה ל-summaries/MISSING.md עם שם הנושא ומה חסר.
+4. כל אחת מחמש הנוסחאות חייבת להופיע מילה במילה בסיכומים או בסילבוס. ליד כל נוסחה כתוב באיזה קובץ ובאיזה שיעור היא.
+בסוף הראה לי מה שינית.</div>
+  </div>
+  </section>
+
+<!-- 15 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5 · זום</span> · <span class="badge demo">בדמו</span> עוברים ל-Claude</div>
+  <h2>קודם בודקים שהשער עוצר</h2>
+  <div class="body">
+    <ol class="steps">
+      <li>הדביקו את בקשת השדרוג. Claude מראה מה שינה ב-<span class="en">SKILL.md</span></li>
+      <li>התוכנית עדיין <span class="en">draft</span>. הריצו <span class="en">/exam-prep הכול</span></li>
+      <li>Claude אמור לעצור ולומר שהתוכנית עוד לא אושרה</li>
+      <li>פתחו את התיקייה: אין <span class="en">summaries/</span>, שום דף לא נכתב</li>
+    </ol>
+    <div class="done-when">✅ <strong>אמור להופיע:</strong> סירוב ברור, ותיקייה בלי <span class="en">summaries/</span>. זה הרגע שבו רואים שהשער אמיתי.</div>
+  </div>
+  </section>
+
+<!-- 16 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5 · זום</span> · שער 1 · עריכה</div>
+  <h2>נועה קוראת את כל התוכנית ועורכת בעצמה</h2>
+  <div class="body">
+    <div class="callouts">
+      <div class="callout"><strong>משנה עדיפות</strong><span>DFT עולה מבינונית לגבוהה, כי FFT נשען עליו</span></div>
+      <div class="callout"><strong>מוסיפה או מוחקת שורה</strong><span>נושא שלא צריך, או נושא ש-Claude פספס</span></div>
+      <div class="callout"><strong>משנה ימים</strong><span>פרופ׳ לוי אוהב שאלות על יציבות, אז ״היפוך ויציבות״ מקבל יותר ימים</span></div>
+    </div>
+    <div class="stop">🛑 רק אחרי שערכה, נועה משנה בעצמה את השורה הראשונה ל-<span class="en">status: approved</span>.</div>
+    <p class="mt hint">⚡ נסו עכשיו: אילו שני שינויים הייתם עושים בתוכנית שבשקף הקודם?</p>
+  </div>
+  </section>
+
+<!-- 17 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5 · זום</span> · <span class="badge demo">בדמו</span> עוברים לקובץ</div>
+  <h2>עורכים את התוכנית ומאשרים</h2>
+  <div class="body">
+    <ol class="steps">
+      <li>פתחו את <span class="en">study-plan.md</span> בעורך, לא בצ׳אט</li>
+      <li>שנו עדיפות של שורה אחת, והוסיפו או מחקו שורה</li>
+      <li>שנו ידנית את השורה הראשונה ל-<span class="en">status: approved</span> ושמרו</li>
+      <li>אל תבקשו מ-Claude לאשר. זו ההחלטה שלכם</li>
+    </ol>
+    <div class="done-when">✅ <strong>אמור להופיע:</strong> השורה הראשונה היא <span class="en">status: approved</span>, והתוכנית בקובץ היא התוכנית שאתם רוצים.</div>
+  </div>
+  </section>
+
+<!-- 18 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5 · זום</span> · <span class="badge demo">בדמו</span> עוברים ל-Claude</div>
+  <h2>מריצים את שלב 2 על כל הנושאים</h2>
+  <div class="body">
+    <ol class="steps">
+      <li>הריצו שוב <span class="en">/exam-prep הכול</span>. הפעם הוא ממשיך</li>
+      <li>המתינו. Claude כותב דף לכל נושא שיש עליו סיכום</li>
+      <li>פתחו את <span class="en">summaries/</span> ואת <span class="en">MISSING.md</span></li>
+      <li>בדף אחד: הצביעו על חמש הנוסחאות ועל המקור ליד כל אחת</li>
+    </ol>
+    <div class="done-when">✅ <strong>אמור להופיע:</strong> דף לכל נושא שיש עליו סיכום (גם חלקי), שורה ב-<span class="en">MISSING.md</span> לכל נושא בלי סיכום, ומקור ליד כל נוסחה.</div>
+  </div>
+  </section>
+
+<!-- 19 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5 · זום</span> · שלב 2 · מה יוצא</div>
+  <h2>כך נראה דף חזרה אחד</h2>
+  <div class="body">
+    <div class="mkw">
+      <div class="mkb">summaries/exam-prep-DFT.md · דוגמה, קיצרנו</div>
+      <div class="mki">
+        <p><strong>המבחן בעוד N ימים, ספר פתוח.</strong></p>
+        <p><strong>אינטואיציה:</strong> ממירים רצף בזמן לרצף בתדר, ובודקים כמה מכל תדר יש באות…</p>
+        <table>
+          <tr><th>נוסחה</th><th>מקור</th></tr>
+          <tr><td><span class="en" dir="ltr">X[k] = Σ x[n]·W^{nk}, W=e^{-j2π/N}</span></td><td>נוסחאות שחשוב לזכור לבחינה</td></tr>
+          <tr><td><span class="en" dir="ltr">Σ|x[n]|² = (1/N)·Σ|X[k]|²</span></td><td>נוסחאות שחשוב לזכור לבחינה</td></tr>
+          <tr><td>…עוד שלוש נוסחאות</td><td>…</td></tr>
+        </table>
+        <p style="margin-top:8px"><strong>טעות נפוצה</strong> · <strong>שלוש שאלות תרגול</strong> (פתרונות בסוף)</p>
+      </div>
+    </div>
+  </div>
+  </section>
+
+<!-- 20 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5 · זום</span> · שער 2 · מדגם</div>
+  <h2>בודקים שלוש נוסחאות, לא את כולן</h2>
+  <div class="body">
+    <div class="grid g3">
+      <div class="card"><div class="icon">1</div><h3>למה מדגם</h3><p>בדיקה של כל הנוסחאות לוקחת שעות. בדיקה של שלוש לוקחת דקות.</p></div>
+      <div class="card"><div class="icon">2</div><h3>מה הוא מוצא</h3><p>טעות שחוזרת: אם ה-Skill מעתיק לא נכון, זה יופיע גם בנוסחאות שנבחרו.</p></div>
+      <div class="card acc"><div class="icon">3</div><h3>מה הוא לא מוצא</h3><p>טעות בודדת בנוסחה שלא נבחרה. לכן בנושא קריטי מגדילים את המדגם.</p></div>
+    </div>
+    <p class="mt hint">⚡ נסו עכשיו: במשימה שלכם, כמה פריטים הייתם מוכנים לבדוק ביד, ואיזה מהם הכי חשוב?</p>
+  </div>
+  </section>
+
+<!-- 21 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5 · זום</span> · שלב 3 · sample-check</div>
+  <h2>בונים את ה-Skill שמכין את המדגם</h2>
+  <div class="body">
+<div class="code he"><button class="copy">העתק</button>בנה Skill בשם sample-check בתיקייה .claude/skills/.
+הוא בוחר 3 נוסחאות מ-3 דפים שונים ב-summaries/ ובונה את sample-check.md:
+- שורה ראשונה: status: pending
+- ההגרלה בעזרת python3 (random.sample), לא "בעין", ולא הנוסחאות הראשונות בכל דף
+- טבלה: דף · הנוסחה כפי שכתובה בדף · הציטוט המדויק מהמקור · ✅ או ❌ לפי הערכה שלך · בדיקה שלי (ריק)
+- אם הנוסחה לא נמצאת במקור, סמן ❌ ואל תנסה לתקן אותה
+אל תשנה את הדפים. רק מצא ודווח.</div>
+  </div>
+  </section>
+
+<!-- 22 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5 · זום</span> · <span class="badge demo">בדמו</span> עוברים ל-Claude</div>
+  <h2>בונים ומריצים את sample-check</h2>
+  <div class="body">
+    <ol class="steps">
+      <li>הדביקו את הבקשה, ובדקו שה-Skill מופיע אחרי <span class="en">/</span></li>
+      <li>הריצו <span class="en">/sample-check</span></li>
+      <li>פתחו את <span class="en">sample-check.md</span>: שלוש שורות משלושה דפים</li>
+      <li>הצביעו על שורת הסטטוס ועל עמודת הציטוט</li>
+    </ol>
+    <div class="done-when">✅ <strong>אמור להופיע:</strong> <span class="en">sample-check.md</span> עם <span class="en">status: pending</span>, שלוש נוסחאות משלושה דפים, וציטוט ליד כל אחת.</div>
+  </div>
+  </section>
+
+<!-- 23 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5 · זום</span> · שלב 3 · מה יוצא</div>
+  <h2>כך נראה sample-check.md</h2>
+  <div class="body">
+    <div class="mkw">
+      <div class="mkb">sample-check.md · דוגמה</div>
+      <div class="mki">
+        <span class="mks">status: pending</span>
+        <table style="margin-top:10px">
+          <tr><th style="white-space:nowrap">דף</th><th>הנוסחה בדף</th><th>הציטוט מהמקור</th><th>Claude</th><th>אני</th></tr>
+          <tr><td>DFT</td><td><span class="en" dir="ltr">Σ|x[n]|² = (1/N)·Σ|X[k]|²</span></td><td>״פארסבל: <span class="en" dir="ltr">Σ|x[n]|² = (1/N)·Σ|X[k]|²</span>״</td><td>✅</td><td></td></tr>
+          <tr><td>FFT</td><td><span class="en" dir="ltr">FFT: O(N log N)</span></td><td>״FFT: O(N log N) פעולות״</td><td>✅</td><td></td></tr>
+          <tr><td style="white-space:nowrap">תמרת Z</td><td><span class="en" dir="ltr">z = e^{jω}</span></td><td>״DTFT = Z על המעגל היחידה: <span class="en" dir="ltr">z = e^{jω}</span>״</td><td>✅</td><td></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  </section>
+
+<!-- 24 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5 · זום</span> · שער 2 · מדגם</div>
+  <h2>בודקים מול הקובץ המקורי, לא מול הציטוט</h2>
+  <div class="body">
+    <div class="callouts">
+      <div class="callout"><strong>פותחים את <span class="en">lecture-notes-dsp.md</span></strong><span>מחפשים את הנוסחה בעצמכם, עם <span class="en">Ctrl+F</span></span></div>
+      <div class="callout"><strong>בודקים כל סימן</strong><span>חזקות, מקדמים כמו <span class="en">1/N</span>, אינדקסים</span></div>
+      <div class="callout"><strong>ממלאים ✅ או ❌</strong><span>רק אם כולן ✅, משנים ל-<span class="en">status: verified</span></span></div>
+    </div>
+    <div class="stop">🛑 הציטוט ש-Claude כתב הוא רק הכוונה, והוא יכול לטעות כמו כל דבר אחר. לכן פותחים את המקור.</div>
+  </div>
+  </section>
+
+<!-- 25 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5 · זום</span> · שער 2 · כש-❌</div>
+  <h2>כשהמדגם נכשל: מתקנים את הסיבה, לא נוסחה אחת</h2>
+  <div class="body">
+    <div class="flow g">
+      <div class="step"><b>❌ בשורה אחת</b><span>למשל חסר <span class="en">1/N</span></span></div><div class="arrow">←</div>
+      <div class="step"><b>מחפשים דפוס</b><span>זה קורה גם בדפים אחרים?</span></div><div class="arrow">←</div>
+      <div class="step"><b>מתקנים הוראה</b><span>אחת, ב-<span class="en">exam-prep</span></span></div><div class="arrow">←</div>
+      <div class="step gate"><b>מריצים הכול שוב</b><span>שלב 2, שלב 3, מדגם חדש</span></div>
+    </div>
+    <p class="mt lead">מתקנים ידנית נוסחה אחת? אותה טעות נשארת בדפים שלא נבדקו.</p>
+  </div>
+  </section>
+
+<!-- 26 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5 · זום</span> · המתזמר · exam-chain</div>
+  <h2>Skill אחד שמריץ את כולם ועוצר בשערים</h2>
+  <div class="body">
+<div class="code he"><button class="copy">העתק</button>בנה Skill מתזמר בשם exam-chain בתיקייה .claude/skills/. הוא מריץ את השרשרת לפי הסדר:
+1. exam-plan. אחריו עצור: הראה לי את study-plan.md ושאל אם לערוך. אל תמשיך עד שבשורה הראשונה כתוב status: approved.
+2. exam-prep על כל הנושאים שבתוכנית.
+3. sample-check. אחריו עצור: הראה לי את sample-check.md ואל תמשיך עד שבשורה הראשונה כתוב status: verified.
+בסוף רשום את כל הקבצים שנוצרו ואילו נושאים נשארו בלי דף.
+אל תשנה בעצמך אף שורת status. רק אני משנה אותה.</div>
+  </div>
+  </section>
+
+<!-- 27 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5 · זום</span> · <span class="badge demo">בדמו</span> עוברים ל-Claude</div>
+  <h2>מריצים את כל השרשרת מההתחלה</h2>
+  <div class="body">
+    <ol class="steps">
+      <li>עבדו בעותק נקי של התיקייה: בלי <span class="en">study-plan.md</span>, <span class="en">summaries/</span> ו-<span class="en">sample-check.md</span></li>
+      <li>הריצו <span class="en">/exam-chain</span>. הוא עוצר אחרי התוכנית: ערכו ואשרו בקובץ, ואז כתבו ״המשך״</li>
+      <li>הוא עוצר אחרי המדגם: בדקו מול המקור, כתבו <span class="en">verified</span> בקובץ, ואז ״המשך״</li>
+      <li>פתחו את התיקייה וספרו את הקבצים שנוצרו</li>
+    </ol>
+    <div class="done-when">✅ <strong>אמור להופיע:</strong> שתי עצירות, שני סטטוסים ששניתם בעצמכם (<span class="en">approved</span>, <span class="en">verified</span>), ודף לכל נושא שיש עליו סיכום.</div>
+  </div>
+  </section>
+
+<!-- 28 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5 · זום</span> · איך מתכננים</div>
+  <h2>איפה שמים שער, בשלוש שאלות</h2>
+  <div class="body">
+    <div class="grid g3">
+      <div class="card"><div class="icon">1</div><h3>קשה לבטל?</h3><p>שער לפני הפעולה: מחיקה, שליחה, שינוי נתונים.</p></div>
+      <div class="card"><div class="icon">2</div><h3>פלט קטן שקובע הכול?</h3><p>שער עריכה: תוכנית, רשימה, סיווג.</p></div>
+      <div class="card acc"><div class="icon">3</div><h3>פלט גדול מכדי לקרוא?</h3><p>שער מדגם: עשרות דפים, שורות או נוסחאות.</p></div>
+    </div>
+    <p class="mt hint">⚡ נסו עכשיו: עברו על השלבים של המשימה שלכם עם שלוש השאלות, וסמנו איפה שער.</p>
+  </div>
+  </section>
+
+<!-- 29 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5 · זום</span> · טעויות נפוצות</div>
+  <h2>ארבע דרכים שבהן שער מפסיק להיות שער</h2>
+  <div class="body">
+    <ul class="clean">
+      <li><strong>שער בלי קובץ:</strong> ״עצור ושאל״ היא רק בקשה. שורת סטטוס עושה אותה מחייבת.</li>
+      <li><strong>Claude מאשר בשמכם:</strong> אוסרים עליו לשנות את שורת הסטטוס.</li>
+      <li><strong>מדגם של השלושה הראשונים:</strong> מגרילים באמת, מדפים שונים.</li>
+      <li><strong>מתקנים דף אחד ומאשרים:</strong> מתקנים את ה-Skill ומריצים הכול שוב.</li>
+    </ul>
+  </div>
+  </section>
+
+<!-- 30 -->
+<section class="slide workshop" data-mod="5">
+  <div class="kicker"><span class="badge work">תרגול בבית</span> · לא חובה</div>
+  <h2>בונים שרשרת משלכם, עם שני שערים</h2>
+  <div class="body">
+    <ol class="steps">
+      <li>בחרו משימה שחוזרת אצלכם: סיכומי הרצאות, דוחות מעבדה, סקירת מאמרים</li>
+      <li>חלקו לשלוש חוליות, וכל חוליה כותבת קובץ</li>
+      <li>החליטו איפה שער עריכה ואיפה שער מדגם, לפי שלוש השאלות</li>
+      <li>בנו עם הבקשות מהשקפים, והריצו את המתזמר</li>
+    </ol>
+    <div class="done-when">✅ <strong>סיימתם כש:</strong> השרשרת עצרה פעמיים, ועבדה על חומר אמיתי שלכם.</div>
+  </div>
+  </section>
+
+<!-- 31 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="badge flash">Flashcards</span> · לחצו על כרטיס כדי להפוך</div>
+  <h2>בודקים שזה נקלט</h2>
+  <div class="flash-grid">
+    <div class="fc"><div class="mki"><div class="f">שרשרת</div><div class="b">כמה Skills, כל אחד כותב קובץ והבא בתור קורא אותו.</div></div></div>
+    <div class="fc"><div class="mki"><div class="f">שער עריכה</div><div class="b">האדם קורא את כל הפלט הקטן, עורך ומאשר.</div></div></div>
+    <div class="fc"><div class="mki"><div class="f">שער מדגם</div><div class="b">האדם בודק כמה פריטים מתוך הרבה, ומשתמש בהם כדי לשפוט את השיטה.</div></div></div>
+    <div class="fc"><div class="mki"><div class="f">למה שורת status</div><div class="b">היא הופכת בקשה ״עצור״ לחסימה שהשלב הבא בודק.</div></div></div>
+    <div class="fc"><div class="mki"><div class="f">מדגם נכשל</div><div class="b">מתקנים את ההוראה ב-Skill ומריצים הכול שוב.</div></div></div>
+    <div class="fc"><div class="mki"><div class="f">מתזמר</div><div class="b">Skill שמריץ את השלבים בסדר ועוצר בשערים.</div></div></div>
+  </div>
+  </section>
+
+<!-- 32 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="badge quiz">Quiz 1/2</span></div>
+  <div class="body">
+    <div class="q">נועה מריצה exam-prep כשבשורה הראשונה של study-plan.md כתוב status: draft. מה אמור לקרות?</div>
+    <div class="opts" data-quiz>
+      <button class="opt"><span class="l">א</span>הוא כותב דפים לכל הנושאים</button>
+      <button class="opt" data-correct><span class="l">ב</span>הוא עוצר, אומר שהתוכנית לא אושרה, ולא כותב קבצים</button>
+      <button class="opt"><span class="l">ג</span>הוא מאשר את התוכנית בעצמו וממשיך</button>
+      <button class="opt"><span class="l">ד</span>הוא מוחק את study-plan.md</button>
+    </div>
+    <div class="explain">השלב הבא בודק את השורה הראשונה. בלי approved, הוא עוצר. בגלל זה השער חוסם באמת ולא רק מבקש.</div>
+  </div>
+  </section>
+
+<!-- 33 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="badge quiz">Quiz 2/2</span></div>
+  <div class="body">
+    <div class="q">במדגם: שתי נוסחאות ✅ ואחת ❌, כי בדף חסר 1/N. מה עושים?</div>
+    <div class="opts" data-quiz>
+      <button class="opt"><span class="l">א</span>מתקנים את הנוסחה ומאשרים</button>
+      <button class="opt"><span class="l">ב</span>מאשרים, כי רוב הנוסחאות נכונות</button>
+      <button class="opt" data-correct><span class="l">ג</span>מתקנים את ההוראה ב-exam-prep, מריצים הכול שוב ובודקים מדגם חדש</button>
+      <button class="opt"><span class="l">ד</span>מוחקים את סיכומי ההרצאות</button>
+    </div>
+    <div class="explain">אותה טעות יכולה לשבת בדפים שלא נבדקו. מתקנים את הסיבה, מריצים הכול ובודקים מדגם חדש.</div>
+  </div>
+  </section>
+
+<!-- 34 -->
+<section class="slide" data-mod="5">
+  <div class="kicker"><span class="mod">מודול 5 · זום</span> · סיכום</div>
+  <h2>מה עכשיו יש לכם</h2>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card acc"><h3>✔ למדנו</h3><p>שרשרת של Skills שמדברים דרך קבצים, ושני סוגי שערים: עריכה כשהפלט קטן, מדגם כשהוא גדול.</p></div>
+      <div class="card"><h3>✔ בנינו</h3><p><span class="en">exam-plan</span>, <span class="en">exam-prep</span> מעודכן, <span class="en">sample-check</span> ומתזמר אחד עם שורות <span class="en">status</span>.</p></div>
+    </div>
+    <div class="example mt">
+      <div class="who">ומה הלאה</div>
+      <p>עד עכשיו השרשרת קראה קבצים מהתיקייה. <strong>במודול 6 מחברים אותה לעולם שבחוץ</strong>: יומן, מייל ואתרים, דרך MCP.</p>
+    </div>
+  </div>
+  </section>
+
+<div id="progress"></div>
+</div><!-- /stage -->
+
+<div id="nav"><button id="prev">→ הקודם</button><button id="fs">⛶</button><button id="next">הבא ←</button></div>
+<script src="day1.js"></script>
+</body>
+</html>

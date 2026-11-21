@@ -187,6 +187,7 @@ footer{margin:70px 0 50px;padding-top:24px;border-top:1px solid var(--line);colo
     <a class="m4" href="#m4"><i>4</i>Skills</a>
     <h5>החלק השני</h5>
     <a class="m5" href="#m5"><i>5</i>צנרת עם שער אנושי</a>
+    <a class="m5" href="#m5z"><i>5</i>5 · זום: שרשרת עם שני שערים</a>
     <a class="m6" href="#m6"><i>6</i>MCP ו-Connectors</a>
     <a class="m7" href="#m7"><i>7</i>סוכני-משנה</a>
     <a class="m8" href="#m8"><i>8</i>התהליך האישי ושיתוף</a>
@@ -1119,6 +1120,257 @@ the previous output.
     <div class="help"><b>נתקעתם?</b> הדביקו ל-Claude את ההודעה ושאלו: "מה השלב שנכשל, ומה לתקן בבקשה?". אם משהו נכשל, מתקנים את הבקשה של השלב ולא את הפלט.</div>
     <p class="hint">הדברים לזכור: שרשרת היא שלבים שמדברים דרך קבצים · השער נמצא לפני כל מה שקשה לבטל, כמו מחיקה · כלל "לא ממציאים" נכתב ב-<code>CLAUDE.md</code> ותקף בכל שלב · המתזמר מריץ את השלבים בסדר ועוצר ב-STOP. סיימתם מוקדם? הסבירו את השרשרת לשכן: הסבר לאחר הוא בדיקה טובה.</p>
     <div class="help" style="background:var(--blue-soft)"><b>מה הלאה:</b> עד עכשיו הכול נשאר בתיקייה אחת. מה אם השרשרת צריכה נתונים מהאינטרנט, מהמייל או מכלי שאתם משתמשים בו? זה מודול 6: מחברים את Claude לעולם שבחוץ.</div>
+  </div>
+</section>
+
+<!-- ======================= MODULE 5 · ZOOM ======================= -->
+<section class="mod m5" id="m5z">
+  <div class="mhead">
+    <div class="num">מודול 5 · זום</div>
+    <h2>שרשרת של Skills עם שני שערים</h2>
+    <p>שלושה Skills שעובדים בזה אחר זה, ושני מקומות שבהם הכול עוצר ואתם מחליטים: שער אחד לעריכה ושער אחד לבדיקת מדגם. בונים אותה צעד אחר צעד על התיקייה של נועה, בדיוק כמו בהדגמה.</p>
+    <span class="out">תוצר: שלושה Skills, מתזמר אחד, ושני שערים שנאכפים בשורת status בקובץ</span>
+    <a class="sl" href="slides/module5z.html" target="_blank" rel="noopener">🎞 פתחו את שקפי המודול</a>
+    <ul class="toc">
+      <li><a href="#m5z-ideas">רעיונות מרכזיים</a></li>
+      <li><a href="#m5z-ws0">הכנה ו-CLAUDE.md</a></li>
+      <li><a href="#m5z-s1">שלב 1 · exam-plan</a></li>
+      <li><a href="#m5z-s2">שלב 2 · שדרוג exam-prep ובדיקת השער</a></li>
+      <li><a href="#m5z-g1">שער 1 · עריכה</a></li>
+      <li><a href="#m5z-s2run">שלב 2 · הרצה</a></li>
+      <li><a href="#m5z-s3">שלב 3 · sample-check</a></li>
+      <li><a href="#m5z-g2">שער 2 · מדגם</a></li>
+      <li><a href="#m5z-orch">המתזמר exam-chain</a></li>
+      <li><a href="#m5z-check">בדיקות, טעויות ותרגול בבית</a></li>
+    </ul>
+  </div>
+
+  <div class="sec" id="m5z-ideas">
+    <span class="badge idea">רעיונות מרכזיים</span>
+    <h3>שרשרת, ושני סוגי שערים</h3>
+    <p>הדוגמה: נועה, סטודנטית להנדסת חשמל, צריכה תוכנית חזרה לבחינה ב-DSP ודפי חזרה שאפשר לסמוך עליהם. יש לה סילבוס של 14 שבועות, אבל סיכומים של שלושה שיעורים בלבד. השרשרת צריכה להתמודד עם החור הזה בלי להמציא.</p>
+    <table>
+      <tr><th>exam-plan</th><th>🛑 שער 1</th><th>exam-prep</th><th>sample-check</th><th>🛑 שער 2</th></tr>
+      <tr><td>בונה תוכנית</td><td>עריכה</td><td>דף לכל נושא</td><td>בוחר נוסחאות</td><td>מדגם</td></tr>
+    </table>
+    <table>
+      <tr><th></th><th>שער עריכה</th><th>שער מדגם</th></tr>
+      <tr><td><b>מה אתם עושים</b></td><td>קוראים הכול ועורכים</td><td>בודקים כמה פריטים מתוך הרבה</td></tr>
+      <tr><td><b>מתי מתאים</b></td><td>הפלט קטן וקובע מה יקרה הלאה</td><td>הפלט גדול מכדי לקרוא עד הסוף</td></tr>
+      <tr><td><b>מה תופסים</b></td><td>החלטה שגויה, לפני שהיא מתפשטת</td><td>טעות שחוזרת על עצמה בהרבה מקומות</td></tr>
+      <tr><td><b>אצל נועה</b></td><td>תוכנית החזרה</td><td>הנוסחאות בדפי החזרה</td></tr>
+    </table>
+    <div class="help" style="background:var(--blue-soft)"><b>איך שער נאכף:</b> "עצור ושאל אותי" היא רק בקשה. כדי שהשער יהיה אמיתי, הקובץ נפתח בשורה <code>status: draft</code>. אתם משנים אותה בעצמכם ל-<code>approved</code> (או <code>verified</code>), והשלב הבא בודק את השורה ומסרב לרוץ בלעדיה. <b>Claude אסור לו לשנות אותה.</b> שער ש-Claude יכול לפתוח לבד הוא לא שער.</div>
+    <div class="help"><b>למה מדגם:</b> בדיקה של כל הנוסחאות לוקחת שעות, ושל שלוש לוקחת דקות. מדגם מוצא טעות שחוזרת על עצמה, אבל לא טעות בודדת בנוסחה שלא נבחרה. לכן בנושא קריטי מגדילים את המדגם.</div>
+    <p class="hint">⚡ נסו עכשיו: חשבו על משימה שלכם בשלושה שלבים. איפה הייתם שמים שער עריכה, ואיפה שער מדגם?</p>
+  </div>
+
+  <div class="sec" id="m5z-ws0">
+    <span class="badge ws">שלב 0 · כ-10 דקות</span><br><span class="where">תיקייה פתוחה: noa-chain-kit</span>
+    <h3>הכנה: תיקיית נועה וכללי השרשרת</h3>
+    <p class="goal">המטרה: תיקייה פתוחה ב-VS Code, ו-<code>CLAUDE.md</code> עם סעיף חוקים לשרשרת, לפני שיש בה Skill אחד.</p>
+    <ol class="steps" data-key="m5z-ws0">
+      <li><label><input type="checkbox"><span><a href="assets/noa-chain-kit.zip" download><b>הורידו את תיקיית נועה (noa-chain-kit.zip)</b></a> ופתחו את הקובץ. בתוכה: <code>exams.md</code>, סילבוסים, <code>lecture-notes-dsp.md</code>, <code>CLAUDE.md</code> ו-Skill קיים בשם <code>exam-prep</code></span></label></li>
+      <li><label><input type="checkbox"><span>ב-VS Code: File ← Open Folder ובחרו את <code>noa-chain-kit</code>. פתחו שיחה חדשה בלוח Claude Code</span></label></li>
+      <li><label><input type="checkbox"><span>הדביקו את בקשת ה-CLAUDE.md שלמטה ושלחו</span></label></li>
+      <li><label><input type="checkbox"><span>Claude מראה מה הוסיף. קראו לפני שממשיכים, ופתחו את <code>CLAUDE.md</code> בעורך כדי לראות את הסעיף החדש</span></label></li>
+    </ol>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">שלב 0 · CLAUDE.md</span>הוסף ל-CLAUDE.md שלי סעיף חדש בשם "שרשרת בחינות" עם הכללים האלה:
+- כל שלב כותב את הקובץ שלו לפני שהשלב הבא רץ
+- לעולם לא משנים את קבצי הקלט: exams.md, syllabus-*.md, lecture-notes-dsp.md
+- אסור להמציא נוסחאות. נוסחה שלא מופיעה בסיכומים או בסילבוס לא נכנסת, ובמקומה כותבים מה חסר
+- בשער: מציגים את הקובץ, עוצרים ומחכים לי. אסור לשנות בעצמך שורת status
+אל תשנה דבר אחר בקובץ. בסוף הראה לי מה הוספת.</div>
+    <div class="done">✅ <b>סיימתם כש:</b> יש סעיף "שרשרת בחינות" בסוף <code>CLAUDE.md</code>, וכל מה שהיה בקובץ לפניו נשאר כמו שהיה.</div>
+    <div class="help"><b>שני החוקים החשובים:</b> "אסור להמציא נוסחאות" ו"אסור לשנות בעצמך שורת status". נחזור אליהם בשערים.</div>
+    <div class="help"><b>חלון הרשאה?</b> כש-Claude בונה Skill הוא כותב לתיקייה <code>.claude/skills/</code>, ויכול להופיע חלון קטן שמבקש אישור. קראו ובחרו Yes או Allow. ניסוח הכפתורים משתנה בין גרסאות.</div>
+  </div>
+
+  <div class="sec" id="m5z-s1">
+    <span class="badge ws">שלב 1 · כ-10 דקות</span><br><span class="where">תיקייה פתוחה: noa-chain-kit</span>
+    <h3>בונים את ה-Skill שמציע תוכנית: exam-plan</h3>
+    <p class="goal">המטרה: Skill שקורא את הבחינות, הסילבוס והסיכומים, וכותב <code>study-plan.md</code> עם <code>status: draft</code>. הוא רק מציע.</p>
+    <ol class="steps" data-key="m5z-s1">
+      <li><label><input type="checkbox"><span>הדביקו את בקשת הבנייה שלמטה. Claude יוצר את התיקייה <code>.claude/skills/exam-plan/</code></span></label></li>
+      <li><label><input type="checkbox"><span>הקלידו <code>/</code> ובדקו ש-<code>exam-plan</code> מופיע ברשימה</span></label></li>
+      <li><label><input type="checkbox"><span>הריצו <code>/exam-plan</code> והמתינו: Claude קורא שלושה קבצים וכותב אחד</span></label></li>
+      <li><label><input type="checkbox"><span>פתחו את <code>study-plan.md</code> והסתכלו על שורת הסטטוס, על עמודת "יש סיכום?" ועל סעיף "חסר חומר"</span></label></li>
+    </ol>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">שלב 1 · בניית exam-plan</span>בנה Skill בשם exam-plan בתיקייה .claude/skills/.
+הוא קורא את exams.md, את syllabus-dsp.md ואת lecture-notes-dsp.md, וכותב את study-plan.md לבחינה ב-DSP:
+- שורה ראשונה: status: draft
+- תאריך הבחינה וסוגה (ספר פתוח או סגור), מתוך exams.md
+- טבלה: נושא · שבוע בסילבוס · יש סיכום? (כן / חלקי / לא) · עדיפות · כמה ימי חזרה. העדיפות לפי הטיפים והערות בקבצים
+- סעיף "חסר חומר": נושאים בלי סיכום, ומה צריך להשלים
+רק מציעים. אל תכתוב נוסחאות, אל תמציא נושאים שלא בסילבוס, ואל תשנה קבצים אחרים.</div>
+    <div class="done">✅ <b>סיימתם כש:</b> קיים <code>study-plan.md</code>, בשורה הראשונה <code>status: draft</code>, ויש בו טבלת נושאים וסעיף "חסר חומר".</div>
+    <div class="prompt"><span class="tag">דוגמה לתוצאה · study-plan.md (קיצרנו; אצלכם זה יהיה קצת שונה, וארוך יותר)</span>status: draft
+
+בחינה: 15.01.2027 · ספר פתוח · תקציב חזרה: 14 ימים
+
+נושא | שבוע | יש סיכום? | עדיפות | ימים
+תמרת DTFT ותכונותיה | 2 | חלקי | בינונית | 1.25
+תמרת DFT: הגדרה ותכונות | 3 | כן | בינונית | 1
+FFT: אלגוריתם ויישומים | 4 | כן | גבוהה | 1.5
+תמרת Z: הגדרה ותכונות | 6 | חלקי | גבוהה | 1.75
+…
+
+חסר חומר: שבוע 1, 8, 9–13: אין סיכום, ומה להשלים מהספר</div>
+    <div class="help"><b>למה רוב הנושאים ב"חסר חומר"?</b> זה נכון: יש סיכומים לשלושה שיעורים בלבד. חשוב שהשרשרת תגיד את זה במקום להמציא חומר.</div>
+  </div>
+
+  <div class="sec" id="m5z-s2">
+    <span class="badge ws">שלב 2 · כ-10 דקות</span><br><span class="where">תיקייה פתוחה: noa-chain-kit</span>
+    <h3>משדרגים את exam-prep, ובודקים שהשער עוצר</h3>
+    <p class="goal">המטרה: להפוך את ה-Skill הקיים לחוליה בשרשרת. הוא לא רץ בלי תוכנית מאושרת, עובר על כל הנושאים, ושם מקור ליד כל נוסחה. אחר כך בודקים שהוא באמת מסרב.</p>
+    <ol class="steps" data-key="m5z-s2">
+      <li><label><input type="checkbox"><span>הדביקו את בקשת השדרוג. Claude עורך את <code>.claude/skills/exam-prep/SKILL.md</code> ומראה מה שינה</span></label></li>
+      <li><label><input type="checkbox"><span>התוכנית עדיין <code>draft</code>. הריצו <code>/exam-prep הכול</code></span></label></li>
+      <li><label><input type="checkbox"><span>Claude אמור לעצור ולומר שהתוכנית עוד לא אושרה</span></label></li>
+      <li><label><input type="checkbox"><span>פתחו את התיקייה: אין <code>summaries/</code>, שום דף לא נכתב</span></label></li>
+    </ol>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">שלב 2 · שדרוג exam-prep</span>עדכן את ה-Skill הקיים .claude/skills/exam-prep/SKILL.md. אל תמחק את הכללים שיש בו, רק הוסף:
+1. לפני הכול קרא את study-plan.md. אם בשורה הראשונה לא כתוב status: approved, עצור, אמור לי שהתוכנית עוד לא אושרה, ואל תכתוב שום קובץ.
+2. אם ביקשתי "הכול": בלי לשאול שאלות, עבור על כל נושא בתוכנית שיש לו סיכום, ושמור דף לכל נושא ב-summaries/.
+3. נושא בלי סיכום: אל תכתוב לו דף. הוסף שורה ל-summaries/MISSING.md עם שם הנושא ומה חסר.
+4. כל אחת מחמש הנוסחאות חייבת להופיע מילה במילה בסיכומים או בסילבוס. ליד כל נוסחה כתוב באיזה קובץ ובאיזה שיעור היא.
+בסוף הראה לי מה שינית.</div>
+    <div class="done">✅ <b>סיימתם כש:</b> קיבלתם סירוב ברור, ואין תיקיית <code>summaries/</code>. זה הרגע שבו רואים שהשער אמיתי.</div>
+    <div class="help"><b>Claude כתב דפים בכל זאת?</b> הסעיף הראשון בבקשה לא נכנס. בקשו ממנו: "פתח את SKILL.md והראה לי איפה הוא בודק את השורה הראשונה של study-plan.md", ותקנו.</div>
+  </div>
+
+  <div class="sec" id="m5z-g1">
+    <span class="badge ws">שער 1 · עריכה · כ-5 דקות</span><br><span class="where">עורכים בעורך, לא בצ׳אט</span>
+    <h3>קוראים את כל התוכנית, עורכים בעצמכם ומאשרים</h3>
+    <p class="goal">המטרה: תוכנית שאתם מסכימים לה, ושורה ראשונה <code>status: approved</code> ששניתם בעצמכם.</p>
+    <ol class="steps" data-key="m5z-g1">
+      <li><label><input type="checkbox"><span>פתחו את <code>study-plan.md</code> בעורך</span></label></li>
+      <li><label><input type="checkbox"><span>ערכו לפחות שני דברים. למשל: שנו עדיפות של שורה אחת (DFT מבינונית לגבוהה, כי FFT נשען עליו), והוסיפו ימים ל"היפוך ויציבות" (פרופ׳ לוי אוהב שאלות על יציבות)</span></label></li>
+      <li><label><input type="checkbox"><span>שנו ידנית את השורה הראשונה ל-<code>status: approved</code> ושמרו</span></label></li>
+      <li><label><input type="checkbox"><span>אל תבקשו מ-Claude לאשר. זו ההחלטה שלכם</span></label></li>
+    </ol>
+    <div class="done">✅ <b>סיימתם כש:</b> השורה הראשונה היא <code>status: approved</code>, והתוכנית בקובץ היא התוכנית שאתם רוצים.</div>
+    <p class="hint">⚡ נסו עכשיו: מה היה קורה אם Claude היה משנה את השורה הזו בעצמו?</p>
+  </div>
+
+  <div class="sec" id="m5z-s2run">
+    <span class="badge ws">שלב 2 · הרצה · כ-5 דקות</span><br><span class="where">תיקייה פתוחה: noa-chain-kit</span>
+    <h3>מריצים את exam-prep על כל הנושאים</h3>
+    <p class="goal">המטרה: דף חזרה לכל נושא שיש עליו סיכום, ושורה ב-<code>MISSING.md</code> לכל נושא בלי סיכום.</p>
+    <ol class="steps" data-key="m5z-s2run">
+      <li><label><input type="checkbox"><span>הריצו שוב <code>/exam-prep הכול</code>. הפעם הסטטוס <code>approved</code>, והוא ממשיך</span></label></li>
+      <li><label><input type="checkbox"><span>המתינו: Claude כותב דף לכל נושא שיש עליו סיכום</span></label></li>
+      <li><label><input type="checkbox"><span>פתחו את התיקייה <code>summaries/</code> ואת <code>MISSING.md</code></span></label></li>
+      <li><label><input type="checkbox"><span>פתחו דף אחד, והסתכלו על חמש הנוסחאות ועל המקור שכתוב ליד כל אחת</span></label></li>
+    </ol>
+    <div class="done">✅ <b>סיימתם כש:</b> יש דף לכל נושא שיש עליו סיכום (גם חלקי), <code>MISSING.md</code> מפרט נושאים בלי סיכום, ולכל נוסחה יש מקור. בהרצה שבדקנו נכתבו 6 דפים ו-7 נושאים נכנסו ל-<code>MISSING.md</code>; אצלכם המספרים יכולים להיות קצת שונים.</div>
+    <div class="prompt"><span class="tag">דוגמה · חלק מדף חזרה (summaries/exam-prep-DFT.md)</span>נוסחאות:
+1. X[k] = Σ x[n]·W^{nk}, W=e^{-j2π/N}  — (lecture-notes-dsp.md, נוסחאות שחשוב לזכור לבחינה)
+2. Σ|x[n]|² = (1/N)·Σ|X[k]|²  — (lecture-notes-dsp.md, נוסחאות שחשוב לזכור לבחינה)
+…</div>
+  </div>
+
+  <div class="sec" id="m5z-s3">
+    <span class="badge ws">שלב 3 · כ-10 דקות</span><br><span class="where">תיקייה פתוחה: noa-chain-kit</span>
+    <h3>בונים את ה-Skill שמכין את המדגם: sample-check</h3>
+    <p class="goal">המטרה: Skill שמגריל 3 נוסחאות מ-3 דפים שונים, ושם ליד כל אחת ציטוט מהמקור, כדי שתוכלו לבדוק. הוא לא מתקן דבר.</p>
+    <ol class="steps" data-key="m5z-s3">
+      <li><label><input type="checkbox"><span>הדביקו את בקשת הבנייה שלמטה, ובדקו ש-<code>sample-check</code> מופיע אחרי <code>/</code></span></label></li>
+      <li><label><input type="checkbox"><span>הריצו <code>/sample-check</code></span></label></li>
+      <li><label><input type="checkbox"><span>פתחו את <code>sample-check.md</code>: שלוש שורות משלושה דפים שונים</span></label></li>
+      <li><label><input type="checkbox"><span>הסתכלו על שורת הסטטוס (<code>pending</code>) ועל עמודת הציטוט</span></label></li>
+    </ol>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">שלב 3 · בניית sample-check</span>בנה Skill בשם sample-check בתיקייה .claude/skills/.
+הוא בוחר 3 נוסחאות מ-3 דפים שונים ב-summaries/ ובונה את sample-check.md:
+- שורה ראשונה: status: pending
+- ההגרלה בעזרת python3 (random.sample), לא "בעין", ולא הנוסחאות הראשונות בכל דף
+- טבלה: דף · הנוסחה כפי שכתובה בדף · הציטוט המדויק מהמקור · ✅ או ❌ לפי הערכה שלך · בדיקה שלי (ריק)
+- אם הנוסחה לא נמצאת במקור, סמן ❌ ואל תנסה לתקן אותה
+אל תשנה את הדפים. רק מצא ודווח.</div>
+    <div class="done">✅ <b>סיימתם כש:</b> <code>sample-check.md</code> עם <code>status: pending</code>, שלוש נוסחאות משלושה דפים, וציטוט ליד כל אחת.</div>
+    <div class="prompt"><span class="tag">דוגמה · sample-check.md (שלכם ייבחר באקראי)</span>status: pending
+
+דף | הנוסחה בדף | הציטוט מהמקור | Claude | אני
+DFT | Σ|x[n]|² = (1/N)·Σ|X[k]|² | "פארסבל: Σ|x[n]|² = (1/N)·Σ|X[k]|²" | ✅ |
+FFT | FFT: O(N log N) | "FFT: O(N log N) פעולות" | ✅ |
+…</div>
+    <div class="help"><b>למה הגרלה בעזרת python3?</b> כשמבקשים ממודל לבחור "באקראי" הוא נוטה לבחור את מה שנראה לו מייצג. סקריפט נותן הגרלה אמיתית.</div>
+  </div>
+
+  <div class="sec" id="m5z-g2">
+    <span class="badge ws">שער 2 · מדגם · כ-5 דקות</span><br><span class="where">עורכים בעורך ופותחים את הקובץ המקורי</span>
+    <h3>בודקים מול הקובץ המקורי, לא מול הציטוט</h3>
+    <p class="goal">המטרה: לדעת אם ה-Skill מעתיק נוסחאות נכון. הציטוט ש-Claude כתב הוא רק הכוונה, והוא יכול לטעות כמו כל פלט אחר.</p>
+    <ol class="steps" data-key="m5z-g2">
+      <li><label><input type="checkbox"><span>פתחו את <code>lecture-notes-dsp.md</code> וחפשו (Ctrl+F) כל אחת מהנוסחאות בעצמכם</span></label></li>
+      <li><label><input type="checkbox"><span>בדקו כל סימן: חזקות, מקדמים כמו <code>1/N</code>, אינדקסים</span></label></li>
+      <li><label><input type="checkbox"><span>מלאו בעמודה "אני" ✅ או ❌</span></label></li>
+      <li><label><input type="checkbox"><span>רק אם כל השלוש ✅: שנו ידנית את השורה הראשונה ל-<code>status: verified</code> ושמרו</span></label></li>
+    </ol>
+    <div class="done">✅ <b>סיימתם כש:</b> בדקתם שלוש נוסחאות מול המקור, ו-<code>status: verified</code> נכתב על ידכם.</div>
+    <h4 style="margin:18px 0 6px">מה עושים כשיש ❌</h4>
+    <table>
+      <tr><th>1. מוצאים</th><th>2. מחפשים דפוס</th><th>3. מתקנים הוראה</th><th>4. מריצים שוב</th></tr>
+      <tr><td>❌ בשורה אחת, למשל חסר <code>1/N</code></td><td>האם זה קורה גם בדפים אחרים?</td><td>הוראה אחת ב-<code>exam-prep</code>, למשל "העתק נוסחאות תו אחר תו מהמקור"</td><td>שלב 2, שלב 3, ומדגם חדש</td></tr>
+    </table>
+    <div class="help"><b>למה לא מתקנים נוסחה אחת ביד?</b> אותה טעות יכולה לשבת בדפים שלא נבדקו. מתקנים את הסיבה, ולא את הפריט שנתפס.</div>
+    <p class="hint">רוצים לראות כישלון בעיניים? שנו ידנית ב-<code>summaries/</code> נוסחה אחת (למשל הורידו את <code>1/N</code> מפארסבל), והריצו <code>sample-check</code> שוב על הדף הזה.</p>
+  </div>
+
+  <div class="sec" id="m5z-orch">
+    <span class="badge ws">המתזמר · כ-10 דקות</span><br><span class="where">עותק נקי של התיקייה</span>
+    <h3>Skill אחד שמריץ את כולם ועוצר בשערים: exam-chain</h3>
+    <p class="goal">המטרה: פקודה אחת שמריצה את כל השרשרת, עוצרת בשני השערים ומחכה לכם.</p>
+    <ol class="steps" data-key="m5z-orch">
+      <li><label><input type="checkbox"><span>הדביקו את בקשת המתזמר שלמטה. Claude בונה את <code>.claude/skills/exam-chain/</code></span></label></li>
+      <li><label><input type="checkbox"><span>עבדו בעותק נקי: מחקו (או העבירו לתיקייה אחרת) את <code>study-plan.md</code>, <code>summaries/</code> ו-<code>sample-check.md</code> מהריצות הקודמות</span></label></li>
+      <li><label><input type="checkbox"><span>הריצו <code>/exam-chain</code>. הוא עוצר אחרי התוכנית: ערכו ואשרו בקובץ (<code>approved</code>), וכתבו ל-Claude "המשך"</span></label></li>
+      <li><label><input type="checkbox"><span>הוא עוצר אחרי המדגם: בדקו מול המקור, כתבו <code>verified</code> בקובץ, וכתבו "המשך"</span></label></li>
+      <li><label><input type="checkbox"><span>פתחו את התיקייה וספרו את הקבצים שנוצרו</span></label></li>
+    </ol>
+    <div class="prompt"><button class="copy">העתק</button><span class="tag">בקשת המתזמר</span>בנה Skill מתזמר בשם exam-chain בתיקייה .claude/skills/. הוא מריץ את השרשרת לפי הסדר:
+1. exam-plan. אחריו עצור: הראה לי את study-plan.md ושאל אם לערוך. אל תמשיך עד שבשורה הראשונה כתוב status: approved.
+2. exam-prep על כל הנושאים שבתוכנית.
+3. sample-check. אחריו עצור: הראה לי את sample-check.md ואל תמשיך עד שבשורה הראשונה כתוב status: verified.
+בסוף רשום את כל הקבצים שנוצרו ואילו נושאים נשארו בלי דף.
+אל תשנה בעצמך אף שורת status. רק אני משנה אותה.</div>
+    <div class="done">✅ <b>סיימתם כש:</b> השרשרת עצרה פעמיים, שני הסטטוסים (<code>approved</code>, <code>verified</code>) נכתבו על ידכם, ויש דף לכל נושא שיש עליו סיכום.</div>
+    <div class="help"><b>Claude לא עוצר?</b> הוסיפו לבקשה "אל תמשיך בלי תשובה שלי" והריצו שוב. אם <code>/exam-chain</code> לא מזוהה, הקלידו <code>/</code> וחפשו אותו ברשימה, ופתחו שיחה חדשה.</div>
+  </div>
+
+  <div class="sec" id="m5z-check">
+    <span class="badge idea">בדיקות, טעויות ותרגול בבית</span>
+    <h3>איך יודעים שזה עובד</h3>
+    <table>
+      <tr><th>בדיקה</th><th>איך</th></tr>
+      <tr><td><b>השער חוסם</b></td><td>בלי <code>approved</code>, שלב 2 מסרב ולא כותב קבצים</td></tr>
+      <tr><td><b>אין המצאות</b></td><td>נושא בלי סיכום מופיע ב-<code>MISSING.md</code> ולא בדף; לכל נוסחה יש מקור</td></tr>
+      <tr><td><b>המדגם אמיתי</b></td><td>שלוש נוסחאות משלושה דפים, והגרלה בעזרת סקריפט</td></tr>
+    </table>
+    <h4 style="margin:18px 0 6px">ארבע דרכים שבהן שער מפסיק להיות שער</h4>
+    <ul>
+      <li><b>שער בלי קובץ:</b> "עצור ושאל" היא רק בקשה. שורת סטטוס עושה אותה מחייבת.</li>
+      <li><b>Claude מאשר בשמכם:</b> אוסרים עליו לשנות את שורת הסטטוס.</li>
+      <li><b>מדגם של השלושה הראשונים:</b> מגרילים באמת, מדפים שונים.</li>
+      <li><b>מתקנים דף אחד ומאשרים:</b> מתקנים את ה-Skill ומריצים הכול שוב.</li>
+    </ul>
+    <h4 style="margin:18px 0 6px">איפה שמים שער, בשלוש שאלות</h4>
+    <table>
+      <tr><th>השאלה</th><th>התשובה</th></tr>
+      <tr><td>קשה לבטל?</td><td>שער לפני הפעולה: מחיקה, שליחה, שינוי נתונים</td></tr>
+      <tr><td>הפלט קטן וקובע הכול?</td><td>שער עריכה: תוכנית, רשימה, סיווג</td></tr>
+      <tr><td>הפלט גדול מכדי לקרוא?</td><td>שער מדגם: עשרות דפים, שורות או נוסחאות</td></tr>
+    </table>
+    <div class="help"><b>נתקעתם?</b> הדביקו ל-Claude את ההודעה ושאלו: "מה השלב שנכשל, ומה לתקן בבקשה?". אם משהו נכשל, מתקנים את הבקשה של השלב ולא את הפלט.</div>
+    <h4 style="margin:18px 0 6px">תרגול בבית (לא חובה): שרשרת משלכם</h4>
+    <ol class="steps" data-key="m5z-hw">
+      <li><label><input type="checkbox"><span>בחרו משימה שחוזרת אצלכם: סיכומי הרצאות, דוחות מעבדה, סקירת מאמרים</span></label></li>
+      <li><label><input type="checkbox"><span>חלקו לשלוש חוליות, וכל חוליה כותבת קובץ</span></label></li>
+      <li><label><input type="checkbox"><span>החליטו איפה שער עריכה ואיפה שער מדגם, לפי שלוש השאלות</span></label></li>
+      <li><label><input type="checkbox"><span>בנו עם הבקשות מהצעדים למעלה (מחליפים את שמות הקבצים והנושאים), והריצו את המתזמר</span></label></li>
+    </ol>
+    <div class="done">✅ <b>סיימתם את המודול כש:</b> השרשרת שלכם עצרה פעמיים, ועבדה על חומר אמיתי שלכם.</div>
+    <div class="help" style="background:var(--blue-soft)"><b>מה הלאה:</b> עד עכשיו השרשרת קראה קבצים מהתיקייה. במודול 6 מחברים אותה לעולם שבחוץ: יומן, מייל ואתרים, דרך MCP.</div>
   </div>
 </section>
 
